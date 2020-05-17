@@ -4,8 +4,8 @@ Nuestro sitio será un E-Commerce de productos de pastelería y panadería. Se v
 
 Nuestra audiencia serán personas de entre 18-70 años, focalizando en todo tipo de público que necesite y/o quiera comprar productos artesanales de pastelería y panadería.
 
-Nuestra idea es hacer una web con un diseño que se integre con los productos. Que sea armónica y sencilla de manejar, teniendo en cuenta al diverso público al que está destinada.
-Queremos incluir animaciones, que sin ser invasivas, acompañan al usuario y le den una buena experiencia.
+Nuestra idea es hacer una web con un diseño orgánico que se integre con los productos. Que sea armónica, elegante y sencilla de manejar, teniendo en cuenta al diverso público al que está destinada. Dado que parte de los usuarios podría no tener mucho dominio de la tecnología, buscamos que el proceso de compra sea intuitivo.
+Incluiremos animaciones, que sin ser invasivas, logren acompañar al usuario y le den una buena experiencia en la página. 
 
 
 Páginas en la que nos inspiramos:
@@ -30,7 +30,9 @@ La paleta de colores de esta web es muy sencilla, buscando destacar los producto
 En la sección ”productos” permite acceder al anterior o al siguiente, a través de flechas que se despliegan de los laterales.
 
 https://carlosbakery.goldbelly.com/
-https://shop.sacher.com/
 https://www.rausch.de/schokoladenhaus
-Además nos basamos en diseños del extranjero, más parecido a la idea que vamos a abordar, en cuanto a que es un ecommerce. De la primera destacamos el diseño lateral derecho de el carrito que uno puede consultar a medida que se va agregando nuevos productos.
+https://shop.sacher.com/
+Además nos basamos en diseños del extranjero, más parecidos a la idea que vamos a abordar, en cuanto a que son ecommerce. De la primera destacamos el diseño lateral derecho de el carrito que uno puede consultar a medida que se va agregando nuevos productos.
+De la segunda resaltamos tanto la sección de productos, que permite acceder a mucha información del mismo con un menú de opciones, así como la sección de registro del usuario.
+De la tercera hacemos foco en cómo la web trata de respetar y representar el diseño y el estándar de la empresa.
 
