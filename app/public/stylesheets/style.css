@@ -19,23 +19,26 @@
 /* Main Header */
 .fondo-header{
   background-image: url("../images/header/HEADER.jpg");
+  object-fit: cover;
 }
 
 .laurel-L {
-  margin-left: -200px;
+  margin-top: 5px;
+  transform: rotate(-4deg);
+  margin-left: -80px;
+  width: 60%;
 }
 
-.laurel-L:hover {
-  margin-left: -100px;
-}
+
 
 .laurel-R {
-  margin-left: 200px;
+    transform: rotate(0deg);
+    width: 100%;    
+    margin-left: 15px;
 }
 
-.laurel-R:hover {
-  margin-left: 100px;
-}
+
+
 
 .logo-header {
   width: 150%;
@@ -44,7 +47,25 @@
 .contenedor-padre-redes{
   display: flex;
   flex-wrap: wrap;
+  width: 150%;
+  justify-content: space-between;
 }
+
+@media (min-width: 880px) {
+  .md {
+    display: none;
+  }
+}
+
+
+@media (max-width: 880px) {
+  .lg {
+    display: none;
+  }
+}
+
+
+
 
 /* Footer */
 
