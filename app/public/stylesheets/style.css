@@ -64,6 +64,55 @@
   }
 }
 
+.navbar {
+  width: 100%;
+  justify-content: center;
+}
+
+
+
+#navbarNav {
+  justify-content: center;
+}
+
+
+
+
+@media (min-width: 1440px){
+.izq{
+  margin-left: 170px;
+}
+}
+
+
+
+@media (max-width: 1440px){
+  .izq{
+    margin-left: 150px;
+  }
+}
+
+@media (max-width: 1310px){
+  .izq{
+    margin-left: 130px;
+  }
+}
+
+@media (max-width:992px){
+  .fondo-oscuro {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .izq{
+    margin-left: 0px;
+    padding-left: 45%;
+  }
+  
+}
+
+.propiedades-link{
+  color:white;
+}
+
 
 
 
