@@ -17,9 +17,34 @@
 
 
 /* Main Header */
+.fondo-header{
+  background-image: url("../images/header/HEADER.jpg");
+}
 
+.laurel-L {
+  margin-left: -200px;
+}
 
+.laurel-L:hover {
+  margin-left: -100px;
+}
 
+.laurel-R {
+  margin-left: 200px;
+}
+
+.laurel-R:hover {
+  margin-left: 100px;
+}
+
+.logo-header {
+  width: 150%;
+}
+
+.contenedor-padre-redes{
+  display: flex;
+  flex-wrap: wrap;
+}
 
 /* Footer */
 
