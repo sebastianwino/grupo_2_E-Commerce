@@ -155,9 +155,6 @@
     justify-content: space-between;
   }
 
-  .lg {
-    display: none;
-  }
 
   .laurel-L {
     margin-top: 5px;
@@ -251,11 +248,7 @@
 
   }
 
-  .lg {
-    display: none;
-  }
-
-  @keyframes movimiento-R {
+   @keyframes movimiento-R {
     from {
       opacity: 1;
       margin-left: -500px;
@@ -379,10 +372,7 @@
     animation-iteration-count: 1;
   }
 
-  .sm {
-    display: none;
-  }
-
+  
 }
 
 @keyframes aparecer {
