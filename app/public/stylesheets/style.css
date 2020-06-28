@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Kalam', cursive;
 }
 
 /* Fonts */
@@ -20,29 +21,13 @@
 .fondo-header{
   background-image: url("../images/header/HEADER.jpg");
   object-fit: cover;
-}
-
-.laurel-L {
-  margin-top: 5px;
-  transform: rotate(-4deg);
-  margin-left: -80px;
-  width: 60%;
-}
-
-
-
-.laurel-R {
-  transform: rotate(0deg);
-  width: 100%;    
-  margin-left: 15px;
-}
+  }
 
 
 
 
-.logo-header {
-  width: 150%;
-}
+
+
 
 .contenedor-padre-redes{
   display: flex;
@@ -52,21 +37,25 @@
 }
 
 @media (min-width: 880px) {
-  .contenedor-padre-redes .fa-1x {
-    font-size: 200%;
+  .md {
+    display: none;
   }
 }
 
 
 @media (max-width: 880px) {
-  .contenedor-padre-redes .fa-1x {
-    font-size: 100%;
+  .lg {
+    display: none;
   }
 }
 
 .navbar {
   width: 100%;
   justify-content: center;
+  font-size: 1.5em;
+  animation-duration: 6s;
+      animation-name: aparecer;
+      animation-iteration-count: 1;
 }
 
 
@@ -100,20 +89,169 @@
 
 @media (max-width:992px){
   .fondo-oscuro {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
   }
   .izq{
     margin-left: 0px;
-    padding-left: 45%;
+    text-align: center;
+    
   }
+  .navbar-light .navbar-nav .nav-link{
+    color: black;
+  }
+  
+  .navbar-light .navbar-nav .nav-link:hover{
+    color:white ;
+    background-color: black;
+    
+  }
+  .laurel-L {
+    margin-top: 5px;
+    transform: rotate(-4deg);
+    margin-left: -80px;
+    width: 60%;
+    opacity: 0;
+    animation-duration: 2s;
+    animation-name: movimiento-L;
+    animation-iteration-count: 1;
+    }
+  
+  
+  .laurel-R {
+      transform: rotate(0deg);
+      width: 100%;    
+      margin-left: 15px;
+      opacity: 0;
+      animation-duration: 3s;
+      animation-name: movimiento-R;
+      animation-iteration-count: 1;
+  
+  }
+
+  
+@keyframes movimiento-R {
+  from {
+    opacity: 1;
+    margin-left: -300px;
+    width: 300%
+  }
+to {
+  opacity: 0;
+  transform: rotate(0deg);
+  width: 100%;
+  margin-left: 15px;
+}
+}
+
+@keyframes movimiento-L {
+  from {
+    opacity: 1;
+    margin-left: 100%;
+    width: 300%
+  }
+
+  to {
+    opacity: 0;
+    margin-top: 5px;
+    transform: rotate(-4deg);
+    margin-left: -80px;
+    width: 60%;
+  }
+}
+
+.logo-header {
+  width: 300px;
+  margin-left: -82px;
+  animation-duration: 7s;
+  animation-name: aparecer;
+  animation-iteration-count: 1;
+}
   
 }
 
-.propiedades-link{
-  color:white;
+@media (min-width:992px){
+  .navbar-light .navbar-nav .nav-link{
+    color:black ;
+  }
+  .laurel-L {
+    margin-top: 5px;
+    transform: rotate(-4deg);
+    margin-left: -80px;
+    width: 60%;
+    animation-duration: 3s;
+      animation-name: movimiento-L;
+      animation-iteration-count: 1;
+  }
+  
+  
+  
+  .laurel-R {
+      transform: rotate(0deg);
+      width: 100%;    
+      margin-left: 15px;
+      animation-duration: 3s;
+      animation-name: movimiento-R;
+      animation-iteration-count: 1;
+  
+  }
+
+  
+@keyframes movimiento-R {
+  from {
+    opacity: 0;
+    margin-left: -300px;
+    width: 300%
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(0deg);
+    width: 100%;    
+    margin-left: 15px;
+  }
 }
 
+@keyframes movimiento-L {
+  from {
+    opacity: 0;
+    margin-left: 100%;
+    width: 300%
+  }
 
+  to {
+    opacity: 1;
+    margin-top: 5px;
+  transform: rotate(-4deg);
+  margin-left: -80px;
+  width: 60%;
+  }
+}
+
+.logo-header {
+  width: 150%;
+  animation-duration: 5s;
+  animation-name: aparecer;
+  animation-iteration-count: 1;
+}
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.navbar-toggler{
+  background-color: rgba(0, 0, 0, 0.4)
+}
+
+.navbar-toggler:hover{
+  background-color: rgba(0, 0, 0, 0.1)
+}
 
 
 /* Footer */
@@ -165,31 +303,31 @@
 
 /* ERROR */
 
-.main-error .fundo{
+.fundo{
   animation: scales 3s alternate  infinite;
   transform-origin: center;
 }
-.main-error .pao-baixo{
+.pao-baixo{
    animation: rotatepao 14s cubic-bezier(.1,.49,.41,.97)  infinite;
   transform-origin: center;
 }
-.main-error .pao-cima{
+.pao-cima{
    animation: rotatepao 7s 1s cubic-bezier(.1,.49,.41,.97)  infinite;
   transform-origin: center;
 }
-.main-error .olhos{animation: olhos   2s  alternate  infinite;
+.olhos{animation: olhos   2s  alternate  infinite;
    transform-origin: center;
 }
 
-.main-error .left-sparks{animation: left-sparks   4s  alternate  infinite;
+.left-sparks{animation: left-sparks   4s  alternate  infinite;
       transform-origin: 150px 156px;
-}.main-error 
+}
 
-.main-error .right-sparks{animation: left-sparks   4s  alternate  infinite;
+.right-sparks{animation: left-sparks   4s  alternate  infinite;
       transform-origin: 310px 150px;
 }
 
-.main-error .olhos{animation: olhos   2s  alternate  infinite;
+.olhos{animation: olhos   2s  alternate  infinite;
    transform-origin: center;
 }
 @keyframes scales{
@@ -221,7 +359,7 @@
 }
 
 
-.main-error{
+.main{
   
   min-height: 600px;
   margin: 0px auto;
@@ -232,7 +370,7 @@
   justify-content: center;
 }
 
-.main-error .path {
+.path {
   stroke-dasharray: 300;
   stroke-dashoffset: 300;
   animation: dash 4s   alternate infinite;
@@ -247,4 +385,6 @@
      fill: transparent;
     stroke-dashoffset:  -200;
   }
+   
+  
 }
