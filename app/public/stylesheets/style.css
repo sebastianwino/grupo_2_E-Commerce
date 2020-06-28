@@ -32,9 +32,9 @@
 
 
 .laurel-R {
-    transform: rotate(0deg);
-    width: 100%;    
-    margin-left: 15px;
+  transform: rotate(0deg);
+  width: 100%;    
+  margin-left: 15px;
 }
 
 
@@ -52,15 +52,15 @@
 }
 
 @media (min-width: 880px) {
-  .md {
-    display: none;
+  .contenedor-padre-redes .fa-1x {
+    font-size: 200%;
   }
 }
 
 
 @media (max-width: 880px) {
-  .lg {
-    display: none;
+  .contenedor-padre-redes .fa-1x {
+    font-size: 100%;
   }
 }
 
@@ -165,31 +165,31 @@
 
 /* ERROR */
 
-.fundo{
+.main-error .fundo{
   animation: scales 3s alternate  infinite;
   transform-origin: center;
 }
-.pao-baixo{
+.main-error .pao-baixo{
    animation: rotatepao 14s cubic-bezier(.1,.49,.41,.97)  infinite;
   transform-origin: center;
 }
-.pao-cima{
+.main-error .pao-cima{
    animation: rotatepao 7s 1s cubic-bezier(.1,.49,.41,.97)  infinite;
   transform-origin: center;
 }
-.olhos{animation: olhos   2s  alternate  infinite;
+.main-error .olhos{animation: olhos   2s  alternate  infinite;
    transform-origin: center;
 }
 
-.left-sparks{animation: left-sparks   4s  alternate  infinite;
+.main-error .left-sparks{animation: left-sparks   4s  alternate  infinite;
       transform-origin: 150px 156px;
-}
+}.main-error 
 
-.right-sparks{animation: left-sparks   4s  alternate  infinite;
+.main-error .right-sparks{animation: left-sparks   4s  alternate  infinite;
       transform-origin: 310px 150px;
 }
 
-.olhos{animation: olhos   2s  alternate  infinite;
+.main-error .olhos{animation: olhos   2s  alternate  infinite;
    transform-origin: center;
 }
 @keyframes scales{
@@ -221,7 +221,7 @@
 }
 
 
-.main{
+.main-error{
   
   min-height: 600px;
   margin: 0px auto;
@@ -232,7 +232,7 @@
   justify-content: center;
 }
 
-.path {
+.main-error .path {
   stroke-dasharray: 300;
   stroke-dashoffset: 300;
   animation: dash 4s   alternate infinite;
@@ -247,6 +247,4 @@
      fill: transparent;
     stroke-dashoffset:  -200;
   }
-   
-  
 }
