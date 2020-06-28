@@ -78,23 +78,23 @@
 
 
 
-@media (min-width: 1440px) {
+@media (min-width: 1790px) {
   .izq {
-    margin-left: 110px;
+    margin-left: 205px;
   }
 }
 
 
 
-@media (max-width: 1440px) {
+@media (max-width: 1790px) {
   .izq {
-    margin-left: 60px;
+    margin-left: 120px;
   }
 }
 
-@media (max-width: 1310px) {
+@media (max-width: 1370px) {
   .izq {
-    margin-left: 30px;
+    margin-left: 45px;
   }
 }
 
