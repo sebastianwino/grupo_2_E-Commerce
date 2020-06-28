@@ -28,26 +28,23 @@
 
 
 
-
+@media (min-width: 992px){
 .contenedor-padre-redes{
   display: flex;
   flex-wrap: wrap;
+  margin-left: -100px;
   width: 150%;
   justify-content: space-between;
 }
+}
 
-@media (min-width: 880px) {
+
   .md {
     display: none;
   }
-}
 
+  
 
-@media (max-width: 880px) {
-  .lg {
-    display: none;
-  }
-}
 
 .navbar {
   width: 100%;
@@ -87,6 +84,8 @@
   }
 }
 
+
+/*smartphone*/
 @media (max-width:992px){
   .fondo-oscuro {
     background-color: rgba(0, 0, 0, 0.2);
@@ -105,6 +104,59 @@
     background-color: black;
     
   }
+
+  
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 14px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  margin-left: -30px;
+  animation-duration: 4s;
+  animation-name: aparecer;
+  animation-iteration-count: 1;
+}
+
+input[type=text]:focus {
+  width: 150px;
+}
+
+
+
+}
+
+.logo-header {
+  width: 300px;
+  margin-left: -100px;
+  animation-duration: 4s;
+  animation-name: aparecer;
+  animation-iteration-count: 1;
+}
+  
+
+
+
+@media (min-width: 600px) and (max-width: 992px){
+  .contenedor-padre-redes{
+    width: 308px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -100px;
+    justify-content: space-between;
+  }
+
+  .lg {
+    display: none;
+  }
+
   .laurel-L {
     margin-top: 5px;
     transform: rotate(-4deg);
@@ -159,16 +211,80 @@ to {
   }
 }
 
-.logo-header {
-  width: 300px;
-  margin-left: -82px;
-  animation-duration: 4s;
-  animation-name: aparecer;
-  animation-iteration-count: 1;
-}
-  
+
+
 }
 
+@media (max-width:600px){
+  .contenedor-padre-redes{
+    width: 141px;
+    margin-left: -50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .laurel-L {
+    margin-top: 5px;
+    transform: rotate(-4deg);
+    margin-left: -80px;
+    width: 200px;
+    opacity: 0;
+    animation-duration: 2s;
+    animation-name: movimiento-L;
+    animation-iteration-count: 1;
+    }
+  
+  
+  .laurel-R {
+      transform: rotate(0deg);
+      width: 150px;;    
+      margin-left: 15px;
+      opacity: 0;
+      animation-duration: 2s;
+      animation-name: movimiento-R;
+      animation-iteration-count: 1;
+  
+  }
+
+  .lg{
+    display: none;
+  }
+  
+@keyframes movimiento-R {
+  from {
+    opacity: 1;
+    margin-left: -500px;
+    width: 150px;
+  }
+to {
+  opacity: 0;
+  transform: rotate(0deg);
+  width: 150px;
+  margin-left: 15px;
+}
+}
+
+@keyframes movimiento-L {
+  from {
+    opacity: 1;
+    margin-left: 200%;
+    width: 200px;
+  }
+
+  to {
+    opacity: 0;
+    margin-top: 5px;
+    transform: rotate(-4deg);
+    margin-left: -80px;
+    width: 200px;
+  }
+}
+
+
+}
+
+/*Escritorio*/
 @media (min-width:992px){
   .navbar-light .navbar-nav .nav-link{
     color:black ;
@@ -183,7 +299,28 @@ to {
       animation-iteration-count: 1;
   }
   
+  input[type=text] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 14px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    margin-left: -30px;
+    animation-duration: 4s;
+  animation-name: aparecer;
+  animation-iteration-count: 1;
+  }
   
+  input[type=text]:focus {
+    width: 100%;
+  }
   
   .laurel-R {
       transform: rotate(0deg);
@@ -233,6 +370,11 @@ to {
   animation-name: aparecer;
   animation-iteration-count: 1;
 }
+
+.sm {
+  display: none;
+}
+
 }
 
 @keyframes aparecer {
@@ -243,6 +385,7 @@ to {
   to {
     opacity: 1;
   }
+  
 }
 
 .navbar-toggler{
