@@ -8,8 +8,19 @@
   font-family: 'Kalam', cursive;
 }
 
+.index-15{
+  position: relative;
+  z-index: 15;
+}
+
+
  .fuente-footer {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.detras {
+  position: fixed;
+  background-color: #D9C3A9;
 }
 
 /* Fonts */
