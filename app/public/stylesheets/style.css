@@ -301,6 +301,14 @@
   color: white;
 }
 
+.logos-redesF{
+  color: black;
+}
+
+.logos-redesF:hover{
+  color: #3b5998;
+}
+
 .navbar {
   width: 103%;
   justify-content: center;
