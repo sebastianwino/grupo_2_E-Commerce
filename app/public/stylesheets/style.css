@@ -525,6 +525,9 @@
     bottom: 50px;
     font-size: 2em;
     }    
+
+  
+    
 }
 
 
@@ -535,15 +538,19 @@
     bottom: 100px;
     font-size: 2em;
    }  
+  
+  
 }
 
 
-   /*ESCRITORIO MD*/
-   @media (min-width: 992px) and (max-width: 1650px) {
+/*ESCRITORIO MD*/
+@media (min-width: 992px) and (max-width: 1650px) {
     .carousel-caption {
       bottom: 200px;
       font-size: 3em;
      }
+    
+    
   }
 
 
@@ -553,9 +560,69 @@
     bottom: 500px;
     font-size: 4em;
    }
+  
+  
+  
+}
+
+
+.tam-burger {
+  margin-left: 14%;
+  width: 65%;
+  opacity: 1;
+}
+
+.tam-cake{
+  width: 50%;
+  margin-left: 27%;
+  margin-top: 0%;
+  opacity: 1;
+}
 
 
 
+.fondo-ladrillo {
+  background-image: url("/images/Home/categories/fondo-hamburguesa.jpg");
+  opacity: 0.7;
+  transition: 0.5s;
+}
+
+.fondo-ladrillo:hover {
+  background-image: url("/images/Home/categories/fondo-hamburguesa.jpg");
+  color: darkred;
+  opacity: 1;
+}
+
+.fondo-categoria{
+  background-color: navy;
+}
+
+
+.fondo-torta {
+  background-image: url('/images/Home/categories/fondo-torta.jpg');
+  background-position: 0%;
+  opacity: 0.7;
+  transition: 0.5s;
+}
+
+.fondo-torta:hover {
+  background-image: url('/images/Home/categories/fondo-torta.jpg');
+  background-position: 0%;
+  color: darkgoldenrod;
+  opacity: 1;
+}
+
+.tam-text-2{
+  font-size: 32px;
+}
+
+.titulo-torta{
+font-size: 1.5em; 
+}
+
+.titulo-burger{
+  font-size: 1.5em; 
+}
 
 /* CARRITO */
 
@@ -696,13 +763,11 @@
   30% {
     fill: 4B4B62;
     stroke-dashoffset: 0;
-  }
+  };
 
   80%,
   100% {
     fill: transparent;
     stroke-dashoffset: -200;
-  }
-
-
+  };
 }
