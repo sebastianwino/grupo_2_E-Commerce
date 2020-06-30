@@ -441,18 +441,29 @@
 /* Footer */
 
 .fondo-footer{
-  background-image: url("../images/header/HEADER.jpg");
+  background-color: #BFAC91;
   object-fit: cover;
 }
 
 .lista-footer{
-  color: black;
+  color: #79685C;
   margin-top: 10px;
 }
 
 .lista-footer:hover{
   text-decoration: none;
-  color:white;
+  color:black;
+}
+
+
+.lista1-footer{
+  color: black;
+  margin-top: 10px;
+}
+
+.lista1-footer:hover{
+  text-decoration: none;
+  color:#79685C;
 }
 
 .espacio-lista-footer{
@@ -492,7 +503,7 @@
 @media (max-width: 600px){
   .carousel-caption {
     bottom: 50px;
-    font-size: 0.5em;
+    font-size: 2em;
     }    
 }
 
