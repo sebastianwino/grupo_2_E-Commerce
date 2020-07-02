@@ -39,7 +39,7 @@
 .fondo-header {
   
   background-image: url("../images/header/HEADER.jpg");
-  object-fit: cover;
+  background-size: 100%;
 }
 
 .md {
@@ -109,7 +109,7 @@
   animation-iteration-count: 1;
 }
 
-/*Tablet*/
+/*(Tablet)*/
 @media (min-width: 600px) and (max-width: 992px) {
   .contenedor-padre-redes {
     width: 308px;
@@ -202,13 +202,13 @@
     background-color: rgba(191, 172, 149, .0);
   }
 }
-/*(fin)Tablet*/
 
 
 
 
 
-/*smartphone*/
+
+/*(smartphone)*/
 @media (max-width:600px) {
   .contenedor-padre-redes {
     width: 141px;
@@ -257,13 +257,13 @@
   }
   
 }
-/*(fin)smartphone*/
 
 
 
 
 
-/*navar separacion*/
+
+/*(navar separacion)*/
 @media (min-width: 1790px) {
   .izq {
     margin-left: 205px;
@@ -333,7 +333,6 @@
   justify-content: flex-start;
 }
 
-/*(fin) navar separacion*/
 
 
 
@@ -342,7 +341,8 @@
 
 
 
-/*Escritorio*/
+
+/*(Escritorio)*/
 @media (min-width:992px) {
   .navbar-light .navbar-nav .nav-link {
     color: black;
@@ -453,7 +453,7 @@
   
 }
 
-/*(fin)Escritorio*/
+
 
 
 
@@ -490,19 +490,19 @@
   margin-top: 10px;
 }
 
-/*Smartphones*/
+/*(Smartphones)*/
 @media (max-width: 600px){
   .logo-footer{
     width: 100%;
   }
 }
-/*tablet*/
+/*(tablet)*/
 @media (min-width: 600px) and (max-width: 992px) {
   .logo-footer{
     width: 80%;
   }
 }
-/*escritorio*/
+/*(escritorio)*/
 @media (min-width: 992px){
   .logo-footer{
     width: 70%;
@@ -519,7 +519,7 @@
   color: white;
   }
 
-/*Smartphones*/
+/*(Smartphones)*/
 @media (max-width: 600px){
   .carousel-caption {
     bottom: 50px;
@@ -531,13 +531,19 @@
       font-size: 2em;
     }
     
-  
+    .container-fluid.fondo-local.caja-flexible.general h1{
+      font-size: 3em;
+    }
+
+    .fondo-cafe {
+      background-position-y: 62%;
+    }
     
 }
 
 
 
-/*tablet*/
+/*(tablet)*/
 @media (min-width: 600px) and (max-width: 992px) {
   .carousel-caption {
     bottom: 100px;
@@ -549,12 +555,19 @@
     font-size: 2em;
   }
   
+  .container-fluid.fondo-local.caja-flexible.general h1{
+    font-size: 6em;
+  }
+
+  .fondo-cafe {
+    background-position-y: 62%;
+  }
     
   
 }
 
 
-/*ESCRITORIO MD*/
+/*(ESCRITORIO MD)*/
 @media (min-width: 992px) and (max-width: 1650px) {
     .carousel-caption {
       bottom: 200px;
@@ -567,11 +580,18 @@
       font-size: 1.6em;
     }
     
+    .container-fluid.fondo-local.caja-flexible.general h1{
+      font-size: 6em;
+    }
+
+    .fondo-cafe {
+      background-position-y: 62%;
+    }
     
   }
 
 
-/*escritorio lg/xl*/
+/*(escritorio lg/x)l*/
 @media (min-width: 1650px){
   .carousel-caption {
     bottom: 500px;
@@ -583,10 +603,51 @@
     color: darkred;
     font-size: 2em;
   }
+  .container-fluid.fondo-local.caja-flexible.general h1{
+    font-size: 6em;
+  }
+   
+  .fondo-cafe {
+    background-image: url('/images/Home/categories/fondo-cafe.jpg');
+    background-size: 100%;
+    opacity: 0.4;
+    transition: 0.5s;
+    background-position-y: 34%;
+  }
+
+  .fondo-cafe {
+    background-size: 100%;
+    background-position-y: 34%;
+  }
   
+  .fondo-torta {
+    background-size: 100%;
+  }
   
-  
-  
+}
+
+
+
+
+/*(HAMBURGUESA)*/
+.fondo-ladrillo {
+  background-color: darkred;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.fondo-ladrillo:hover {
+  background-image: url("/images/Home/categories/fondo-hamburguesa.jpg");
+  background-position: 50% 50%;
+  background-size: cover;
+  opacity: 1;
+}
+
+.titulo-burger a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em; 
+  transition: 1s;
 }
 
 
@@ -596,34 +657,19 @@
   opacity: 1;
 }
 
-.tam-cake{
-  width: 50%;
-  margin-left: 27%;
-  margin-top: 0%;
-  opacity: 1;
-}
-
-
-.fondo-ladrillo {
-  background-color: darkred;
-  opacity: 0.5;
-  transition: 0.5s;
-}
-
-.fondo-ladrillo:hover {
-  background-image: url("/images/Home/categories/fondo-hamburguesa.jpg");
-  opacity: 1;
-}
 
 .fondo-categoria{
   background-color: black;
 }
 
 
+
+/*(TORTA)*/
+
 .fondo-torta {
-  background-color: black;
+  background-image: url('/images/Home/categories/fondo-torta.jpg');
   background-position: 0%;
-  opacity: 0.5;
+  opacity: 0.4;
   transition: 0.5s;
 }
 
@@ -633,19 +679,11 @@
   opacity: 1;
 }
 
-.tam-text-2{
-  font-size: 32px;
-}
-
-
-
 .titulo-torta a {
   text-decoration: none;
   color: black;
   font-size: 1.5em;
-  transition: 1s;
-  margin-top: 10px;
-  
+  transition: 1s;  
 }
   
 .titulo-torta a:hover {
@@ -654,13 +692,128 @@
   font-size: 2em;
  }
 
-
-.titulo-burger a {
-  text-decoration: none;
-  color: black;
-  font-size: 1.5em; 
-  transition: 1s;
+ .tam-cake{
+  width: 50%;
+  margin-left: 27%;
+  margin-top: 0%;
+  opacity: 1;
 }
+
+ /*(CAFE)*/
+
+ .titulo-cafe a {
+  color: beige;
+  font-size: 1.5em;
+  transition: 1s;
+  filter: blur(1.5px);
+}
+  
+.titulo-cafe a:hover {
+  text-decoration: none;
+  color: azure;
+  font-size: 2em;
+  filter: blur(0px);
+ }
+
+ .tam-cafe {
+  width: 43%;
+  margin-left: 29%;
+  margin-top: 10%;
+  opacity: 1;
+}
+
+
+
+
+.fondo-cafe {
+  background-image: url('/images/Home/categories/fondo-cafe.jpg');
+  opacity: 0.4;
+  transition: 0.5s;
+}
+
+
+
+.fondo-cafe:hover{ 
+  opacity: 1;
+}
+
+.fondo-torta {
+  background-image: url('/images/Home/categories/fondo-torta.jpg');
+  background-position: 0%;
+  /* background-size: 100%; */
+  opacity: 0.4;
+  transition: 0.5s;
+}
+
+
+.fondo-torta:hover{ 
+  opacity: 1;
+}
+
+
+/*(BRUNCH)*/
+.fondo-brunch {
+  background-color: #E9CAC7;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.fondo-brunch:hover {
+  background-image: url("/images/Home/categories/fondo-sandwich.jpg");
+  opacity: 1;
+}
+.tam-brunch {
+  width: 84%;
+  margin-left: 9%;
+  margin-top: 15%;
+  opacity: 1;
+}
+
+
+
+
+
+
+/*(LOCAL)*/
+.fondo-local {
+  background-image: url("/images/Home/Local/local.JPG");
+  background-size: cover;
+  background-position: 50% 50%;
+  background-attachment: fixed;
+  justify-content: center;
+  display: flex;
+}
+
+.container-fluid.fondo-local.caja-flexible.general{
+  height: 100%;
+}
+
+.container-fluid.fondo-local.caja-flexible.general h1:hover{
+  filter: blur(0px);
+}
+
+.container-fluid.fondo-local.caja-flexible.general h1{
+  background-color: rgba(255, 0, 0, 0.1);
+  margin-top: 500px;
+  margin-bottom: 100px;
+  padding: 30px;
+  border-radius: 10px;
+  filter: blur(1.5px);
+  transition: 0.5s;
+}
+
+.container-fluid.fondo-local.caja-flexible.general h1 a:hover{
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
 
 
 
