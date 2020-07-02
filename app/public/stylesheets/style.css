@@ -806,16 +806,22 @@
   text-decoration: none;
 }
 
+/*(home mensaje)*/
+.fondo-mensaje-home{
+  background-image: url(/images/Home/categories/pizza.png);
+    background-position: 0% -16%;
+    background-repeat: no-repeat;
+    background-size: 1000px;
+}
 
+.container-fluid.fondo-mensaje-home.general h2{
+  margin-top: 600px;
+}
 
-
-
-
-
-
-
-
-
+.texto-pizza {
+  margin-top: 50px;
+  text-align: center;
+}
 
 
 /* CARRITO */
