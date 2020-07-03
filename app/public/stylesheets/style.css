@@ -262,12 +262,12 @@
 
 
 
-
 /*(navar separacion)*/
 @media (min-width: 1790px) {
   .izq {
     margin-left: 205px;
-  }
+    }
+    
 }
 @media (min-width: 1650px) and (max-width: 1790px) {
   .izq {
@@ -606,22 +606,10 @@
   .container-fluid.fondo-local.caja-flexible.general h1{
     font-size: 6em;
   }
-   
-  .fondo-cafe {
-    background-image: url('/images/Home/categories/fondo-cafe.jpg');
-    background-size: 100%;
-    opacity: 0.4;
-    transition: 0.5s;
-    background-position-y: 34%;
-  }
 
   .fondo-cafe {
-    background-size: 100%;
+    background-size: 105%;
     background-position-y: 34%;
-  }
-  
-  .fondo-torta {
-    background-size: 100%;
   }
   
 }
@@ -665,6 +653,12 @@
 
 
 /*(TORTA)*/
+
+@media (min-width: 2000px) {
+  .fondo-torta {
+    background-size: 100%;
+  }
+}
 
 .fondo-torta {
   background-image: url('/images/Home/categories/fondo-torta.jpg');
