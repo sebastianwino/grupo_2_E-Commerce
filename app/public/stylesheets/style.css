@@ -828,9 +828,13 @@
 
 }
 
-.product-page a {
+.reset-link a {
   color: black;
   text-decoration: none;
+}
+
+.filtro-lg {
+  font-size: 20px;
 }
 
 .lista-filtro-productos {
@@ -846,6 +850,48 @@ li.lista-filtro-productos  {
   list-style: none;
 }
 
+.cartel-aviso-productos {
+  color: darkred;
+  border: 0.7px solid darkred;
+}
+
+.titulo-productos a:hover {
+  text-decoration: none;
+  color:#79685C;
+}
+
+.tarjetas-productos {
+  height: 300px;
+}
+
+.titulo-precio {
+  margin-right: 5px;
+}
+
+.precio-producto {
+  color: darkred;
+  font-weight: 600;
+}
+
+.add-to-cart-products a{
+  color: rgba(191, 172, 149, .6);
+}
+
+.add-to-cart-products a:hover{
+  color: rgb(191, 172, 149);
+}
+
+.more-info {
+  font-size: 10px;
+  bottom: 25px;
+  right: 10px;
+}
+
+.more-info:hover{
+  color: rgb(191, 172, 149);
+}
+
+
 @media (min-width: 768px){
 
 
@@ -855,6 +901,8 @@ li.lista-filtro-productos  {
 
 
 /* PRODUCTO */
+
+
 
 
 
