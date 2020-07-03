@@ -607,26 +607,18 @@
     font-size: 6em;
   }
    
-  .fondo-cafe {
-    background-image: url('/images/Home/categories/fondo-cafe.jpg');
-    background-size: 100%;
-    opacity: 0.4;
-    transition: 0.5s;
-    background-position-y: 34%;
-  }
 
   .fondo-cafe {
-    background-size: 100%;
+    background-size: 105%;
     background-position-y: 34%;
   }
-  
+}
+
+@media (min-width: 2000px){
   .fondo-torta {
     background-size: 100%;
   }
-  
 }
-
-
 
 
 /*(HAMBURGUESA)*/
