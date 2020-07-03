@@ -11,7 +11,7 @@
 	<!-- /Header -->
 
 	<!-- Main -->
-	<div class="container-fluid general mt-4 product-page">
+	<div class="container-fluid general mt-4 product-page" >
 		<div class="row">
 
 			<div class="filtro-sm d-lg-none w-100">
@@ -34,9 +34,13 @@
 						</div>
 					</form>
 				</div>
+				<!--Agregue esta columna para separar los filtros de la izquierda-->
 			</div>
-
-			<div class="filtro-lg d-none d-lg-block col-lg-3">
+			<div class="col-lg-1 ">
+				<p> </p>
+			</div>
+				<!--a col-lg-3/lo cambie por col-lg-2 y aumente un la fuente un toque-->
+			<div class="filtro-lg d-none d-lg-block col-lg-2" style="font-size: 20px;">
 				<div class="">
 					<p class="">Búsqueda detallada</p>
 
@@ -60,8 +64,8 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="main-products col-12 col-lg-9">
+			<!--a col-lg-9/lo cambie por col-lg-8 para separarlo de la derecha-->
+			<div class="main-products col-12 col-lg-8">
 
 				<div
 					class="cartel-productos d-none d-lg-block text-danger border border-danger text-center p-2 tex mb-3">
@@ -86,11 +90,18 @@
 								<div class="d-flex justify-content-between">
 									<div class="titulo-precio">
 										<p class="titulo-producto-filtro"><%= product.title %></p>
-										<p class="precio-producto-filtro">$<%= product.price %></p>
+									<!--Agregue color al precio-->
+										<p class="precio-producto-filtro" style="color: darkred;">$<%= product.price %></p>
 									</div>
+									<!--Agregue un carrito de compra con este color-->
+									<div>
+										<a href="#" class="text-success"><i class="fas fa-shopping-cart fa-2x"></i></a>
+									</div>
+									<!--
 									<div class="add-carrito-productos">
 										<a href="#" class="btn btn-secondary">Añadir al carrito</a>
 									</div>
+									-->
 								</div>
 							</div>
 						</div>
