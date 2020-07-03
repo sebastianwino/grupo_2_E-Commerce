@@ -2,22 +2,110 @@
 <html>
 
 <head>
-  <%- include('partials/head.ejs') %>
+	<%- include('partials/head.ejs') %>
 </head>
 
 <body>
-  <!-- Header -->
-  <%- include('partials/header.ejs') %>
-  <!-- /Header -->
+	<!-- Header -->
+	<%- include('partials/header.ejs') %>
+	<!-- /Header -->
 
-  <!-- Main -->
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
-  <!-- Main -->
+	<!-- Main -->
+	<div class="container-fluid general mt-4 product-page">
+		<div class="row">
 
-  <!-- footer -->
-  <%- include('partials/footer.ejs') %>
-  <!-- /footer -->
+			<div class="filtro-sm d-lg-none w-100">
+				<div class="col-12 d-flex justify-content-center">
+					<form action="">
+						<div class="col-12">
+							<select name="filtrarPorCategoria" id="">
+								<option class="tituloFiltrar" selected>Tipo de producto</option>
+								<option value="tipoDeProdcuto" id="">1</option>
+							</select>
+						</div>
+						<div class="col-12">
+							<select name="filtrarPorPrecio" id="">
+								<option value="tituloPrecio" selected>Precio</option>
+								<option value="precioDeProducto" id="">hasta $100</option>
+							</select>
+						</div>
+						<div class="filtrar-producto-sm col-12">
+							<button type="submit">Filtrar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="filtro-lg d-none d-lg-block col-lg-3">
+				<div class="">
+					<p class="">Búsqueda detallada</p>
+
+					<div class="tipo-producto-filtro">
+						<p><b>Tipo de producto:</b></p>
+						<ul class="lista-filtro-productos">
+							<% categories.forEach(category => { %>
+							<a href="">
+								<li class="lista-filtro-productos"><%= category %> </li>
+							</a>
+							<% }) %>
+						</ul>
+					</div>
+					<div class="precio-producto-filtro">
+						<p><b>Precios:</b></p>
+						<form action="">
+							<input type="number" name="fromPrice" class="price-filter_value" value="" placeholder="Mínimo" min="1" max="6">
+							<input type="number" name="toPrice" class="price-filter_value" value="" placeholder="Máximo" min="1" max="6">
+							<a class="btn" href=""><i class="fas fa-arrow-circle-right"></i></a>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="main-products col-12 col-lg-9">
+
+				<div
+					class="cartel-productos d-none d-lg-block text-danger border border-danger text-center p-2 tex mb-3">
+					<p>Tené en cuenta que los pedidos son con 48 hs de anticipación en el caso de la línea de
+						Pastelieria <br> y 72 hs en la línea de Pastelería Salada.<br>Los pedidos son procesados de
+						lunes a viernes de 9 a 18 hs.</p>
+				</div>
+
+				<div class="titulo-productos">
+					<h1><a href="/">Home</a>/<a href="/productos">Productos</a></h1>
+				</div>
+
+				<div class="allProducts">
+					<% products.forEach(product => { %>
+					<div class="col-12 col-sm-6 col-lg-3">
+						<div class="card tarjetas-productos">
+							<div class="imagen-producto-productos">
+								<img class="card-img-top imagen-producto-producto" src="<%= product.image %>"
+									alt="imagen de <%= product.title %>">
+							</div>
+							<div class="card-body">
+								<div class="d-flex justify-content-between">
+									<div class="titulo-precio">
+										<p class="titulo-producto-filtro"><%= product.title %></p>
+										<p class="precio-producto-filtro">$<%= product.price %></p>
+									</div>
+									<div class="add-carrito-productos">
+										<a href="#" class="btn btn-secondary">Añadir al carrito</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<% }) %>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- Main -->
+
+	<!-- footer -->
+	<%- include('partials/footer.ejs') %>
+	<!-- /footer -->
 
 </body>
 

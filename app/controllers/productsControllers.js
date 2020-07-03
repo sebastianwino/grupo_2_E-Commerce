@@ -7,7 +7,16 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 let productsControllers = {
     // Root - Show all products
 	root: (req, res) => {
-        res.render('products', {title: 'Productos'});
+        let pruebaProductos = products.filter(product => {
+            return product.id <= 30
+        })
+        let categories = ["facturas", "tortas", "salado", "especialidades", "galletitas"]
+
+        res.render('products', {
+            title: 'Productos',
+            products: pruebaProductos,
+            categories: categories
+        });
     },
 
     // Detail - Show one product
