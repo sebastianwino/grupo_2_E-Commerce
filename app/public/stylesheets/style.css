@@ -820,6 +820,53 @@
 
 
 
+.conteiner-carrito{
+  background-color: darkred;
+  width: 100%;
+  height: 100%;
+}
+
+.fondo-carrito{
+  width: 100%;
+}
+
+.container.general h3{
+  font-size: 23px;
+}
+
+@media (max-width: 992px){
+  
+.container.general h3{
+  font-size: 15px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* PRODUCTOS */
 .tarjetas-productos {
