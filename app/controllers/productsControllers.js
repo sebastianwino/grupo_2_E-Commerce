@@ -21,9 +21,27 @@ let productsControllers = {
 
     // Detail - Show one product
     detail: (req, res) => {
-        res.render('productDetail', {title: 'Detalle de Producto'});
-
-    },
+        let idProduct = req.params.productId
+        let product = products.find(product => {
+            if (product.id == idProduct) {
+                return product
+            }
+        })
+        let productsRelated = products.filter(productRelated => {
+            if (productRelated.category = product.category && productRelated.stock > 250) {
+                return productRelated
+            }
+        })
+        console.log(productsRelated)
+        if (product) {
+            return res.render('productDetail', {
+                title: product.title,
+                product: product,
+                productsRelated: productsRelated
+            });
+        }
+        res.redirect('/no-encontrado')
+        },
 
     // Create - Form to create
 	create: (req, res) => {

@@ -11,7 +11,7 @@
 	<!-- /Header -->
 
 	<!-- Main -->
-	<div class="container-fluid general mt-4 product-page" >
+	<div class="container-fluid general my-4 reset-link">
 		<div class="row">
 
 			<div class="filtro-sm d-lg-none w-100">
@@ -39,8 +39,8 @@
 			<div class="col-lg-1 ">
 				<p> </p>
 			</div>
-				<!--a col-lg-3/lo cambie por col-lg-2 y aumente un la fuente un toque-->
-			<div class="filtro-lg d-none d-lg-block col-lg-2" style="font-size: 20px;">
+				
+			<div class="filtro-lg d-none d-lg-block col-lg-2">
 				<div class="">
 					<p class="">Búsqueda detallada</p>
 
@@ -64,13 +64,13 @@
 					</div>
 				</div>
 			</div>
-			<!--a col-lg-9/lo cambie por col-lg-8 para separarlo de la derecha-->
+			
 			<div class="main-products col-12 col-lg-8">
 
 				<div
-					class="cartel-productos d-none d-lg-block text-danger border border-danger text-center p-2 tex mb-3">
+					class="cartel-aviso-productos d-none d-lg-block text-center p-2 tex mb-3">
 					<p>Tené en cuenta que los pedidos son con 48 hs de anticipación en el caso de la línea de
-						Pastelieria <br> y 72 hs en la línea de Pastelería Salada.<br>Los pedidos son procesados de
+						Pasteliería Dulce <br> y 72 hs en la línea de Pastelería Salada.<br>Los pedidos son procesados de
 						lunes a viernes de 9 a 18 hs.</p>
 				</div>
 
@@ -80,32 +80,28 @@
 
 				<div class="allProducts row">
 					<% products.forEach(product => { %>
-					<div class="col-12 col-sm-6 col-lg-3">
-						<div class="card tarjetas-productos">
-							<div class="imagen-producto-productos">
-								<img class="card-img-top imagen-producto-producto" src="<%= product.image %>"
-									alt="imagen de <%= product.title %>">
-							</div>
-							<div class="card-body">
-								<div class="d-flex justify-content-between">
-									<div class="titulo-precio">
-										<p class="titulo-producto-filtro"><%= product.title %></p>
-									<!--Agregue color al precio-->
-										<p class="precio-producto-filtro" style="color: darkred;">$<%= product.price %></p>
+						<a href="/productos/detalle/<%= product.id %>">
+							<div class="col-12 col-sm-6 col-lg-4">
+								<div class="card tarjetas-productos">
+									<div class="imagen-producto-productos">
+										<img class="card-img-top imagen-producto-producto" src="<%= product.image %>"
+											alt="imagen de <%= product.title %>">
 									</div>
-									<!--Agregue un carrito de compra con este color-->
-									<div>
-										<a href="#" class="text-success"><i class="fas fa-shopping-cart fa-2x"></i></a>
+									<div class="card-body position-relative">
+										<div class="d-flex justify-content-between ">
+											<div class="titulo-precio">
+												<p class="titulo-producto"><%= product.title %></p>
+												<p class="precio-producto">$<%= product.price %></p>
+											</div>
+
+											<div class="add-to-cart-products">
+												<a href="#"><i class="fas fa-shopping-cart fa-2x"></i></a>
+											</div>
+										</div>
 									</div>
-									<!--
-									<div class="add-carrito-productos">
-										<a href="#" class="btn btn-secondary">Añadir al carrito</a>
-									</div>
-									-->
 								</div>
 							</div>
-						</div>
-					</div>
+						</a>
 					<% }) %>
 				</div>
 			</div>
