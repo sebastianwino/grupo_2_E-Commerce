@@ -304,21 +304,31 @@
   background-color: rgba(0, 0, 0, 0.1)
 }
 
-.logos-redes{
+.logo-redes-instagram{
   color: black;
 }
 
-.logos-redes:hover{
-  color: white;
+.logo-redes-instagram:hover{
+  color: #e1306c;
 }
 
-.logos-redesF{
+.logo-redes-facebook{
   color: black;
 }
 
-.logos-redesF:hover{
+.logo-redes-facebook:hover{
   color: #3b5998;
 }
+
+.logo-carrito{
+  color: black;
+}
+
+.logo-carrito:hover{
+  color: rgb(15, 128, 0);
+}
+
+
 
 .navbar {
   width: 103%;
@@ -949,8 +959,17 @@ li.lista-filtro-productos  {
 
 /* PRODUCTO */
 
+.logo-redes-google:hover{
+  color: #F4B400;
+}
 
+.logo-redes-email:hover{
+  color: ;
+}
 
+.logo-redes-whatsapp:hover{
+  color: #25d366;
+}
 
 
 
