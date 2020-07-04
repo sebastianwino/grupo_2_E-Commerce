@@ -987,6 +987,50 @@ li.lista-filtro-productos  {
 
 /* CREAR PRODUCTO */
 
+.formulario-crear-producto {
+  background-color: rgba(191, 172, 149, 0.8);
+  padding: 80px 155px;
+  /* margin: 0px; */
+}
+
+@media (max-width: 754px){
+  .formulario-crear-producto {
+    padding: 30px;
+    
+    /* margin: 0px; */
+  }
+}
+
+.form-style {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.upload-file1, .upload-file2 {
+  width: 100%;
+  margin-left: .30rem!important;
+  margin-right: .30rem!important;
+}
+
+
+@media (min-width: 768px){
+  .upload-file1, .upload-file2 {
+   width: 45%;
+  }
+}
+
+
 
 
 
@@ -1054,10 +1098,10 @@ li.lista-filtro-productos  {
   background-repeat: no-repeat;
   }
 
-  .formulario-registro {
-    background-color: rgba(191, 172, 149, 0.8);
-    padding: 155px;
-    /* margin: 0px; */
+.formulario-registro {
+  background-color: rgba(191, 172, 149, 0.8);
+  padding: 155px;
+  /* margin: 0px; */
 }
 
 .registrarme{
@@ -1078,10 +1122,10 @@ li.lista-filtro-productos  {
     padding: 30px;
     
     /* margin: 0px; */
-}
-.fondo-registro {
-  background-position: -151px px;
-}
+  }
+  .fondo-registro {
+    background-position: -151px px;
+  }
 }
 
 
