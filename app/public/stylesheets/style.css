@@ -849,7 +849,11 @@
 }
 
 .container.general h3{
-  font-size: 23px;
+  font-size: 20px;
+}
+
+.ejemplo-foto-carrito{
+  width: 200px;
 }
 
 @media (max-width: 992px){
@@ -857,10 +861,18 @@
 .container.general h3{
   font-size: 15px;
 }
+
+
+.ejemplo-foto-carrito{
+  width: 130px;
+}
+
 }
 
 
-
+.row.border-bottom.my-3.i{
+  color: darkred;
+}
 
 
 
