@@ -72,7 +72,7 @@
   }
 
 
-  input[type=text] {
+  .mi-input {
     width: 130px;
     box-sizing: border-box;
     border: 2px solid #79685C;
@@ -91,7 +91,7 @@
     animation-iteration-count: 1;
   }
 
-  input[type=text]:focus {
+  .mi-input:focus {
     width: 150px;
   }
 
@@ -176,7 +176,7 @@
   }
 
   
-  input[type=text] {
+  .mi-input {
     width: 130px;
     box-sizing: border-box;
     border: 2px solid #79685C;
@@ -195,7 +195,7 @@
     animation-iteration-count: 1;
   }
 
-  input[type=text]:focus {
+  .mi-input:focus {
     width: 150px;
   }
   .fondo-oscuro {
@@ -320,6 +320,14 @@
   color: #3b5998;
 }
 
+.logo-users {
+  color: black;
+}
+
+.logo-users:hover {
+  color: red;
+}
+
 .logo-carrito{
   color: black;
 }
@@ -386,7 +394,7 @@
     animation-iteration-count: 1;
   }
 
-  input[type=text] {
+  .mi-input {
     width: 100%;
     box-sizing: border-box;
     border: 2px solid #79685C;
@@ -405,7 +413,7 @@
     animation-iteration-count: 1;
   }
 
-  input[type=text]:focus {
+  .mi-input:focus {
     width: 100%;
   }
 
@@ -959,12 +967,16 @@ li.lista-filtro-productos  {
 
 /* PRODUCTO */
 
+.logo-redes-twitter:hover{
+  color: #1DA1F2;
+}
+
 .logo-redes-google:hover{
   color: #F4B400;
 }
 
 .logo-redes-email:hover{
-  color: ;
+  color: rgb(229, 255, 0);
 }
 
 .logo-redes-whatsapp:hover{
@@ -985,11 +997,103 @@ li.lista-filtro-productos  {
 
 /* LOGIN */
 
+.fondo-login {
+  background-image: url('/images/user-register/pan.png');
+  background-size: 120%;
+  background-repeat: no-repeat;
+  }
+
+  .formulario-login {
+    padding: 155px;
+    /* margin: 0px; */
+}
+
+.registrarme{
+  background-color: firebrick;
+  border-color: firebrick;
+}
+
+.registrarme:hover {
+  
+  background-color: darkred;
+  border-color: darkred;
+}
+
+
+
+@media (max-width: 754px){
+  .formulario-login {
+    padding: 30px;
+    
+    /* margin: 0px; */
+}
+.fondo-login {
+  background-position: -151px px;
+}
+}
+
+
+@media (min-width: 754px) and (max-width: 1104px){
+  
+}
+  
+@media (min-width: 1104px){
+  .fondo-login {
+    background-position: -144px -302px;
+}
+}
 
 
 
 /* REGISTER */
 
+
+.fondo-registro {
+  background-image: url('/images/user-register/milk.png');
+  background-size: 120%;
+  background-repeat: no-repeat;
+  }
+
+  .formulario-registro {
+    background-color: rgba(191, 172, 149, 0.8);
+    padding: 155px;
+    /* margin: 0px; */
+}
+
+.registrarme{
+  background-color: firebrick;
+  border-color: firebrick;
+}
+
+.registrarme:hover {
+  
+  background-color: darkred;
+  border-color: darkred;
+}
+
+
+
+@media (max-width: 754px){
+  .formulario-registro {
+    padding: 30px;
+    
+    /* margin: 0px; */
+}
+.fondo-registro {
+  background-position: -151px px;
+}
+}
+
+
+@media (min-width: 754px) and (max-width: 1104px){
+  
+}
+  
+@media (min-width: 1104px){
+  .fondo-registro {
+    background-position: -144px -2000px;
+}
+}
 
 
 
