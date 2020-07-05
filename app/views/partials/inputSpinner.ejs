@@ -16,7 +16,6 @@
 
 
         input[type=number] {
-            float: left;
             width: 70px;
             height: 35px;
             padding: 0;
@@ -33,7 +32,7 @@
         }
 
         span.spinner {
-            position: absolute;
+            display: flex;
             height: 40px;
             user-select: none;
             -ms-user-select: none;
@@ -44,8 +43,6 @@
 
         span.spinner>.sub,
         span.spinner>.add {
-            float: left;
-            display: block;
             width: 35px;
             height: 35px;
             text-align: center;
@@ -83,14 +80,6 @@
             -webkit-appearance: none;
         }
 
-        .buy-form {
-            overflow: hidden;
-        }
-
-        .increment-number {
-            
-        }
-
         .buy-button-div {
            float: right;
         }
@@ -105,9 +94,10 @@
             font-size: 20px;
         }
 
-        .buy-button:hover {
+        .buy-button:hover, .buy-button:focus {
             color: black;
-            background-color: rgba(139, 0, 0, 0.);
+            background-color: darkred;
+            transform: scale(1.4);
         }
 
     </style>
@@ -115,7 +105,7 @@
 
 <body>
     <form action="" method="">
-        <div class="buy-form col-12 col-lg-6">
+        <div class="buy-form col-12 d-flex justify-content-between">
             <div class="increment-number">
                 <input type="number" min="1" max="100" value="1" />
             </div>

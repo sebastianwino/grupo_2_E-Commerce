@@ -902,7 +902,6 @@
 .tarjetas-productos {
   border: none;
   margin-bottom: 30px;
-
 }
 
 .reset-link a {
@@ -968,6 +967,11 @@ li.lista-filtro-productos  {
   color: rgb(191, 172, 149);
 }
 
+.product-card-inProducts:hover {
+  transform: scale(1.2);  
+}
+
+
 
 @media (min-width: 768px){
 
@@ -995,6 +999,24 @@ li.lista-filtro-productos  {
   color: #25d366;
 }
 
+.product-card-inProductDetail:hover{
+  transform: scale(1.1);  
+}
+
+
+
+.productos-recomendados .card {
+  border: none;
+  
+}
+
+
+
+.productos-recomendados a:hover {
+  text-decoration: none;
+  color: unset;
+  
+}
 
 
 /* CREAR PRODUCTO */
@@ -1035,10 +1057,17 @@ li.lista-filtro-productos  {
   margin-right: .30rem!important;
 }
 
+.upload-file1 {
+  margin-bottom: 10px;
+}
 
-@media (min-width: 768px){
+
+@media (min-width: 992px){
   .upload-file1, .upload-file2 {
-   width: 45%;
+   width: 48%;
+  }
+  .upload-file1 {
+    margin-bottom: 0px;
   }
 }
 
@@ -1047,6 +1076,7 @@ li.lista-filtro-productos  {
 
 
 /* EDITAR PRODUCTO */
+
 
 
 

@@ -27,14 +27,14 @@ let productsControllers = {
             if (product.id == idProduct) {
                 return product;
             }
-        });
-        let productsRelated = products.filter(productRelated => {
-            if (productRelated.category = product.category && productRelated.stock > 250) {
-                return productRelated;
-            };
-        });
-        console.log(productsRelated);
+        });   
+
         if (product) {
+            let productsRelated = products.filter(productRelated => {
+                if (productRelated.category == product.category && productRelated.price <= (product.price * 1.3) && productRelated.price >= (product.price * 0.7 ) && productRelated != product) {
+                    return productRelated;
+                };
+            });
             return res.render('productDetail', {
                 title: product.title,
                 product: product,
@@ -42,7 +42,7 @@ let productsControllers = {
             });
         }
         res.redirect('/no-encontrado');
-        },
+    },
 
     // Create - Form to create
 	create: (req, res) => {
@@ -54,24 +54,60 @@ let productsControllers = {
 	
 	// Create -  Method to store
 	store: (req, res) => {
-        res.send('Producto creado');
+            let newProduct = {
+            id: products[products.length-1].id+1,
+            ...req.body,
+        }
+        products.push(newProduct)
+        fs.writeFileSync(productsFilePath, JSON.stringify(products))
+
+        res.redirect(`detalle/${newProduct.id}`)
+
     },
 
 	// Update - Form to edit
 	edit: (req, res) => {
-        res.render('editProduct', {title: 'Editar Producto'});
+        let idProduct = req.params.productId;
+        let productToEdit = products.find(product => {
+            if (product.id == idProduct) {
+                return product;
+            }
+        });
 
+        if (productToEdit) {
+            return res.render('editProduct', {
+                title: `Editar Producto ${productToEdit.title}`,
+                product: productToEdit,
+                categories: categories
+            });
+        }
+        res.redirect('/no-encontrado');
     },
 
 	// Update - Method to update
 	update: (req, res) => {
-        res.send('Producto editado');
+        let productEdited = products.map(product => {
+            if (product.id == req.params.productId) {
+                return {...product, ...req.body}
+            }
+            return product
+        })
+
+        fs.writeFileSync(productsFilePath, JSON.stringify(productEdited))
+
+		res.redirect(`/productos/`)
 
     },
     
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
-        res.send('Producto eliminado');
+        let productDeleted = products.filter(product => {
+            return product.id != req.params.productId
+            })
+
+        fs.writeFileSync(productsFilePath, JSON.stringify(productDeleted))
+
+        res.redirect('/productos')
     }
 }
 
