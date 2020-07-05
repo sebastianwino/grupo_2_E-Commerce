@@ -13,7 +13,7 @@
   <!-- Main -->
   <div class="container-fluid fondo-registro general">
     <div class="container formulario-registro">
-      <form>
+      <form action="/usuarios/registro" method="POST">
         <h1>Formulario de registro</h1>
         <div class="form-row">
           <div class="form-group col-12 col-md-6">
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Email</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="mail">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
         </div>
         <div class="form-row">
           <div class="form-group col-12 col-md-6">
@@ -46,12 +46,12 @@
 
           <div class="form-group col-9 col-md-3">
             <label for="exampleInputAdress1">Calle</label>
-            <input type="text" class="form-control" id="exampleInputAdress1" aria-describedby="emailHelp" name="addres">
+            <input type="text" class="form-control" id="exampleInputAdress1" aria-describedby="emailHelp" name="address">
           </div>
           <div class="form-group col-3 col-md-1">
             <label for="exampleInputAdress2">Numero</label>
             <input type="text" min="0" class="form-control" id="exampleInputAdress2" aria-describedby="emailHelp"
-              name="addres-number">
+              name="addressNumber">
           </div>
 
           <div class="form-group col-12 col-md-5">
@@ -62,7 +62,7 @@
           <div class="form-group col-12 col-md-3">
             <label for="exampleInputPhone">Telefono</label>
             <input type="text" class="form-control" id="exampleInputPhone" aria-describedby="emailHelp"
-              name="phone-number">
+              name="phoneNumber">
           </div>
         </div>
         <div class="d-flex" style="justify-content: flex-end;">
