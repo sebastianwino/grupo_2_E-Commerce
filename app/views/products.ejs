@@ -42,25 +42,50 @@
 				
 			<div class="filtro-lg d-none d-lg-block col-lg-2">
 				<div class="">
-					<p class="">Búsqueda detallada</p>
+					
 
 					<div class="tipo-producto-filtro">
 						<p><b>Tipo de producto:</b></p>
 						<ul class="lista-filtro-productos">
+							
 							<% categories.forEach(category => { %>
-							<a href="">
-								<li class="lista-filtro-productos"><%= category %> </li>
-							</a>
+							<form action="/productos" method="GET">
+								
+								<li class="lista-filtro-productos my-1"><button class="transparentButtom" name="filter" value="<%= category %>"><%= category %></button></li>
+							</form>
 							<% }) %>
 						</ul>
 					</div>
 					<div class="precio-producto-filtro">
 						<p><b>Precios:</b></p>
-						<form action="">
-							<input type="number" name="fromPrice" class="price-filter_value" value="" placeholder="Mínimo" min="1" max="6">
-							<input type="number" name="toPrice" class="price-filter_value" value="" placeholder="Máximo" min="1" max="6">
-							<a class="btn" href=""><i class="fas fa-arrow-circle-right"></i></a>
-						</form>
+						<form action="/productos" method="GET">
+							<input type="number" name="filterPriceMin" class="price-filter_value" value="" placeholder="Mín" min="0" max="10000" required>
+							<input type="number" name="filterPriceMax" class="price-filter_value" value="" placeholder="Máx" min="0" max="10000" required>
+							<button type="submit" class="transparentButtom"><i class="fas fa-arrow-circle-right"></i></button>
+						</form>						
+					</div>
+					<%if (typeof filter != 'undefined') {%>
+						<div class="alert alert-dark general my-3 d-block bottomFilter" role="alert">
+							<p><%=filter%> <a class="text-danger" href="/productos">x</a></p>
+							
+						  </div>
+					<%}%>
+					<%if (typeof filterPriceMin != 'undefined') {%>
+						<div class="alert alert-dark general my-3 d-block bottomFilter" role="alert">
+							<p><%=filterPriceMin%> <a class="text-danger" href="/productos">x</a></p>
+							
+						  </div>
+					<%}%>
+					
+					<%if (typeof filterPriceMax != 'undefined') {%>
+						<div class="alert alert-dark general my-3 d-block bottomFilter" role="alert">
+							<p><%=filterPriceMax%> <a class="text-danger" href="/productos">x</a></p>
+							
+						  </div>
+					<%}%>
+					
+					<div>
+
 					</div>
 				</div>
 			</div>
@@ -79,10 +104,11 @@
 				</div>
 
 				<div class="allProducts row">
+					
 					<% products.forEach(product => { %>
 						<a href="/productos/detalle/<%= product.id %>">
 							<div class="col-12 col-sm-6 col-lg-4">
-								<div class="card tarjetas-productos product-card-inProducts">
+								<div class="card tarjetas-productos product-card-inProducts my-5">
 									<div class="imagen-producto-productos">
 										<img class="card-img-top imagen-producto-producto" src="<%= product.image %>"
 											alt="imagen de <%= product.title %>">
@@ -103,6 +129,7 @@
 							</div>
 						</a>
 					<% }) %>
+					
 				</div>
 			</div>
 		</div>

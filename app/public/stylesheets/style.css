@@ -899,6 +899,17 @@
 
 
 /* PRODUCTOS */
+.bottomFilter{
+    width: 50%;
+    padding: 3px;
+    text-align: center;
+}
+
+.transparentButtom{
+  border: none;
+  background-color: transparent;
+}
+
 .tarjetas-productos {
   border: none;
   margin-bottom: 30px;
@@ -968,7 +979,7 @@ li.lista-filtro-productos  {
 }
 
 .product-card-inProducts:hover {
-  transform: scale(1.2);  
+  transform: scale(1.1);  
 }
 
 

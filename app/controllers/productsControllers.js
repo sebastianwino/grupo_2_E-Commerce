@@ -9,14 +9,41 @@ let categories = ["facturas", "tortas", "salado", "especialidades", "galletitas"
 let productsControllers = {
     // Root - Show all products
 	root: (req, res) => {
-        let pruebaProductos = products.filter(product => {
-            return product.id <= 30
-        })
+        let filter = req.query.filter;
+        let pruebaProductos = [];
+        let priceMin = req.query.filterPriceMin;
         
+        
+
+
+        let priceMax = req.query.filterPriceMax;
+       
+       
+  
+            pruebaProductos = products.filter(product => {
+            return product.id <= 30})
+       
+        if (filter != undefined) {
+            pruebaProductos = products.filter(product => {
+                return product.category == filter;
+            })  
+        } if ((priceMin != undefined)&&(priceMax != undefined)) {
+        pruebaProductos = products.filter(product => {
+            return (product.price >= priceMin)&&(product.price <= priceMax);
+        })  
+        } 
+        
+
+        console.log(priceMin)
+        console.log(priceMax)
+
         res.render('products', {
             title: 'Productos',
             products: pruebaProductos,
-            categories: categories
+            categories: categories,
+            filter: filter,
+            filterPriceMin:priceMin,
+            filterPriceMax:priceMax,
         });
     },
 
