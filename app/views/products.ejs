@@ -70,16 +70,16 @@
 							
 						  </div>
 					<%}%>
-					<%if (typeof filterPriceMin != 'undefined') {%>
+					<%if (typeof filterPriceMin != null) {%>
 						<div class="alert alert-dark general my-3 d-block bottomFilter" role="alert">
-							<p><%=filterPriceMin%> <a class="text-danger" href="/productos">x</a></p>
+							<p>Min <%=filterPriceMin%> <a class="text-danger" href="/productos">x</a></p>
 							
 						  </div>
 					<%}%>
 					
-					<%if (typeof filterPriceMax != 'undefined') {%>
+					<%if (typeof filterPriceMax != 'null') {%>
 						<div class="alert alert-dark general my-3 d-block bottomFilter" role="alert">
-							<p><%=filterPriceMax%> <a class="text-danger" href="/productos">x</a></p>
+							<p>Max <%=filterPriceMax%> <a class="text-danger" href="/productos">x</a></p>
 							
 						  </div>
 					<%}%>
@@ -103,8 +103,17 @@
 					<h1><a href="/">Home</a>/<a href="/productos">Productos</a></h1>
 				</div>
 
+				<%if (typeof cant != 'undefined') {%>
+				<div>
+					<p><b>Se ha encontrado <%=cant%> para tu busqueda:</b></p>
+				</div>
+				<%}%>
 				<div class="allProducts row">
-					
+				<%if (products.length == 0) {%>
+					<div class="w-100">
+						<h4 class="text-danger" style="line-height: 100px; text-align: center;"><b>No se han encontrado productos</b></h4>
+					</div>
+				<%}%>
 					<% products.forEach(product => { %>
 						<a href="/productos/detalle/<%= product.id %>">
 							<div class="col-12 col-sm-6 col-lg-4">

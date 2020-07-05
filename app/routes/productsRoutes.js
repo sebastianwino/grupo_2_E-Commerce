@@ -17,4 +17,7 @@ router.put('/editar/:productId', productsControllers.update); /* Update in DB */
 /*** DELETE ONE PRODUCT***/ 
 router.delete('/eliminar/:productId', productsControllers.destroy); /* Delete from DB */
 
+/*  SEARCH PRODUCTS */
+router.get('/search', productsControllers.search)
+
 module.exports = router;

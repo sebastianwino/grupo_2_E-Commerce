@@ -12,15 +12,9 @@ let productsControllers = {
         let filter = req.query.filter;
         let pruebaProductos = [];
         let priceMin = req.query.filterPriceMin;
-        
-        
-
-
         let priceMax = req.query.filterPriceMax;
-       
-       
-  
-            pruebaProductos = products.filter(product => {
+        
+        pruebaProductos = products.filter(product => {
             return product.id <= 30})
        
         if (filter != undefined) {
@@ -32,10 +26,7 @@ let productsControllers = {
             return (product.price >= priceMin)&&(product.price <= priceMax);
         })  
         } 
-        
 
-        console.log(priceMin)
-        console.log(priceMax)
 
         res.render('products', {
             title: 'Productos',
@@ -135,7 +126,32 @@ let productsControllers = {
         fs.writeFileSync(productsFilePath, JSON.stringify(productDeleted))
 
         res.redirect('/productos')
-    }
+    },
+
+    search : (req, res) => {
+    let cant = 0;
+    let productsFound = [];
+    let word = req.query.search;
+    word = word.toLocaleLowerCase();
+    products.forEach(product => {
+        let title = product.title.toLocaleLowerCase();
+        let category = product.category.toLocaleLowerCase();
+        if ((title.indexOf(word)!=-1)||(category.indexOf(word)!=-1)){
+            productsFound.push(product);
+            cant++;
+        }
+    });
+
+    
+
+    res.render('products', {
+        products: productsFound,
+        title: 'Productos',
+        categories: categories,
+        word: word,
+        cant: cant
+    })
+}
 }
 
 module.exports = productsControllers;
