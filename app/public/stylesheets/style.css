@@ -337,7 +337,6 @@
 }
 
 
-
 .navbar {
   width: 103%;
   justify-content: center;
@@ -837,6 +836,14 @@
 /* CARRITO */
 
 
+.card-text{
+  font-size: 22px;
+  color: darkred;
+}
+
+.tam-text{
+  font-size: 23px;
+}
 
 .conteiner-carrito{
   background-color: darkred;
