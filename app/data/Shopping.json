@@ -11,5 +11,31 @@
         "imageLg": "http://dummyimage.com/700x480.png/ff4444/ffffff",
         "image": "http://dummyimage.com/250x160.png/ff4444/ffffff",
         "total": "200"
+    },
+    {
+        "id": "3",
+        "cant": "1",
+        "title": "pede posuere nonummy",
+        "price": "1473.6",
+        "description": "ac nulla sed vel enim sit amet nunc viverra dapibus nulla",
+        "category": "facturas",
+        "slices": "10",
+        "stock": "495",
+        "imageLg": "http://dummyimage.com/700x480.png/5fa2dd/ffffff",
+        "image": "http://dummyimage.com/250x160.png/5fa2dd/ffffff",
+        "total": "1473"
+    },
+    {
+        "id": "2",
+        "cant": "1",
+        "title": "consequat lectus in est risus",
+        "price": "55.92",
+        "description": "lectus suspendisse potenti in eleifend",
+        "category": "facturas",
+        "slices": "13",
+        "stock": "168",
+        "imageLg": "http://dummyimage.com/700x480.png/cc0000/ffffff",
+        "image": "http://dummyimage.com/250x160.png/cc0000/ffffff",
+        "total": "55.92"
     }
 ]

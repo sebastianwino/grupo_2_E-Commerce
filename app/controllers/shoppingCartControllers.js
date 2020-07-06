@@ -8,10 +8,17 @@ let shopping = JSON.parse(fs.readFileSync(shoppingFilePath,  {encoding: 'utf-8'}
 let shoppingCartControllers = {
     // Root - Show all Shopping Cart
 	root: (req, res) => {
-
+        let total = 0;
+        let acc = 0;
+        shopping.forEach (element => {
+            acc = parseFloat(element.total)
+            total = total + acc;
+        })
+        
         res.render('shoppingCart', {
             title: 'Carrito',
-            shopping:shopping
+            shopping:shopping,
+            total: total
         });
     },
     
@@ -30,7 +37,7 @@ let shoppingCartControllers = {
 
 
         if (find == false){
-        let price = parseInt(req.body.price);
+        let price = parseFloat(req.body.price);
         let cant = parseInt(req.body.cant);
         let total = price * cant;
         total = total.toString();
@@ -52,7 +59,7 @@ let shoppingCartControllers = {
             productFount = productFount.filter (element => {
                 return element.id!=req.body.id})
 
-        let price = parseInt(req.body.price);
+        let price = parseFloat(req.body.price);
         let cant = parseInt(req.body.cant);
         sum = parseInt(sum);
         sum = sum + cant;
