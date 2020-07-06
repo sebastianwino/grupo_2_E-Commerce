@@ -42,5 +42,38 @@
         "addressNumber": "1212",
         "city": "asdasda",
         "phoneNumber": "123121"
+    },
+    {
+        "id": 5,
+        "name": "Pedro",
+        "lastname": "Lopez",
+        "email": "pedrolopez@dh.com",
+        "password": "contraseña",
+        "address": "Corrientes",
+        "addressNumber": "1500",
+        "city": "CABA",
+        "phoneNumber": "1112345678"
+    },
+    {
+        "id": 6,
+        "name": "Cosme",
+        "lastname": "Fulanito",
+        "email": "cosme@dh.com",
+        "password": "$2b$10$Z2kenxq0xAdLO2BaX9mFSeXThdb6BpAcPMO2GhvAObCGl2UdjoAbe",
+        "address": "Falsa",
+        "addressNumber": "123",
+        "city": "Springfield",
+        "phoneNumber": "12345678"
+    },
+    {
+        "id": 7,
+        "name": "Pablo",
+        "lastname": "R",
+        "email": "pablo@dh.com",
+        "password": "$2b$10$ZJn4uEk4jj9ebZnblh4nQeK03enOex0T9tA3N/qF476hJKHaWQYmS",
+        "address": "123",
+        "addressNumber": "123",
+        "city": "CABA",
+        "phoneNumber": "12345678"
     }
 ]
