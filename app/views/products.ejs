@@ -18,15 +18,42 @@
 				<div class="col-12 d-flex justify-content-center">
 					<form action="">
 						<div class="col-12">
-							<select name="filtrarPorCategoria" id="">
-								<option class="tituloFiltrar" selected>Tipo de producto</option>
-								<option value="tipoDeProdcuto" id="">1</option>
+							<select name="filter" id="">
+								<%if (typeof filter != 'undefined') {%>
+									<option class="tituloFiltrar" selected disabled><%=filter%></option>
+								<%} else {%>
+									<option class="tituloFiltrar" selected disabled>Tipo de producto</option>
+								<%}%>
+								<%categories.forEach(category => {%>
+									<%if (filter != category) {%>
+								<option value="<%=category%>" id=""><%=category%></option>
+									<%}%>
+							<%})%>
 							</select>
 						</div>
 						<div class="col-12">
-							<select name="filtrarPorPrecio" id="">
-								<option value="tituloPrecio" selected>Precio</option>
-								<option value="precioDeProducto" id="">hasta $100</option>
+							<select name="filterPriceMin" id="">
+								<% if (typeof filterPriceMin != 'undefined') {%>
+								<option value="" selected disabled>$<%=filterPriceMin%></option>
+								<%} else {%>
+								<option value="" selected disabled>Min</option>
+								<%}%>
+								<option value="100" id="">desde $100</option>
+								<option value="500" id="">desde $500</option>
+								<option value="1000" id="">desde $1000</option>
+							</select>
+						</div>
+						<div class="col-12">
+							<select name="filterPriceMax" id="">
+								<% if (typeof filterPriceMax != 'undefined') {%>
+									<option value="" selected disabled>$<%=filterPriceMax%></option>
+									<%} else {%>
+									<option value="" selected disabled>Max</option>
+									<%}%>
+								<option value="500" id="">hasta $500</option>
+								<option value="1000" id="">hasta $1000</option>
+								<option value="1500" id="">hasta $1500</option>
+								<option value="2000" id="">hasta $2000</option>
 							</select>
 						</div>
 						<div class="filtrar-producto-sm col-12">
@@ -50,8 +77,14 @@
 							
 							<% categories.forEach(category => { %>
 							<form action="/productos" method="GET">
-								
-								<li class="lista-filtro-productos my-1"><button class="transparentButtom" name="filter" value="<%= category %>"><%= category %></button></li>
+								<% if (typeof filterPriceMin != 'undefined') {%>
+								<input type="hidden" name="filterPriceMin" value="<%=filterPriceMin%>">
+								<input type="hidden" name="filterPriceMax" value="<%=filterPriceMax%>">
+								<%}%>
+								<li class="lista-filtro-productos my-1">
+									<button class="transparentButtom" name="filter" value="<%= category %>"><%= category %>
+									</button>
+								</li>
 							</form>
 							<% }) %>
 						</ul>
@@ -59,6 +92,9 @@
 					<div class="precio-producto-filtro">
 						<p><b>Precios:</b></p>
 						<form action="/productos" method="GET">
+							<% if (typeof filter != 'undefined') {%>
+							<input type="hidden" name="filter" value="<%=filter%>">
+							<%}%>
 							<input type="number" name="filterPriceMin" class="price-filter_value" value="" placeholder="Mín" min="0" max="10000" required>
 							<input type="number" name="filterPriceMax" class="price-filter_value" value="" placeholder="Máx" min="0" max="10000" required>
 							<button type="submit" class="transparentButtom"><i class="fas fa-arrow-circle-right"></i></button>
@@ -66,21 +102,20 @@
 					</div>
 					<%if (typeof filter != 'undefined') {%>
 						<div class="alert alert-dark general my-3 d-block bottomFilter" role="alert">
-							<p><%=filter%> <a class="text-danger" href="/productos">x</a></p>
-							
-						  </div>
+							<%if (typeof filterPriceMin != 'undefined') {%>		
+								<p><%=filter%> <a class="text-danger" href="/productos?filterPriceMin=<%=filterPriceMin%>&filterPriceMax=<%=filterPriceMax%>">x</a></p>
+							<%} else {%>
+								<p><%=filter%> <a class="text-danger" href="/productos">x</a></p>	
+							<%}%>	
+						</div>
 					<%}%>
-					<%if (typeof filterPriceMin != null) {%>
+					<%if (typeof filterPriceMin != 'undefined') {%>
 						<div class="alert alert-dark general my-3 d-block bottomFilter" role="alert">
+							<%if (typeof filter != 'undefined') {%>
+							<p><%=filterPriceMin%>-<%=filterPriceMax%> <a class="text-danger" href="/productos?filter=<%=filter%>">x</a></p>
+							<%} else {%>
 							<p>Min <%=filterPriceMin%> <a class="text-danger" href="/productos">x</a></p>
-							
-						  </div>
-					<%}%>
-					
-					<%if (typeof filterPriceMax != 'null') {%>
-						<div class="alert alert-dark general my-3 d-block bottomFilter" role="alert">
-							<p>Max <%=filterPriceMax%> <a class="text-danger" href="/productos">x</a></p>
-							
+							<%}%>	
 						  </div>
 					<%}%>
 					

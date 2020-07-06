@@ -49,7 +49,7 @@
                         <h2 class="precio-producto">$<%= product.price %></h2>
                         <p><%= product.description %></p>
                         <div class="cantidad-producto mb-4">
-                            <%- include('partials/inputSpinner.ejs') %>
+                            <%- include('partials/inputSpinner.ejs', {product:product}) %>
                         </div>
                         <p><%= product.info %></p>
                         <p><b>Categoría: </b><%= product.category %> </p>

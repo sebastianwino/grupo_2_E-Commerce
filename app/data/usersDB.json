@@ -31,5 +31,16 @@
         "addressNumber": "123",
         "city": "asd",
         "phoneNumber": "4514613"
+    },
+    {
+        "id": 4,
+        "name": "Juan",
+        "lastname": "Peralta",
+        "email": "peralta@jeje",
+        "password": "laPeralta",
+        "address": "asdas",
+        "addressNumber": "1212",
+        "city": "asdasda",
+        "phoneNumber": "123121"
     }
 ]

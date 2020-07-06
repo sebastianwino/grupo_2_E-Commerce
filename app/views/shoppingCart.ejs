@@ -3,6 +3,7 @@
 
 <head>
   <%- include('partials/head.ejs') %>
+
 </head>
 
 <body>
@@ -12,7 +13,7 @@
 
   <!-- Main -->
     <div class="container-fluid conteiner-carrito ">
-      <img src="images/carrito/techo.png" class="fondo-carrito" alt="techo carrito">
+      <img src="/images/carrito/techo.png" class="fondo-carrito" alt="techo carrito">
     </div>
     <div class="container general">
       <div class="row my-5">
@@ -25,14 +26,20 @@
             <div class="col-2"><h3>Precio total</h3></div>
           </div>
 
+          <%shopping.forEach(shop=>{%>
           <div class="row border-bottom my-3">
-            <div class="col-4"><h3><img src="/images/Home/torta1.jpg" class="ejemplo-foto-carrito"></h3></div>
-            <div class="col-2" style="margin: auto;"><h3>nombre</h3></div>
-            <div class="col-2" style="margin: auto; color: darkred;"><h3>0$</h3></div>
-            <div class="col-2" style="margin: auto;"><h3>Cantidad</h3></div>
-            <div class="col-1" style="margin: auto; color: darkred;"><h3>$0</h3></div>
-            <div class="col-1" style="margin: auto; color: darkred;"><h3 class="btn btn-danger btn-sm">x</h3></div>
+            <div class="col-4"><h3><img src="<%=shop.image%>" class="ejemplo-foto-carrito"></h3></div>
+            <div class="col-2" style="margin: auto;"><h3><nombre></h3><%=shop.title%></div>
+            <div class="col-2" style="margin: auto; color: darkred;"><h3>$<%=shop.price%></h3></div>
+            <div class="col-2" style="margin: auto;"><h3><%=shop.cant%></h3></div>
+            <div class="col-1" style="margin: auto; color: darkred;"><h3>$<%=shop.total%></h3></div>
+            <div class="col-1" style="margin: auto; color: darkred;">
+              <form action="/carrito" method="POST">
+              <input type="hidden" name="id" value="<%=shop.id%>">
+              <button class="btn btn-danger btn-sm"><h3>x</h3></button>
+            </form></div>
           </div>
+          <%})%>
           <!--LLENAR CON PRODUCTOS AQUI-->
           <!--
           <div class="row border-bottom my-3">
@@ -62,7 +69,9 @@
   <!-- footer -->
   <%- include('partials/footer.ejs') %>
   <!-- /footer -->
-
+ 
+ 
+</script>
 </body>
 
 </html>

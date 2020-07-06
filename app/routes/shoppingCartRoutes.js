@@ -3,6 +3,8 @@ var router = express.Router();
 const shoppingCartControllers = require('../controllers/shoppingCartControllers');
 
 router.get('/', shoppingCartControllers.root);
-
+router.post('/', shoppingCartControllers.distroy);
+router.post('/pre-finalizacion', shoppingCartControllers.
+previousPurchase);
 
 module.exports = router;

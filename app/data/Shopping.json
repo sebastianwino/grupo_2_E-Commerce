@@ -1,0 +1,15 @@
+[
+    {
+        "id": "1",
+        "cant": "1",
+        "title": "Torta suiza",
+        "price": "200",
+        "description": "porta volutpat quam pede lobortis ligula sit amet\r\n",
+        "category": "salado",
+        "slices": "3",
+        "stock": "110",
+        "imageLg": "http://dummyimage.com/700x480.png/ff4444/ffffff",
+        "image": "http://dummyimage.com/250x160.png/ff4444/ffffff",
+        "total": "200"
+    }
+]
