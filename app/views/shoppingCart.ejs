@@ -29,14 +29,20 @@
           <%shopping.forEach(shop=>{%>
           <div class="row border-bottom my-3">
             <div class="col-4"><h3><img src="<%=shop.image%>" class="ejemplo-foto-carrito"></h3></div>
-            <div class="col-2" style="margin: auto;"><h3><nombre></h3><%=shop.title%></div>
-            <div class="col-2" style="margin: auto; color: darkred;"><h3>$<%=shop.price%></h3></div>
-            <div class="col-2" style="margin: auto;"><h3><%=shop.cant%></h3></div>
-            <div class="col-1" style="margin: auto; color: darkred;"><h3>$<%=shop.total%></h3></div>
-            <div class="col-1" style="margin: auto; color: darkred;">
+            <div class="col-2 my-auto"><h3><nombre></h3><%=shop.title%></div>
+            <div class="col-2 my-auto color-darkred"><h3>$<%=shop.price%></h3></div>
+            <div class="col-2 my-auto" >
+              <form action="/carrito/modificacion?_method=PUT" method="POST">
+                <input type="number" name="cant" value="<%=shop.cant%>" class="w-50" min="1" max="10">
+                <%- include('partials/inputs.ejs', {product:shop})%>
+                <button style="border:none;" ><i class="fas fa-sync text-success"></i></button>
+              </form>
+          </div>
+            <div class="col-1 my-auto color-darkred"><h3>$<%=shop.total%></h3></div>
+            <div class="col-1 my-auto" >
               <form action="/carrito" method="POST">
               <input type="hidden" name="id" value="<%=shop.id%>">
-              <button class="btn btn-danger btn-sm"><h3>x</h3></button>
+              <button class="btn btn-danger btn-sm mx-1"><h3>x</h3></button>
             </form></div>
           </div>
           <%})%>
@@ -53,10 +59,9 @@
         <div class="col-12 col-md-4">
            <div class="card">
             <div class="card-body">
-            <h5 class="card-title text-danger">Total de la compra</h5>
-            <p class="card-text">$<%=total%></p>
+            <h5 class="card-title tam-text">Total de la compra</h5>
+            <p class="card-text color-darkred"><b>$<%=total%></b></p>
              <a href="#" class="btn btn-info my-2">Finalizar compra</a>
-             <a href="#" class="btn btn-success">Actualizar compra</a>
         </div>
     </div>
   </div>

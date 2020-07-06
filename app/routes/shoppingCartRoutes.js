@@ -6,5 +6,6 @@ router.get('/', shoppingCartControllers.root);
 router.post('/', shoppingCartControllers.distroy);
 router.post('/pre-finalizacion', shoppingCartControllers.
 previousPurchase);
+router.put('/modificacion', shoppingCartControllers.modification)
 
 module.exports = router;

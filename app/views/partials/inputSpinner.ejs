@@ -108,15 +108,8 @@
         <div class="buy-form col-12 d-flex justify-content-between">
             <div class="increment-number">
                 <input type="number" name="cant" min="1" max="100" value="1" />
-                <input type="hidden" name="id" value="<%=product.id%>">
-                <input type="hidden" name="title" value="<%=product.title%>">
-                <input type="hidden" name="price" value="<%=product.price%>">
-                <input type="hidden" name="description" value="<%=product.description%>">
-                <input type="hidden" name="category" value="<%=product.category%>">
-                <input type="hidden" name="slices" value="<%=product.slices%>">
-                <input type="hidden" name="stock" value="<%=product.stock%>">
-                <input type="hidden" name="imageLg" value="<%=product.imageLg%>">
-                <input type="hidden" name="image" value="<%=product.image%>">
+                <%- include('inputs.ejs', {product:product})%>
+                
             </div>
 
             <div class="buy-button-div">
