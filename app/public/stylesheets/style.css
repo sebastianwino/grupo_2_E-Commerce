@@ -843,6 +843,14 @@
   font-size: 22px;
 }
 
+<<<<<<< HEAD
+=======
+.card-text{
+  font-size: 22px;
+  color: darkred;
+}
+
+>>>>>>> 8a949ace29db00b0561e8f9dbf42746db4dea9fd
 .tam-text{
   font-size: 23px;
 }
