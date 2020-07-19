@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('partials/head.ejs') %>
+</head>
+
+<body>
+    <!-- Header -->
+    <%- include('partials/header.ejs',{user:user}) %>
+    <!-- /Header -->
+
+    <!-- Main -->
+    <div class="container-fluid fondo-registro general">
+        <div class="container formulario-crear-producto">
+            <form action="/productos/editar/<%= product.id %>?_method=PUT" method="POST">
+                <h1>Formulario de edición del producto:<br><%= product.title %> </h1>
+                <div class="form-row">
+                    <div class="form-group col-12 col-md-8">
+                        <label for="inputTitle">Nombre del producto</label>
+                        <input value="<%= product.title %>" type="text" class="form-control" id="inputTitle" aria-describedby="" name="title">
+
+                    </div>
+                    <div class="form-group col-12 col-md-4">
+                        <label for="inputPrice">Precio</label>
+                        <input value="<%= product.price %>" type="number" step="0.01" class="form-control" id="inputPrice" aria-describedby="" name="price">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescription">Descripción</label>
+                    <textarea type="text" class="form-control" id="inputDescription" aria-describedby=""
+                        name="description"><%= product.description %>
+                    </textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-9 col-md-5">
+                        <label for="inputCategory">Categoría</label>
+                        <select class="form-style" name="category" id="inputCategory">
+                            <option value="">Selecionar categoría</option>
+                            <% categories.forEach(category => { %>
+                                <% if (category == product.category) { %>
+                                    <option selected value="<%= category %>"><%= category %></option>
+                                <% } else { %>
+                                    <option value="<%= category %>"><%= category %></option>
+                                <% } %> 
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="form-group col-3 col-md-3">
+                        <label for="inputSlices">Porciones</label>
+                        <input value="<%= product.slices %>" type="number" step="1" min="0" class="form-control" id="inputSlices" aria-describedby=""
+                            name="slices">
+                    </div>
+
+                    <div class="form-group col-12 col-md-4">
+                        <label for="inputStock">Stock</label>
+                        <input value="<%= product.stock %>" type="number" step="1" class="form-control" id="inputStock" aria-describedby="" name="stock">
+                    </div>
+                </div>
+
+                <!-- Eitar imagenes a resolver -->
+                <!-- <div class="form-row d-flex justify-content-between">
+                    <div class="col-12">
+                        <label for="">Subir imagenes del producto</label>
+                    </div>
+                    <div class="custom-file upload-file1">
+                        <input name="imageLg" type="file" class="custom-file-input" id="inputImageLg">
+                        <label class="custom-file-label" for="inputImageLg" data-browse="Seleccionar">Subir imagen
+                            principal del producto</label>
+                    </div>
+                    <div class="custom-file upload-file2">
+                        <input name="image" type="file" class="custom-file-input" id="inputImage">
+                        <label class="custom-file-label" for="inputImage" data-browse="Seleccionar">Subir otra imagen del producto</label>
+                    </div>
+                </div> -->
+
+                <div class="d-lg-flex justify-content-lg-between ">
+                    <div class="edit-buttons">
+                        <button type="reset" class="btn btn-warning mt-4">Borrar cambios</button>
+                    </div>
+                    <div class="edit-buttons">
+                        <button type="submit" class="btn btn-success mt-4">Confirmar cambios</button>
+                    </div>
+                </div>
+            </form>
+            <div class="delete-button">
+                <form action="/productos/eliminar/<%= product.id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-danger mt-4">Eliminar producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Main -->
+
+    <!-- footer -->
+    <%- include('partials/footer.ejs') %>
+    <!-- /footer -->
+
+</body>
+
+</html>

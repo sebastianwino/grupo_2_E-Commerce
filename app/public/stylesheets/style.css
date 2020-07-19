@@ -35,6 +35,16 @@
 
 
 
+/* profile */
+.tittle {
+  font-size: 1.5em;
+}
+
+.userInfo {
+  font-size: 1.3em;
+}
+
+
 /* Main Header */
 .fondo-header {
   
@@ -42,10 +52,19 @@
   background-size: 100%;
 }
 
+.logo-users-success{
+  color: darkgreen;
+}
+
 .md {
   display: none;
 }
 
+
+
+.navbar-light .navbar-nav .nav-link{
+  font-size: 22px;
+}
 
 
 
@@ -375,7 +394,7 @@
 
   .fondo-oscuro {
     background-color: rgba(191, 172, 149, .5);
-    margin-left: -50px;
+    margin-left: -26px;
     padding-bottom: 18px;
   }
   
