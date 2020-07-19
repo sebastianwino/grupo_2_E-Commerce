@@ -28,7 +28,7 @@ let productsControllers = {
         } 
 
 
-        res.render('products', {
+        res.render('products/products', {
             title: 'Productos',
             products: pruebaProductos,
             categories: categories,
@@ -53,7 +53,7 @@ let productsControllers = {
                     return productRelated;
                 };
             });
-            return res.render('productDetail', {
+            return res.render('products/productDetail', {
                 title: product.title,
                 product: product,
                 productsRelated: productsRelated
@@ -64,7 +64,7 @@ let productsControllers = {
 
     // Create - Form to create
 	create: (req, res) => {
-        res.render('createProduct', {
+        res.render('products/createProduct', {
             title: 'Crear Producto',
             categories: categories
         });
@@ -93,7 +93,7 @@ let productsControllers = {
         });
 
         if (productToEdit) {
-            return res.render('editProduct', {
+            return res.render('products/editProduct', {
                 title: `Editar Producto ${productToEdit.title}`,
                 product: productToEdit,
                 categories: categories
@@ -142,9 +142,7 @@ let productsControllers = {
         }
     });
 
-    
-
-    res.render('products', {
+    res.render('products/products', {
         products: productsFound,
         title: 'Productos',
         categories: categories,

@@ -2,12 +2,12 @@
 <html>
 
 <head>
-	<%- include('partials/head.ejs') %>
+	<%- include('../partials/head.ejs') %>
 </head>
 
 <body>
 	<!-- Header -->
-	<%- include('partials/header.ejs') %>
+	<%- include('../partials/header.ejs') %>
 	<!-- /Header -->
 
 	<!-- Main -->
@@ -150,7 +150,7 @@
 					</div>
 				<%}%>
 					<% products.forEach(product => { %>
-						<a href="/productos/detalle/<%= product.id %>">
+						<a href="/productos/<%= product.id %>">
 							<div class="col-12 col-sm-6 col-lg-4">
 								<div class="card tarjetas-productos product-card-inProducts my-5">
 									<div class="imagen-producto-productos">
@@ -182,7 +182,7 @@
 	<!-- Main -->
 
 	<!-- footer -->
-	<%- include('partials/footer.ejs') %>
+	<%- include('../partials/footer.ejs') %>
 	<!-- /footer -->
 
 </body>

@@ -9,7 +9,7 @@ let users = JSON.parse(fs.readFileSync(usersFilePath,  {encoding: 'utf-8'}));
 
 let usersControllers = {
     login: (req, res) => {
-        res.render('login', {title: 'Login'});
+        res.render('users/login', {title: 'Login'});
     },
     processLogin: (req, res) => {
      
@@ -25,7 +25,7 @@ let usersControllers = {
         
     },
     register: (req, res) => {
-        res.render('register', {title: 'Registrate'});
+        res.render('users/register', {title: 'Registrate'});
     },
     create: (req, res) => {
         let passwordEncripted = bcrypt.hashSync(req.body.password, 10)

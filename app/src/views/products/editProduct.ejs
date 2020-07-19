@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <%- include('partials/head.ejs') %>
+    <%- include('../partials/head.ejs') %>
 </head>
 
 <body>
     <!-- Header -->
-    <%- include('partials/header.ejs') %>
+    <%- include('../partials/header.ejs') %>
     <!-- /Header -->
 
     <!-- Main -->
@@ -84,7 +84,7 @@
                 </div>
             </form>
             <div class="delete-button">
-                <form action="/productos/eliminar/<%= product.id %>?_method=DELETE" method="POST">
+                <form action="/productos/<%= product.id %>?_method=DELETE" method="POST">
                     <button type="submit" class="btn btn-danger mt-4">Eliminar producto</button>
                 </form>
             </div>
@@ -93,7 +93,7 @@
     <!-- Main -->
 
     <!-- footer -->
-    <%- include('partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
     <!-- /footer -->
 
 </body>
