@@ -2,6 +2,7 @@
 
 Nuestro sitio será un E-Commerce de productos de pastelería y panadería. Se venderán todo tipo de productos de distintas categorías como tortas, postres, panificados, desayunos y meriendas, entre otras especialidades dulces y saladas.
 
+
 Nuestra audiencia serán personas de entre 18-70 años, focalizando en todo tipo de público que necesite y/o quiera comprar productos artesanales de pastelería y panadería.
 
 Nuestra idea es hacer una web con un diseño orgánico que se integre con los productos. Que sea armónica, elegante y sencilla de manejar, teniendo en cuenta al diverso público al que está destinada. Dado que parte de los usuarios podría no tener mucho dominio de la tecnología, buscamos que el proceso de compra sea intuitivo.
