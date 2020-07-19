@@ -1030,6 +1030,15 @@ li.lista-filtro-productos  {
 
 /* PRODUCTO */
 
+.image-prince{
+  width: 700px;
+  
+}
+
+.image-second{
+  width: 250px;
+}
+
 .logo-redes-twitter:hover{
   color: #1DA1F2;
 }

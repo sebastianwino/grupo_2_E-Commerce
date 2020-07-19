@@ -129,7 +129,10 @@
 
 				<div
 					class="cartel-aviso-productos d-none d-lg-block text-center p-2 tex mb-3">
-					<p>SOS ADMIN</p>
+					<p>Para crear un producto</p>
+					<form action="/productos/crear" method="GET">
+						<button type="submit" class="btn btn-danger">Crear produto</button>
+					</form>
 				</div>
 
 				<div class="titulo-productos">
@@ -152,7 +155,7 @@
 							<div class="col-12 col-sm-6 col-lg-4">
 								<div class="card tarjetas-productos product-card-inProducts my-5">
 									<div class="imagen-producto-productos">
-										<img class="card-img-top imagen-producto-producto" src="<%= product.image %>"
+										<img class="card-img-top imagen-producto-producto" style="height: 300px;" src="/images/upload/<%= product.imageLg %>"
 											alt="imagen de <%= product.title %>">
 									</div>
 									<div class="card-body position-relative">

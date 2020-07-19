@@ -14,7 +14,7 @@
     <div class="container-fluid fondo-registro general">
         <div class="container formulario-crear-producto">
 
-            <form action="/productos/crear" method="POST">
+            <form action="/productos/crear" method="POST" enctype="multipart/form-data">
 
                 <h1>Formulario de creación de producto</h1>
                 <div class="form-row">
@@ -57,16 +57,14 @@
 
                 <!-- Subir imagen con URL  -->
                 <div class="form-row d-flex justify-content-between">
-                    <div class="col-12">
-                        <label for="">Subir imagenes del producto (URL)</label>
+                    
+                    <div class="custom-file upload-file1">
+                        <input name="product-image" type="file">
+                        <label for="inputImageLg" data-browse="Seleccionar" >Subir imagen principal del producto</label>
                     </div>
                     <div class="custom-file upload-file1">
-                        <input name="imageLg" type="url" placeholder="https://www.imagen.com/imagen.jpg" class="form-control" id="inputImageLg">
-                        <label for="inputImageLg" data-browse="Seleccionar">Subir imagen principal del producto</label>
-                    </div>
-                    <div class="custom-file upload-file2">
-                        <input name="image" type="url" placeholder="https://www.imagen.com/imagen.jpg" class="form-control" id="inputImage">
-                        <label for="inputImage" data-browse="Seleccionar">Subir otra imagen del producto</label>
+                        <input name="product-image" type="file">
+                        <label for="inputImageLg" data-browse="Seleccionar" >Subir imagen secundaria</label>
                     </div>
                 </div>
 

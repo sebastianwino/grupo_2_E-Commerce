@@ -74,13 +74,22 @@ let productsControllers = {
 	},
 	
 	// Create -  Method to store
-	store: (req, res) => {
+	store: (req, res, next) => {
             let newProduct = {
             id: products[products.length-1].id+1,
-            ...req.body,
+            title:req.body.tittle,
+            price:req.body.price,
+            description:req.body.description,
+            category:req.body.categories,
+            slices:req.body.slices,
+            stock:req.body.stock,
+            imageLg:req.files[0].filename,
+            image:req.files[1].filename
         }
+
+        
         products.push(newProduct)
-        fs.writeFileSync(productsFilePath, JSON.stringify(products))
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 4))
 
         res.redirect(`detalle/${newProduct.id}`)
 

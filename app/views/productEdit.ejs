@@ -27,17 +27,15 @@
                 <div class="product-detail-card row mb-5">
                     <div class="porduct-images mb-3 col-12 col-lg-6">
                         <div class="first-product-image mb-3">
-                            <img src="<%= product.imageLg %>" alt="<%= product.title %>">
+                            <img src="/images/upload/<%=product.imageLg%>" class="image-prince" alt="<%= product.title %>">
                         </div>
                         <div class="more-product-images d-flex">
                             <div class="other-product-image mr-3">
-                                <img src="<%= product.image%>" alt="<%= product.title %>">
-                            </div>
-                            <div class="other-product-image">
-                                <img src="<%= product.image %>" alt="<%= product.title %>">
+                                <img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.title %>">
                             </div>
                         </div>
                     </div>
+
 
                     <div class="col-lg-2">
 
