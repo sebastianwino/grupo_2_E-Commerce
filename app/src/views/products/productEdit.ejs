@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <!-- Header -->
+    <%- include('../partials/header.ejs',{user:user}) %>
+    <!-- /Header -->
+
+    <!-- Main -->
+    <main>
+        <div class="container general my-4 reset-link">
+            <div class="row">
+                <div class="titulo-productos titulo-detalle col-12 mb-2">
+                    <h2 class="text-capitalize">
+                        <a href="/">Home</a> /
+                        <a href="/productos">Productos</a> /
+                        <a href="/productos/detalle/<%= product.id %>"><%= product.title %></a>
+                    </h2>
+                </div>
+
+                <!-- Problema con responsive en div.product-detail a solucionar -->
+                
+                <div class="product-detail-card row mb-5">
+                    <div class="porduct-images mb-3 col-12 col-lg-6">
+                        <div class="first-product-image mb-3">
+                            <img src="/images/upload/<%=product.imageLg%>" class="image-prince" alt="<%= product.title %>">
+                        </div>
+                        <div class="more-product-images d-flex">
+                            <div class="other-product-image mr-3">
+                                <img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.title %>">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-2">
+
+                    </div>
+
+
+                    <div class="product-information col-12 col-lg-4">
+                        <h1><%= product.title %> </h1>
+                        <h2 class="precio-producto">$<%= product.price %></h2>
+                        <p><%= product.description %></p>
+                        <div class="cantidad-producto mb-4">
+                            <%- include('../partials/inputSpinner.ejs', {product:product}) %>
+                        </div>
+                        <p><%= product.info %></p>
+                        <p><b>Categoría: </b><%= product.category %> </p>
+                        <p><b>Nombre: </b><%= product.title %></p>
+                        <p class="share-logos"><b>Compartir: </b>
+                            <a href="#"><i class="logo-redes-facebook fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="logo-redes-instagram fab fa-instagram"></i></a>
+                            <a href="#"><i class="logo-redes-twitter fab fa-twitter"></i></a>
+                            <a href="#"><i class="logo-redes-google fab fa-google-plus-g"></i></a>
+                            <a href="#"><i class="logo-redes-email far fa-envelope"></i></a>
+                            <a href="#"><i class="logo-redes-whatsapp fab fa-whatsapp"></i></a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="edit-delete d-flex justify-content-end align-items-end col-12 my-2">
+                    <a href="/productos/editar/<%= product.id %>"><button type="submit" class="btn btn-info mt-4">Editar producto</button></a>
+                </div>
+                
+                <!-- Productos seleccionados -->
+
+                <div class="more-products col-12 border-top pt-5">
+                    <div class="title-products-related col-12 mb-4">
+                        <h2>Productos seleccionados</h2>
+                    </div>
+                    <div class="productos-recomendados">
+                        <div class="row">
+                            <% productsRelated.forEach(productRelated => { %>
+                                
+                                <a class="link-product-related" href="/productos/detalle/<%= productRelated.id %>">
+                                    <div class="col-12 col-sm-6 col-lg-4">
+                                        <div class="card tarjetas-productos product-card-inProductDetail">
+                                            <div class="imagen-producto-productos">
+                                                <img class="card-img-top imagen-producto-producto" src="<%= productRelated.image %>"
+                                                    alt="imagen de <%= productRelated.title %>">
+                                            </div>
+                                            <div class="card-body position-relative">
+                                                <div class="d-flex justify-content-between ">
+                                                    <div class="titulo-precio">
+                                                        <p class="titulo-producto"><%= productRelated.title %></p>
+                                                        <p class="precio-producto">$<%= productRelated.price %></p>
+                                                    </div>
+        
+                                                    <div class="add-to-cart-products">
+                                                        <a href="#"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </main>
+
+    <!-- Main -->
+
+    <!-- footer -->
+    <%- include('../partials/footer.ejs') %>
+    <!-- /footer -->
+</body>
+
+</html>
