@@ -18,6 +18,24 @@ let usersControllers = {
             data: {email: null}
         });
     },
+
+    profile:  (req, res) => {
+        if ((req.session.user) && (req.session.email)) {        
+            users.forEach(user => {
+                if (user.email == req.session.email) { 
+                    let userComplete = user
+                    res.render('users/profile', {
+                        title: 'Profile',
+                        user: req.session.user,
+                        userComplete: userComplete
+                    })
+                } 
+            })}
+            else {
+                res.redirect('/')
+            }
+    },
+
     processLogin: (req, res) => {
 
         let errors = validationResult(req)
@@ -92,7 +110,12 @@ let usersControllers = {
             let usersJSON = JSON.stringify(users, null, 4);
             fs.writeFileSync(usersFilePath, usersJSON);
 
-            res.send('Usuario registrado');
+            res.render('users/login', {
+                title: 'Login',
+                user: req.session.user,
+                logueo: false,
+                data: {email: null}
+            });
         } else {
             res.render('users/register', {title: 'Registrate', errors: errors.errors, data: req.body});
         }

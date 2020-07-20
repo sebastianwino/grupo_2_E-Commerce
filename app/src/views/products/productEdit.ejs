@@ -24,6 +24,7 @@
 
                 <!-- Problema con responsive en div.product-detail a solucionar -->
                 
+               
                 <div class="product-detail-card row mb-5">
                     <div class="porduct-images mb-3 col-12 col-lg-6">
                         <div class="first-product-image mb-3">
@@ -36,7 +37,6 @@
                         </div>
                     </div>
 
-
                     <div class="col-lg-2">
 
                     </div>
@@ -46,20 +46,11 @@
                         <h1><%= product.title %> </h1>
                         <h2 class="precio-producto">$<%= product.price %></h2>
                         <p><%= product.description %></p>
-                        <div class="cantidad-producto mb-4">
-                            <%- include('../partials/inputSpinner.ejs', {product:product}) %>
-                        </div>
+                        
                         <p><%= product.info %></p>
                         <p><b>Categoría: </b><%= product.category %> </p>
                         <p><b>Nombre: </b><%= product.title %></p>
-                        <p class="share-logos"><b>Compartir: </b>
-                            <a href="#"><i class="logo-redes-facebook fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="logo-redes-instagram fab fa-instagram"></i></a>
-                            <a href="#"><i class="logo-redes-twitter fab fa-twitter"></i></a>
-                            <a href="#"><i class="logo-redes-google fab fa-google-plus-g"></i></a>
-                            <a href="#"><i class="logo-redes-email far fa-envelope"></i></a>
-                            <a href="#"><i class="logo-redes-whatsapp fab fa-whatsapp"></i></a>
-                        </p>
+                        
                     </div>
                 </div>
 

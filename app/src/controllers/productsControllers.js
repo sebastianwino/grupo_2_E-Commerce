@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
+const { unlink } = require('fs-extra');
 
 const productsFilePath = path.join(__dirname, '../data/productsDB.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -41,6 +43,7 @@ let productsControllers = {
 
     // Detail - Show one product
     detail: (req, res) => {
+     
         let idProduct = req.params.productId;
         let product = products.find(product => {
             if (product.id == idProduct) {
@@ -75,16 +78,31 @@ let productsControllers = {
 	
 	// Create -  Method to store
 	store: (req, res, next) => {
+            
+        let ruta = path.join('.','public','images','upload', req.files[0].filename)
+        let modificado = path.join('.','public','images','upload','m' + req.files[0].filename)
+        sharp(ruta)
+        .resize(600,400)
+        .toFile(modificado)
+
+        let rutaB = path.join('.','public','images','upload', req.files[1].filename)
+        let modificadoB = path.join('.','public','images','upload','m' + req.files[1].filename)
+        sharp(rutaB)
+        .resize(600,400)
+        .toFile(modificadoB)
+
+
+
             let newProduct = {
             id: products[products.length-1].id+1,
             title: req.body.title,
             price: req.body.price,
             description: req.body.description,
-            category: req.body.categories,
+            category: req.body.category,
             slices: req.body.slices,
             stock: req.body.stock,
-            imageLg: req.files[0].filename,
-            image: req.files[1].filename
+            imageLg: 'm' + req.files[0].filename,
+            image: 'm' + req.files[1].filename
         }
 
         
@@ -132,6 +150,23 @@ let productsControllers = {
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
         let productDeleted = products.filter(product => {
+            if (req.params.id==product.id){
+                unlink('./public/images/upload/' + product.imageLg , function (err) {            
+                  if (err) {                                                 
+                      console.error(err);                                    
+                  }                                                          
+                 console.log('archivo borrado');                           
+                });
+              
+
+              unlink('./public/images/upload/' + product.image , function (err) {            
+                if (err) {                                                 
+                    console.error(err);                                    
+                }                                                          
+               console.log('archivo borrado');                           
+              });
+            }
+
             return product.id != req.params.productId
             })
 
