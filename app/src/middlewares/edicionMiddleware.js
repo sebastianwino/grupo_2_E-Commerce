@@ -21,7 +21,7 @@ function edicionMiddleware (req,res,next){
                     return productRelated;
                 };
             });
-            return res.render('productsproductEdit', {
+            return res.render('products/productEdit', {
                 title: product.title,
                 product: product,
                 productsRelated: productsRelated,

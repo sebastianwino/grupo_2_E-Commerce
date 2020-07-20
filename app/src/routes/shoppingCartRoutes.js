@@ -5,7 +5,7 @@ const shoppingCartControllers = require('../controllers/shoppingCartControllers'
 // Revisar si se puede llenar el carrito, sin estar logueado
 const carritoMiddleware = require('../middlewares/carritoMiddleware')
 
-router.get('/', carritoMiddleware, shoppingCartControllers.root);
+router.get('/', shoppingCartControllers.root);
 
 router.post('/', shoppingCartControllers.distroy);
 
