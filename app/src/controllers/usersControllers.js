@@ -20,7 +20,7 @@ let usersControllers = {
     },
 
     profile:  (req, res) => {
-        if ((req.session.user) && (req.session.email)) {        
+            
             users.forEach(user => {
                 if (user.email == req.session.email) { 
                     let userComplete = user
@@ -30,11 +30,8 @@ let usersControllers = {
                         userComplete: userComplete
                     })
                 } 
-            })}
-            else {
-                res.redirect('/')
-            }
-    },
+            })
+     },
 
     processLogin: (req, res) => {
 

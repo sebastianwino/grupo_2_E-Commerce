@@ -190,6 +190,7 @@ let productsControllers = {
     });
 
     
+    
 
     res.render('products/products', {
         products: productsFound,
