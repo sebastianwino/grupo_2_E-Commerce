@@ -27,11 +27,19 @@
                 <div class="product-detail-card row mb-5">
                     <div class="porduct-images mb-3 col-12 col-lg-6">
                         <div class="first-product-image mb-3">
+                            <% if (img == 'img1'){%>
                             <img src="/images/upload/<%=product.imageLg%>" class="image-prince" alt="<%= product.title %>">
+                            <%} else {%>
+                            <img src="/images/upload/<%=product.image%>" class="image-prince" alt="<%= product.title %>">    
+                            <%}%>
                         </div>
                         <div class="more-product-images d-flex">
                             <div class="other-product-image mr-3">
-                                <img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.title %>">
+                                <% if (img == 'img1'){%>
+                                <a href="/productos/detalle/<%=product.id%>/img"><img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.title %>"></a>
+                                <%} else {%>
+                                <a href="/productos/detalle/<%=product.id%>"><img src="/images/upload/<%= product.imageLg%>" class="image-second" alt="<%= product.title %>"></a>
+                                <%}%>
                             </div>
                         </div>
                     </div>

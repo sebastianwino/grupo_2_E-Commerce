@@ -24,7 +24,7 @@ var upload = multer({ storage: storage });
 router.get('/', edicionProductosMiddleware, productsControllers.root); /* All products */
 
 router.get('/detalle/:productId', edicionMiddleware ,productsControllers.detail); /* Product detail */
-
+router.get('/detalle/:productId/img',edicionMiddleware, productsControllers.detailImg); /* Product detail */
 /*** CREATE ONE PRODUCT ***/ 
 router.get('/crear',authEditMiddleware, productsControllers.create); /* Form to create */
 router.post('/crear',[authEditMiddleware, upload.any()], productsControllers.store); /* Store in DB */

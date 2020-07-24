@@ -14,7 +14,7 @@ let usersControllers = {
         res.render('users/login', {
             title: 'Login',
             user: req.session.user,
-            logueo: false,
+            logueo:true,
             data: {email: null}
         });
     },
@@ -52,9 +52,9 @@ let usersControllers = {
                     }
                 } 
             })
-            res.send('Usuario no existente, registrate!!!');
+            res.render('users/login', {title: 'Login', logueo: false, data: req.body});
         } else {
-            res.render('users/login', {title: 'Login', errors: errors.errors, data: req.body});
+            res.render('users/login', {title: 'Login', logueo:true, errors: errors.errors, data: req.body});
         }
 
         
