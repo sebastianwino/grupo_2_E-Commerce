@@ -1,5 +1,5 @@
-module.exports = function (sequelize,dataTypes){
-    let alias = 'Product' 
+module.exports = function (sequelize, dataTypes) {
+    let alias = 'Product'
 
     let cols = {
         id: {
@@ -7,7 +7,7 @@ module.exports = function (sequelize,dataTypes){
             primaryKey: true,
             autoIncrement: true,
             allownull: false
-        }, 
+        },
         name: {
             type: dataTypes.STRING(45),
             allownull: false
@@ -21,12 +21,16 @@ module.exports = function (sequelize,dataTypes){
             allownull: false
         },
         price: {
-            type: dataTypes.DECIMAL(10,0).UNSIGNED,
+            type: dataTypes.DECIMAL(10, 0).UNSIGNED,
             allownull: false
         },
         stock: {
             type: dataTypes.INTEGER.UNSIGNED,
             allownull: false
+        },
+        slice: {
+            type: dataTypes.INTEGER.UNSIGNED,
+            allownull: true
         }
     }
 
@@ -38,24 +42,24 @@ module.exports = function (sequelize,dataTypes){
         deletedAt: 'deleted_at',
         underscored: true,
         paranoid: true
-      }
+    }
 
-      let product = sequelize.define(alias, cols, config);
+    let product = sequelize.define(alias, cols, config);
 
-      product.associate = function (models){
+    product.associate = function (models) {
         product.belongsTo(models.Category, {
             as: "categories",
-            foreignKey:"category_id"
+            foreignKey: "category_id"
         })
-        product.belongsToMany(models.Sale,{
-            as:'product_sale',
+        product.belongsToMany(models.Sale, {
+            as: 'product_sale',
             through: "product_sale",
             foreignKey: "product_id",
             otherKey: "sale_id",
             timestamps: false
         })
-     }
+    }
 
 
-      return product
-} 
+    return product
+}

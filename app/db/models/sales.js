@@ -1,5 +1,5 @@
-module.exports = function (sequelize,dataTypes){
-    let alias = 'Sale' 
+module.exports = function (sequelize, dataTypes) {
+    let alias = 'Sale'
 
     let cols = {
         id: {
@@ -7,9 +7,9 @@ module.exports = function (sequelize,dataTypes){
             primaryKey: true,
             autoIncrement: true,
             allownull: false
-        }, 
+        },
         total: {
-            type: dataTypes.dataTypes.DECIMAL(10,0),
+            type: dataTypes.dataTypes.DECIMAL(10, 0),
             allownull: false
         },
         sale_date: {
@@ -26,24 +26,24 @@ module.exports = function (sequelize,dataTypes){
         deletedAt: 'deleted_at',
         underscored: true,
         paranoid: true
-      }
+    }
 
-      let sale = sequelize.define(alias, cols, config);
+    let sale = sequelize.define(alias, cols, config);
 
-      sale.associate = function (models){
+    sale.associate = function (models) {
         sale.belongsTo(models.User, {
-            as: "users",
-            foreignKey:"user_id"
+            as: "s_users",
+            foreignKey: "user_id"
         })
-        sale.belongsToMany(models.Product,{
-            as:'product_sale',
+        sale.belongsToMany(models.Product, {
+            as: 'product_sale',
             through: "product_sale",
             foreignKey: "sale_id",
             otherKey: "product_id",
             timestamps: false
         })
-     }
+    }
 
 
-      return sale
-} 
+    return sale
+}
