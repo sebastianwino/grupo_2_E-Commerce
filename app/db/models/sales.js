@@ -8,24 +8,12 @@ module.exports = function (sequelize,dataTypes){
             autoIncrement: true,
             allownull: false
         }, 
-        name: {
-            type: dataTypes.STRING(45),
+        total: {
+            type: dataTypes.dataTypes.DECIMAL(10,0),
             allownull: false
         },
-        description: {
-            type: dataTypes.STRING(600),
-            allownull: false
-        },
-        name: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            allownull: false
-        },
-        price: {
-            type: dataTypes.DECIMAL(10,0).UNSIGNED,
-            allownull: false
-        },
-        stock: {
-            type: dataTypes.INTEGER.UNSIGNED,
+        sale_date: {
+            type: dataTypes.DATE,
             allownull: false
         }
     }
