@@ -14,13 +14,13 @@ let usersControllers = {
         res.render('users/login', {
             title: 'Login',
             user: req.session.user,
-            logueo: false,
+            logueo:true,
             data: {email: null}
         });
     },
 
     profile:  (req, res) => {
-        if ((req.session.user) && (req.session.email)) {        
+            
             users.forEach(user => {
                 if (user.email == req.session.email) { 
                     let userComplete = user
@@ -30,11 +30,8 @@ let usersControllers = {
                         userComplete: userComplete
                     })
                 } 
-            })}
-            else {
-                res.redirect('/')
-            }
-    },
+            })
+     },
 
     processLogin: (req, res) => {
 
@@ -55,9 +52,9 @@ let usersControllers = {
                     }
                 } 
             })
-            res.send('Usuario no existente, registrate!!!');
+            res.render('users/login', {title: 'Login', logueo: false, data: req.body});
         } else {
-            res.render('users/login', {title: 'Login', errors: errors.errors, data: req.body});
+            res.render('users/login', {title: 'Login', logueo:true, errors: errors.errors, data: req.body});
         }
 
         

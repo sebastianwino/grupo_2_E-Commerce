@@ -74,6 +74,66 @@ let productsControllers = {
             categories: categories,
             user: req.session.user, user: req.session.user
         });
+    },
+    detail: (req, res) => {
+     
+        let idProduct = req.params.productId;
+        let product = products.find(product => {
+            if (product.id == idProduct) {
+                return product;
+            }
+        });   
+
+        if (product) {
+            let productsRelated = products.filter(productRelated => {
+                if (productRelated.category == product.category && productRelated.price <= (product.price * 1.3) && productRelated.price >= (product.price * 0.7 ) && productRelated != product) {
+                    return productRelated;
+                };
+            });
+            return res.render('products/productDetail', {
+                title: product.title,
+                product: product,
+                productsRelated: productsRelated,
+                user: req.session.user, user: req.session.user,
+                img: 'img1'
+            });
+        }
+        res.redirect('/no-encontrado');
+    },
+    detailImg: (req, res) => {
+     
+        let idProduct = req.params.productId;
+        let product = products.find(product => {
+            if (product.id == idProduct) {
+                return product;
+            }
+        });   
+
+        if (product) {
+            let productsRelated = products.filter(productRelated => {
+                if (productRelated.category == product.category && productRelated.price <= (product.price * 1.3) && productRelated.price >= (product.price * 0.7 ) && productRelated != product) {
+                    return productRelated;
+                };
+            });
+            return res.render('products/productDetail', {
+                title: product.title,
+                product: product,
+                productsRelated: productsRelated,
+                user: req.session.user, user: req.session.user,
+                img: 'img2'
+            });
+        }
+        res.redirect('/no-encontrado');
+    },
+
+
+    // Create - Form to create
+	create: (req, res) => {
+        res.render('products/createProduct', {
+            title: 'Crear Producto',
+            categories: categories,
+            user: req.session.user, user: req.session.user
+        });
 	},
 	
 	// Create -  Method to store
@@ -189,6 +249,7 @@ let productsControllers = {
         }
     });
 
+    
     
 
     res.render('products/products', {
