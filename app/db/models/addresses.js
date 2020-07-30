@@ -31,10 +31,6 @@ module.exports = function (sequelize,dataTypes){
         zip_code: {
             type: dataTypes.INTEGER.UNSIGNED,
             allownull: false
-        },
-        cell_phone: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            allownull: false
         }
     }
 
