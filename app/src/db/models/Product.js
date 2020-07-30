@@ -44,15 +44,16 @@ module.exports = function (sequelize, dataTypes) {
         paranoid: true
     }
 
-    let product = sequelize.define(alias, cols, config);
+    let Product = sequelize.define(alias, cols, config);
 
-    product.associate = function (models) {
-        product.belongsTo(models.Category, {
-            as: "categories",
+    Product.associate = function (models) {
+        Product.belongsTo(models.Category, {
+            as: "categorie",
             foreignKey: "category_id"
         })
-        product.belongsToMany(models.Sale, {
-            as: 'product_sale',
+
+        Product.belongsToMany(models.Sale, {
+            as: 'p-sales',
             through: "product_sale",
             foreignKey: "product_id",
             otherKey: "sale_id",
@@ -60,6 +61,5 @@ module.exports = function (sequelize, dataTypes) {
         })
     }
 
-
-    return product
+    return Product
 }

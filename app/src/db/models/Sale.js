@@ -28,15 +28,16 @@ module.exports = function (sequelize, dataTypes) {
         paranoid: true
     }
 
-    let sale = sequelize.define(alias, cols, config);
+    let Sale = sequelize.define(alias, cols, config);
 
-    sale.associate = function (models) {
-        sale.belongsTo(models.User, {
-            as: "s_users",
+    Sale.associate = function (models) {
+        Sale.belongsTo(models.User, {
+            as: "user",
             foreignKey: "user_id"
         })
-        sale.belongsToMany(models.Product, {
-            as: 'product_sale',
+
+        Sale.belongsToMany(models.Product, {
+            as: 's-products',
             through: "product_sale",
             foreignKey: "sale_id",
             otherKey: "product_id",
@@ -45,5 +46,5 @@ module.exports = function (sequelize, dataTypes) {
     }
 
 
-    return sale
+    return Sale
 }

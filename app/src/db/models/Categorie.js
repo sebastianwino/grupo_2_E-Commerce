@@ -22,17 +22,16 @@ module.exports = function (sequelize,dataTypes){
         deletedAt: 'deleted_at',
         underscored: true,
         paranoid: true
-      }
+    }
 
-      let category = sequelize.define(alias, cols, config);
+    let Category = sequelize.define(alias, cols, config);
 
-      category.associate = function (models){
-        category.hasMany(models.Product, {
-            as: "categories",
+    Category.associate = function (models){
+        Category.hasMany(models.Product, {
+            as: "porducts",
             foreignKey:"category_id"
         })
-     }
+    }
 
-
-      return category
+    return Category
 } 

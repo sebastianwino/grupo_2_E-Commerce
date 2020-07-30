@@ -32,16 +32,15 @@ module.exports = function (sequelize, dataTypes) {
         paranoid: true
     }
 
-    let phone = sequelize.define(alias, cols, config);
+    let Phone = sequelize.define(alias, cols, config);
 
-    phone.associate = function (models) {
-        phone.belongsTo(models.User, {
-            as: "p_users",
+    Phone.associate = function (models) {
+        Phone.belongsTo(models.User, {
+            as: "user",
             foreignKey: "user_id"
         })
 
     }
 
-
-    return phone
+    return Phone
 }

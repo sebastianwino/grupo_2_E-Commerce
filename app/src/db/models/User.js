@@ -1,5 +1,5 @@
-module.exports = function (sequelize,dataTypes){
-    let alias = 'Address' 
+module.exports = function (sequelize, dataTypes) {
+    let alias = 'Product'
 
     let cols = {
         id: {
@@ -7,53 +7,53 @@ module.exports = function (sequelize,dataTypes){
             primaryKey: true,
             autoIncrement: true,
             allownull: false
-        }, 
-        street: {
+        },
+        name: {
             type: dataTypes.STRING(45),
             allownull: false
         },
-        city: {
+        lastname: {
             type: dataTypes.STRING(45),
             allownull: false
         },
-        prov: {
+        email: {
             type: dataTypes.STRING(45),
             allownull: false
         },
-        alias: {
-            type: dataTypes.STRING(45),
+        password: {
+            type: dataTypes.STRING(100),
             allownull: false
         },
-        number: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            allownull: false
-        },
-        zip_code: {
-            type: dataTypes.INTEGER.UNSIGNED,
-            allownull: false
-        }
     }
 
     let config = {
-        tableName: 'addresses',
+        tableName: 'users',
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
         deletedAt: 'deleted_at',
         underscored: true,
         paranoid: true
-      }
+    }
 
-      let address = sequelize.define(alias, cols, config);
+    let User = sequelize.define(alias, cols, config);
 
-      address.associate = function (models){
-        address.belongsTo(models.User, {
-            as: "a_users",
-            foreignKey:"user_id"
+    User.associate = function (models) {
+        User.belongsTo(models.Phone, {
+            as: "phone",
+            foreignKey: "user_id"
         })
-        
-     }
 
+        User.hasMany(models.Address, {
+            as: "address",
+            foreignKey: "user_id"
+        })
 
-      return address
-} 
+        User.hasMany(models.Sale, {
+            as: 'sale',
+            foreignKey: "user_id"
+        })
+    }
+
+    return User
+}

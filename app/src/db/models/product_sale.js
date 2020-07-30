@@ -31,8 +31,5 @@ module.exports = function (sequelize, dataTypes) {
 
     let product_sale = sequelize.define(alias, cols, config);
 
-
-
-
     return product_sale
 }
