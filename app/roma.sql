@@ -1,96 +1,152 @@
-CREATE DATABASE  IF NOT EXISTS `roma` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `roma`;
--- MariaDB dump 10.17  Distrib 10.4.13-MariaDB, for Win64 (AMD64)
---
--- Host: 127.0.0.1    Database: roma
--- ------------------------------------------------------
--- Server version	10.4.13-MariaDB
+-- MySQL Workbench Synchronization
+-- Generated: 2020-07-30 16:41
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: Juan Octavio
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
---
--- Dumping data for table `addres`
---
+CREATE SCHEMA IF NOT EXISTS `roma` DEFAULT CHARACTER SET utf8 ;
 
-LOCK TABLES `addres` WRITE;
-/*!40000 ALTER TABLE `addres` DISABLE KEYS */;
-/*!40000 ALTER TABLE `addres` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE TABLE IF NOT EXISTS `roma`.`users` (
+  `id` BIGINT(19) UNSIGNED NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(10) NOT NULL,
+  `phones_id` BIGINT(19) UNSIGNED NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_users_phones1_idx` (`phones_id` ASC) ,
+  CONSTRAINT `fk_users_phones1`
+    FOREIGN KEY (`phones_id`)
+    REFERENCES `roma`.`phones` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `categories`
---
+CREATE TABLE IF NOT EXISTS `roma`.`addresses` (
+  `id` BIGINT(19) UNSIGNED NOT NULL,
+  `user_id` BIGINT(19) UNSIGNED NOT NULL,
+  `street` VARCHAR(45) NOT NULL,
+  `number` INT(10) UNSIGNED NOT NULL,
+  `zip_code` INT(10) UNSIGNED NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `prov` VARCHAR(45) NOT NULL,
+  `alias` VARCHAR(45) NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `relationship A` (`user_id` ASC) ,
+  CONSTRAINT `relationship A`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `roma`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE TABLE IF NOT EXISTS `roma`.`products` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(600) NOT NULL,
+  `slices` VARCHAR(45) NOT NULL,
+  `category_id` BIGINT(19) UNSIGNED NOT NULL,
+  `price` DECIMAL UNSIGNED NOT NULL,
+  `stock` INT(10) UNSIGNED NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `relationShip b_idx` (`category_id` ASC) ,
+  CONSTRAINT `relationShip b`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `roma`.`categories` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `phones`
---
+CREATE TABLE IF NOT EXISTS `roma`.`categories` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
-LOCK TABLES `phones` WRITE;
-/*!40000 ALTER TABLE `phones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `phones` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE TABLE IF NOT EXISTS `roma`.`product_sale` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` BIGINT(19) UNSIGNED NOT NULL,
+  `cant` INT(11) NOT NULL,
+  `sub_total` DECIMAL UNSIGNED NOT NULL,
+  `sale_id` BIGINT(19) UNSIGNED NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `relationShip c_idx` (`product_id` ASC) ,
+  INDEX `relationShip  d_idx` (`sale_id` ASC) ,
+  CONSTRAINT `relationShip c`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `roma`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `relationShip  d`
+    FOREIGN KEY (`sale_id`)
+    REFERENCES `roma`.`sales` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `product_sale`
---
+CREATE TABLE IF NOT EXISTS `roma`.`sales` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `total` DECIMAL NOT NULL,
+  `sale_date` DATE NOT NULL,
+  `user_id` BIGINT(19) UNSIGNED NOT NULL,
+  `addres_id` BIGINT(19) UNSIGNED NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `relationship e_idx` (`user_id` ASC) ,
+  INDEX `fk_sales_addresses1_idx` (`addres_id` ASC) ,
+  CONSTRAINT `relationship e`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `roma`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_sales_addresses1`
+    FOREIGN KEY (`addres_id`)
+    REFERENCES `roma`.`addresses` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
-LOCK TABLES `product_sale` WRITE;
-/*!40000 ALTER TABLE `product_sale` DISABLE KEYS */;
-/*!40000 ALTER TABLE `product_sale` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE TABLE IF NOT EXISTS `roma`.`phones` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `cell_phone` INT(10) UNSIGNED NOT NULL,
+  `cell_phone_2` INT(10) UNSIGNED NULL DEFAULT NULL,
+  `phone` INT(10) UNSIGNED NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `products`
---
 
-LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `sales`
---
-
-LOCK TABLES `sales` WRITE;
-/*!40000 ALTER TABLE `sales` DISABLE KEYS */;
-INSERT INTO `sales` VALUES (1,0,'0000-00-00',1,NULL,'2020-07-22 20:05:14',NULL);
-/*!40000 ALTER TABLE `sales` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'asdf','asdf','asfda','',NULL,'2020-07-22 20:05:14',NULL);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping routines for database 'roma'
---
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2020-07-30  1:27:16
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
