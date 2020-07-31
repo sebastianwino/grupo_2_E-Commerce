@@ -9,7 +9,7 @@ module.exports = function (sequelize, dataTypes) {
             allownull: false
         },
         total: {
-            type: dataTypes.dataTypes.DECIMAL(10, 0),
+            type: dataTypes.DECIMAL(10, 0),
             allownull: false
         },
         description: {
@@ -31,12 +31,12 @@ module.exports = function (sequelize, dataTypes) {
     let Sale = sequelize.define(alias, cols, config);
 
     Sale.associate = function (models) {
-        Sale.belongsTo(models.User, {
-            as: "user",
-            foreignKey: "user_id"
-        })
+         Sale.belongsTo(models.User, {
+             as: "user",
+             foreignKey: "user_id"
+         })
 
-        Sale.belongsTo(models.Address, {
+        Sale.hasOne(models.Address, {
             as: "address",
             foreignKey: "address_id"
         })

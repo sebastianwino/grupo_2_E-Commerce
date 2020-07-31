@@ -61,6 +61,8 @@ CREATE TABLE IF NOT EXISTS `roma`.`products` (
   `category_id` BIGINT(19) UNSIGNED NOT NULL,
   `price` DECIMAL UNSIGNED NOT NULL,
   `stock` INT(10) UNSIGNED NOT NULL,
+  `imageLg` VARCHAR(100) NOT NULL,
+  `image` VARCHAR(100) NULL DEFAULT NULL,
   `created_at` TIMESTAMP NULL DEFAULT NULL,
   `deleted_at` TIMESTAMP NULL DEFAULT NULL,
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
@@ -120,14 +122,14 @@ CREATE TABLE IF NOT EXISTS `roma`.`sales` (
   `updated_at` TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `relationship e_idx` (`user_id` ASC) ,
-  INDEX `fk_sales_addresses1_idx` (`addres_id` ASC) ,
+  INDEX `fk_sales_addresses1_idx` (`address_id` ASC) ,
   CONSTRAINT `relationship e`
     FOREIGN KEY (`user_id`)
     REFERENCES `roma`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_sales_addresses1`
-    FOREIGN KEY (`addres_id`)
+    FOREIGN KEY (`address_id`)
     REFERENCES `roma`.`addresses` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

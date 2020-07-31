@@ -1,6 +1,6 @@
 const { check, body } = require('express-validator');
 
-let users = require('../../data/usersDB.json');
+let users = require('../../data-json/usersDB.json');
 
 let loginValidations = [
     check('email').isEmail().withMessage('Debe usar un email válido'),

@@ -1,5 +1,5 @@
 module.exports = function (sequelize, dataTypes) {
-    let alias = 'Product'
+    let alias = 'User'
 
     let cols = {
         id: {
@@ -39,7 +39,7 @@ module.exports = function (sequelize, dataTypes) {
     let User = sequelize.define(alias, cols, config);
 
     User.associate = function (models) {
-        User.belongsTo(models.Phone, {
+        User.hasOne(models.Phone, {
             as: "phone",
             foreignKey: "user_id"
         })

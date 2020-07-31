@@ -1,6 +1,6 @@
-let users = require('../data/usersDB.json');
+let users = require('../data-json/usersDB.json');
 
-const products = require('../data/productsDB.json')
+const products = require('../data-json/productsDB.json')
 
 function edicionMiddleware (req,res,next){
     

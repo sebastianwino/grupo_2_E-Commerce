@@ -46,16 +46,16 @@ module.exports = function (sequelize,dataTypes){
 
     let Address = sequelize.define(alias, cols, config);
 
-    Address.associate = function (models){
-        Address.belongsTo(models.User, {
-            as: "user",
-            foreignKey:"user_id"
-        })
-        Address.belongsTo(models.Sale, {
-            as: "sale",
-            foreignKey: "address_id"
-        })
-    }
+     Address.associate = function (models){
+         Address.belongsTo(models.User, {
+             as: "user",
+             foreignKey:"user_id"
+         })
+          Address.belongsTo(models.Sale, {
+              as: "sale",
+              foreignKey: "address_id"
+          })
+     }
 
     return Address
 } 

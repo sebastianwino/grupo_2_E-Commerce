@@ -2,7 +2,7 @@ const { check, body } = require('express-validator');
 
 const fs = require('fs');
 const path = require('path');
-const usersFilePath = path.join(__dirname, '../../data/usersDB.json'); 
+const usersFilePath = path.join(__dirname, '../../data-json/usersDB.json'); 
 let users = JSON.parse(fs.readFileSync(usersFilePath,  {encoding: 'utf-8'}));
 
 let registerValidations = [

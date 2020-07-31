@@ -2,9 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
+const sequelize = require('sequelize')
+const Op = sequelize.Op
+let db = require('../db/models')
 
 
-const usersFilePath = path.join(__dirname, '../data/usersDB.json'); 
+const usersFilePath = path.join(__dirname, '../data-json/usersDB.json'); 
 
 let users = JSON.parse(fs.readFileSync(usersFilePath,  {encoding: 'utf-8'}));
 
@@ -21,16 +24,29 @@ let usersControllers = {
 
     profile:  (req, res) => {
             
-            users.forEach(user => {
-                if (user.email == req.session.email) { 
-                    let userComplete = user
-                    res.render('users/profile', {
-                        title: 'Profile',
-                        user: req.session.user,
-                        userComplete: userComplete
-                    })
-                } 
-            })
+            // users.forEach(user => {
+            //     if (user.email == req.session.email) { 
+            //         let userComplete = user
+            //         res.render('users/profile', {
+            //             title: 'Profile',
+            //             user: req.session.user,
+            //             userComplete: userComplete
+            //         })
+            //     } 
+            // })
+        db.User.findOne({
+            where:{
+                email: req.session.email
+            },
+            include: ['address']
+        }).then(userComplete => {
+            res.render('users/profile', {
+            title: 'Profile',
+            user: req.session.user,
+            userComplete: userComplete
+          })
+        })
+            
      },
 
     processLogin: (req, res) => {

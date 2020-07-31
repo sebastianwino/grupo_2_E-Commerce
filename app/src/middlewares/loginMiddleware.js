@@ -1,4 +1,4 @@
-let users = require('../data/usersDB.json');
+let users = require('../data-json/usersDB.json');
 
 function loginMiddleware(req, res, next) {
 

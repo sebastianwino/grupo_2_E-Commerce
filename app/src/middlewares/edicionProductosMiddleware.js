@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 
-let users = require('../data/usersDB.json');
-const productsFilePath = path.join(__dirname, '../data/productsDB.json');
+let users = require('../data-json/usersDB.json');
+const productsFilePath = path.join(__dirname, '../data-json/productsDB.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 let categories = ["facturas", "tortas", "salado", "especialidades", "galletitas"]

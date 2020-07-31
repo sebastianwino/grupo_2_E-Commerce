@@ -3,57 +3,94 @@ const path = require('path');
 const sharp = require('sharp');
 const { unlink } = require('fs-extra');
 
-const productsFilePath = path.join(__dirname, '../data/productsDB.json');
+const productsFilePath = path.join(__dirname, '../data-json/productsDB.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 let categories = ["facturas", "tortas", "salado", "especialidades", "galletitas"]
 
+
+
 let productsControllers = {
     // Root - Show all products
-	root: (req, res) => {
-        let filter = req.query.filter;
-        let pruebaProductos = [];
+	root: async (req, res) => {
+       let productsAll = await db.Product.findAll({include:['categorie']})
+       let categoriesAll = await db.Categorie.findAll()
+
+       let filter = req.query.filter;
+        
+       
+       let pruebaProductos = [];
         let priceMin = req.query.filterPriceMin;
         let priceMax = req.query.filterPriceMax;
         
-        pruebaProductos = products.filter(product => {
+        pruebaProductos = productsAll.filter(product => {
             return product.id <= 30})
        
         if (filter != undefined) {
-            pruebaProductos = products.filter(product => {
+            pruebaProductos = productsAll.filter(product => {
                 return product.category == filter;
             })  
         } if ((priceMin != undefined)&&(priceMax != undefined)) {
-        pruebaProductos = products.filter(product => {
+        pruebaProductos = productsAll.filter(product => {
             return (product.price >= priceMin)&&(product.price <= priceMax);
         })  
         } 
-
-
+        // tambien se podria filtrar por where dentro de findAll
         res.render('products/products', {
-            title: 'Productos',
-            products: pruebaProductos,
-            categories: categories,
-            filter: filter,
-            filterPriceMin:priceMin,
-            filterPriceMax:priceMax,
-            user: req.session.user
-        });
-    },
+                     title: 'Productos',
+                     products: pruebaProductos,
+                     categories: categoriesAll,
+                     filter: filter,
+                     filterPriceMin:priceMin,
+                     filterPriceMax:priceMax,
+                     user: req.session.user
+                 });
+             },
+
+        //Este caso es si utilizariamos Json
+
+    //     let filter = req.query.filter;
+    //     let pruebaProductos = [];
+    //     let priceMin = req.query.filterPriceMin;
+    //     let priceMax = req.query.filterPriceMax;
+        
+    //     pruebaProductos = products.filter(product => {
+    //         return product.id <= 30})
+       
+    //     if (filter != undefined) {
+    //         pruebaProductos = products.filter(product => {
+    //             return product.category == filter;
+    //         })  
+    //     } if ((priceMin != undefined)&&(priceMax != undefined)) {
+    //     pruebaProductos = products.filter(product => {
+    //         return (product.price >= priceMin)&&(product.price <= priceMax);
+    //     })  
+    //     } 
+
+
+    //     res.render('products/products', {
+    //         title: 'Productos',
+    //         products: pruebaProductos,
+    //         categories: categories,
+    //         filter: filter,
+    //         filterPriceMin:priceMin,
+    //         filterPriceMax:priceMax,
+    //         user: req.session.user
+    //     });
+    // },
 
     // Detail - Show one product
-    detail: (req, res) => {
-     
-        let idProduct = req.params.productId;
-        let product = products.find(product => {
-            if (product.id == idProduct) {
-                return product;
-            }
-        });   
+    detail: async (req, res) => {
+
+        let productsAll = await db.Product.findAll({include:['categorie']})
+        let product = await db.Product.findByPk(req.params.productId,{
+            include: ['categorie']
+        })  
 
         if (product) {
-            let productsRelated = products.filter(productRelated => {
-                if (productRelated.category == product.category && productRelated.price <= (product.price * 1.3) && productRelated.price >= (product.price * 0.7 ) && productRelated != product) {
+            let productsRelated = productsAll.filter(productRelated => {
+                if (productRelated.category == product.category && productRelated.price <= (product.price * 1.3) && 
+                productRelated.price >= (product.price * 0.7 ) && productRelated != product) {
                     return productRelated;
                 };
             });
@@ -61,11 +98,35 @@ let productsControllers = {
                 title: product.title,
                 product: product,
                 productsRelated: productsRelated,
-                user: req.session.user, user: req.session.user
+                user: req.session.user
             });
         }
         res.redirect('/no-encontrado');
-    },
+    },    
+     
+    //     let idProduct = req.params.productId;
+    //     let product = products.find(product => {
+    //         if (product.id == idProduct) {
+    //             return product;
+    //         }
+    //     });   
+
+    //     if (product) {
+    //         let productsRelated = products.filter(productRelated => {
+    //             if (productRelated.category == product.category && productRelated.price <= (product.price * 1.3) && 
+    //             productRelated.price >= (product.price * 0.7 ) && productRelated != product) {
+    //                 return productRelated;
+    //             };
+    //         });
+    //         return res.render('products/productDetail', {
+    //             title: product.title,
+    //             product: product,
+    //             productsRelated: productsRelated,
+    //             user: req.session.user
+    //         });
+    //     }
+    //     res.redirect('/no-encontrado');
+    // },
 
     // Create - Form to create
 	create: (req, res) => {
