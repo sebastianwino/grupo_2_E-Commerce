@@ -2,13 +2,6 @@ module.exports = function (sequelize, dataTypes) {
     let alias = 'product_sale'
 
     let cols = {
-        id: {
-            type: dataTypes.BIGINT(19).UNSIGNED,
-            primaryKey: true,
-            autoIncrement: true,
-            allownull: false
-
-        },
         qty: {
             type: dataTypes.DECIMAL(10, 0).UNSIGNED,
             allownull: false

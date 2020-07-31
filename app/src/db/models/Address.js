@@ -51,7 +51,10 @@ module.exports = function (sequelize,dataTypes){
             as: "user",
             foreignKey:"user_id"
         })
-        
+        Address.belongsTo(models.Sale, {
+            as: "sale",
+            foreignKey: "address_id"
+        })
     }
 
     return Address

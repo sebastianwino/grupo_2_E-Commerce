@@ -12,8 +12,8 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.dataTypes.DECIMAL(10, 0),
             allownull: false
         },
-        sale_date: {
-            type: dataTypes.DATE,
+        description: {
+            type: dataTypes.STRING(600),
             allownull: false
         }
     }
@@ -34,6 +34,11 @@ module.exports = function (sequelize, dataTypes) {
         Sale.belongsTo(models.User, {
             as: "user",
             foreignKey: "user_id"
+        })
+
+        Sale.belongsTo(models.Address, {
+            as: "address",
+            foreignKey: "address_id"
         })
 
         Sale.belongsToMany(models.Product, {
