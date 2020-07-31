@@ -93,7 +93,7 @@ let shoppingCartControllers = {
         res.redirect('/carrito')
     },
 
-    distroy: (req,res) => {
+    destroy: (req,res) => {
         let productFount = shopping;
         
             productFount = productFount.filter (element => {

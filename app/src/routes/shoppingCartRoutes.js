@@ -5,7 +5,7 @@ const shoppingCartControllers = require('../controllers/shoppingCartControllers'
 
 router.get('/', shoppingCartControllers.root);
 
-router.post('/', shoppingCartControllers.distroy);
+router.post('/', shoppingCartControllers.destroy);
 
 router.post('/pre-finalizacion', shoppingCartControllers.previousPurchase);
 

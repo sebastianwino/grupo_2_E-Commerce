@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 const { unlink } = require('fs-extra');
+const db = require('../db/models');
 
 const productsFilePath = path.join(__dirname, '../data-json/productsDB.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -270,30 +271,34 @@ let productsControllers = {
     
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
-        let productDeleted = products.filter(product => {
-            if (req.params.id==product.id){
+        
+
+        db.Product.findByPk(req.params.id)
+            .then(product => {
                 unlink('./public/images/upload/' + product.imageLg , function (err) {            
+                    if (err) {                                                 
+                        console.error(err);                                    
+                    }                                                          
+                   console.log('archivo borrado');                           
+                  });
+                
+  
+                unlink('./public/images/upload/' + product.image , function (err) {            
                   if (err) {                                                 
                       console.error(err);                                    
                   }                                                          
                  console.log('archivo borrado');                           
                 });
-              
-
-              unlink('./public/images/upload/' + product.image , function (err) {            
-                if (err) {                                                 
-                    console.error(err);                                    
-                }                                                          
-               console.log('archivo borrado');                           
-              });
-            }
-
-            return product.id != req.params.productId
+                return ' '
+              })
+            .then(resultado => {
+                db.Product.destroy({
+                    where: {
+                        id: req.params.id
+                    }
+                })
             })
-
-        fs.writeFileSync(productsFilePath, JSON.stringify(productDeleted))
-
-        res.redirect('/productos')
+            
     },
 
     search : (req, res) => {
