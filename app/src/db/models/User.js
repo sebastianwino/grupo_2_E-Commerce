@@ -24,6 +24,10 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.STRING(100),
             allownull: false
         },
+        admin: {
+            type: dataTypes.BOOLEAN,
+            allownull: false
+        }
     }
 
     let config = {
