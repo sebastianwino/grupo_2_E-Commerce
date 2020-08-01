@@ -1,0 +1,154 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2020-07-30 16:41
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: Juan Octavio
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+CREATE SCHEMA IF NOT EXISTS `roma` DEFAULT CHARACTER SET utf8 ;
+
+CREATE TABLE IF NOT EXISTS `roma`.`users` (
+  `id` BIGINT(19) UNSIGNED NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `phones_id` BIGINT(19) UNSIGNED NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_users_phones1_idx` (`phones_id` ASC) ,
+  CONSTRAINT `fk_users_phones1`
+    FOREIGN KEY (`phones_id`)
+    REFERENCES `roma`.`phones` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `roma`.`addresses` (
+  `id` BIGINT(19) UNSIGNED NOT NULL,
+  `user_id` BIGINT(19) UNSIGNED NOT NULL,
+  `street` VARCHAR(45) NOT NULL,
+  `number` INT(10) UNSIGNED NOT NULL,
+  `zip_code` INT(10) UNSIGNED NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `prov` VARCHAR(45) NOT NULL,
+  `alias` VARCHAR(45) NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `relationship A` (`user_id` ASC) ,
+  CONSTRAINT `relationship A`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `roma`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `roma`.`products` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(600) NOT NULL,
+  `slices` VARCHAR(45) NOT NULL,
+  `category_id` BIGINT(19) UNSIGNED NOT NULL,
+  `price` DECIMAL UNSIGNED NOT NULL,
+  `stock` INT(10) UNSIGNED NOT NULL,
+  `imageLg` VARCHAR(100) NOT NULL,
+  `image` VARCHAR(100) NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `relationShip b_idx` (`category_id` ASC) ,
+  CONSTRAINT `relationShip b`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `roma`.`categories` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `roma`.`categories` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `roma`.`product_sale` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `product_id` BIGINT(19) UNSIGNED NOT NULL,
+  `cant` INT(11) NOT NULL,
+  `sub_total` DECIMAL UNSIGNED NOT NULL,
+  `sale_id` BIGINT(19) UNSIGNED NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `relationShip c_idx` (`product_id` ASC) ,
+  INDEX `relationShip  d_idx` (`sale_id` ASC) ,
+  CONSTRAINT `relationShip c`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `roma`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `relationShip  d`
+    FOREIGN KEY (`sale_id`)
+    REFERENCES `roma`.`sales` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `roma`.`sales` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `total` DECIMAL NOT NULL,
+  `observation` VARCHAR(600) NOT NULL,
+  `user_id` BIGINT(19) UNSIGNED NOT NULL,
+  `address_id` BIGINT(19) UNSIGNED NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `relationship e_idx` (`user_id` ASC) ,
+  INDEX `fk_sales_addresses1_idx` (`address_id` ASC) ,
+  CONSTRAINT `relationship e`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `roma`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_sales_addresses1`
+    FOREIGN KEY (`address_id`)
+    REFERENCES `roma`.`addresses` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `roma`.`phones` (
+  `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `cell_phone` INT(10) UNSIGNED NOT NULL,
+  `cell_phone_2` INT(10) UNSIGNED NULL DEFAULT NULL,
+  `phone` INT(10) UNSIGNED NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
