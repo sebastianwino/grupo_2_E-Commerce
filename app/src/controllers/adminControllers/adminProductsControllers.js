@@ -84,12 +84,20 @@ let productsControllers = {
 
     // Create - Form to create
     create: (req, res) => {
-        res.render('products/admin/createProduct', {
-            title: 'Crear Producto',
-            categories: categories,
-            user: req.session.user,
-            user: req.session.user
-        });
+        db.Category.findAll()
+            .then(categories => {
+                res.render('products/admin/createProduct', {
+                title: 'Crear Producto',
+                categories: categories,
+                user: req.session.user,
+                user: req.session.user
+                });
+            })
+            .catch(err => {
+                console.log(err)
+                res.send('Error!!!')
+            })
+        
     },
 
     // Create -  Method to store

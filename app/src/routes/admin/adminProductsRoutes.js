@@ -23,14 +23,13 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-
-router.get('/', authAdminMiddleware, /* edicionProductosMiddleware, */ adminProductsControllers.root); /* All products */
-
-router.get('/:productId', authAdminMiddleware, /* edicionMiddleware, */ adminProductsControllers.detail); /* Product detail */
-
 /*** CREATE ONE PRODUCT ***/ 
 router.get('/crear', authAdminMiddleware, adminProductsControllers.create); /* Form to create */
 router.post('/crear', [authAdminMiddleware, upload.any()], adminProductsControllers.store); /* Store in DB */
+
+/*** SHOW PRODUCTs ***/ 
+router.get('/', authAdminMiddleware, /* edicionProductosMiddleware, */ adminProductsControllers.root); /* All products */
+router.get('/:productId', authAdminMiddleware, /* edicionMiddleware, */ adminProductsControllers.detail); /* Product detail */
 
 /*** EDIT ONE PRODUCT ***/ 
 router.get('/:productId/editar', authAdminMiddleware, adminProductsControllers.edit); /* Form to create */

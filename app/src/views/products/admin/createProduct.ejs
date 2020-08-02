@@ -14,7 +14,7 @@
     <div class="container-fluid fondo-registro general">
         <div class="container formulario-crear-producto">
 
-            <form action="/productos/crear" method="POST" enctype="multipart/form-data">
+            <form action="/admin/productos/crear" method="POST" enctype="multipart/form-data">
 
                 <h1>Formulario de creación de producto</h1>
                 <div class="form-row">
@@ -39,7 +39,7 @@
                         <select class="form-style" name="category" id="inputCategory">
                             <option value="">Selecionar categoría</option>
                             <% categories.forEach(category => { %>
-                            <option value="<%= category %>"><%= category %></option>
+                            <option value="<%= category.name %>"><%= category.name %></option>
                             <% }) %>
                         </select>
                     </div>
