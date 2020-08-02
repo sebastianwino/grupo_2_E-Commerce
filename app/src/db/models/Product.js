@@ -28,7 +28,7 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.INTEGER.UNSIGNED,
             allownull: false
         },
-        slice: {
+        slices: {
             type: dataTypes.INTEGER.UNSIGNED,
             allownull: true
         }

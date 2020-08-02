@@ -7,9 +7,9 @@ const Op = sequelize.Op
 let db = require('../db/models')
 
 
-const usersFilePath = path.join(__dirname, '../data-json/usersDB.json'); 
+//const usersFilePath = path.join(__dirname, '../data-json/usersDB.json'); 
 
-let users = JSON.parse(fs.readFileSync(usersFilePath,  {encoding: 'utf-8'}));
+//let users = JSON.parse(fs.readFileSync(usersFilePath,  {encoding: 'utf-8'}));
 
 let usersControllers = {
     login: (req, res) => {
@@ -34,16 +34,15 @@ let usersControllers = {
             //         })
             //     } 
             // })
-        db.User.findOne({
+        db.User.findAll({
             where:{
                 email: req.session.email
-            },
-            include: ['address']
+            }
         }).then(userComplete => {
             res.render('users/profile', {
             title: 'Profile',
             user: req.session.user,
-            userComplete: userComplete
+            userComplete: userComplete[0]
           })
         })
             
@@ -55,25 +54,52 @@ let usersControllers = {
 
         if (errors.isEmpty()) {
 
-            users.forEach(user => {
-                if (user.email == req.body.email) {
-                    if (bcrypt.compareSync(req.body.password, user.password)) {
-                        if (req.body.remember == 'yes') {
-                        res.cookie('recordame', user.email, {maxAge: 60000000})
-                        res.cookie('usuario', user.name, {maxAge: 60000000})
-                        }
-                        req.session.email = user.email
-                        req.session.user = user.name
-                        res.redirect('/')
-                    }
-                } 
-            })
-            res.render('users/login', {title: 'Login', logueo: false, data: req.body});
-        } else {
-            res.render('users/login', {title: 'Login', logueo:true, errors: errors.errors, data: req.body});
-        }
+            // users.forEach(user => {
+            //     if (user.email == req.body.email) {
 
-        
+                db.User.findAll({
+                    where:{email: req.body.email}
+                }).then(user=>{
+                   // if (bcrypt.compareSync(req.body.password, user.password)) {
+                                     if(req.body.password == user[0].password){
+                                         if (req.body.remember == 'yes') {
+                                         res.cookie('recordame', user[0].email, {maxAge: 60000000})
+                                         res.cookie('usuario', user[0].name, {maxAge: 60000000})
+                                         }
+                                         req.session.email = user[0].email
+                                         req.session.user = user[0].name
+                                         res.redirect('/')
+                                     }
+                                     res.render('users/login', {title: 'Login', logueo: false, data: req.body});
+                                   
+                           
+                        
+                }).catch(er=>{res.send('error')})
+
+            } else {
+                res.render('users/login', {title: 'Login', logueo:true, errors: errors.errors, data: req.body});
+            }
+        //         }).then(user=>{
+        //             // if (bcrypt.compareSync(req.body.password, user.password)) {
+        //             if(req.body.password == user.password){
+        //                 if (req.body.remember == 'yes') {
+        //                 res.cookie('recordame', user.email, {maxAge: 60000000})
+        //                 res.cookie('usuario', user.name, {maxAge: 60000000})
+        //                 }
+        //                 req.session.email = user.email
+        //                 req.session.user = user.name
+        //                 res.redirect('/')
+        //             }
+        //             res.render('users/login', {title: 'Login', logueo: false, data: req.body});
+        //           })
+           
+        // } else {
+        //     res.render('users/login', {title: 'Login', logueo:true, errors: errors.errors, data: req.body});
+        // }
+    
+
+            // }   
+               
     },
     processLogout: (req,res)=>{
         req.session.destroy();

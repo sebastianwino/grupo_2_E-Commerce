@@ -10,6 +10,7 @@ const registerValidations = require('../validations/users/registerValidations')
 /* GET users listing. */
 router.get('/login', loginMiddleware ,usersControllers.login);
 router.get('/profile', profileMiddleware, usersControllers.profile);
+
 router.post('/login', loginValidations, usersControllers.processLogin);
 router.post('/logout', usersControllers.processLogout);
 

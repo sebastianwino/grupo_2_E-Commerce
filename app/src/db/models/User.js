@@ -12,7 +12,7 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.STRING(45),
             allownull: false
         },
-        lastname: {
+        last_name: {
             type: dataTypes.STRING(45),
             allownull: false
         },
@@ -45,7 +45,7 @@ module.exports = function (sequelize, dataTypes) {
     User.associate = function (models) {
         User.hasOne(models.Phone, {
             as: "phone",
-            foreignKey: "user_id"
+            foreignKey: "phone_id"
         })
 
         User.hasMany(models.Address, {
