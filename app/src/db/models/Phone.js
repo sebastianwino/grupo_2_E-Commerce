@@ -35,7 +35,7 @@ module.exports = function (sequelize, dataTypes) {
     let Phone = sequelize.define(alias, cols, config);
 
     Phone.associate = function (models) {
-        Phone.belongsTo(models.User, {
+        Phone.hasOne(models.User, {
             as: "user",
             foreignKey: "user_id"
         })

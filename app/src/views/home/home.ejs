@@ -2,16 +2,16 @@
 <html>
 
 <head>
-    <%- include('partials/head.ejs') %>
+    <%- include('../partials/head.ejs') %>
 </head>
 
 <body>
   <!-- Header -->
-  <%- include('partials/header.ejs', {user:user}) %>
+  <%- include('../partials/header.ejs', {user:user}) %>
   <!-- /Header -->
   
     
-  <%- include('home/carrusel.ejs') %>
+  <%- include('carrusel.ejs') %>
   <div>
   <div class="container-fluid general tam-text-2 fondo-categoria">
     <div class="row">
@@ -63,7 +63,7 @@
 
 
   <!-- footer -->
-  <%- include('partials/footer.ejs') %>
+  <%- include('../partials/footer.ejs') %>
   <!-- /footer -->
 
 </body>

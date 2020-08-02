@@ -105,29 +105,40 @@ let usersControllers = {
         if (errors.isEmpty()) {
             
             let passwordEncripted = bcrypt.hashSync(req.body.password, 10)
-            let newUser = {
-                id: users[users.length-1].id+1,
+
+            db.Users.create({
                 name: req.body.name,
-                lastname: req.body.lastname,
+                last_name: req.body.lastname,
                 email: req.body.email,
                 password: passwordEncripted,
-                /* address: req.body.address,
-                addressNumber: req.body.addressNumber,
-                city: req.body.city,
-                phoneNumber: req.body.phoneNumber, */
-                privilege: 'client'
-            };
+                phone: req.body.phone
+            })
 
-            users.push(newUser);
 
-            let usersJSON = JSON.stringify(users, null, 4);
-            fs.writeFileSync(usersFilePath, usersJSON);
+            // JSON
+            // let newUser = {
+            //     id: users[users.length-1].id+1,
+            //     name: req.body.name,
+            //     lastname: req.body.lastname,
+            //     email: req.body.email,
+            //     password: passwordEncripted,
+            //     /* address: req.body.address,
+            //     addressNumber: req.body.addressNumber,
+            //     city: req.body.city,
+            //     phoneNumber: req.body.phone, */
+            //     privilege: 'client'
+            // };
+
+            // users.push(newUser);
+
+            // let usersJSON = JSON.stringify(users, null, 4);
+            // fs.writeFileSync(usersFilePath, usersJSON);
 
             res.render('users/login', {
                 title: 'Login',
                 user: req.session.user,
                 logueo: false,
-                data: {email: null}
+                data: {email: req.body.email}
             });
         } else {
             res.render('users/register', {title: 'Registrate', errors: errors.errors, data: req.body});

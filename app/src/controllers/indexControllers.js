@@ -26,13 +26,8 @@ let indexControllers = {
           }                                                          
          console.log('archivo borrado');                           
         });
-  
-  
-  
-  
-  
-  
-        res.render('home', {title: 'Home', user: req.session.user});
+
+        res.render('home/home', {title: 'Home', user: req.session.user});
     }
 }
 
