@@ -31,6 +31,14 @@ module.exports = function (sequelize, dataTypes) {
         slices: {
             type: dataTypes.INTEGER.UNSIGNED,
             allownull: true
+        },
+        image_lg: {
+            type: dataTypes.STRING(100),
+            allownull: false
+        },
+        image: {
+            type: dataTypes.STRING(100),
+            allownull: true
         }
     }
 

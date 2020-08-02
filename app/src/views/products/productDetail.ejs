@@ -27,19 +27,11 @@
                 <div class="product-detail-card row mb-5">
                     <div class="porduct-images mb-3 col-12 col-lg-6">
                         <div class="first-product-image mb-3">
-                            <% if (img == 'img1'){%>
-                            <img src="/images/upload/<%=product.imageLg%>" class="image-prince" alt="<%= product.name %>">
-                            <%} else {%>
-                            <img src="/images/upload/<%=product.image%>" class="image-prince" alt="<%= product.name %>">    
-                            <%}%>
+                            <img src="/images/upload/<%=product.image_lg%>" class="image-prince" alt="<%= product.name %>">
                         </div>
                         <div class="more-product-images d-flex">
                             <div class="other-product-image mr-3">
-                                <% if (img == 'img1'){%>
-                                <a href="/productos/<%=product.id%>/img"><img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>"></a>
-                                <%} else {%>
-                                <a href="/productos/<%=product.id%>"><img src="/images/upload/<%= product.imageLg%>" class="image-second" alt="<%= product.name %>"></a>
-                                <%}%>
+                                <a href="/productos/<%=product.id%>"><img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>"></a>
                             </div>
                         </div>
                     </div>
@@ -86,7 +78,7 @@
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <div class="card tarjetas-productos product-card-inProductDetail">
                                             <div class="imagen-producto-productos">
-                                                <img class="card-img-top imagen-producto-producto" src="/images/upload/<%= productRelated.imageLg %>"
+                                                <img class="card-img-top imagen-producto-producto" src="/images/upload/<%= productRelated.image_lg %>"
                                                     alt="imagen de <%= productRelated.name %>">
                                             </div>
                                             <div class="card-body position-relative">

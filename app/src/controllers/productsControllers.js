@@ -25,6 +25,7 @@ let productsControllers = {
             return product.id <= 30
         })
 
+
         if (filter != undefined) {
             pruebaProductos = productsAll.filter(product => {
                 return product.category.name == filter;
