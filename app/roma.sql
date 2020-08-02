@@ -156,7 +156,7 @@ CREATE TABLE `products` (
   `category_id` bigint(19) unsigned NOT NULL,
   `price` decimal(10,2) unsigned NOT NULL,
   `stock` int(10) unsigned NOT NULL,
-  `imageLg` varchar(100) NOT NULL,
+  `image_lg` varchar(100) NOT NULL,
   `image` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
