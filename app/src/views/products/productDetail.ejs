@@ -18,7 +18,7 @@
                     <h2 class="text-capitalize">
                         <a href="/">Home</a> /
                         <a href="/productos">Productos</a> /
-                        <a href="/productos/detalle/<%= product.id %>"><%= product.title %></a>
+                        <a href="/productos/<%= product.id %>"><%= product.name %></a>
                     </h2>
                 </div>
 
@@ -28,17 +28,17 @@
                     <div class="porduct-images mb-3 col-12 col-lg-6">
                         <div class="first-product-image mb-3">
                             <% if (img == 'img1'){%>
-                            <img src="/images/upload/<%=product.imageLg%>" class="image-prince" alt="<%= product.title %>">
+                            <img src="/images/upload/<%=product.imageLg%>" class="image-prince" alt="<%= product.name %>">
                             <%} else {%>
-                            <img src="/images/upload/<%=product.image%>" class="image-prince" alt="<%= product.title %>">    
+                            <img src="/images/upload/<%=product.image%>" class="image-prince" alt="<%= product.name %>">    
                             <%}%>
                         </div>
                         <div class="more-product-images d-flex">
                             <div class="other-product-image mr-3">
                                 <% if (img == 'img1'){%>
-                                <a href="/productos/detalle/<%=product.id%>/img"><img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.title %>"></a>
+                                <a href="/productos/<%=product.id%>/img"><img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>"></a>
                                 <%} else {%>
-                                <a href="/productos/detalle/<%=product.id%>"><img src="/images/upload/<%= product.imageLg%>" class="image-second" alt="<%= product.title %>"></a>
+                                <a href="/productos/<%=product.id%>"><img src="/images/upload/<%= product.imageLg%>" class="image-second" alt="<%= product.name %>"></a>
                                 <%}%>
                             </div>
                         </div>
@@ -50,15 +50,15 @@
 
 
                     <div class="product-information col-12 col-lg-4">
-                        <h1><%= product.title %> </h1>
+                        <h1><%= product.name %> </h1>
                         <h2 class="precio-producto">$<%= product.price %></h2>
                         <p><%= product.description %></p>
                         <div class="cantidad-producto mb-4">
                             <%- include('../partials/inputSpinner.ejs', {product:product}) %>
                         </div>
                         <p><%= product.info %></p>
-                        <p><b>Categoría: </b><%= product.category %> </p>
-                        <p><b>Nombre: </b><%= product.title %></p>
+                        <p><b>Categoría: </b><%= product.category.name %></p>
+                        <p><b>Nombre: </b><%= product.name %></p>
                         <p class="share-logos"><b>Compartir: </b>
                             <a href="#"><i class="logo-redes-facebook fab fa-facebook-f"></i></a>
                             <a href="#"><i class="logo-redes-instagram fab fa-instagram"></i></a>
@@ -82,17 +82,17 @@
                         <div class="row">
                             <% productsRelated.forEach(productRelated => { %>
                                 
-                                <a class="link-product-related" href="/productos/detalle/<%= productRelated.id %>">
+                                <a class="link-product-related" href="/productos/<%= productRelated.id %>">
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <div class="card tarjetas-productos product-card-inProductDetail">
                                             <div class="imagen-producto-productos">
                                                 <img class="card-img-top imagen-producto-producto" src="/images/upload/<%= productRelated.imageLg %>"
-                                                    alt="imagen de <%= productRelated.title %>">
+                                                    alt="imagen de <%= productRelated.name %>">
                                             </div>
                                             <div class="card-body position-relative">
                                                 <div class="d-flex justify-content-between ">
                                                     <div class="titulo-precio">
-                                                        <p class="titulo-producto"><%= productRelated.title %></p>
+                                                        <p class="titulo-producto"><%= productRelated.name %></p>
                                                         <p class="precio-producto">$<%= productRelated.price %></p>
                                                     </div>
         

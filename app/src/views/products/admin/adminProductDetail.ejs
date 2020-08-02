@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <%- include('../partials/head.ejs') %>
+    <%- include('../../partials/head.ejs') %>
 </head>
 
 <body>
     <!-- Header -->
-    <%- include('../partials/header.ejs',{user:user}) %>
+    <%- include('../../partials/header.ejs',{user:user}) %>
     <!-- /Header -->
 
     <!-- Main -->
@@ -17,8 +17,8 @@
                 <div class="titulo-productos titulo-detalle col-12 mb-2">
                     <h2 class="text-capitalize">
                         <a href="/">Home</a> /
-                        <a href="/productos">Productos</a> /
-                        <a href="/productos/detalle/<%= product.id %>"><%= product.title %></a>
+                        <a href="/admin/productos">Productos</a> /
+                        <a href="/admin/productos/<%= product.id %>"><%= product.title %></a>
                     </h2>
                 </div>
 
@@ -48,14 +48,14 @@
                         <p><%= product.description %></p>
                         
                         <p><%= product.info %></p>
-                        <p><b>Categoría: </b><%= product.category %> </p>
+                        <p><b>Categoría: </b><%= product.category.name %> </p>
                         <p><b>Nombre: </b><%= product.title %></p>
                         
                     </div>
                 </div>
 
                 <div class="edit-delete d-flex justify-content-end align-items-end col-12 my-2">
-                    <a href="/productos/editar/<%= product.id %>"><button type="submit" class="btn btn-info mt-4">Editar producto</button></a>
+                    <a href="/admin/productos/<%= product.id %>/editar"><button type="submit" class="btn btn-info mt-4">Editar producto</button></a>
                 </div>
                 
                 <!-- Productos seleccionados -->
@@ -68,7 +68,7 @@
                         <div class="row">
                             <% productsRelated.forEach(productRelated => { %>
                                 
-                                <a class="link-product-related" href="/productos/detalle/<%= productRelated.id %>">
+                                <a class="link-product-related" href="/admin/productos/<%= productRelated.id %>">
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <div class="card tarjetas-productos product-card-inProductDetail">
                                             <div class="imagen-producto-productos">
@@ -105,7 +105,7 @@
     <!-- Main -->
 
     <!-- footer -->
-    <%- include('../partials/footer.ejs') %>
+    <%- include('../../partials/footer.ejs') %>
     <!-- /footer -->
 </body>
 

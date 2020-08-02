@@ -9,7 +9,7 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 let categories = ["facturas", "tortas", "salado", "especialidades", "galletitas"]
 
 
-function  edicionProductosMiddleware (req,res,next){
+function  edicionProductosMiddleware (req, res, next){
     let filter = req.query.filter;
         let pruebaProductos = [];
         let priceMin = req.query.filterPriceMin;

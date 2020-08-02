@@ -4,7 +4,7 @@ function profileMiddleware(req, res, next) {
     if ((req.session.user) && (req.session.email)) {    
         next();
     } else {
-        res.redirect('/usuarios/login')
+        res.redirect('/usuarios/login');
     }
 }
 

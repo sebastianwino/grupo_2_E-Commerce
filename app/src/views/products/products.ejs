@@ -150,17 +150,17 @@
 					</div>
 				<%}%>
 					<% products.forEach(product => { %>
-						<a href="/productos/detalle/<%= product.id %>">
+						<a href="/productos/<%= product.id %>">
 							<div class="col-12 col-sm-6 col-lg-4">
 								<div class="card tarjetas-productos product-card-inProducts my-5">
 									<div class="imagen-producto-productos">
 										<img class="card-img-top imagen-producto-producto" src="/images/upload/<%= product.imageLg %>"
-											alt="imagen de <%= product.title %>">
+											alt="imagen de <%= product.name %>">
 									</div>
 									<div class="card-body position-relative">
-										<div class="d-flex justify-content-between ">
+										<div class="d-flex justify-content-between">
 											<div class="titulo-precio">
-												<p class="titulo-producto"><%= product.title %></p>
+												<p class="titulo-producto"><%= product.name %></p>
 												<p class="precio-producto">$<%= product.price %></p>
 											</div>
 
