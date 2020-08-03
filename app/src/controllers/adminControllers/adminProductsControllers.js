@@ -102,7 +102,6 @@ let productsControllers = {
 
     // Create -  Method to store
     store: (req, res, next) => {
-
         let ruta = path.join('.', 'public', 'images', 'upload', req.files[0].filename)
         let modificado = path.join('.', 'public', 'images', 'upload', 'm' + req.files[0].filename)
         sharp(ruta)
@@ -115,30 +114,28 @@ let productsControllers = {
             .resize(600, 400)
             .toFile(modificadoB)
 
-        let newProduct = {
-            id: products[products.length - 1].id + 1,
-            title: req.body.title,
-            price: req.body.price,
+
+        
+        db.Product.create({
+            name: req.body.title,
             description: req.body.description,
-            category: req.body.category,
             slices: req.body.slices,
+            category_id: req.body.category,
+            price: req.body.price,
             stock: req.body.stock,
-            imageLg: 'm' + req.files[0].filename,
+            image_lg: 'm' + req.files[0].filename,
             image: 'm' + req.files[1].filename
-        }
+        })
 
-        products.push(newProduct)
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 4))
-
-        res.redirect(`detalle/${newProduct.id}`)
+        res.redirect(`/admin/productos`)
 
     },
 
     // Update - Form to edit
     edit: (req, res) => {
 
-        let productEdit = db.Product.findByPk(req.params.id, {
-            include: [{association: 'category'}]
+        let productEdit = db.Product.findByPk(req.params.productId, {
+            include: ['category']
         })
         let categoriesEdit = db.Category.findAll()
 
@@ -146,13 +143,13 @@ let productsControllers = {
             .then(([product, categories]) =>{
                 if (product) {
                     return res.render('products/admin/editProduct', {
-                        title: `Editar Producto ${productToEdit.title}`,
-                        product: productToEdit,
+                        title: `Editar Producto ${product.name}`,
+                        product: product,
                         categories: categories,
                         user: req.session.user
                     });
                 } else {
-                    res.redirect('/no-encontrado');
+                    res.send('no entro')
                 }
             })
             .catch(err => {
@@ -182,30 +179,49 @@ let productsControllers = {
 
     // Update - Method to update
     update: (req, res) => {
-        let idProduct
-        let productEdited = products.map(product => {
-            if (product.id == req.params.productId) {
-                return {
-                    ...product,
-                    ...req.body
-                }
+
+        
+
+        db.Product.update({
+            name: req.body.title,
+            description: req.body.description,
+            slices: req.body.slices,
+            category_id: req.body.category,
+            price: req.body.price,
+            stock: req.body.stock
+        },{
+            where:{
+                id:req.params.productId
             }
-            return product
         })
 
-        fs.writeFileSync(productsFilePath, JSON.stringify(productEdited))
+
+
+
+        // let idProduct
+        // let productEdited = products.map(product => {
+        //     if (product.id == req.params.productId) {
+        //         return {
+        //             ...product,
+        //             ...req.body
+        //         }
+        //     }
+        //     return product
+        // })
+
+        // fs.writeFileSync(productsFilePath, JSON.stringify(productEdited))
 
         res.redirect(`/admin/productos/`)
 
     },
 
     // Delete - Delete one product from DB
-    destroy: (req, res) => {
+    destroy: async function (req, res) {
 
 
-        db.Product.findByPk(req.params.id)
-            .then(product => {
-                unlink('./public/images/upload/' + product.imageLg, function (err) {
+        let product = await db.Product.findByPk(req.params.productId)
+            
+                unlink('./public/images/upload/' + product.image_lg, function (err) {
                     if (err) {
                         console.error(err);
                     }
@@ -219,16 +235,15 @@ let productsControllers = {
                     }
                     console.log('archivo borrado');
                 });
-                return ' '
-            })
-            .then(resultado => {
+           
+           
                 db.Product.destroy({
                     where: {
-                        id: req.params.id
+                        id: req.params.productId
                     }
                 })
-            })
-
+            
+            res.redirect('/admin/productos')
     },
 
     search: (req, res) => {

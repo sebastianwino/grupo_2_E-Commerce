@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `addresses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `addresses` (
-  `id` bigint(19) unsigned NOT NULL,
+  `id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(19) unsigned NOT NULL,
   `street` varchar(45) NOT NULL,
   `number` int(10) unsigned NOT NULL,
@@ -218,7 +218,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` bigint(19) unsigned NOT NULL,
+  `id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,

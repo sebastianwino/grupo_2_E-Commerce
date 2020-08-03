@@ -46,6 +46,7 @@ module.exports = function (sequelize, dataTypes) {
         User.belongsTo(models.Phone, {
             as: "phone",
             foreignKey: "phone_id"
+            
         })
 
         User.hasMany(models.Address, {

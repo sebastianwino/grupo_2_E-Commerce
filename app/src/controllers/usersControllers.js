@@ -40,9 +40,9 @@ let usersControllers = {
                     email: req.body.email
                 }
             })
+
                 .then(user => {
-                    // if (bcrypt.compareSync(req.body.password, user.password)) {
-                    if (req.body.password == user[0].password) {
+                    if (bcrypt.compareSync(req.body.password, user[0].password)) {
                         if (req.body.remember == 'yes') {
                             res.cookie('recordame', user[0].email, {
                                 maxAge: 60000000
@@ -54,6 +54,7 @@ let usersControllers = {
                         req.session.email = user[0].email
                         req.session.user = user[0].name
                         res.redirect('/')
+
                     }
                     res.render('users/login', {
                         title: 'Login',
@@ -103,7 +104,7 @@ let usersControllers = {
         res.clearCookie("recordame");
         res.clearCookie("usuario");
 
-        res.redirect('/login')
+        res.redirect('/usuarios/login')
 
     },
 
@@ -157,9 +158,37 @@ let usersControllers = {
                 name: req.body.name,
                 last_name: req.body.lastname,
                 email: req.body.email,
-                password: req.body.password,
-                phone_id: req.body.cell_phone
+                password: passwordEncripted,
+                admin: false,
+                phone: {
+                    cell_phone: req.body.cell_phone,
+                    phone: null,
+                    cell_phone_2: null
+                }
+            }, {
+                include: ['phone']
             })
+            
+            // return Product.create({
+            //     title: 'Chair',
+            //     user: {
+            //         first_name: 'Mick',
+            //         last_name: 'Broadstone',
+            //         addresses: [{
+            //         type: 'home',
+            //         line_1: '100 Main St.',
+            //         city: 'Austin',
+            //         state: 'TX',
+            //         zip: '78704'
+            //         }]
+            //     }
+            //     }, {
+            //     include: [{
+            //         association: Product.User,
+            //         include: [ User.Addresses ]
+            //     }]
+            // });
+
 
 
             // JSON

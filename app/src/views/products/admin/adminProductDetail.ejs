@@ -18,7 +18,7 @@
                     <h2 class="text-capitalize">
                         <a href="/">Home</a> /
                         <a href="/admin/productos">Productos</a> /
-                        <a href="/admin/productos/<%= product.id %>"><%= product.title %></a>
+                        <a href="/admin/productos/<%= product.id %>"><%= product.name %></a>
                     </h2>
                 </div>
 
@@ -28,11 +28,11 @@
                 <div class="product-detail-card row mb-5">
                     <div class="porduct-images mb-3 col-12 col-lg-6">
                         <div class="first-product-image mb-3">
-                            <img src="/images/upload/<%=product.image_lg%>" class="image-prince" alt="<%= product.title %>">
+                            <img src="/images/upload/<%=product.image_lg%>" class="image-prince" alt="<%= product.name %>">
                         </div>
                         <div class="more-product-images d-flex">
                             <div class="other-product-image mr-3">
-                                <img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.title %>">
+                                <img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>">
                             </div>
                         </div>
                     </div>
@@ -41,13 +41,13 @@
                     </div>
 
                     <div class="product-information col-12 col-lg-4">
-                        <h1><%= product.title %> </h1>
+                        <h1><%= product.name %> </h1>
                         <h2 class="precio-producto">$<%= product.price %></h2>
                         <p><%= product.description %></p>
                         
                         <p><%= product.info %></p>
                         <p><b>Categoría: </b><%= product.category.name %> </p>
-                        <p><b>Nombre: </b><%= product.title %></p>
+                        <p><b>Nombre: </b><%= product.name %></p>
 
                     </div>
                 </div>
@@ -71,12 +71,12 @@
                                         <div class="card tarjetas-productos product-card-inProductDetail">
                                             <div class="imagen-producto-productos">
                                                 <img class="card-img-top imagen-producto-producto" src="/images/upload/<%= productRelated.image %>"
-                                                    alt="imagen de <%= productRelated.title %>">
+                                                    alt="imagen de <%= productRelated.name %>">
                                             </div>
                                             <div class="card-body position-relative">
                                                 <div class="d-flex justify-content-between ">
                                                     <div class="titulo-precio">
-                                                        <p class="titulo-producto"><%= productRelated.title %></p>
+                                                        <p class="titulo-producto"><%= productRelated.name %></p>
                                                         <p class="precio-producto">$<%= productRelated.price %></p>
                                                     </div>
         

@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 const adminProductsControllers = require('../../controllers/adminControllers/adminProductsControllers');
 
-const authAdminMiddleware = require ('../../middlewares/adminMiddlewares/authAdminMiddleware');
-const edicionProductosMiddleware = require('../../middlewares/edicionProductosMiddleware');
-const edicionMiddleware = require ('../../middlewares/edicionMiddleware');
+const authAdminMiddleware = require('../../middlewares/adminMiddlewares/authAdminMiddleware');
+// const edicionProductosMiddleware = require('../../middlewares/edicionProductosMiddleware');
+// const edicionMiddleware = require ('../../middlewares/edicionMiddleware');
 
 
 const multer = require('multer')
@@ -23,23 +23,24 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
+router.get('/', adminProductsControllers.root); /* All products */
+
 /*** CREATE ONE PRODUCT ***/ 
-router.get('/crear', authAdminMiddleware, adminProductsControllers.create); /* Form to create */
-router.post('/crear', [authAdminMiddleware, upload.any()], adminProductsControllers.store); /* Store in DB */
-
-/*** SHOW PRODUCTs ***/ 
-router.get('/', authAdminMiddleware, /* edicionProductosMiddleware, */ adminProductsControllers.root); /* All products */
-router.get('/:productId', authAdminMiddleware, /* edicionMiddleware, */ adminProductsControllers.detail); /* Product detail */
-
-/*** EDIT ONE PRODUCT ***/ 
-router.get('/:productId/editar', authAdminMiddleware, adminProductsControllers.edit); /* Form to create */
-router.put('/:productId/editar', authAdminMiddleware, adminProductsControllers.update); /* Update in DB */
-
-/*** DELETE ONE PRODUCT ***/ 
-router.delete('/:productId/eliminar', authAdminMiddleware, adminProductsControllers.destroy); /* Delete from DB */
+router.get('/crear', adminProductsControllers.create); /* Form to create */
+router.post('/crear', upload.any(), adminProductsControllers.store); /* Store in DB */
 
 /***  SEARCH PRODUCTS ***/
 router.get('/search', adminProductsControllers.search);
+
+/*** EDIT ONE PRODUCT ***/ 
+router.get('/:productId/editar', adminProductsControllers.edit); /* Form to create */
+router.put('/:productId/editar', adminProductsControllers.update); /* Update in DB */
+
+/*** SHOW PRODUCTs ***/ 
+router.get('/:productId', adminProductsControllers.detail); /* Product detail */
+
+/*** DELETE ONE PRODUCT ***/ 
+router.delete('/:productId/eliminar', adminProductsControllers.destroy); /* Delete from DB */
 
 
 module.exports = router;

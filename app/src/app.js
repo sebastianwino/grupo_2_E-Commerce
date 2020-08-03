@@ -6,6 +6,7 @@ var logger = require('morgan');
 var methodOverride = require('method-override')
 const session = require('express-session')
 const cookieMiddleware = require('./middlewares/cookieMiddleware')
+const authAdminMiddleware = require ('./middlewares/adminMiddlewares/authAdminMiddleware');
 
 //REQUERIMIENTO DE RUTAS
 var indexRouter = require('./routes/indexRoutes');
@@ -33,7 +34,7 @@ app.use(methodOverride('_method'));
 //USO DE RUTAS
 app.use('/', indexRouter);
 app.use('/usuarios', usersRouter);
-app.use('/admin/productos', adminProductsRouter);
+app.use('/admin/productos', authAdminMiddleware ,adminProductsRouter);
 app.use('/productos', productsRouter);
 app.use('/carrito', shoppingCartRoutesRouter);
 
