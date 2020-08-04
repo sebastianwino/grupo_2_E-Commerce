@@ -109,13 +109,13 @@ let productsControllers = {
         let ruta = path.join('.', 'public', 'images', 'upload', req.files[0].filename)
         let modificado = path.join('.', 'public', 'images', 'upload', 'm' + req.files[0].filename)
         sharp(ruta)
-            .resize(600, 400)
+            .resize(1920, 1080)
             .toFile(modificado)
 
         let rutaB = path.join('.', 'public', 'images', 'upload', req.files[1].filename)
         let modificadoB = path.join('.', 'public', 'images', 'upload', 'm' + req.files[1].filename)
         sharp(rutaB)
-            .resize(600, 400)
+            .resize(1920, 1080)
             .toFile(modificadoB)
 
 
