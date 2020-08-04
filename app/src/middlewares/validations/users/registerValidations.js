@@ -1,9 +1,7 @@
 const { check, body } = require('express-validator');
+let db = require('../../../db/models')
 
-const fs = require('fs');
-const path = require('path');
-const usersFilePath = path.join(__dirname, '../../data-json/usersDB.json'); 
-let users = JSON.parse(fs.readFileSync(usersFilePath,  {encoding: 'utf-8'}));
+
 
 let registerValidations = [
     
@@ -11,16 +9,18 @@ let registerValidations = [
     check('lastname').isLength({min: 1}).withMessage('Debés escribir tu apellido'),
     check('email').isEmail().withMessage('Debe usar un email válido'),
 
-    /* ----- Error en esta validación ----- */
-    body('email').custom( value => {
-        users.forEach(user => {
-            if (user.email == value) {
-                return false
+    body('email').custom(value => {
+        return db.User.findAll({
+            where: {
+                email: value
             }
         })
-        return true
-    }).withMessage('Usuario ya registrado'),
-    /* ------------------------------------- */
+            .then(user => {
+                if (user[0]) {
+                return Promise.reject('Ya existe una cuenta con este email');
+                }
+            });
+    }),
 
     check('password').isLength({min: 6}).withMessage('La contraseña debe tener al menos 6 caracteres'),
     body('passwordConfirmation').custom( (value, {req}) => {

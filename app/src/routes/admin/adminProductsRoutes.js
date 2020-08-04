@@ -2,11 +2,6 @@ var express = require('express');
 var router = express.Router();
 const adminProductsControllers = require('../../controllers/adminControllers/adminProductsControllers');
 
-//const authAdminMiddleware = require('../../middlewares/adminMiddlewares/authAdminMiddleware');
-// const edicionProductosMiddleware = require('../../middlewares/edicionProductosMiddleware');
-// const edicionMiddleware = require ('../../middlewares/edicionMiddleware');
-
-
 const multer = require('multer')
 const path = require('path')
 express.static(path.join(__dirname, 'public'))
