@@ -5,6 +5,8 @@ const {
     unlink
 } = require('fs-extra');
 const db = require('../../db/models');
+const search = require('../../Fx/search')
+const sequelize = require('sequelize')
 
 // const productsFilePath = path.join(__dirname, '../data-json/productsDB.json');
 // const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -51,7 +53,8 @@ let productsControllers = {
             filter: filter,
             filterPriceMin: priceMin,
             filterPriceMax: priceMax,
-            user: req.session.user
+            user: req.session.user,
+            admin: req.session.admin
         });
     },
 
@@ -76,7 +79,7 @@ let productsControllers = {
                 product: product,
                 productsRelated: productsRelated,
                 user: req.session.user,
-                img: 'img1'
+                admin: req.session.admin
             });
         }
         res.redirect('/no-encontrado');
@@ -90,7 +93,8 @@ let productsControllers = {
                 title: 'Crear Producto',
                 categories: categories,
                 user: req.session.user,
-                user: req.session.user
+                user: req.session.user,
+                admin: req.session.admin
                 });
             })
             .catch(err => {
@@ -146,7 +150,8 @@ let productsControllers = {
                         title: `Editar Producto ${product.name}`,
                         product: product,
                         categories: categories,
-                        user: req.session.user
+                        user: req.session.user,
+                        admin: req.session.admin
                     });
                 } else {
                     res.send('no entro')
@@ -246,31 +251,37 @@ let productsControllers = {
             res.redirect('/admin/productos')
     },
 
-    search: (req, res) => {
-        let cant = 0;
-        let productsFound = [];
-        let word = req.query.search;
-        word = word.toLocaleLowerCase();
-        products.forEach(product => {
-            let title = product.title.toLocaleLowerCase();
-            let category = product.category.toLocaleLowerCase();
-            if ((title.indexOf(word) != -1) || (category.indexOf(word) != -1)) {
-                productsFound.push(product);
-                cant++;
-            }
-        });
+    search: async function (req, res) {
+        let admin = 'admin'
+        search(req, res, admin);
+
+        
+    //     let cant = 0;
+    //     let productsFound = [];
+    //     let word = req.query.search;
+    //     word = word.toLocaleLowerCase();
+    //     products.forEach(product => {
+    //         let title = product.title.toLocaleLowerCase();
+    //         let category = product.category.toLocaleLowerCase();
+    //         if ((title.indexOf(word) != -1) || (category.indexOf(word) != -1)) {
+    //             productsFound.push(product);
+    //             cant++;
+    //         }
+    //     });
 
 
 
 
-        res.render('products/products', {
-            products: productsFound,
-            title: 'Productos',
-            categories: categories,
-            word: word,
-            cant: cant,
-            user: req.session.user
-        })
+    //     res.render('products/products', {
+    //         products: productsFound,
+    //         title: 'Productos',
+    //         categories: categories,
+    //         word: word,
+    //         cant: cant,
+    //         user: req.session.user,
+    //         admin: req.session.admin
+    //     })
+    // }
     }
 }
 

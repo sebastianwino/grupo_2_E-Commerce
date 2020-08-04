@@ -50,9 +50,17 @@ let usersControllers = {
                             res.cookie('usuario', user[0].name, {
                                 maxAge: 60000000
                             })
+                            if(user[0].admin == true){
+                            res.cookie('admin', user[0].admin, {
+                                maxAge: 60000000
+                            })
+                            }
                         }
                         req.session.email = user[0].email
                         req.session.user = user[0].name
+                        if(user[0].admin == true){
+                        req.session.admin = user[0].admin
+                        }
                         res.redirect('/')
 
                     }
@@ -103,6 +111,8 @@ let usersControllers = {
 
         res.clearCookie("recordame");
         res.clearCookie("usuario");
+        res.clearCookie("admin");
+        
 
         res.redirect('/usuarios/login')
 
@@ -128,7 +138,8 @@ let usersControllers = {
             res.render('users/profile', {
                 title: 'Profile',
                 user: req.session.user,
-                userComplete: userComplete[0]
+                userComplete: userComplete[0],
+                admin: req.session.admin
             })
         })
 

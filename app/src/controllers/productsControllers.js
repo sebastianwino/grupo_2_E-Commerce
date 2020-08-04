@@ -1,4 +1,6 @@
 const db = require('../db/models');
+const sequelize = require ('sequelize');
+const search = require('../Fx/search')
 
 // const productsFilePath = path.join(__dirname, '../data-json/productsDB.json');
 // const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -44,7 +46,8 @@ let productsControllers = {
             filter: filter,
             filterPriceMin: priceMin,
             filterPriceMax: priceMax,
-            user: req.session.user
+            user: req.session.user,
+            admin: req.session.admin
         });
     },
 
@@ -69,10 +72,14 @@ let productsControllers = {
                 product: product,
                 productsRelated: productsRelated,
                 user: req.session.user,
-                img: 'img1'
+                admin: req.session.admin
             });
         }
         res.redirect('/no-encontrado');
+    },
+    search: async function (req,res) {
+        let x = 'x'
+        search(req,res, x);
     }
 }
 

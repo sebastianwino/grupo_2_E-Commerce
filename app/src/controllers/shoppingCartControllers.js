@@ -15,10 +15,13 @@ let shoppingCartControllers = {
             total = total + acc;
         })
         
+        total = total.toFixed(2)
+        
         res.render('shoppingCart', {
             title: 'Carrito',
             shopping:shopping,
-            total: total, user: req.session.user
+            total: total, user: req.session.user,
+            admin: req.session.admin
         });
     },
     
@@ -45,13 +48,13 @@ let shoppingCartControllers = {
          product = {
             id: req.body.id,
             cant: req.body.cant, 
-            title: req.body.title,
+            name: req.body.title,
             price: req.body.price,
             description: req.body.description,
             category: req.body.category,
             slices: req.body.slices,
             stock: req.body.stock,
-            imageLg: req.body.imageLg,
+            image_lg: req.body.imageLg,
             image: req.body.image,
             total: total
             }
@@ -70,13 +73,13 @@ let shoppingCartControllers = {
         product = {
             id: req.body.id,
             cant: sum, 
-            title: req.body.title,
+            name: req.body.title,
             price: req.body.price,
             description: req.body.description,
             category: req.body.category,
             slices: req.body.slices,
             stock: req.body.stock,
-            imageLg: req.body.imageLg,
+            image_lg: req.body.imageLg,
             image: req.body.image,
             total: total
         }
@@ -125,13 +128,13 @@ let shoppingCartControllers = {
     product = {
         id: req.body.id,
         cant: req.body.cant,
-        title: req.body.title,
+        name: req.body.title,
         price: req.body.price,
         description: req.body.description,
         category: req.body.category,
         slices: req.body.slices,
         stock: req.body.stock,
-        imageLg: req.body.imageLg,
+        image_lg: req.body.imageLg,
         image: req.body.image,
         total: total
     }

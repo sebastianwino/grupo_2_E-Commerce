@@ -29,7 +29,7 @@ let indexControllers = {
           console.log('archivo borrado');                           
          });
 
-         res.render('home/home', {title: 'Home', user: req.session.user});
+         res.render('home/home', {title: 'Home', user: req.session.user, admin: req.session.admin});
      }
 
 }
