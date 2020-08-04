@@ -1,12 +1,16 @@
 var express = require('express');
 var router = express.Router();
-const productsControllers = require('../controllers/productsControllers');
 
-router.get('/', productsControllers.root); /* All products */
+const controllers = require('../controllers')
+
+/*** SHOW PRODUCTS ***/ 
+router.get('/', controllers.products.root); /* All products */
 
 /***  SEARCH PRODUCTS ***/
-router.get('/search',productsControllers.search);
+router.get('/search', controllers.products.search);
 
-router.get('/:productId' ,productsControllers.detail); /* Product detail */
+/*** SHOW ONE PRODUCT ***/ 
+router.get('/:productId', controllers.products.detail); /* Product detail */
+
 
 module.exports = router;

@@ -5,6 +5,7 @@ let loginValidations = [
     check('email').isEmail().withMessage('Debe usar un email válido'),
 
     body('email').custom(value => {
+        
         return db.User.findAll({
             where: {
                 email: value
@@ -14,7 +15,7 @@ let loginValidations = [
                 if (!user[0]) {
                 return Promise.reject('El email ingresado no se encuentra registrado');
                 }
-            });
+            });        
     }),
 
     check('password').isLength({min: 6}).withMessage('La contraseña es incorrecta')

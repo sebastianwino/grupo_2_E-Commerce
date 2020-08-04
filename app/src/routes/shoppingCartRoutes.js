@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const shoppingCartControllers = require('../controllers/shoppingCartControllers');
 
+const controllers = require('../controllers')
 
-router.get('/', shoppingCartControllers.root);
+router.get('/', controllers.shoppingCart.root);
 
-router.post('/', shoppingCartControllers.destroy);
+router.post('/', controllers.shoppingCart.destroy);
 
-router.post('/pre-finalizacion', shoppingCartControllers.previousPurchase);
+router.post('/pre-finalizacion', controllers.shoppingCart.previousPurchase);
 
-router.put('/modificacion', shoppingCartControllers.modification);
+router.put('/modificacion', controllers.shoppingCart.modification);
 
 module.exports = router;

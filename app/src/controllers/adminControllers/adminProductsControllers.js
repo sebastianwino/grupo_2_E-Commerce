@@ -1,5 +1,3 @@
-const fs = require('fs');
-const path = require('path');
 const sharp = require('sharp');
 const {
     unlink
@@ -7,12 +5,7 @@ const {
 const db = require('../../db/models');
 const search = require('../../Fx/search')
 const sequelize = require('sequelize')
-
-// const productsFilePath = path.join(__dirname, '../data-json/productsDB.json');
-// const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
-//let categories = ["facturas", "tortas", "salado", "especialidades", "galletitas"]
-
+const { validationResult } = require('express-validator');
 
 let productsControllers = {
     // Root - Show all products
@@ -45,7 +38,7 @@ let productsControllers = {
                 return (product.price >= priceMin) && (product.price <= priceMax);
             })
         }
-        //   tambien se podria filtrar por where dentro de findAll
+        // tambien se podria filtrar por where dentro de findAll
         res.render('products/admin/adminProducts', { 
             title: 'Productos',
             products: pruebaProductos,
@@ -90,11 +83,19 @@ let productsControllers = {
         db.Category.findAll()
             .then(categories => {
                 res.render('products/admin/createProduct', {
-                title: 'Crear Producto',
-                categories: categories,
-                user: req.session.user,
-                user: req.session.user,
-                admin: req.session.admin
+                    title: 'Crear Producto',
+                    categories: categories,
+                    user: req.session.user,
+                    user: req.session.user,
+                    admin: req.session.admin,
+                    data: {
+                        name: null,
+                        description: null,
+                        slices: null,
+                        category_id: null,
+                        price: null,
+                        stock: null
+                    }
                 });
             })
             .catch(err => {
@@ -106,33 +107,53 @@ let productsControllers = {
 
     // Create -  Method to store
     store: (req, res, next) => {
-        let ruta = path.join('.', 'public', 'images', 'upload', req.files[0].filename)
-        let modificado = path.join('.', 'public', 'images', 'upload', 'm' + req.files[0].filename)
-        sharp(ruta)
-            .resize(600, 400)
-            .toFile(modificado)
 
-        let rutaB = path.join('.', 'public', 'images', 'upload', req.files[1].filename)
-        let modificadoB = path.join('.', 'public', 'images', 'upload', 'm' + req.files[1].filename)
-        sharp(rutaB)
-            .resize(600, 400)
-            .toFile(modificadoB)
+        let errors = validationResult(req)
 
+        if (errors.isEmpty()) {
+            let ruta = path.join('.', 'public', 'images', 'upload', req.files[0].filename)
+            let modificado = path.join('.', 'public', 'images', 'upload', 'm' + req.files[0].filename)
+            sharp(ruta)
+                .resize(1920, 1080)
+                .toFile(modificado)
 
-        
-        db.Product.create({
-            name: req.body.title,
-            description: req.body.description,
-            slices: req.body.slices,
-            category_id: req.body.category,
-            price: req.body.price,
-            stock: req.body.stock,
-            image_lg: 'm' + req.files[0].filename,
-            image: 'm' + req.files[1].filename
-        })
+            let rutaB = path.join('.', 'public', 'images', 'upload', req.files[1].filename)
+            let modificadoB = path.join('.', 'public', 'images', 'upload', 'm' + req.files[1].filename)
+            sharp(rutaB)
+                .resize(1920, 1080)
+                .toFile(modificadoB)
 
-        res.redirect(`/admin/productos`)
+            db.Product.create({
+                name: req.body.name,
+                description: req.body.description,
+                slices: req.body.slices,
+                category_id: req.body.category,
+                price: req.body.price,
+                stock: req.body.stock,
+                image_lg: 'm' + req.files[0].filename,
+                image: 'm' + req.files[1].filename
+            })
 
+            res.redirect(`/admin/productos`)
+
+        } else {
+            db.Category.findAll()
+            .then(categories => {
+                res.render('products/admin/createProduct', {
+                    title: 'Crear Producto',
+                    categories: categories,
+                    user: req.session.user,
+                    user: req.session.user,
+                    admin: req.session.admin,
+                    errors: errors.errors,
+                    data: req.body
+                });
+            })
+            .catch(err => {
+                console.log(err)
+                res.send('Error!!!')
+            })
+        }
     },
 
     // Update - Form to edit
@@ -161,63 +182,57 @@ let productsControllers = {
                 console.log(err)
                 res.send('Error!!!')
             })
-
-
-        // JSON
-        // let idProduct = req.params.productId;
-        // let productToEdit = products.find(product => {
-        //     if (product.id == idProduct) {
-        //         return product;
-        //     }
-        // });
-
-        // if (productToEdit) {
-        //     return res.render('products/admin/editProduct', {
-        //         title: `Editar Producto ${productToEdit.title}`,
-        //         product: productToEdit,
-        //         categories: categories,
-        //         user: req.session.user
-        //     });
-        // }
-        // res.redirect('/no-encontrado');
     },
 
     // Update - Method to update
     update: (req, res) => {
 
-        
+        let errors = validationResult(req)
 
-        db.Product.update({
-            name: req.body.title,
-            description: req.body.description,
-            slices: req.body.slices,
-            category_id: req.body.category,
-            price: req.body.price,
-            stock: req.body.stock
-        },{
-            where:{
-                id:req.params.productId
-            }
-        })
+        if (errors.isEmpty()) {
 
+            db.Product.update({
+                name: req.body.name,
+                description: req.body.description,
+                slices: req.body.slices,
+                category_id: req.body.category,
+                price: req.body.price,
+                stock: req.body.stock
+            }, {
+                where:{
+                    id:req.params.productId
+                }
+            })
 
-
-
-        // let idProduct
-        // let productEdited = products.map(product => {
-        //     if (product.id == req.params.productId) {
-        //         return {
-        //             ...product,
-        //             ...req.body
-        //         }
-        //     }
-        //     return product
-        // })
-
-        // fs.writeFileSync(productsFilePath, JSON.stringify(productEdited))
-
-        res.redirect(`/admin/productos/`)
-
+            res.redirect(`/admin/productos`)
+            
+        } else {
+            let productEdit = db.Product.findByPk(req.params.productId, {
+                include: ['category']
+            })
+            let categoriesEdit = db.Category.findAll()
+    
+            Promise.all([productEdit, categoriesEdit])
+                .then(([product, categories]) =>{
+                    if (product) {
+                        return res.render('products/admin/editProduct', {
+                            title: `Editar Producto ${product.name}`,
+                            product: product,
+                            categories: categories,
+                            user: req.session.user,
+                            admin: req.session.admin,
+                            errors: errors.errors,
+                            // data: req.body // ver como pasarle los campos a la vista, pisando los campos value originales del producto a editar
+                        });
+                    } else {
+                        res.send('no entro')
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.send('Error!!!')
+                })
+        }
     },
 
     // Delete - Delete one product from DB

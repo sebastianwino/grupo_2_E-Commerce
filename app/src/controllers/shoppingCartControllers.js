@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const findObject = require('../Fx/shopping/find')
+const productObject = require ('../Fx/shopping/createProduct')
 
 const shoppingFilePath = path.join(__dirname, '../data-json/Shopping.json'); 
 let shopping = JSON.parse(fs.readFileSync(shoppingFilePath,  {encoding: 'utf-8'}));
@@ -27,11 +29,10 @@ let shoppingCartControllers = {
     
     previousPurchase: (req, res) => {
         
-        
-        let productFount = shopping;
+        let productFound = shopping;
         let find = false
-        let product = {}
-        let sum = 0;
+        
+        
         shopping.forEach(element => {
             if (element.id==req.body.id){
                 find = true;
@@ -40,60 +41,9 @@ let shoppingCartControllers = {
 
 
 
-        if (find == false){
-        let price = parseFloat(req.body.price);
-        let cant = parseInt(req.body.cant);
-        let total = price * cant;
-        total = total.toString();
-         product = {
-            id: req.body.id,
-            cant: req.body.cant, 
-            name: req.body.title,
-            price: req.body.price,
-            description: req.body.description,
-            category: req.body.category,
-            slices: req.body.slices,
-            stock: req.body.stock,
-            image_lg: req.body.imageLg,
-            image: req.body.image,
-            total: total
-            }
-        } else if (find == true){
-        
-            productFount = productFount.filter (element => {
-                return element.id!=req.body.id})
+        findObject(req,res,find,productFound)
 
-        let price = parseFloat(req.body.price);
-        let cant = parseInt(req.body.cant);
-        sum = parseInt(sum);
-        sum = sum + cant;
-        sum = sum.toString()
-        let total = price * cant;
-        total = total.toString();
-        product = {
-            id: req.body.id,
-            cant: sum, 
-            name: req.body.title,
-            price: req.body.price,
-            description: req.body.description,
-            category: req.body.category,
-            slices: req.body.slices,
-            stock: req.body.stock,
-            image_lg: req.body.imageLg,
-            image: req.body.image,
-            total: total
-        }
-    }
-
-        
-        productFount.push(product)
-
-
-       
-
-        let shopping1 = JSON.stringify(productFount, null, 4);
-        fs.writeFileSync(shoppingFilePath , shopping1);
-        res.redirect('/carrito')
+    
     },
 
     destroy: (req,res) => {
@@ -113,33 +63,10 @@ let shoppingCartControllers = {
 
         let productFount = shopping;
         productFount = productFount.filter (element => {
-            return element.id!=req.body.id})
-        let product = {}
-        let sum = 0;
-    
+            return element.id!=req.body.id})    
 
-    
-        
 
-    let price = parseFloat(req.body.price);
-    let cant = parseInt(req.body.cant);
-    let total = price * cant;
-    total = total.toString();
-    product = {
-        id: req.body.id,
-        cant: req.body.cant,
-        name: req.body.title,
-        price: req.body.price,
-        description: req.body.description,
-        category: req.body.category,
-        slices: req.body.slices,
-        stock: req.body.stock,
-        image_lg: req.body.imageLg,
-        image: req.body.image,
-        total: total
-    }
-
-    productFount.push(product)
+    productFount.push(productObject(req,res))
     let shopping1 = JSON.stringify(productFount, null, 4);
     fs.writeFileSync(shoppingFilePath , shopping1);
     res.redirect('/carrito')

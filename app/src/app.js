@@ -11,7 +11,7 @@ const authAdminMiddleware = require ('./middlewares/adminMiddlewares/authAdminMi
 //REQUERIMIENTO DE RUTAS
 var indexRouter = require('./routes/indexRoutes');
 var usersRouter = require('./routes/usersRoutes');
-var adminProductsRouter = require('./routes/admin/adminProductsRoutes');
+var adminRouter = require('./routes/admin/adminRoutes');
 var productsRouter = require('./routes/productsRoutes');
 var shoppingCartRoutesRouter = require('./routes/shoppingCartRoutes');
 
@@ -34,7 +34,7 @@ app.use(methodOverride('_method'));
 //USO DE RUTAS
 app.use('/', indexRouter);
 app.use('/usuarios', usersRouter);
-app.use('/admin/productos', authAdminMiddleware ,adminProductsRouter);
+app.use('/admin', authAdminMiddleware ,adminRouter);
 app.use('/productos', productsRouter);
 app.use('/carrito', shoppingCartRoutesRouter);
 

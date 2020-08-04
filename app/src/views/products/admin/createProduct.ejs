@@ -17,21 +17,36 @@
             <form action="/admin/productos/crear" method="POST" enctype="multipart/form-data">
 
                 <h1>Formulario de creación de producto</h1>
+
+                <div class="show-errors">
+                    <% if (typeof errors != 'undefined') { %>
+                    <p style="color: red">ERROR</p>
+                    <ul>
+                        <% errors.forEach(error => { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                    </ul>
+                    <% } %>
+                </div>
+
+
                 <div class="form-row">
                     <div class="form-group col-12 col-md-8">
                         <label for="inputTitle">Nombre del producto</label>
-                        <input type="text" placeholder="Ej: Torta Selva Negra grande" class="form-control" id="inputTitle" aria-describedby="" name="title">
+                        <input type="text" placeholder="Ej: Torta Selva Negra grande" class="form-control" id="inputTitle" aria-describedby="" name="name" value="<%=data.name%>">
 
                     </div>
                     <div class="form-group col-12 col-md-4">
                         <label for="inputPrice">Precio</label>
-                        <input type="number" placeholder="Ej: 300 (solo números)" step="0.01" class="form-control" id="inputPrice" aria-describedby="" name="price">
+                        <input type="number" placeholder="Ej: 300 (solo números)" step="0.01" class="form-control" id="inputPrice" aria-describedby="" name="price" value="<%=data.price%>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputDescription">Descripción</label>
                     <textarea type="text" placeholder="Ej: Bizcochuelo de chocolate con dos cortes. Uno con crema chantilly y cerezas al marrasquino; y el otro corte con dulce de frambuesas. Humedecida con almibar de cerezas. Cubierta con crema chantilly y virutas de chocolate al 70%." class="form-control" id="inputDescription" aria-describedby=""
-                        name="description"></textarea>
+                        name="description"><%=data.description%></textarea>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-9 col-md-5">
@@ -46,12 +61,12 @@
                     <div class="form-group col-3 col-md-3">
                         <label for="inputSlices">Porciones</label>
                         <input type="number" placeholder="Ej: 10" step="1" min="0" class="form-control" id="inputSlices" aria-describedby=""
-                            name="slices">
+                            name="slices" value="<%=data.slices%>">
                     </div>
 
                     <div class="form-group col-12 col-md-4">
                         <label for="inputStock">Stock</label>
-                        <input type="number" placeholder="Ej: 50" step="1" class="form-control" id="inputStock" aria-describedby="" name="stock">
+                        <input type="number" placeholder="Ej: 50" step="1" class="form-control" id="inputStock" aria-describedby="" name="stock" value="<%=data.stock%>">
                     </div>
                 </div>
 
