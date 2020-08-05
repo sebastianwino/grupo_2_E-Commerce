@@ -4,7 +4,7 @@ var router = express.Router();
 const controllers = require('../controllers')
 
 /* MIDDLEWARES */
-const loginMiddleware = require('../middlewares/loginMiddleware');
+const loginRegisterMiddleware = require('../middlewares/loginRegisterMiddleware');
 const profileMiddleware = require('../middlewares/profileMiddleware');
 
 /* FORM VALIDATIONS */
@@ -12,13 +12,13 @@ const loginValidations = require('../middlewares/validations/users/loginValidati
 const registerValidations = require('../middlewares/validations/users/registerValidations')
 
 /* AUTH */
-router.get('/login', loginMiddleware, controllers.userAuth.loginForm);
-router.get('/profile', profileMiddleware, controllers.userAuth.profile);
+router.get('/login', loginRegisterMiddleware, controllers.userAuth.loginForm);
+router.get('/perfil', profileMiddleware, controllers.userAuth.profile);
 router.post('/login', loginValidations, controllers.userAuth.login);
 router.post('/logout', controllers.userAuth.logout);
 
 /* REGISTRATION */
-router.get('/registro', controllers.user.register);
+router.get('/registro', loginRegisterMiddleware, controllers.user.register);
 router.post('/registro', registerValidations, controllers.user.store);
 
 

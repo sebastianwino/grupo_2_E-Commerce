@@ -9,7 +9,7 @@ const cookieMiddleware = require('./middlewares/cookieMiddleware')
 const authAdminMiddleware = require ('./middlewares/adminMiddlewares/authAdminMiddleware');
 
 //REQUERIMIENTO DE RUTAS
-var indexRouter = require('./routes/indexRoutes');
+var mainRouter = require('./routes/mainRoutes');
 var usersRouter = require('./routes/usersRoutes');
 var adminRouter = require('./routes/admin/adminRoutes');
 var productsRouter = require('./routes/productsRoutes');
@@ -32,7 +32,7 @@ app.use(methodOverride('_method'));
 
 
 //USO DE RUTAS
-app.use('/', indexRouter);
+app.use('/', mainRouter);
 app.use('/usuarios', usersRouter);
 app.use('/admin', authAdminMiddleware ,adminRouter);
 app.use('/productos', productsRouter);

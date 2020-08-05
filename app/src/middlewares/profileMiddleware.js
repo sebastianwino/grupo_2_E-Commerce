@@ -1,6 +1,4 @@
-let users = require('../data-json/usersDB.json');
-
-function profileMiddleware(req, res, next) {
+let profileMiddleware = (req, res, next) => {
     if ((req.session.user) && (req.session.email)) {    
         next();
     } else {

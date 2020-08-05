@@ -92,7 +92,7 @@ let usersControllers = {
             }
         }).then(userComplete => {
             res.render('users/profile', {
-                title: 'Profile',
+                title: 'Perfil',
                 user: req.session.user,
                 userComplete: userComplete[0],
                 admin: req.session.admin

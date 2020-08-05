@@ -6,6 +6,7 @@ const db = require('../../db/models');
 const search = require('../../Fx/search')
 const sequelize = require('sequelize')
 const { validationResult } = require('express-validator');
+const path = require('path')
 
 let productsControllers = {
     // Root - Show all products

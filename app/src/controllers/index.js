@@ -1,9 +1,9 @@
 let controllers = {
-    index: require('./indexController'),
+    main: require('./mainController'),
     user: require('./usersController'),
     userAuth: require('./usersAuthController'),
-    products: require('./productsControllers'),
-    shoppingCart: require('./shoppingCartControllers'),
+    products: require('./productsController'),
+    shoppingCart: require('./shoppingCartController'),
     admin: require('./adminControllers')
 }
 

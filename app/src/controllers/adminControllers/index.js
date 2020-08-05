@@ -1,5 +1,5 @@
 let adminControllers = {
-    products: require('./adminProductsControllers')
+    products: require('./adminProductsController')
 }
 
 module.exports = adminControllers

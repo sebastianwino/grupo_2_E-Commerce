@@ -1,7 +1,7 @@
 const db = require('../../db/models');
 
 
- function authAdminMiddleware (req, res, next){
+let authAdminMiddleware = (req, res, next) => {
    db.User.findAll({
         where: {
             email: req.session.email,
@@ -19,11 +19,6 @@ const db = require('../../db/models');
             console.log(err)
             res.redirect('/')
         })
-        // if(admin == 1) {
-        //     next()
-        // } else {
-        //     res.send('no entraste')
-        // }
     
 }
 
