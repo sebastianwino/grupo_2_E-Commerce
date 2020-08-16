@@ -8,15 +8,15 @@ window.onload = () => {
     
 
 
-    function test(array, vari){
+    function test(vari){
         
-        if (array.length>0) {
+        if (err.length>0) {
             vari = true;
-            array = [];
-            return {array, vari}
+            err = [];
+            return vari
         } else {
             vari = false;
-            return {array, vari}
+            return vari
         }
     }
 
@@ -40,18 +40,18 @@ window.onload = () => {
 
     form.email.addEventListener('blur', function (e) {
         showError(e.target, validator.isEmail(e.target.value));
-        let resultados = test(err,email)
-        email = resultados.vari
-        err = resultados.array
+        email = test(email)
+        
+        
         
     })
 
 
     form.password.addEventListener('blur', function (e) {
         showError(e.target, validator.isLength(e.target.value, {min: 6, max: 99}));
-        let resultados = test(err,pass)
-        pass = resultados.vari
-        err = resultados.array
+        pass = test(pass)
+        
+        
     })
    
     form.submit.addEventListener('click', function (e) {

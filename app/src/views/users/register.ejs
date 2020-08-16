@@ -46,8 +46,9 @@
                             <label for:="inputLastName">Apellido</label>
                             <input type="text" class="form-control" id="inputLastName"
                                 aria-describedby="emailHelp" name="lastname" value="<%=data.lastname%>">
-                        </div>
                         <span class="d-none invalid-feedback">El apellido no puede estar vacio</span>
+                        </div>
+                        
                     </div>
                     <div class="form-group">
                         <label for="inputEmail1">Email</label>
@@ -59,12 +60,12 @@
                     <div class="form-row">
                         <div class="form-group col-12 col-md-6">
                             <label for="inputPassword1">Contraseña</label>
-                            <input type="password" class="form-control" id="inputPassword1" name="password">
+                            <input type="text" class="form-control" id="inputPassword1" name="password">
                             <span class="d-none invalid-feedback">La contraseña debe tener como minimo 6 caracteres</span>
                         </div>
                         <div class="form-group col-12 col-md-6">
                             <label for="inputPassword2">Confirmar contraseña</label>
-                            <input type="password" class="form-control" id="inputPassword2"
+                            <input type="text" class="form-control" id="inputPassword2"
                                 name="passwordConfirmation">
                             <span class="d-none invalid-feedback">Las contraseñas no coinciden</span>
                         </div>
@@ -75,6 +76,7 @@
                             <label for="inputPhone">Telefono</label>
                             <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
                                 name="cell_phone">
+                            <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
                         </div>
                     </div>
                        

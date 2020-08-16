@@ -1,6 +1,33 @@
 let data = {};
+let pass;
+let rePass;
+let err = [];
+let dato = {
+    name: false,
+    lastName: false,
+    email: false,
+    pass: false,
+    rePass: false,
+    cell: false
+}
+
 
 window.onload = () => {
+
+
+    function test(vari){
+        
+        if (err.length>0) {
+            vari = true;
+            err = [];
+            return vari
+        } else {
+            vari = false;
+            return vari
+        }
+    }
+
+   
 
     let form = document.getElementById('register-form');
 
@@ -13,60 +40,64 @@ window.onload = () => {
             el.classList.remove('text-success');
             el.classList.add('is-invalid');
             el.nextElementSibling.classList.replace('d-none', 'd-inline-block');
+            err.push('error');
         }
     }
 
-    function save (k,v) {
-        data[k] = v;
-    }
+ 
 
     form.name.addEventListener('blur', function (e) {
-        save(e.target.name, e.target.value);
-        showError(e.target, !validator.isLength(data.name, {min: 2}));
+        showError(e.target, validator.isLength(e.target.value, {min: 2}));
+        dato.name = test(dato.name)
+        
     })
 
     form.lastname.addEventListener('blur', function (e) {
-        save(e.target.name, e.target.value);
-        showError(e.target, !validator.isLength(data.lastname, {min: 2}));
+        showError(e.target, validator.isLength(e.target.value, {min: 2}));
+        dato.lastName = test(dato.lastName)
     })
 
     form.email.addEventListener('blur', function (e) {
-        save(e.target.name, e.target.value);
-        showError(e.target, validator.isEmail(data.email));
+        showError(e.target, validator.isEmail(e.target.value));
+        dato.email = test(dato.email)
+
     })
 
 
     form.password.addEventListener('blur', function (e) {
-        save(e.target.name, e.target.value);
-        showError(e.target, validator.isLength(data.password, {min: 8, max: 99}));
+        showError(e.target, validator.isLength(e.target.value, {min: 8, max: 99}));
+        pass = e.target.value.toString()
+        if(rePass){
+        showError(rePass, validator.equals(pass, rePass.value));
+        }
+        dato.pass = test(dato.pass)
+
+        
     })
 
-    form.rePassword.addEventListener('blur', function (e) {
-        save(e.target.name, e.target.value);
-        showError(e.target, validator.equals(e.target, data.password));
+    form.passwordConfirmation.addEventListener('blur', function (e) {
+        showError(e.target, validator.equals(pass, e.target.value));
+        rePass = e.target
+        console.log(pass)
+        dato.rePass = test(dato.rePass)
+
     })
 
     form.cell_phone.addEventListener('blur', function (e) {
-        save(e.target.name, e.target.value);
-        showError(e.target, validator.isNumeric(data.cell_phone));
+        showError(e.target, validator.isNumeric(e.target.value));
+        dato.email = test(dato.email)
     })
+
+    
     
     form.submit.addEventListener('click', function (e) {
-        e.preventDefault();
-        console.log('se envía la siguiente información', data);
-
-        let formContainer = document.getElementById('formulario-registro');
-
-        formContainer.innerHTML = `
-            <h1>Te has registrado correctamente</h1>
-            <ul>
-                <li>Nombre completo: ${data.name}</li>
-                <li>Nombre completo: ${data.lastname}</li>
-                <li>Email: ${data.email}</li>
-                <li>Teléfono: ${data.cell_phone}</li>
-                <li>País de nacimiento: ${data.country}</li>
-            </ul>
-        `
+        
+        for(let v in dato){
+            if(dato[v]==true){
+                e.preventDefault();
+            }
+        }
+        
     })
 
 }
