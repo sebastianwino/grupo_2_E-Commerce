@@ -12,8 +12,8 @@
 
     <!-- Main -->
     <div class="container-fluid fondo-registro general">
-        <div class="container formulario-registro">
-            <form action="/usuarios/registro" method="POST">
+        <div class="container formulario-registro" id="formulario-registro">
+            <form action="/usuarios/registro" method="POST" id="register-form">
                 <h1>Formulario de registro</h1>
 
                 <div class="container formulario-login">
@@ -37,38 +37,43 @@
 
                     <div class="form-row">
                         <div class="form-group col-12 col-md-6">
-                            <label for="exampleInputName">Nombre</label>
-                            <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
+                            <label for="inputName">Nombre</label>
+                            <input type="text" class="form-control" id="inputName" aria-describedby="emailHelp"
                                 name="name" value="<%=data.name%>">
-
+                            <span class="d-none invalid-feedback">El nombre no puede estar vacio</span>
                         </div>
                         <div class="form-group col-12 col-md-6">
-                            <label for="exampleInputLastName">Apellido</label>
-                            <input type="text" class="form-control" id="exampleInputLastName"
+                            <label for:="inputLastName">Apellido</label>
+                            <input type="text" class="form-control" id="inputLastName"
                                 aria-describedby="emailHelp" name="lastname" value="<%=data.lastname%>">
                         </div>
+                        <span class="d-none invalid-feedback">El apellido no puede estar vacio</span>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        <label for="inputEmail1">Email</label>
+                        <input type="text" class="form-control" id="inputEmail1" aria-describedby="emailHelp"
                             name="email" value="<%=data.email%>">
+                        <span class="d-none invalid-feedback">El email debes ser válido</span>
+
                     </div>
                     <div class="form-row">
                         <div class="form-group col-12 col-md-6">
-                            <label for="exampleInputPassword1">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                            <label for="inputPassword1">Contraseña</label>
+                            <input type="password" class="form-control" id="inputPassword1" name="password">
+                            <span class="d-none invalid-feedback">La contraseña debe tener como minimo 6 caracteres</span>
                         </div>
                         <div class="form-group col-12 col-md-6">
-                            <label for="exampleInputPassword2">Confirmar contraseña</label>
-                            <input type="password" class="form-control" id="exampleInputPassword2"
+                            <label for="inputPassword2">Confirmar contraseña</label>
+                            <input type="password" class="form-control" id="inputPassword2"
                                 name="passwordConfirmation">
+                            <span class="d-none invalid-feedback">Las contraseñas no coinciden</span>
                         </div>
                     </div>
 
                     <div class="form-row">
                          <div class="form-group col-12 col-md-3">
-                            <label for="exampleInputPhone">Telefono</label>
-                            <input type="text" class="form-control" id="exampleInputPhone" aria-describedby="emailHelp"
+                            <label for="inputPhone">Telefono</label>
+                            <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
                                 name="cell_phone">
                         </div>
                     </div>
@@ -77,19 +82,19 @@
                     <!-- A revisar en dónde se cargan los datos adicionales -->
                     <!-- <div class="form-row">
                         <div class="form-group col-9 col-md-3">
-                            <label for="exampleInputAdress1">Calle</label>
-                            <input type="text" class="form-control" id="exampleInputAdress1"
+                            <label for="inputAdress1">Calle</label>
+                            <input type="text" class="form-control" id="inputAdress1"
                                 aria-describedby="emailHelp" name="address">
                         </div>
                         <div class="form-group col-3 col-md-1">
-                            <label for="exampleInputAdress2">Numero</label>
-                            <input type="text" min="0" class="form-control" id="exampleInputAdress2"
+                            <label for="inputAdress2">Numero</label>
+                            <input type="text" min="0" class="form-control" id="inputAdress2"
                                 aria-describedby="emailHelp" name="addressNumber">
                         </div>
 
                         <div class="form-group col-12 col-md-5">
-                            <label for="exampleInputAdress3">Localidad</label>
-                            <input type="text" class="form-control" id="exampleInputAdress3"
+                            <label for="inputAdress3">Localidad</label>
+                            <input type="text" class="form-control" id="inputAdress3"
                                 aria-describedby="emailHelp" name="city">
                         </div>
                         
@@ -98,7 +103,7 @@
                     <div class="d-flex" style="justify-content: flex-end;">
                         <a type="submit" class="btn btn-primary registrarme mr-3" href="/usuarios/login">Ya tengo una
                             cuenta</a>
-                        <button type="submit" class="btn btn-info mx-1">Registrarse</button>
+                        <button type="submit" name="submit" class="btn btn-info mx-1">Registrarse</button>
                     </div>
 
             </form>
@@ -111,6 +116,8 @@
     <%- include('../partials/footer.ejs') %>
     <!-- /footer -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.1/validator.js" integrity="sha512-UpL7Xolu0DUOeG5Zmm7zn/4ZK4wCR7xYEp/fAO0bySJFqoeJG0r4kKPk+YVpuf+2UiEJNAiqSIU35gajAE0mgg==" crossorigin="anonymous"></script>
+    <script src="/js/users/register.js"></script>
 </body>
 
 </html>
