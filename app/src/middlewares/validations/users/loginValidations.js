@@ -18,7 +18,7 @@ let loginValidations = [
             });        
     }),
 
-    check('password').isLength({min: 6}).withMessage('La contraseña es incorrecta')
+    check('password').isLength({min: 8}).withMessage('La contraseña es incorrecta')
     
 
 ]

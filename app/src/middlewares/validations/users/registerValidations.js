@@ -22,7 +22,7 @@ let registerValidations = [
             });
     }),
 
-    check('password').isLength({min: 6}).withMessage('La contraseña debe tener al menos 6 caracteres'),
+    check('password').isLength({min: 8}).withMessage('La contraseña debe tener al menos 6 caracteres'),
     body('passwordConfirmation').custom( (value, {req}) => {
         if (value !== req.body.password) {
             return false;

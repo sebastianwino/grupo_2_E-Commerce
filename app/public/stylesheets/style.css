@@ -98,8 +98,9 @@
     border-radius: 4px;
     font-size: 16px;
     background-color: #BFAC91;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px;
+    background-image: none;
+    background-position: 95% 60%;
+    background-size: 8%;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 14px;
     -webkit-transition: width 0.4s ease-in-out;
@@ -202,8 +203,9 @@
     border-radius: 4px;
     font-size: 16px;
     background-color: #BFAC91;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px;
+    background-image: none;
+    background-position: 95% 60%;
+    background-size: 8%;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 14px;
     -webkit-transition: width 0.4s ease-in-out;
@@ -419,8 +421,9 @@
     border-radius: 4px;
     font-size: 16px;
     background-color: #BFAC91;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px;
+    background-image: url('/images/header/search-solid.svg');
+    background-position: 95% 60%;
+    background-size: 8%;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 14px;
     -webkit-transition: width 0.4s ease-in-out;

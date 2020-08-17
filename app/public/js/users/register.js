@@ -14,9 +14,8 @@ let dato = {
 
 window.onload = () => {
 
-
-    function test(vari){
-        
+    function test(){
+    let vari
         if (err.length>0) {
             vari = true;
             err = [];
@@ -28,7 +27,6 @@ window.onload = () => {
     }
 
    
-
     let form = document.getElementById('register-form');
 
     let showError = (el, bool = false) => {
@@ -44,60 +42,53 @@ window.onload = () => {
         }
     }
 
- 
-
     form.name.addEventListener('blur', function (e) {
         showError(e.target, validator.isLength(e.target.value, {min: 2}));
-        dato.name = test(dato.name)
-        
+        dato.name = test()
     })
 
     form.lastname.addEventListener('blur', function (e) {
         showError(e.target, validator.isLength(e.target.value, {min: 2}));
-        dato.lastName = test(dato.lastName)
+        dato.lastName = test()
     })
 
     form.email.addEventListener('blur', function (e) {
         showError(e.target, validator.isEmail(e.target.value));
-        dato.email = test(dato.email)
+        dato.email = test()
 
     })
-
 
     form.password.addEventListener('blur', function (e) {
         showError(e.target, validator.isLength(e.target.value, {min: 8, max: 99}));
         pass = e.target.value.toString()
         if(rePass){
-        showError(rePass, validator.equals(pass, rePass.value));
+            showError(rePass, validator.equals(pass, rePass.value));
+            dato.rePass = test()        
         }
-        dato.pass = test(dato.pass)
-
-        
+        dato.pass = test()
     })
 
     form.passwordConfirmation.addEventListener('blur', function (e) {
         showError(e.target, validator.equals(pass, e.target.value));
         rePass = e.target
         console.log(pass)
-        dato.rePass = test(dato.rePass)
-
+        dato.rePass = test()
     })
 
     form.cell_phone.addEventListener('blur', function (e) {
         showError(e.target, validator.isNumeric(e.target.value));
-        dato.email = test(dato.email)
+        dato.cell = test()
     })
 
-    
-    
     form.submit.addEventListener('click', function (e) {
-        
+        let flag = false
         for(let v in dato){
             if(dato[v]==true){
-                e.preventDefault();
+                flag = true
             }
         }
-        
+        if(flag){
+            e.preventDefault();
+        }
     })
-
 }
