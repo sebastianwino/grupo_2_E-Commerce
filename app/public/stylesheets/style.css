@@ -52,6 +52,10 @@
   background-size: 100%;
 }
 
+.fa-1x{
+  font-size: 1.5em;
+}
+
 .logo-users-success{
   color: darkgreen;
 }
@@ -62,9 +66,7 @@
 
 
 
-.navbar-light .navbar-nav .nav-link{
-  font-size: 22px;
-}
+
 
 
 
@@ -95,24 +97,27 @@
     width: 130px;
     box-sizing: border-box;
     border: 2px solid #79685C;
-    border-radius: 4px;
-    font-size: 16px;
     background-color: #BFAC91;
-    background-image: none;
-    background-position: 95% 60%;
-    background-size: 8%;
-    background-repeat: no-repeat;
+    border-radius: 4px;
+    font-size: 6px;
+    padding: 12px 20px 12px 14px;
+    margin-left: -45px;
+  }
+
+  .mi-input:focus {
+    width: 130px;
+    box-sizing: border-box;
+    background-color: #BFAC91;
+    border: 2px solid #79685C;
+    border-radius: 4px;
+    font-size: 14px;
     padding: 12px 20px 12px 14px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
     margin-left: -45px;
-    animation-duration: 4s;
+    animation-duration: 1s;
     animation-name: aparecer;
     animation-iteration-count: 1;
-  }
-
-  .mi-input:focus {
-    width: 150px;
   }
 
   .mi-input::placeholder { color: rgba(0, 0, 0, 0.8); }
@@ -201,23 +206,24 @@
     box-sizing: border-box;
     border: 2px solid #79685C;
     border-radius: 4px;
-    font-size: 16px;
-    background-color: #BFAC91;
-    background-image: none;
-    background-position: 95% 60%;
-    background-size: 8%;
-    background-repeat: no-repeat;
+    font-size: 5px;
+    padding: 12px 20px 12px 14px;
+    margin-left: -25px;
+  }
+
+  .mi-input:focus {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #79685C;
+    border-radius: 4px;
+    font-size: 14px;
     padding: 12px 20px 12px 14px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
     margin-left: -25px;
-    animation-duration: 4s;
+    animation-duration: 2s;
     animation-name: aparecer;
     animation-iteration-count: 1;
-  }
-
-  .mi-input:focus {
-    width: 150px;
   }
   .fondo-oscuro {
     background-color: rgba(191, 172, 149, .0);
@@ -289,20 +295,34 @@
   .izq {
     margin-left: 205px;
   }
+  .navbar-light .navbar-nav .nav-link{
+    font-size: 22px;
+  }
 }
+
+@media (min-width: 1200px) and (max-width: 1650px) {
+  .izq {
+    margin-left: 117px;
+  }
+  .navbar-light .navbar-nav .nav-link{
+    font-size: 18px;
+  }
+}
+
 @media (min-width: 1650px) and (max-width: 1790px) {
   .izq {
     margin-left: 170px;
   }
-}
-@media (min-width: 1370px) and (max-width: 1650px) {
-  .izq {
-    margin-left: 120px;
+  .navbar-light .navbar-nav .nav-link{
+    font-size: 18px;
   }
 }
-@media (min-width: 992px) and (max-width: 1370px) {
+@media (min-width: 992px) and (max-width: 1200px) {
   .izq {
-    margin-left: 45px;
+    margin-left: 70px;
+  }
+  .navbar-light .navbar-nav .nav-link{
+    font-size: 18px;
   }
 }
 
@@ -419,7 +439,23 @@
     box-sizing: border-box;
     border: 2px solid #79685C;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 8px;
+    background-color: #BFAC91;
+    background-image: url('/images/header/search-solid.svg');
+    background-position: 95% 60%;
+    background-size: 4%;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 14px;
+    margin-left: -60px;
+   
+  }
+
+  .mi-input:focus {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #79685C;
+    border-radius: 4px;
+    font-size: 14px;
     background-color: #BFAC91;
     background-image: url('/images/header/search-solid.svg');
     background-position: 95% 60%;
@@ -432,10 +468,6 @@
     animation-duration: 4s;
     animation-name: aparecer;
     animation-iteration-count: 1;
-  }
-
-  .mi-input:focus {
-    width: 100%;
   }
 
   .mi-input::placeholder { color: rgba(0, 0, 0, 0.8); }
@@ -1173,7 +1205,8 @@ li.lista-filtro-productos  {
     /* margin: 0px; */
 }
 .fondo-login {
-  background-position: -151px px;
+  background-position: -103px;
+    background-size: 264%;
 }
 }
 
@@ -1194,8 +1227,8 @@ li.lista-filtro-productos  {
 
 
 .fondo-registro {
-  background-image: url('/images/user-register/milk.png');
-  background-size: 120%;
+  background-image: url('/images/user-register/cupcake.jpg');
+  background-size: 171%;
   background-repeat: no-repeat;
   }
 
@@ -1224,20 +1257,21 @@ li.lista-filtro-productos  {
     
     /* margin: 0px; */
   }
+  
+}
+
+
+@media (min-width: 754px) and (max-width: 1504px){
   .fondo-registro {
-    background-position: -151px px;
+    background-position: -402px -911px;
   }
 }
-
-
-@media (min-width: 754px) and (max-width: 1104px){
   
-}
-  
-@media (min-width: 1104px){
+@media (min-width: 1504px){
   .fondo-registro {
-    background-position: -144px -900px;
-}
+    background-position: -602px -1800px;
+  
+  }
 }
 
 
