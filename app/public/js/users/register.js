@@ -11,22 +11,71 @@ let dato = {
     cell: false
 }
 
+let firstTime = {
+    name: false,
+    lastName: false,
+    email: false,
+    pass: false,
+    rePass: false,
+    cell: false
+}
+
 
 window.onload = () => {
 
-    function test(){
-    let vari
-        if (err.length>0) {
-            vari = true;
+    function test() {
+        if (err.length > 0) {
             err = [];
-            return vari
+            return true
         } else {
-            vari = false;
-            return vari
+            return false
         }
     }
 
-   
+    function switcheando(expression, e) {
+        switch (expression) {
+            case 'name':
+                showError(e, validator.isLength(e.value, {
+                    min: 2
+                }));
+                dato.name = test()
+                firstTime.name = true
+                break;
+            case 'lastname':
+                showError(e, validator.isLength(e.value, {
+                    min: 2
+                }));
+                dato.lastName = test()
+                firstTime.lastName = true
+                break;
+            case 'email':
+                showError(e, validator.isEmail(e.value));
+                dato.email = test()
+                firstTime.email = true
+                break;
+            case 'password':
+                showError(e, validator.isLength(e.value, {min: 8, max: 99}));
+                pass = e.value.toString()
+                dato.pass = test()
+                firstTime.pass = true
+                break;
+            case 'passwordConfirmation':
+                showError(e, validator.equals(pass, e.value));
+                rePass = e
+                dato.rePass = test()
+                firstTime.rePass = true
+                break;
+            case 'cell_phone':
+                showError(e, validator.isNumeric(e.value));
+                dato.cell = test()
+                firstTime.cell = true
+                break;
+            default:
+
+        }
+    }
+
+
     let form = document.getElementById('register-form');
 
     let showError = (el, bool = false) => {
@@ -43,51 +92,94 @@ window.onload = () => {
     }
 
     form.name.addEventListener('blur', function (e) {
-        showError(e.target, validator.isLength(e.target.value, {min: 2}));
-        dato.name = test()
+        if(!firstTime.name){
+        switcheando('name', e.target);
+        }
+    })
+    form.name.addEventListener('keyup', function (e) {
+        if(firstTime.name){
+        switcheando('name', e.target);
+        }
     })
 
     form.lastname.addEventListener('blur', function (e) {
-        showError(e.target, validator.isLength(e.target.value, {min: 2}));
-        dato.lastName = test()
+        if(!firstTime.lastName){
+        switcheando('lastname', e.target);
+        }
+    })
+    form.lastname.addEventListener('keyup', function (e) {
+        if(firstTime.lastName){
+        switcheando('lastname', e.target);
+        }
     })
 
-    form.email.addEventListener('blur', function (e) {
-        showError(e.target, validator.isEmail(e.target.value));
-        dato.email = test()
 
+    form.email.addEventListener('blur', function (e) {
+        if(!firstTime.email){
+        switcheando('email', e.target);
+        }
+    })
+    form.email.addEventListener('keyup', function (e) {
+        if(firstTime.email){
+        switcheando('email', e.target);
+        }
     })
 
     form.password.addEventListener('blur', function (e) {
-        showError(e.target, validator.isLength(e.target.value, {min: 8, max: 99}));
-        pass = e.target.value.toString()
-        if(rePass){
-            showError(rePass, validator.equals(pass, rePass.value));
-            dato.rePass = test()        
-        }
-        dato.pass = test()
+        if(!firstTime.pass){
+        switcheando('password', e.target);
+        if (rePass) {
+        switcheando('passwordConfirmation', rePass)
+        }}
+    })
+    form.password.addEventListener('keyup', function (e) {
+        if(firstTime.pass){
+        switcheando('password', e.target);
+        if (rePass) {
+            switcheando('passwordConfirmation', rePass)
+            }}
     })
 
     form.passwordConfirmation.addEventListener('blur', function (e) {
-        showError(e.target, validator.equals(pass, e.target.value));
-        rePass = e.target
-        console.log(pass)
-        dato.rePass = test()
+        if(!firstTime.rePass){
+        switcheando('passwordConfirmation', e.target);
+        }
+    })
+    form.passwordConfirmation.addEventListener('keyup', function (e) {
+        if(firstTime.rePass){
+        switcheando('passwordConfirmation', e.target);
+        }
     })
 
     form.cell_phone.addEventListener('blur', function (e) {
-        showError(e.target, validator.isNumeric(e.target.value));
-        dato.cell = test()
+        if(!firstTime.cell){
+        switcheando('cell_phone', e.target);
+        }
+    })
+    form.cell_phone.addEventListener('keyup', function (e) {
+        if(firstTime.cell){
+        switcheando('cell_phone', e.target);
+        }
     })
 
     form.submit.addEventListener('click', function (e) {
+        switcheando('name', document.querySelector('#inputName'));
+        switcheando('lastname', document.querySelector('#inputLastName'));
+        switcheando('email', document.querySelector('#inputEmail1'));
+        switcheando('password', document.querySelector('#inputPassword1'));
+        switcheando('password', document.querySelector('#inputPassword2'));
+        switcheando('cell_phone', document.querySelector('#inputPhone'));
+        firstTime.rePass = true
+
+
+
         let flag = false
-        for(let v in dato){
-            if(dato[v]==true){
+        for (let v in dato) {
+            if (dato[v] == true) {
                 flag = true
             }
         }
-        if(flag){
+        if (flag) {
             e.preventDefault();
         }
     })
