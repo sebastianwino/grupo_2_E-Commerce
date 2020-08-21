@@ -22,6 +22,14 @@ module.exports = {
         type: Sequelize.DECIMAL(10, 0).UNSIGNED,
         allowNull: false
       },
+      gross_price: {
+        type: Sequelize.DECIMAL(10, 0).UNSIGNED,
+        allowNull: false
+      },
+      discount: {
+        type: Sequelize.INTEGER.UNSIGNED,
+        allowNull: false
+      },
       stock: {
         type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false

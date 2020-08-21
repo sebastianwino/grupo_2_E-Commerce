@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+/* .on-click-in-body{
+  opacity: .1;
+  background-color: rgba(0, 0, 0, 0.9)
+} */
+
 .general {
   font-family: 'Kalam', cursive;
 }
@@ -1066,12 +1071,11 @@ li.lista-filtro-productos  {
 /* PRODUCTO */
 
 .image-prince{
-  width: 700px;
-  
+  width: 100%;
 }
 
 .image-second{
-  width: 250px;
+  width: 30%;
 }
 
 .logo-redes-twitter:hover{
