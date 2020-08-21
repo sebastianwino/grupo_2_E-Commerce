@@ -16,22 +16,20 @@
             <div class="row">
                 <div class="titulo-productos titulo-detalle col-12 mb-2">
                     <h2 class="text-capitalize">
-                        <a href="/">Home</a> /
-                        <a href="/productos">Productos</a> /
-                        <a href="/productos/<%= product.id %>"><%= product.name %></a>
+                        <a href="/" class="filtro-lg" >Home/</a> 
+                        <a href="/productos" class="filtro-lg">Productos/</a> 
+                        <a href="/productos/<%= product.id %>" class="filtro-lg"><%= product.name %></a>
                     </h2>
                 </div>
 
                 <!-- Problema con responsive en div.product-detail a solucionar -->
                 
                 <div class="product-detail-card row mb-5">
-                    <div class="porduct-images mb-3 col-12 col-lg-8">
-                        <div class="first-product-image mb-3">
-                            <img src="/images/upload/<%=product.image_lg%>" class="image-prince" alt="<%= product.name %>">
-                        </div>
+                    <div class="porduct-images mb-3 col-12 col-lg-8 image-wrap">
+                        <div class="first-product-image mb-3 image"></div>
                         <div class="more-product-images d-flex">
-                            <div class="other-product-image mr-3">
-                                <a href="/productos/<%=product.id%>"><img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>"></a>
+                            <div class="other-product-image secondImg mr-3">
+                                <img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>">
                             </div>
                         </div>
                     </div>
@@ -42,8 +40,8 @@
 
 
                     <div class="product-information col-12 col-lg-4">
-                        <h1><%= product.name %> </h1>
-                        <h2 class="precio-producto">$<%= product.price %></h2>
+                        <h1 class="text-size-26"><%= product.name %> </h1>
+                        <h2 class="precio-producto text-size-23">$<%= product.price %></h2>
                         <p><%= product.description %></p>
                         <div class="cantidad-producto mb-4">
                             <%- include('../partials/inputSpinner.ejs', {product:product}) %>
@@ -114,7 +112,28 @@
     <%- include('../partials/footer.ejs') %>
     <!-- /footer -->
     <script src="/js/products/medium-zoom.min.js"></script>
+    
     <script src="/js/products/detailProducts.js"></script>
+    <script>
+        let img = document.querySelector('div.image')
+        img.style.backgroundImage="url('/images/upload/<%= product.image_lg%>')"
+        let secondImg = document.querySelector('.secondImg')
+        let flag=1
+        secondImg.addEventListener('click', ()=> {
+            if(flag==1){
+            secondImg.innerHTML = `<img src="/images/upload/<%= product.image_lg%>" class="image-second" alt="<%= product.name %>">`
+            img.style.backgroundImage="url('/images/upload/<%= product.image%>')"
+            flag=2
+            } else {
+            secondImg.innerHTML = `<img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>">`
+            img.style.backgroundImage="url('/images/upload/<%= product.image_lg%>')"
+            flag=1
+            }
+        })
+
+
+
+    </script>
 </body>
 
 </html>

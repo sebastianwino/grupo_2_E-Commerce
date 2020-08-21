@@ -928,6 +928,14 @@
   font-size: 20px;
 }
 
+.text-size-23{
+  font-size: 23px;
+}
+
+.text-size-26{
+  font-size: 26px;
+}
+
 .ejemplo-foto-carrito{
   width: 200px;
 }
@@ -994,6 +1002,7 @@
 .reset-link a {
   color: black;
   text-decoration: none;
+  
 }
 
 .filtro-lg {
@@ -1067,8 +1076,30 @@ li.lista-filtro-productos  {
 
 
 
-
 /* PRODUCTO */
+.image-wrap {
+  max-width: 640px;
+  margin: 50px auto;
+ }
+
+ /* .second-image{
+   height: 100px;
+   background-size: 100%;
+   width: 30%;
+ } */
+ 
+ .image {
+  width: 100%;
+  padding-top: calc(100% / (16/9));
+  margin-top: -40px;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+ }
+
+ .image:hover {
+  background-size: 175%;
+ }
 
 .image-prince{
   width: 100%;
