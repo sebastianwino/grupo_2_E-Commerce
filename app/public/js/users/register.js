@@ -95,6 +95,7 @@ window.onload = () => {
         if(!firstTime.name){
         switcheando('name', e.target);
         }
+    
     })
     form.name.addEventListener('keyup', function (e) {
         if(firstTime.name){
@@ -163,12 +164,12 @@ window.onload = () => {
     })
 
     form.submit.addEventListener('click', function (e) {
-        switcheando('name', document.querySelector('#inputName'));
-        switcheando('lastname', document.querySelector('#inputLastName'));
-        switcheando('email', document.querySelector('#inputEmail1'));
-        switcheando('password', document.querySelector('#inputPassword1'));
-        switcheando('password', document.querySelector('#inputPassword2'));
-        switcheando('cell_phone', document.querySelector('#inputPhone'));
+        switcheando('name', form.name);
+        switcheando('lastname', form.lastname)
+        switcheando('email', form.email)
+        switcheando('password', form.password)
+        switcheando('password', form.passwordConfirmation)
+        switcheando('cell_phone', form.cell_phone);
         firstTime.rePass = true
 
 

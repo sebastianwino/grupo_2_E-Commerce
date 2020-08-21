@@ -1,99 +1,79 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+    up: (queryInterface, Sequelize) => {
 
-    return queryInterface.createTable('products', {
-      id: {
-        type: Sequelize.BIGINT(19).UNSIGNED,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false
-      },
-      description: {
-        type: Sequelize.STRING(600),
-        allowNull: false
-      },
-      name: {
-        type: Sequelize.INTEGER.UNSIGNED,
-        allowNull: false
-      },
-      price: {
-        type: Sequelize.DECIMAL(10, 0).UNSIGNED,
-        allowNull: false
-      },
-      gross_price: {
-        type: Sequelize.DECIMAL(10, 0).UNSIGNED,
-        allowNull: false
-      },
-      discount: {
-        type: Sequelize.INTEGER.UNSIGNED,
-        allowNull: false
-      },
-      stock: {
-        type: Sequelize.INTEGER.UNSIGNED,
-        allowNull: false
-      },
-      slices: {
-        type: Sequelize.INTEGER.UNSIGNED,
-        allowNull: true
-      },
-      category_id: {
-        type: Sequelize.BIGINT(19).UNSIGNED,
-        references: {
-          model: {
-            tableName: 'categories',
-            key: 'id'
-          }
-        },
-        allowNull: false
-      },
-      image_lg: {
-        type: Sequelize.STRING(100),
-        allowNull: false
-      },
-      image: {
-        type: Sequelize.STRING(100),
-        allowNull: true
-      },
-      created_at: {
-        type: Sequelize.DATE,
-        allowNull: true
-      },
-      updated_at: {
-        type: Sequelize.DATE,
-        allowNull: true
-      },
-      deleted_at: {
-        type: Sequelize.DATE,
-        allowNull: true
-      }
-    });
-  },
+        return queryInterface.createTable('products', {
+            id: {
+                type: Sequelize.BIGINT(19).UNSIGNED,
+                primaryKey: true,
+                autoIncrement: true,
+                allowNull: false
+            },
+            description: {
+                type: Sequelize.STRING(600),
+                allowNull: false
+            },
+            name: {
+                type: Sequelize.INTEGER.UNSIGNED,
+                allowNull: false
+            },
+            price: {
+                type: Sequelize.DECIMAL(10, 0).UNSIGNED,
+                allowNull: false
+            },
+            gross_price: {
+                type: Sequelize.DECIMAL(10, 0).UNSIGNED,
+                allowNull: false
+            },
+            discount: {
+                type: Sequelize.INTEGER.UNSIGNED,
+                allowNull: false
+            },
+            stock: {
+                type: Sequelize.INTEGER.UNSIGNED,
+                allowNull: false
+            },
+            slices: {
+                type: Sequelize.INTEGER.UNSIGNED,
+                allowNull: true
+            },
+            category_id: {
+                type: Sequelize.BIGINT(19).UNSIGNED,
+                references: {
+                    model: {
+                        tableName: 'categories',
+                        key: 'id'
+                    }
+                },
+                allowNull: false
+            },
+            image_lg: {
+                type: Sequelize.STRING(100),
+                allowNull: false
+            },
+            image: {
+                type: Sequelize.STRING(100),
+                allowNull: true
+            },
+            created_at: {
+                type: Sequelize.DATE,
+                allowNull: true
+            },
+            updated_at: {
+                type: Sequelize.DATE,
+                allowNull: true
+            },
+            deleted_at: {
+                type: Sequelize.DATE,
+                allowNull: true
+            }
+        });
+    },
 
-  down: (queryInterface, Sequelize) => {
+    down: (queryInterface, Sequelize) => {
 
-    return queryInterface.dropTable('products');
+        return queryInterface.dropTable('products');
 
-  }
-};                                                                                                                                                                                                                                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+};

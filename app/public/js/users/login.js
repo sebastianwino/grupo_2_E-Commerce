@@ -4,11 +4,8 @@ window.onload = () => {
     let email;
     let pass;
 
-
     let emailFirstTime = false;
     let passFirstTime = false;
-
-
 
     function test() {
         if (err.length > 0) {
@@ -27,7 +24,10 @@ window.onload = () => {
                 emailFirstTime = true
                 break;
             case 'pass':
-                showError(e, validator.isLength(e.value, {min: 6, max: 99}));
+                showError(e, validator.isLength(e.value, {
+                    min: 8,
+                    max: 99
+                }));
                 pass = test()
                 passFirstTime = true
                 break;
@@ -35,8 +35,6 @@ window.onload = () => {
 
         }
     }
-
-
 
     let form = document.getElementById('login-form');
 
@@ -59,11 +57,11 @@ window.onload = () => {
         }
     })
 
-     form.email.addEventListener('keyup', function (e) {
-         if (emailFirstTime) {
-             switcheando('email', e.target);
-         }
-     })
+    form.email.addEventListener('keyup', function (e) {
+        if (emailFirstTime) {
+            switcheando('email', e.target);
+        }
+    })
 
     form.password.addEventListener('blur', function (e) {
         if (!passFirstTime) {
@@ -71,23 +69,21 @@ window.onload = () => {
         }
     })
 
-     form.password.addEventListener('keyup', function (e) {
-         if (passFirstTime) {
-             switcheando('pass', e.target);
-         }
-     })
+    form.password.addEventListener('keyup', function (e) {
+        if (passFirstTime) {
+            switcheando('pass', e.target);
+        }
+    })
 
     form.submit.addEventListener('click', function (e) {
-        switcheando('email', document.querySelector('#inputEmail1'));
-        switcheando('pass', document.querySelector('#inputPassword1'));
+        switcheando('email', form.email);
+        switcheando('pass', form.password);
 
-        console.log(err, email, pass)
-
+        //console.log(err, email, pass)
 
         if (email || pass) {
             e.preventDefault();
         }
-
     })
 
 }

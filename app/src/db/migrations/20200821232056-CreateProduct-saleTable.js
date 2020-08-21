@@ -2,38 +2,36 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('users', {
+        return queryInterface.createTable('product_sale', {
             id: {
                 type: Sequelize.BIGINT(19).UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
                 allowNull: false
             },
-            name: {
-                type: Sequelize.STRING(45),
-                allowNull: false
-            },
-            last_name: {
-                type: Sequelize.STRING(45),
-                allowNull: false
-            },
-            email: {
-                type: Sequelize.STRING(45),
-                allowNull: false
-            },
-            password: {
-                type: Sequelize.STRING(100),
-                allowNull: false
-            },
-            admin: {
-                type: Sequelize.BOOLEAN,
-                allowNull: false
-            },
-            phone_id: {
+            product_id: {
                 type: Sequelize.BIGINT(19).UNSIGNED,
                 references: {
                     model: {
-                        tableName: 'phones',
+                        tableName: 'products',
+                        key: 'id'
+                    }
+                },
+                allowNull: false
+            },
+            qty: {
+                type: Sequelize.DECIMAL(10, 0).UNSIGNED,
+                allowNull: false
+            },
+            sub_total: {
+                type: Sequelize.INTEGER.UNSIGNED,
+                allowNull: false
+            },
+            sale_id: {
+                type: Sequelize.BIGINT(19).UNSIGNED,
+                references: {
+                    model: {
+                        tableName: 'sales',
                         key: 'id'
                     }
                 },
@@ -52,9 +50,10 @@ module.exports = {
                 allowNull: true
             }
         });
+
     },
 
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('users')
+        return queryInterface.dropTable('product_sale');
     }
 };

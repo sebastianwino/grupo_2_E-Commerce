@@ -2,41 +2,45 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('users', {
+        return queryInterface.createTable('addresses', {
             id: {
                 type: Sequelize.BIGINT(19).UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
                 allowNull: false
             },
-            name: {
-                type: Sequelize.STRING(45),
-                allowNull: false
-            },
-            last_name: {
-                type: Sequelize.STRING(45),
-                allowNull: false
-            },
-            email: {
-                type: Sequelize.STRING(45),
-                allowNull: false
-            },
-            password: {
-                type: Sequelize.STRING(100),
-                allowNull: false
-            },
-            admin: {
-                type: Sequelize.BOOLEAN,
-                allowNull: false
-            },
-            phone_id: {
+            user_id: {
                 type: Sequelize.BIGINT(19).UNSIGNED,
                 references: {
                     model: {
-                        tableName: 'phones',
+                        tableName: 'users',
                         key: 'id'
                     }
                 },
+                allowNull: false
+            },
+            street: {
+                type: Sequelize.STRING(45),
+                allowNull: false
+            },
+            city: {
+                type: Sequelize.STRING(45),
+                allowNull: false
+            },
+            prov: {
+                type: Sequelize.STRING(45),
+                allowNull: false
+            },
+            alias: {
+                type: Sequelize.STRING(45),
+                allowNull: false
+            },
+            number: {
+                type: Sequelize.INTEGER.UNSIGNED,
+                allowNull: false
+            },
+            zip_code: {
+                type: Sequelize.INTEGER.UNSIGNED,
                 allowNull: false
             },
             created_at: {
@@ -55,6 +59,6 @@ module.exports = {
     },
 
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('users')
+        return queryInterface.dropTable('addresses');
     }
 };

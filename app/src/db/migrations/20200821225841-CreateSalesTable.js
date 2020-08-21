@@ -2,42 +2,40 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('users', {
+        return queryInterface.createTable('sales', {
             id: {
                 type: Sequelize.BIGINT(19).UNSIGNED,
                 primaryKey: true,
                 autoIncrement: true,
                 allowNull: false
             },
-            name: {
-                type: Sequelize.STRING(45),
-                allowNull: false
-            },
-            last_name: {
-                type: Sequelize.STRING(45),
-                allowNull: false
-            },
-            email: {
-                type: Sequelize.STRING(45),
-                allowNull: false
-            },
-            password: {
-                type: Sequelize.STRING(100),
-                allowNull: false
-            },
-            admin: {
-                type: Sequelize.BOOLEAN,
-                allowNull: false
-            },
-            phone_id: {
+            user_id: {
                 type: Sequelize.BIGINT(19).UNSIGNED,
                 references: {
                     model: {
-                        tableName: 'phones',
+                        tableName: 'users',
                         key: 'id'
                     }
                 },
                 allowNull: false
+            },
+            address_id: {
+                type: Sequelize.BIGINT(19).UNSIGNED,
+                references: {
+                    model: {
+                        tableName: 'addresses',
+                        key: 'id'
+                    }
+                },
+                allowNull: false
+            },
+            total: {
+                type: Sequelize.DECIMAL(10, 0),
+                allowNull: false
+            },
+            description: {
+                type: Sequelize.STRING(600),
+                allowNull: true
             },
             created_at: {
                 type: Sequelize.DATE,
@@ -55,6 +53,6 @@ module.exports = {
     },
 
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('users')
+        return queryInterface.dropTable('sales');
     }
 };
