@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "roma_db",
+    "database": "roma",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

@@ -28,8 +28,19 @@
                     <div class="porduct-images mb-3 col-12 col-lg-8 image-wrap">
                         <div class="first-product-image mb-3 image"></div>
                         <div class="more-product-images d-flex">
-                            <div class="other-product-image secondImg mr-3">
-                                <img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>">
+                            <div>
+                                <div class="other-product-image firstImg d-cots ">
+                                    <img src="/images/upload/<%= product.image_lg%>" class="image-first selectImg" alt="<%= product.name %>">
+                                </div>
+                                <div class="other-product-image secondImg d-cots">
+                                    <img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>">
+                                </div>    
+                                <div class="other-product-image thirdImg d-cots">
+                                    <img src="/images/upload/<%= product.image_lg%>" class="image-third" alt="<%= product.name %>">
+                                </div>
+                                <div class="other-product-image quarterImg d-cots">
+                                    <img src="/images/upload/<%= product.image%>" class="image-quarter" alt="<%= product.name %>">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,19 +128,106 @@
     <script>
         let img = document.querySelector('div.image')
         img.style.backgroundImage="url('/images/upload/<%= product.image_lg%>')"
+        let firstImg = document.querySelector('.firstImg')
         let secondImg = document.querySelector('.secondImg')
-        let flag=1
-        secondImg.addEventListener('click', ()=> {
-            if(flag==1){
-            secondImg.innerHTML = `<img src="/images/upload/<%= product.image_lg%>" class="image-second" alt="<%= product.name %>">`
-            img.style.backgroundImage="url('/images/upload/<%= product.image%>')"
-            flag=2
-            } else {
-            secondImg.innerHTML = `<img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>">`
-            img.style.backgroundImage="url('/images/upload/<%= product.image_lg%>')"
-            flag=1
-            }
-        })
+        let thirdImg = document.querySelector('.thirdImg')
+        let quarterImg = document.querySelector('.quarterImg')
+        let flag=0
+
+        if(flag!=1){
+            firstImg.addEventListener('click', ()=> {
+                
+                switch(flag){
+                    case 0: document.querySelector('.image-first').classList.remove('selectImg');
+                    break;
+                    case 2: document.querySelector('.image-second').classList.remove('selectImg');
+                    break;
+                    case 3: document.querySelector('.image-third').classList.remove('selectImg');
+                    break;
+                    case 4: document.querySelector('.image-quarter').classList.remove('selectImg');
+                    break;
+                }
+                document.querySelector('.image-first').classList.add('selectImg')
+                img.style.backgroundImage="url('/images/upload/<%= product.image_lg%>')"
+                console.log(flag)
+                flag=1
+                console.log(flag)
+            })
+        }
+        
+        if(flag!=2){
+            secondImg.addEventListener('click', ()=> {
+                
+                switch(flag){
+                    case 0: document.querySelector('.image-first').classList.remove('selectImg');
+                    break;
+                    case 1: document.querySelector('.image-first').classList.remove('selectImg');
+                    break;
+                    case 3: document.querySelector('.image-third').classList.remove('selectImg');
+                    break;
+                    case 4: document.querySelector('.image-quarter').classList.remove('selectImg');
+                    break;
+                }
+                document.querySelector('.image-second').classList.add('selectImg')
+                img.style.backgroundImage="url('/images/upload/<%= product.image%>')"
+                console.log(flag)
+                flag=2
+                console.log(flag)
+            })
+        }
+        
+        if(flag!=3){
+            thirdImg.addEventListener('click', ()=> {
+                
+                switch(flag){
+                    case 0: document.querySelector('.image-first').classList.remove('selectImg');
+                    break;
+                    case 1: document.querySelector('.image-first').classList.remove('selectImg');
+                    break;
+                    case 2: document.querySelector('.image-second').classList.remove('selectImg');
+                    break;
+                    case 4: document.querySelector('.image-quarter').classList.remove('selectImg');
+                    break;
+                }
+                document.querySelector('.image-third').classList.add('selectImg')
+                img.style.backgroundImage="url('/images/upload/<%= product.image_lg%>')"
+                console.log(flag)
+                flag=3
+                console.log(flag)
+            })
+        }
+        
+        if(flag!=4){
+            quarterImg.addEventListener('click', ()=> {
+                
+                switch(flag){
+                    case 0: document.querySelector('.image-first').classList.remove('selectImg');
+                    break;
+                    case 1: document.querySelector('.image-first').classList.remove('selectImg');
+                    break;
+                    case 2: document.querySelector('.image-second').classList.remove('selectImg');
+                    break;
+                    case 3: document.querySelector('.image-third').classList.remove('selectImg');
+                    break;
+                }
+                img.style.backgroundImage="url('/images/upload/<%= product.image%>')"
+                document.querySelector('.image-quarter').classList.add('selectImg')
+                console.log(flag)
+                flag=4
+                console.log(flag)
+            })
+        }
+
+                        // if(flag==1){
+            // secondImg.innerHTML = `<img src="/images/upload/<%= product.image_lg%>" class="image-second" alt="<%= product.name %>">`
+            // img.style.backgroundImage="url('/images/upload/<%= product.image%>')"
+            // flag=2
+            // } else {
+            // secondImg.innerHTML = `<img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>">`
+            // img.style.backgroundImage="url('/images/upload/<%= product.image_lg%>')"
+            // flag=1
+            // }
+        
     </script>
 </body>
 

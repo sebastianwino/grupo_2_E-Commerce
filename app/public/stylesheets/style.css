@@ -1082,12 +1082,20 @@ li.lista-filtro-productos  {
   margin: 50px auto;
  }
 
+ .selectImg{
+   opacity: .5;
+ }
+
  /* .second-image{
    height: 100px;
    background-size: 100%;
    width: 30%;
  } */
- 
+ .d-cots{
+   display: contents;
+ }
+
+
  .image {
   width: 100%;
   padding-top: calc(100% / (16/9));
@@ -1105,8 +1113,20 @@ li.lista-filtro-productos  {
   width: 100%;
 }
 
+.image-first{
+  width: 22%;
+}
+
 .image-second{
-  width: 30%;
+  width: 22%;
+}
+
+.image-third{
+  width: 22%;
+}
+
+.image-quarter{
+  width: 22%;
 }
 
 .logo-redes-twitter:hover{
