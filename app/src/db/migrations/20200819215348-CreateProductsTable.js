@@ -48,11 +48,11 @@ module.exports = {
                 },
                 allowNull: false
             },
-            image_lg: {
+            image_1: {
                 type: Sequelize.STRING(100),
                 allowNull: false
             },
-            image: {
+            image_2: {
                 type: Sequelize.STRING(100),
                 allowNull: true
             },
