@@ -10,20 +10,20 @@ module.exports = {
                 autoIncrement: true,
                 allowNull: false
             },
+            name: {
+              type: Sequelize.STRING(50),
+              allowNull: false
+             },
             description: {
                 type: Sequelize.STRING(600),
                 allowNull: false
             },
-            name: {
-                type: Sequelize.INTEGER.UNSIGNED,
-                allowNull: false
-            },
             price: {
-                type: Sequelize.DECIMAL(10, 0).UNSIGNED,
+                type: Sequelize.DECIMAL(10, 2).UNSIGNED,
                 allowNull: false
             },
             gross_price: {
-                type: Sequelize.DECIMAL(10, 0).UNSIGNED,
+                type: Sequelize.DECIMAL(10, 2).UNSIGNED,
                 allowNull: false
             },
             discount: {
@@ -53,6 +53,14 @@ module.exports = {
                 allowNull: false
             },
             image_2: {
+                type: Sequelize.STRING(100),
+                allowNull: true
+            },
+            image_3: {
+                type: Sequelize.STRING(100),
+                allowNull: false
+            },
+            image_4: {
                 type: Sequelize.STRING(100),
                 allowNull: true
             },

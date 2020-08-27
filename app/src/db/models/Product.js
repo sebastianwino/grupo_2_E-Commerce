@@ -16,12 +16,16 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.STRING(600),
             allownull: false
         },
-        name: {
+        gross_price: {
+            type: dataTypes.DECIMAL(10, 2).UNSIGNED,
+            allownull: false
+        },
+        discount: {
             type: dataTypes.INTEGER.UNSIGNED,
             allownull: false
         },
         price: {
-            type: dataTypes.DECIMAL(10, 0).UNSIGNED,
+            type: dataTypes.DECIMAL(10, 2).UNSIGNED,
             allownull: false
         },
         stock: {

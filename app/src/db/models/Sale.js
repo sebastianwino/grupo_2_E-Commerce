@@ -9,7 +9,7 @@ module.exports = function (sequelize, dataTypes) {
             allownull: false
         },
         total: {
-            type: dataTypes.DECIMAL(10, 0),
+            type: dataTypes.DECIMAL(10, 2),
             allownull: false
         },
         description: {
