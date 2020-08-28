@@ -15,7 +15,7 @@ const registerValidations = require('../middlewares/validations/users/registerVa
 router.get('/login', loginRegisterMiddleware, controllers.userAuth.loginForm);
 router.get('/perfil', profileMiddleware, controllers.userAuth.profile);
 router.post('/login', loginValidations, controllers.userAuth.login);
-router.post('/logout', controllers.userAuth.logout);
+router.get('/logout', controllers.userAuth.logout);
 
 /* REGISTRATION */
 router.get('/registro', loginRegisterMiddleware, controllers.user.register);
