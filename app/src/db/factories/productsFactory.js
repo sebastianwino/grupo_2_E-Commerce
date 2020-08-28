@@ -18,10 +18,10 @@ module.exports = (n = 1) => {
             price: prices - (discount*prices/100),
             stock: faker.random.number({ min: 0, max: 200}),
             slices: slice,
-            image_1: 'product-image-1595193271792.jpg',
-            image_2: 'product-image-1595193271799.jpg',
-            image_3: 'product-image-1595193271792.jpg',
-            image_4: 'product-image-1595193271799.jpg',
+            image_1: 'product-image-1595193271799.jpg',
+            image_2: 'product-image-1595193271792.jpg',
+            image_3: 'product-image-1595193271799.jpg',
+            image_4: 'product-image-1595193271792.jpg',
             category_id: category
         })
         

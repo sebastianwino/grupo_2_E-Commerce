@@ -26,20 +26,20 @@
                 
                 <div class="product-detail-card row mb-5">
                     <div class="porduct-images mb-3 col-12 col-lg-8 image-wrap">
-                        <div class="first-product-image mb-3 image" style="background-image: url('/images/upload/<%= product.image_lg%>');"></div>
+                        <div class="first-product-image mb-3 image" style="background-image: url('/images/upload/<%= product.image_1%>');"></div>
                         <div class="more-product-images d-flex">
                             <div>
                                 <div class="other-product-image firstImg d-cots ">
-                                    <img src="/images/upload/<%= product.image_lg%>" class="image-first selectImg" alt="<%= product.name %>">
+                                    <img src="/images/upload/<%= product.image_1%>" class="image-first selectImg" alt="<%= product.name %>">
                                 </div>
                                 <div class="other-product-image secondImg d-cots">
-                                    <img src="/images/upload/<%= product.image%>" class="image-second" alt="<%= product.name %>">
+                                    <img src="/images/upload/<%= product.image_2%>" class="image-second" alt="<%= product.name %>">
                                 </div>    
                                 <div class="other-product-image thirdImg d-cots">
-                                    <img src="/images/upload/<%= product.image_lg%>" class="image-third" alt="<%= product.name %>">
+                                    <img src="/images/upload/<%= product.image_1%>" class="image-third" alt="<%= product.name %>">
                                 </div>
                                 <div class="other-product-image quarterImg d-cots">
-                                    <img src="/images/upload/<%= product.image%>" class="image-quarter" alt="<%= product.name %>">
+                                    <img src="/images/upload/<%= product.image_2%>" class="image-quarter" alt="<%= product.name %>">
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                                     <div class="col-12 col-sm-4 col-lg-3">
                                         <div class="card tarjetas-productos product-card-inProductDetail">
                                             <div class="imagen-producto-productos">
-                                                <img class="card-img-top imagen-producto-producto" src="/images/upload/<%= productRelated.image_lg %>"
+                                                <img class="card-img-top imagen-producto-producto" src="/images/upload/<%= productRelated.image_1 %>"
                                                     alt="imagen de <%= productRelated.name %>">
                                             </div>
                                             <div class="card-body position-relative">
@@ -156,28 +156,28 @@
         if(flag!=1){
             firstImg.addEventListener('click', ()=> {
                 swicheando(flag)
-                forEvent('.image-first','<%=product.image_lg%>',1);
+                forEvent('.image-first','<%=product.image_1%>',1);
             })
         }
         
         if(flag!=2){
             secondImg.addEventListener('click', ()=> {
                 swicheando(flag)
-                forEvent('.image-second','<%=product.image%>',2);
+                forEvent('.image-second','<%=product.image_2%>',2);
             })
         }
         
         if(flag!=3){
             thirdImg.addEventListener('click', ()=> {
                 swicheando(flag)
-                forEvent('.image-third','<%=product.image_lg%>',3);
+                forEvent('.image-third','<%=product.image_1%>',3);
             })
         }
         
         if(flag!=4){
             quarterImg.addEventListener('click', ()=> {
                 swicheando(flag)
-                forEvent('.image-quarter','<%=product.image%>',4);
+                forEvent('.image-quarter','<%=product.image_2%>',4);
             })
         }        
     </script>

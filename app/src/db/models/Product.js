@@ -36,14 +36,14 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.INTEGER.UNSIGNED,
             allownull: true
         },
-        image_lg: {
+        image_1: {
             type: dataTypes.STRING(100),
             allownull: false
         },
-        image: {
+        image_2: {
             type: dataTypes.STRING(100),
             allownull: true
-        }
+        },
         image_3: {
             type: dataTypes.STRING(100),
             allownull: true

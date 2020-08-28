@@ -131,8 +131,8 @@ let productsControllers = {
                 category_id: req.body.category,
                 price: req.body.price,
                 stock: req.body.stock,
-                image_lg: 'm' + req.files[0].filename,
-                image: 'm' + req.files[1].filename
+                image_1: 'm' + req.files[0].filename,
+                image_2: 'm' + req.files[1].filename
             })
 
             res.redirect(`/admin/productos`)
@@ -242,7 +242,7 @@ let productsControllers = {
 
         let product = await db.Product.findByPk(req.params.productId)
             
-                unlink('./public/images/upload/' + product.image_lg, function (err) {
+                unlink('./public/images/upload/' + product.image_1, function (err) {
                     if (err) {
                         console.error(err);
                     }

@@ -17,8 +17,8 @@ function productObject(req,res){
         category: req.body.category,
         slices: req.body.slices,
         stock: req.body.stock,
-        image_lg: req.body.imageLg,
-        image: req.body.image,
+        image_1: req.body.imageLg,
+        image_2: req.body.image,
         total: total
         }
 
