@@ -87,7 +87,6 @@ let productsControllers = {
                     title: 'Crear Producto',
                     categories: categories,
                     user: req.session.user,
-                    user: req.session.user,
                     admin: req.session.admin,
                     data: {
                         name: null,

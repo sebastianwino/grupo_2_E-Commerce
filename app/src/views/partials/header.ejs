@@ -1,34 +1,34 @@
 <header>
 
-    <div class="container-fluid detras general in index-15">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    <div class="h container-fluid detras general in index-15">
+        <nav class="h navbar navbar-expand-lg navbar-light">
+            <a class="h navbar-brand" href="#"></a>
+            <button class="h navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="h navbar-toggler-icon"></span>
             </button>
 
             <!-- Small -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                   <li class="nav-item izq">
-                       <a class="nav-link" href="/">Inicio <i class="fas fa-stroopwafel"></i></i><span class="sr-only">(current)</span></a>
+            <div class="h collapse navbar-collapse" id="navbarNav">
+                <ul class="h navbar-nav">
+                   <li class="h nav-item izq">
+                       <a class="h nav-link" href="/">Inicio <i class="h fas fa-stroopwafel"></i></i><span class="h sr-only">(current)</span></a>
                    </li>
-                   <li class="nav-item izq">
+                   <li class="h nav-item izq">
                     <%if (admin != undefined){%>
-                        <a class="nav-link" href="/admin/productos">Productos <i class="fas fa-cheese"></i></a>
+                        <a class="h nav-link" href="/admin/productos">Productos <i class="h fas fa-cheese"></i></a>
                      <%} else {%>
-                         <a class="nav-link" href="/productos">Productos <i class="fas fa-cheese"></i></a>
+                         <a class="h nav-link" href="/productos">Productos <i class="h fas fa-cheese"></i></a>
                       <%}%>
                    </li>
-                   <li class="nav-item izq">
-                       <a class="nav-link" href="#">¿Quienes somos? <i class="fas fa-bread-slice"></i></a>
+                   <li class="h nav-item izq">
+                       <a class="h nav-link" href="#">¿Quienes somos? <i class="h fas fa-bread-slice"></i></a>
                    </li>
-                   <li class="nav-item izq">
-                       <a class="nav-link" href="#">Promociones <i class="fas fa-hamburger"></i></a>
+                   <li class="h nav-item izq">
+                       <a class="h nav-link" href="#">Promociones <i class="h fas fa-hamburger"></i></a>
                    </li>
-                   <li class="nav-item izq">
-                    <a class="nav-link" href="#">Contacto <i class="fas fa-cookie"></i></a>
+                   <li class="h nav-item izq">
+                    <a class="h nav-link" href="#">Contacto <i class="h fas fa-cookie"></i></a>
                     </li>
                 </ul>
             </div>
@@ -37,30 +37,45 @@
         </nav>
     </div>
     <div class="container-fluid fondo-header general in index-15">
-        <!-- <div class="animacion">Hola</div> -->
+        <!-- <div class="h animacion">Hola</div> -->
         <div class="row">
-            <div class="col-5">
-                <img src="/images/header/more/arbol-izquierada.png" class="laurel-L" alt="laurel">
+            <div class="h col-5">
+                <img src="/images/header/more/arbol-izquierada.png" class="h laurel-L" alt="laurel">
             </div>
 
             <div class="col-3">
-                <a href="/"><img src="/images/header/logo.png" class="logo-header" alt="ROMA"></a>
+                <a href="/"><img src="/images/header/logo.png" class="h logo-header" alt="ROMA"></a>
 
                 <div class="contenedor-padre-redes">
                     <div>
-                        <a href="#" class="logo-redes-facebook"><i class="fab fa-facebook fa-1x"></i></a>
-                        <a href="#" class="logo-redes-instagram"><i class="fab fa-instagram fa-1x"></i></a>
+                        <a href="#" class="h logo-redes-facebook"><i class="h fab fa-facebook fa-1x"></i></a>
+                        <a href="#" class="h logo-redes-instagram"><i class="h fab fa-instagram fa-1x"></i></a>
                     </div>
                     <div>
-                        <a href="/carrito" class="logo-carrito"><i class="fas fa-shopping-cart fa-1x"></i></a>
+                        <a href="/carrito" class="h logo-carrito"><i class="h fas fa-shopping-cart fa-1x"></i></a>
                         <% if (user != undefined) { %>
-                         <a  id="userBtn" href="/usuarios/perfil" class="logo-users-success"><i  class="fas fa-user fa-1x"></i></a>
-                         <div id="userBtnClick" class="animacion">
-                            <p class=" m-1 btnClass">Hola <%=user%></p> 
-                            <p class="btnClass exit "><a href="/usuarios/logout" class="linkExit">Cerrar sesión</a></p>
+                         <a  id="userBtn" href="#" class=" logo-users-success"><i  class=" fas fa-user fa-1x"></i></a>
+                         <div id="userBtnClick" class=" animacion">
+                            <p class="  m-1 btnClass p-3">Hola <%=user%></p> 
+                            <form action="/usuarios/perfil" method="GET">
+                                <button class="btn btn-success btnD btnProfile">Ir a Perfil</button>
+                            </form>
+                            <%if (admin==1){%>
+                                <form action="/usuarios/logout" method="GET">
+                                    <button class="btn btn-danger btnD btnLogOut">Crar producto</button>
+                                </form>    
+                            <%}%>
+                            <form action="/usuarios/logout" method="GET">
+                                <button class="btn btn-danger btnD btnLogOut">Cerrar Sesion</button>
+                            </form>
+                        
+                            
+                            
+                            <!-- <p class=" btnClass exit p-2"><a href="/usuarios/perfil" class=" linkExit">ir a Perfil</a></p>
+                            <p class=" btnClass exit p-2"><a href="/usuarios/logout" class=" linkExit">Cerrar sesión</a></p> -->
                         </div>
                         <% } else {%>
-                         <a href="/usuarios/login" class="logo-users"><i class="fas fa-user fa-1x"></i></a>
+                         <a href="/usuarios/login" class="h logo-users"><i class="h fas fa-user fa-1x"></i></a>
                          <%}%>
                          
                     </div>
@@ -68,55 +83,55 @@
                 </div>
                 <%if (admin != undefined) {%>
                     <form action="/admin/productos/search" method="GET">
-                        <input class="mi-input" type="text" name="search" placeholder="Buscar">
+                        <input class="h mi-input" type="text" name="search" placeholder="Buscar">
                       </form>
                   <%} else {%>
 
                       <form action="/productos/search" method="GET">
-                        <input class="mi-input" type="text" name="search" placeholder="Buscar">
+                        <input class="h mi-input" type="text" name="search" placeholder="Buscar">
                       </form>
                 <%}%>
-
+                <div class="h"> </div>
             </div>
 
-            <div class="col-2">
+            <div class="h col-2">
                 <p> </p>
             </div>
 
 
 
-            <div class="col-2">
-                <img src="/images/header/more/arbol-derecha.png" class="laurel-R" alt="laurel-R">
+            <div class="h col-2">
+                <img src="/images/header/more/arbol-derecha.png" class="h laurel-R" alt="laurel-R">
             </div>
 
             <!-- Large -->
-            <nav class="navbar navbar-expand-lg navbar-light fondo-oscuro">
-                <a class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            <nav class="h navbar navbar-expand-lg navbar-light fondo-oscuro">
+                <a class="h navbar-brand" href="#"></a>
+                <button class="h navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="h navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                       <li class="nav-item izq">
-                           <a class="nav-link" href="/">Inicio <i class="fas fa-stroopwafel"></i></i><span class="sr-only">(current)</span></a>
+                <div class="h collapse navbar-collapse" id="navbarNav">
+                    <ul class="h navbar-nav">
+                       <li class="h nav-item izq">
+                           <a class="h nav-link" href="/">Inicio <i class="h fas fa-stroopwafel"></i></i><span class="h sr-only">(current)</span></a>
                        </li>
-                       <li class="nav-item izq">
+                       <li class="h nav-item izq">
                         <%if (admin != undefined){%>
-                           <a class="nav-link" href="/admin/productos">Productos <i class="fas fa-cheese"></i></a>
+                           <a class="h nav-link" href="/admin/productos">Productos <i class="h fas fa-cheese"></i></a>
                         <%} else {%>
-                            <a class="nav-link" href="/productos">Productos <i class="fas fa-cheese"></i></a>
+                            <a class="h nav-link" href="/productos">Productos <i class="h fas fa-cheese"></i></a>
                          <%}%>
                        </li>
-                       <li class="nav-item izq">
+                       <li class="h nav-item izq">
                            <!-- para acceder mas rapido a la ruta admin -->
-                           <a class="nav-link" href="#">¿Quienes somos? <i class="fas fa-bread-slice"></i></a>
+                           <a class="h nav-link" href="#">¿Quienes somos? <i class="h fas fa-bread-slice"></i></a>
                        </li>
-                       <li class="nav-item izq">
-                           <a class="nav-link" href="#">Promociones <i class="fas fa-hamburger"></i></a>
+                       <li class="h nav-item izq">
+                           <a class="h nav-link" href="#">Promociones <i class="h fas fa-hamburger"></i></a>
                        </li>
-                       <li class="nav-item izq">
-                        <a class="nav-link" href="#">Contacto <i class="fas fa-cookie"></i></a>
+                       <li class="h nav-item izq">
+                        <a class="h nav-link" href="#">Contacto <i class="h fas fa-cookie"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -128,4 +143,5 @@
     <script src="/js/products/medium-zoom.min.js"></script>
     <script src="/js/products/detailProducts.js"></script>
     <script src="/js/header.js"></script>
+    
 </header>
