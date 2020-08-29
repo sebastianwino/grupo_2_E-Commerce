@@ -101,7 +101,7 @@ window.onload = () => {
         btn.addEventListener('click', ()=>{
         if (!flag2){
         animation.classList.add('playing')
-        animation.style.height = "140px"
+        animation.style.height = "177px"
         animation.style.width = "150px"
             if (flag) {
                 animation.classList.remove('hiddenAnimation')

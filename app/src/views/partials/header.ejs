@@ -62,11 +62,15 @@
                             </form>
                             <%if (admin==1){%>
                                 <form action="/usuarios/logout" method="GET">
-                                    <button class="btn btn-danger btnD btnLogOut">Crar producto</button>
+                                    <button class="btn btn-success btnD btnLogOut admin">Crar producto</button>
                                 </form>    
-                            <%}%>
+                            <%} else {%>
+                                <form action="#" method="GET">
+                                    <button class="btn btn-success btnD btnLogOut admin">Ultmimas compras</button>
+                                </form>
+                            <%} %>
                             <form action="/usuarios/logout" method="GET">
-                                <button class="btn btn-danger btnD btnLogOut">Cerrar Sesion</button>
+                                <button class="btn btn-danger btnD btnProfile">Cerrar Sesion</button>
                             </form>
                         
                             

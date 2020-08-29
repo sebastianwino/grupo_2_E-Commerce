@@ -90,15 +90,7 @@
   animation: dropdown 300ms ease;
 }
 
-@keyframes dropdown {
- 0% {
-   height: 0;
-   width: 0px;
-   ;
-}
- 100%{height: 140px;
-  width: 150px;}
-}
+
 
 .btnD{
   width: 100%; 
@@ -130,6 +122,16 @@
   border: 1px solid burlywood;
   color: black;
 }
+
+@keyframes dropdown {
+  0% {
+    height: 0;
+    width: 0px;
+    ;
+ }
+  100%{height: 140px;
+   width: 150px;}
+ }
 
 .hiddenAnimation {
   animation: dropup 300ms ease;
