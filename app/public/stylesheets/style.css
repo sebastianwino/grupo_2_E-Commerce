@@ -1374,6 +1374,10 @@ li.lista-filtro-productos  {
   background-repeat: no-repeat;
   }
 
+.btnAddPhones{
+  margin-top:-8px
+}
+
 .formulario-registro {
   background-color: rgba(191, 172, 149, 0.8);
   padding: 155px;

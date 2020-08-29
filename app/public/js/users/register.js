@@ -184,4 +184,8 @@ window.onload = () => {
             e.preventDefault();
         }
     })
+
+    form.btnAddAddresses.addEventListener('click', function (e) {
+        e.preventDefault()
+    })
 }

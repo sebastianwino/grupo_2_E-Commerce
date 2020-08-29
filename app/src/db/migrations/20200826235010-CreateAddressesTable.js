@@ -27,6 +27,14 @@ module.exports = {
                 type: Sequelize.STRING(45),
                 allowNull: false
             },
+            floor: {
+                type: Sequelize.INTEGER.UNSIGNED,
+                allowNull: true
+            },
+            departament: {
+                type: Sequelize.STRING(5),
+                allowNull: true
+            },
             prov: {
                 type: Sequelize.STRING(45),
                 allowNull: false

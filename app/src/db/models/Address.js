@@ -28,6 +28,14 @@ module.exports = function (sequelize,dataTypes){
             type: dataTypes.INTEGER.UNSIGNED,
             allownull: false
         },
+        floor: {
+            type: dataTypes.INTEGER.UNSIGNED,
+            allownull: false
+        },
+        departament: {
+            type: dataTypes.STRING(5),
+            allownull: false
+        },
         zip_code: {
             type: dataTypes.INTEGER.UNSIGNED,
             allownull: false
