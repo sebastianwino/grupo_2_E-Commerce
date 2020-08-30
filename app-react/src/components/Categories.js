@@ -1,14 +1,12 @@
 import React, {Component} from 'react'
 import Category from './Category'
 
-//let cant = ['01','02','03','04','05','06']
-
 class Categories extends Component{
     constructor(props){
 		super(props);
 		this.state = {
 			categories: []
-			}
+		}
 	}
 
     apiCall(url, consecuencia){
@@ -18,45 +16,41 @@ class Categories extends Component{
 		.catch(error => console.log(error))
     }
 
-    cambiarState = (data)=>{
+    changeState = (data) => {
 		this.setState({
-			categories: data.data.cant
+			categories: data.data
 		})
-   }
+    }
 
     componentDidMount(){
-        this.apiCall("http://localhost:4000/products/categories", this.cambiarState)
+        this.apiCall("http://localhost:3000/api/products/categories", this.changeState)
     };
 
-render(){
-     let cant;
-     if (this.state.categories === []){
-         cant = 0;
-     }else {
-         cant = this.state.categories
-     }
+    render(){
+        let cant;
+        if (this.state.categories === []){
+            cant = 0;
+        } else {
+            cant = this.state.categories
+        }
 
-    return (
-        <div className="col-lg-6 mb-4">						
-        <div className="card shadow mb-4">
-            <div className="card-header py-3">
-                <h6 className="m-0 font-weight-bold text-primary">Categories in Data Base</h6>
-            </div>
-            <div className="card-body">
-                <div className="row">
+        return (
+            <div className="col-lg-6 mb-4">						
+            <div className="card shadow mb-4">
+                <div className="card-header py-3">
+                    <h6 className="m-0 font-weight-bold text-primary">Categories in Data Base</h6>
+                </div>
+                <div className="card-body">
+                    <div className="row">
 
-                    
-                    <Category cant={cant}/>
-                    
+                        <Category cant={cant}/>
 
-
-                    
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    )
-}
+        )
+    }
 }
 
 export default Categories

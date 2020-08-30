@@ -9,12 +9,6 @@ import Categories from './components/Categories'
 import Footer from './components/Footer'
 import Grill from './components/Grill';
 
-
-
-
-
-
-
 function App() {
   return (
     <div className="App">

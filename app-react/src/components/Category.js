@@ -7,33 +7,35 @@ class Category extends Component {
 		super();
 		this.state = {
 			fondo: 'info'
-			}
+		}
 	}
 
     cambiarFondo(){
-        if(this.state.fondo === 'info'){
-        this.setState({
-            fondo: 'danger'
-        })}else{this.setState({
-            fondo: 'info'
-        })}
+        if (this.state.fondo === 'info') {
+            this.setState({
+                fondo: 'danger'
+            })
+        } else {
+            this.setState({
+                fondo: 'info'
+            }
+        )}
     }
 
-render(){
+    render(){
 
-
-    return(        
-        this.props.cant.map((unidad, i) =>
-        <div className="col-lg-6 mb-4" key={unidad + i}>
-            <div onClick={()=>this.cambiarFondo()} className={`card bg-${this.state.fondo} text-white shadow`}>
-                <div className="card-body">
-                    Category {unidad}
+        return(        
+            this.props.cant.map((category, i) =>
+            <div className="col-lg-6 mb-4" key={category.id}>
+                <div onClick={()=>this.cambiarFondo()} className={`card bg-${this.state.fondo} text-white shadow`}>
+                    <div className="card-body">
+                        {category.name}
+                    </div>
                 </div>
             </div>
-        </div>
+            )
         )
-    )
-}
+    }
 }
 
 export default Category

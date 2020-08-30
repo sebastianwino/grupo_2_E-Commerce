@@ -36,10 +36,10 @@ Box.defaultProps = {
 
  Box.propTypes = {
      boxes: PropTypes.shape({
-         titulo: PropTypes.string.isRequired,
-         borde: PropTypes.string.isRequired,
-         cifra: PropTypes.number.isRequired,
-         icono: PropTypes.oneOf(['clipboard-list', 'dollar-sign', 'user-check'])
+        titulo: PropTypes.string.isRequired,
+        borde: PropTypes.string.isRequired,
+        cifra: PropTypes.number.isRequired,
+        icono: PropTypes.oneOf(['clipboard-list', 'dollar-sign', 'user-check'])
        })
     
    };

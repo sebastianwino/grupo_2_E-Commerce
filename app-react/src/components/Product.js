@@ -6,7 +6,7 @@ class Product extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			description: ""
+			description: "",
 			}
 	}
 	apiCall(url, consecuencia){
@@ -17,14 +17,25 @@ class Product extends Component {
 	}
 
 	cambiarState = (data)=>{
-		this.setState({
-			description: data.data.description
-		})
-   }
+		for(let i = 0; i < data.data.length; i++){
+			if(data.data[i].id == data.meta.lastProduct){
+
+				console.log(data.meta.lastProduct)
+				this.setState({
+					description: data.data[i].description
+
+				})
+			}
+		}
+	}
+   
+
+
 
 componentDidMount(){
-	this.apiCall("http://localhost:4000/products/lastprod", this.cambiarState)
+	this.apiCall("http://localhost:3000/api/products", this.cambiarState)
 };
+
 
 render(){
 	let contenido;
