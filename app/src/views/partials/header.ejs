@@ -61,11 +61,11 @@
                                 <button class="btn btn-success btnD btnProfile">Ir a Perfil</button>
                             </form>
                             <%if (admin==1){%>
-                                <form action="/usuarios/logout" method="GET">
+                                <form action="/admin/productos/crear" method="GET">
                                     <button class="btn btn-success btnD btnLogOut admin">Crar producto</button>
                                 </form>    
                             <%} else {%>
-                                <form action="#" method="GET">
+                                <form action="/carrito" method="GET">
                                     <button class="btn btn-success btnD btnLogOut admin">Ultmimas compras</button>
                                 </form>
                             <%} %>
