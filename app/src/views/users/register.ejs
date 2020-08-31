@@ -14,7 +14,6 @@
     <div class="h container-fluid fondo-registro general">
         <form action="/usuarios/registro" method="POST" id="register-form">
 
-
             <div class="container formulario-login">
                 <h1 class="text-center">Formulario de registro</h1>
                 <% if (logueo = true){%>
@@ -72,18 +71,6 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-12 col-md-3">
-                            <label for="inputPhone">Telefono</label>
-                            <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
-                                name="cell_phone">
-                            <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
-                        </div>
-                        <div class="form-group col-12 col-md-3">
-                            <p> </p>
-                            <button name="btnAddAddresses" class="btn btn-info btnAddPhones">Agrega más dirección</button>
-                        </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group col-12 col-md-6">
                             <label for="inputPhone">Telefono celular 1</label>
                             <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
@@ -96,22 +83,73 @@
                                 name="phone">
                             <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
                         </div>
-                    </div>
+                </div>
                     <div class="form-row">
+                        <div class="form-group col-12 col-md-3">
+                            <label for="inputPhone">Telefono</label>
+                            <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
+                                name="cell_phone">
+                            <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
+                        </div>
+                        <div class="form-group col-12 col-md-9">
+                            <p>&nbsp</p>
+                            <p>Puedes agregar una dirección antes de finalizar la compra</p>
+                        </div>
+                     </div>
+                     <div class="form-row">
+                        <div class="form-group col-12 col-md-4">
+                            <label for="inputPhone">Alias</label>
+                            <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
+                                name="alias">
+                            <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
+                        </div>
+                        <div class="form-group col-12 col-md-4">
+                            <label for="inputPhone">Ciudad</label>
+                            <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
+                                name="city">
+                            <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
+                        </div>
+                        <div class="form-group col-12 col-md-4">
+                            <label for="inputPhone">Provincia</label>
+                            <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
+                                name="prov">
+                            <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
+                        </div>
                         <div class="form-group col-12 col-md-6">
                             <label for="inputPhone">Calle</label>
                             <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
                                 name="street">
                             <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
                         </div>
-                        <div class="form-group col-12 col-md-6">
+                        <div class="form-group col-6 col-md-2">
                             <label for="inputPhone">Numero</label>
                             <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
                                 name="street">
                             <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
                         </div>
+                        <div class="form-group col-6 col-md-1">
+                            <label for="inputPhone">Piso</label>
+                            <input type="number" class="form-control" id="inputPhone" aria-describedby="emailHelp"
+                                name="floor">
+                            <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
+                        </div>
+                        <div class="form-group col-12 col-md-1">
+                            <label for="inputPhone">Dto.</label>
+                            <input type="text" class="form-control" id="inputPhone" aria-describedby="emailHelp"
+                                name="departament">
+                            <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
+                        </div>
+                        <div class="form-group col-12 col-md-2">
+                            <label for="inputPhone">Codigo postal</label>
+                            <input type="number" class="form-control" id="inputPhone" aria-describedby="emailHelp"
+                                name="zip_code">
+                            <span class="d-none invalid-feedback">En este campo no puede haber letras.</span>
+                        </div>
+                
                     </div>
-
+                    <!-- Este es el form de direcciones -->
+                   
+                    
 
                     <!-- A revisar en dónde se cargan los datos adicionales -->
                     <!-- <div class="form-row">
@@ -134,10 +172,11 @@
                             
                         </div> -->
 
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex">
                         <a type="submit" class="btn btn-primary registrarme mr-3" href="/usuarios/login">Ya tengo una
                             cuenta</a>
-                        <button type="submit" name="submit" class="btn btn-info mx-1">Registrarse</button>
+                        <a type="submit" class="btn btn-primary addressAdd mr-3" href="/usuarios/registro/formulario-direccion">Agregar direcciones</a>
+                        <button type="submit" name="submit" class="btn btn-success mx-1">Registrarse</button>
                     </div>
                 </div>  
             </div>

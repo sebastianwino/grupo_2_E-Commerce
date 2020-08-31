@@ -20,6 +20,4 @@ router.get('/logout', controllers.userAuth.logout);
 /* REGISTRATION */
 router.get('/registro', loginRegisterMiddleware, controllers.user.register);
 router.post('/registro', registerValidations, controllers.user.store);
-
-
 module.exports = router;
