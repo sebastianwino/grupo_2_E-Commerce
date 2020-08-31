@@ -12,16 +12,26 @@
 
     <!-- Main -->
     <div class="h container-fluid fondo-registro general">
-            <form action="/usuarios/registro" method="POST" id="register-form">
-               
+        <form action="/usuarios/registro" method="POST" id="register-form">
 
+<<<<<<< HEAD
                 <div class="container formulario-login">
                     <h1 class="text-center">Formulario de registro</h1>
                     <!-- <% if (logueo = true){%>
                     <h3 class="text-center text-danger">Para comprar algún producto usted tiene que tener una cuenta
                     </h3>
                     <% } %> -->
+=======
+>>>>>>> 6a1fe367926aa4848e1a15af07049bd8f9584f22
 
+            <div class="container formulario-login">
+                <h1 class="text-center">Formulario de registro</h1>
+                <% if (logueo = true){%>
+                <h3 class="text-center text-danger">Para comprar algún producto usted tiene que tener una cuenta
+                </h3>
+                <% } %>
+
+                <div class="login-register-card">
                     <div class="show-errors">
                         <% if (typeof errors != 'undefined') { %>
                         <p style="color: red">ERROR</p>
@@ -38,8 +48,8 @@
                     <div class="form-row">
                         <div class="form-group col-12 col-md-6">
                             <label for="inputName">Nombre</label>
-                            <input type="text" class="form-control" id="inputName" aria-describedby="emailHelp"
-                                name="name" value="<%=data.name%>">
+                            <input type="text" class="form-control" id="inputName" aria-describedby="emailHelp" name="name"
+                                value="<%=data.name%>">
                             <span class="d-none invalid-feedback">El nombre no puede estar vacio</span>
                         </div>
                         <div class="form-group col-12 col-md-6">
@@ -52,8 +62,8 @@
                     </div>
                     <div class="form-group">
                         <label for="inputEmail1">Email</label>
-                        <input type="text" class="form-control" id="inputEmail1" aria-describedby="emailHelp"
-                            name="email" value="<%=data.email%>">
+                        <input type="text" class="form-control" id="inputEmail1" aria-describedby="emailHelp" name="email"
+                            value="<%=data.email%>">
                         <span class="d-none invalid-feedback">El email debes ser válido</span>
 
                     </div>
@@ -153,24 +163,24 @@
 
                     <!-- A revisar en dónde se cargan los datos adicionales -->
                     <!-- <div class="form-row">
-                        <div class="form-group col-9 col-md-3">
-                            <label for="inputAdress1">Calle</label>
-                            <input type="text" class="form-control" id="inputAdress1"
-                                aria-describedby="emailHelp" name="address">
-                        </div>
-                        <div class="form-group col-3 col-md-1">
-                            <label for="inputAdress2">Numero</label>
-                            <input type="text" min="0" class="form-control" id="inputAdress2"
-                                aria-describedby="emailHelp" name="addressNumber">
-                        </div>
+                            <div class="form-group col-9 col-md-3">
+                                <label for="inputAdress1">Calle</label>
+                                <input type="text" class="form-control" id="inputAdress1"
+                                    aria-describedby="emailHelp" name="address">
+                            </div>
+                            <div class="form-group col-3 col-md-1">
+                                <label for="inputAdress2">Numero</label>
+                                <input type="text" min="0" class="form-control" id="inputAdress2"
+                                    aria-describedby="emailHelp" name="addressNumber">
+                            </div>
 
-                        <div class="form-group col-12 col-md-5">
-                            <label for="inputAdress3">Localidad</label>
-                            <input type="text" class="form-control" id="inputAdress3"
-                                aria-describedby="emailHelp" name="city">
-                        </div>
-                        
-                    </div> -->
+                            <div class="form-group col-12 col-md-5">
+                                <label for="inputAdress3">Localidad</label>
+                                <input type="text" class="form-control" id="inputAdress3"
+                                    aria-describedby="emailHelp" name="city">
+                            </div>
+                            
+                        </div> -->
 
                     <div class="d-flex">
                         <a type="submit" class="btn btn-primary registrarme mr-3" href="/usuarios/login">Ya tengo una
@@ -178,9 +188,10 @@
                         <a type="submit" class="btn btn-primary addressAdd mr-3" href="/usuarios/registro/formulario-direccion">Agregar direcciones</a>
                         <button type="submit" name="submit" class="btn btn-success mx-1">Registrarse</button>
                     </div>
-                </div>
-            </form>
-        
+                </div>  
+            </div>
+        </form>
+
     </div>
     </div>
     <!-- Main -->
