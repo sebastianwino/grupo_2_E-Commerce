@@ -1,0 +1,40 @@
+<div class="titulo-productos">
+    <h1><a href="/">Home</a>/<a href="/productos">Productos</a></h1>
+</div>
+
+<%if (typeof cant != 'undefined') {%>
+<div>
+    <p><b>Se ha encontrado <%=cant%> para tu busqueda:</b></p>
+</div>
+<%}%>
+    <div class="allProducts row">
+    <%if (products.length == 0) {%>
+<div class="w-100">
+    <h4 class="text-danger" style="line-height: 100px; text-align: center;"><b>No se han encontrado
+            productos</b></h4>
+</div>
+<%}%>
+        <% products.forEach(product => { %>
+<a href="/productos/<%= product.id %>">
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card tarjetas-productos product-card-inProducts my-5">
+            <div class="imagen-producto-productos">
+                <img class="card-img-top imagen-producto-producto" src="/images/upload/<%=product.image_1%>"
+                    alt="imagen de <%= product.name %>">
+            </div>
+            <div class="card-body position-relative">
+                <div class="d-flex justify-content-between">
+                    <div class="titulo-precio">
+                        <p class="titulo-producto"><%= product.name %></p>
+                        <p class="precio-producto">$<%= product.price %></p>
+                    </div>
+
+                    <div class="add-to-cart-products">
+                        <a href="#"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+<% }) %>

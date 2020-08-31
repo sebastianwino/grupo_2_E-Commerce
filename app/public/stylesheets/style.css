@@ -1338,13 +1338,12 @@ li.lista-filtro-productos {
 
 .fondo-login {
     background-image: url('/images/user-register/pan.png');
-    background-size: 120%;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
 .formulario-login {
-    padding: 100px;
-    /* margin: 0px; */
+    padding: 80px 0px 0px 0px;
 }
 
 .registrarme {
@@ -1353,32 +1352,17 @@ li.lista-filtro-productos {
 }
 
 .registrarme:hover {
-
     background-color: darkred;
     border-color: darkred;
 }
 
-
-
 @media (max-width: 754px) {
     .formulario-login {
         padding: 30px;
-
-        /* margin: 0px; */
     }
 
     .fondo-login {
-        background-position: -103px;
-        background-size: 264%;
-    }
-}
-
-
-@media (min-width: 754px) and (max-width: 1104px) {}
-
-@media (min-width: 1104px) {
-    .fondo-login {
-        background-position: -144px -302px;
+        background-position: -330px;
     }
 }
 
@@ -1393,14 +1377,14 @@ li.lista-filtro-productos {
     margin-right: 5px;
     width: 1px;
     height: 100%;
-    border-left: 1px solid gray;
+    border-left: 1px solid rgb(196, 194, 194);
 }
 
 .h-divider {
     margin-top: 5px;
     margin-bottom: 5px;
     width: 100%;
-    border-top: 1px solid gray;
+    border-top: 1px solid rgb(196, 194, 194);
 }
 
 .li-register {
@@ -1414,6 +1398,22 @@ li.lista-filtro-productos {
 }
 
 
+
+@media (min-width: 991px) {
+    .formulario-login {
+        padding: 90px;
+    }
+
+    .crear-cuenta-titulo {
+        margin-bottom: 20px;
+    }
+
+    .li-register {
+        list-style-position: inside;
+        font-size: .9rem;
+        margin-bottom: 15px;
+    }
+}
 
 
 /* REGISTER */

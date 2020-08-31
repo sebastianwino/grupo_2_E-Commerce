@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 const controllers = require('../controllers')
+// const productsAdminMiddleware = require('../middlewares/adminMiddlewares/productsAdminMiddleware')
 
 /*** SHOW PRODUCTS ***/ 
-router.get('/', controllers.products.root); /* All products */
+router.get('/', /* productsAdminMiddleware, */ controllers.products.root); /* All products */
 
 /***  SEARCH PRODUCTS ***/
 router.get('/search', controllers.products.search);
