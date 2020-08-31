@@ -4,7 +4,6 @@ let apiProductsController = {
 
    
     list: (req, res) => {
-        let lastProduct = 0;
         let totalPrices = 0;
         db.Product.findAll()
         .then(products => {
@@ -12,9 +11,6 @@ let apiProductsController = {
             products.forEach(product => {
                 totalPrices += Number(product.price)
                 product.setDataValue('endpoint', '/api/products/' + product.id)
-                if(lastProduct < product.id){
-                    lastProduct = product.id
-                }
             });
 
             let respuesta = {
@@ -22,8 +18,7 @@ let apiProductsController = {
                     status: 200,
                     total: products.length,
                     total_price: totalPrices.toFixed(2),
-                    url: "/api/product",
-                    last_product: lastProduct
+                    url: "/api/product"
                 },
                 data: products
             }

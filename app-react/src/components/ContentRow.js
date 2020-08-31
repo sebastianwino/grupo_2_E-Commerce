@@ -48,9 +48,9 @@ class ContentRow extends Component {
         if (this.state.cantProducts === ""){
             caja1.cifra = 0;
         }else {
-            caja1.cifra = this.state.cantProducts
-            caja2.cifra = this.state.totPrecios
-            caja3.cifra = this.state.totUsuarios
+            caja1.cifra = Number(this.state.cantProducts)
+            caja2.cifra = Number(this.state.totPrecios)
+            caja3.cifra = Number(this.state.totUsuarios)
         }
         
         return(

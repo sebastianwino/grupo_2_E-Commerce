@@ -17,20 +17,12 @@ class Product extends Component {
 	}
 
 	cambiarState = (data)=>{
-		for(let i = 0; i < data.data.length; i++){
-			if(data.data[i].id == data.meta.lastProduct){
-
-				console.log(data.meta.lastProduct)
-				this.setState({
-					description: data.data[i].description
-
-				})
-			}
-		}
+		let last = data.data.length -1
+		 		this.setState({
+		 			description: data.data[last].description
+		 		})
 	}
    
-
-
 
 componentDidMount(){
 	this.apiCall("http://localhost:3000/api/products", this.cambiarState)
