@@ -58,8 +58,6 @@ class ContentRow extends Component {
                 {cajas.map((valor, i) =>
                     <Box boxes={valor} key={i}/>
                 )}
-                
-                
             </div>
         )
     }

@@ -33,25 +33,19 @@ class Grill extends Component {
     nextPage = () => {
         this.setState(state => {
             return {page : state.page+1}
-        }, this.apiCall(`http://localhost:3000/api/products?page=${this.state.page}`, this.cambiarState))
+        }, this.apiCall(`http://localhost:3000/api/products?page=${this.state.page+1}`, this.cambiarState))
     }
 
     prevPage = () => {
         this.setState(state => {
             return {page : state.page-1}
-        }, this.apiCall(`http://localhost:3000/api/products?page=${this.state.page}`, this.cambiarState))
+        }, this.apiCall(`http://localhost:3000/api/products?page=${this.state.page-1}`, this.cambiarState))
     }
 
     render() {
         
-        let datas = [];
-        if (this.state.grills === []) {
-        datas = [];
-        } else {
-            datas = this.state.grills
-        }
-
-        
+        let products = [];
+        this.state.grills === [] ? products = [] : products = this.state.grills
 
         return(
             <div id="table">
@@ -73,16 +67,16 @@ class Grill extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {datas.map((value, i) =>
+                                {products.map((value, i) =>
                                     <GrillFila key={i} data={value}/>
                                 )}
                             </tbody>
                         </table>
                         <div className="d-flex justify-content-between">
-                            {0 == this.state.page ? <p> </p> :
+                            {0 === this.state.page ? <p> </p> :
                             <button type="button" className="btn btn-info mt-3" onClick={this.prevPage}>Previus page</button>
                             }
-                            {this.state.pagination.total_pages == this.state.page ? '' :
+                            {Number(this.state.pagination.total_pages-1) === this.state.page ? '' :
                             <button type="button" className="btn btn-info mt-3" onClick={this.nextPage}>Next page</button>
                             }
                         </div>

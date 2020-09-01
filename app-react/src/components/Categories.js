@@ -27,12 +27,9 @@ class Categories extends Component{
     };
 
     render() {
-        let cant;
-        if (this.state.categories === []) {
-            cant = 0;
-        } else {
-            cant = this.state.categories
-        }
+        
+        let allCategoiries;
+        this.state.categories === [] ? allCategoiries = 0 : allCategoiries = this.state.categories
 
         return (
             <div className="col-lg-6 mb-4" id="categories">						
@@ -43,7 +40,7 @@ class Categories extends Component{
                 <div className="card-body">
                     <div className="row">
 
-                        {this.state.categories.map(category => <Category data={category} key={category.id} />)}
+                        {allCategoiries.map(category => <Category data={category} key={category.id} />)}
 
                     </div>
                 </div>

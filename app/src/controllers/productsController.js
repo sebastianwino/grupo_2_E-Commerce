@@ -1,5 +1,7 @@
 const db = require('../db/models');
-const search = require('../Fx/search')
+let path = require ('path');
+const search = require('../Fx/search');
+
 
 let productsControllers = {
     // Root - Show all products
@@ -73,6 +75,22 @@ let productsControllers = {
     search: async function (req,res) {
         let x = 'x'
         search(req,res, x);
+    },
+    showImage: (req, res) => {
+
+            // let filename = req.path.split('/').pop()
+            // return res.sendFile(path.resolve('uploads',filename))
+
+
+        db.Product.findByPk(req.params.productId)
+        .then(product => {
+            let image = product.image_1
+            res.sendFile(path.join(__dirname, '../../public/images/upload', image))
+        })
+        .catch(errors => {
+            console.log(errors);
+            res.send('Error!!!');
+        })
     }
 }
 

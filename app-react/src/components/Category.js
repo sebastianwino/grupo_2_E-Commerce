@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Categories from './Categories';
 
 // let fondo = 'info';
 class Category extends Component {
@@ -27,7 +26,7 @@ class Category extends Component {
     render() {
 
         return(        
-            <div className="col-lg-6 mb-2" key={this.state.category.id}>
+            <div className="col-lg-6 mb-2">
                 <div onClick={()=>this.cambiarFondo()} className={`card bg-${this.state.fondo} text-white shadow h-75`}>
                     <div className="card-body">
                         <p>{this.state.category.name}: <small>{this.state.category.products_in_category} products</small></p>

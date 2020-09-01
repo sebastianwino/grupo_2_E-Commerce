@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 
-
 class Product extends Component {
 
 	constructor(props) {
@@ -21,11 +20,11 @@ class Product extends Component {
 	}
 
 	cambiarState = (data) => {
-		let last = this.totalPages -1
+		let last = data.data.length-1
         this.setState({
 			description: data.data[last].description,
             titulo: data.data[last].name,
-            imagen: data.data[last].image_1
+            imagen: data.data[last].imageURL
 			
         })
 	}
@@ -35,45 +34,30 @@ class Product extends Component {
     };
 
     guardarUltima = (data) => {
-        this.setState({
-			totalPages: data.meta.total_pages
-		}, this.apiCall(`http://localhost:3000/api/products?page=8`, this.cambiarState))
+        this.apiCall(`http://localhost:3000/api/products?page=${data.meta.total_pages-1}`, this.cambiarState)
     }
 
-	// componentDidMount = () => {
-    //    this.apiCall("http://localhost:3000/api/products", this.cambiarState)
-    //     }, this.apiCall(`http://localhost:3000/api/products?page=${this.state.page}`, this.cambiarState))
-	// }
-	
     render() {
 		let contenido;
         let titulo;
 		let imagen;
-        let hola;
-        
-        if (this.state.totalPages === 0) {
-			hola = 0;
-        } else {
-            hola = this.state.totalPages
-		}
-		
+
         if (this.state.description === "") {
-			contenido = <p>Cargando...</p>;
+			contenido = <p>Cargando descripcion... </p>;
         } else {
             contenido = <p>{this.state.description}</p>
         }
         
-		if (this.state.name === "") {
-			titulo = <p>Cargando...</p>;
+        if (this.state.titulo === "") {
+            titulo = <p>Cargando nombre...</p>;
         } else {
-			titulo = <h4>{this.state.titulo}</h4>
-            
+            titulo = <h4>{this.state.titulo}</h4>
         }
 
         if (this.state.imagen === "") {
-			imagen = <p>Cargando...</p>;
+			imagen = <p>Cargando Imagen...</p>;
         } else {
-            imagen = <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: "25rem"}} src= {`../../../app/public/images/upload/${this.state.imagen}`} alt="imagen"/>
+            imagen = <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: "25rem"}} src={`http://localhost:3000${this.state.imagen}`} alt="imagen"/>
 		}
         
         return (

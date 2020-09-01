@@ -2,7 +2,6 @@ let db = require('../../db/models');
 
 let apiProductsController = {
 
-   
     list: (req, res) => {
 
         let totalPrices = 0;
@@ -20,6 +19,7 @@ let apiProductsController = {
 
                 products.forEach(product => {
                     product.setDataValue('endpoint', '/api/products/' + product.id);
+                    product.setDataValue('imageURL', '/productos/' + product.id + '/imagen');
                 });
 
                 allProducts.forEach(product => {
@@ -58,6 +58,7 @@ let apiProductsController = {
         .then(productDetail => {
             if (productDetail) {
                 productDetail.setDataValue('endpoint', '/api/products/' + productDetail.id);
+                productDetail.setDataValue('imageURL', '/productos/' + productDetail.id + '/imagen');
 
                 let respuesta = {
                     meta: {
@@ -92,6 +93,7 @@ let apiProductsController = {
         
             categories.forEach(category => {
                 categoryArray.push({
+                    id: category.id,
                     name: category.name,
                     products_in_category: category.products.length            
                 })
@@ -113,6 +115,7 @@ let apiProductsController = {
             res.send('Error!!!');
         })
     }
+
 }
 
 module.exports = apiProductsController;

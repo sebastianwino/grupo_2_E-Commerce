@@ -13,5 +13,10 @@ router.get('/search', controllers.products.search);
 /*** SHOW ONE PRODUCT ***/ 
 router.get('/:productId', controllers.products.detail); /* Product detail */
 
+/*** SHOW IMAGE ***/
+router.get('/:productId/imagen', controllers.products.showImage); /* Product detail */
+
+
+
 
 module.exports = router;
