@@ -34,7 +34,7 @@ let shoppingCartControllers = {
         
         
         shopping.forEach(element => {
-            if (element.id==req.body.id){
+            if (element.id==req.body.id) {
                 find = true;
                 sum = element.cant;
         }});
@@ -57,7 +57,7 @@ let shoppingCartControllers = {
         res.redirect('/carrito')
     },
 
-    modification: (req, res)=>{
+    modification: (req, res) => {
         console.log(req.body)
         
 

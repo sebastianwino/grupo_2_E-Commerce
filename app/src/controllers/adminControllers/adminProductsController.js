@@ -165,7 +165,7 @@ let productsControllers = {
         let categoriesEdit = db.Category.findAll()
 
         Promise.all([productEdit, categoriesEdit])
-            .then(([product, categories]) =>{
+            .then(([product, categories]) => {
                 if (product) {
                     return res.render('products/admin/editProduct', {
                         title: `Editar Producto ${product.name}`,
@@ -213,7 +213,7 @@ let productsControllers = {
             let categoriesEdit = db.Category.findAll()
     
             Promise.all([productEdit, categoriesEdit])
-                .then(([product, categories]) =>{
+                .then(([product, categories]) => {
                     if (product) {
                         return res.render('products/admin/editProduct', {
                             title: `Editar Producto ${product.name}`,

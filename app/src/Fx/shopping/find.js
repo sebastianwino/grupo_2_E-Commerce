@@ -6,7 +6,7 @@ let shopping = JSON.parse(fs.readFileSync(shoppingFilePath,  {encoding: 'utf-8'}
 
 
 module.exports = function (req,res,find,productFound) {
-    if (find == false){
+    if (find == false) {
        productObject(req,res)
         } else {
             productFound = productFound.filter (element => {

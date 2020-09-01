@@ -5,7 +5,7 @@ express.static(path.join(__dirname, 'public'))
 
 
 
-module.exports = function (){
+module.exports = function () {
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {

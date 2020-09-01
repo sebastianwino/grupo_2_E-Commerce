@@ -37,7 +37,7 @@ let usersControllers = {
                             res.cookie('usuario', user[0].name, {
                                 maxAge: 60000000
                             })
-                            if(user[0].admin == true){
+                            if (user[0].admin == true) {
                             res.cookie('admin', user[0].admin, {
                                 maxAge: 60000000
                             })
@@ -45,7 +45,7 @@ let usersControllers = {
                         }
                         req.session.email = user[0].email
                         req.session.user = user[0].name
-                        if(user[0].admin == true){
+                        if (user[0].admin == true) {
                         req.session.admin = user[0].admin
                         }
                         res.redirect('/')

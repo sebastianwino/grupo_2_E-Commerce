@@ -1,5 +1,5 @@
 
-window.onload = ()=> {
+window.onload = () => {
     let btn = document.getElementById('userBtn')
     let animation = document.getElementById('userBtnClick')
     let body = document.querySelectorAll('.h')
@@ -17,8 +17,8 @@ window.onload = ()=> {
             
     }
    
-        btn.addEventListener('click', ()=>{
-        if (!flag2){
+        btn.addEventListener('click', () => {
+        if (!flag2) {
         animation.classList.add('playing')
         animation.style.height = "177px"
         animation.style.width = "150px"
@@ -32,9 +32,9 @@ window.onload = ()=> {
         })
    
 
-        for (let i=0; i<=body.length;i++){
-        body[i].addEventListener('mouseover', ()=>{
-            if(flag2){
+        for (let i=0; i<=body.length;i++) {
+        body[i].addEventListener('mouseover', () => {
+            if (flag2) {
               close() 
             }
         })

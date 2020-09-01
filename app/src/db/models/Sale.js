@@ -31,12 +31,12 @@ module.exports = function (sequelize, dataTypes) {
     let Sale = sequelize.define(alias, cols, config);
 
     Sale.associate = function (models) {
-         Sale.belongsTo(models.User, {
-             as: "user",
-             foreignKey: "user_id"
-         })
+        Sale.belongsTo(models.User, {
+            as: "user",
+            foreignKey: "user_id"
+        })
 
-        Sale.hasOne(models.Address, {
+        Sale.belongsTo(models.Address, {
             as: "address",
             foreignKey: "address_id"
         })

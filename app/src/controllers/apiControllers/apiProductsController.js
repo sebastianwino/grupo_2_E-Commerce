@@ -1,34 +1,52 @@
-let db = require('../../db/models')
+let db = require('../../db/models');
 
 let apiProductsController = {
 
    
     list: (req, res) => {
+
         let totalPrices = 0;
-        db.Product.findAll()
-        .then(products => {
-            
-            products.forEach(product => {
-                totalPrices += Number(product.price)
-                product.setDataValue('endpoint', '/api/products/' + product.id)
-            });
-
-            let respuesta = {
-                meta: {
-                    status: 200,
-                    total: products.length,
-                    total_price: totalPrices.toFixed(2),
-                    url: "/api/product"
-                },
-                data: products
-            }
-
-            res.json(respuesta)
+        let allProducts = db.Product.findAll();
+        let products = db.Product.findAll({
+            include: [
+                {association: 'category'},
+            ],
+            offset: Number(req.query.page) * 10 || 0,
+            limit: 10,
         })
-        .catch(errors => {
-            console.log(errors)
-            res.send('Error!!!')
-        })
+
+        Promise.all([allProducts, products])
+            .then(([allProducts, products]) => {
+
+                products.forEach(product => {
+                    product.setDataValue('endpoint', '/api/products/' + product.id);
+                });
+
+                allProducts.forEach(product => {
+                    totalPrices += Number(product.price)
+                });
+
+                let respuesta = {
+                    meta: {
+                        status: 200,
+                        page: req.query.page,
+                        products_per_page: 10,
+                        total_products: allProducts.length,
+                        total_price: totalPrices.toFixed(2),
+                        total_pages: Math.ceil(allProducts.length / 10),
+                        url: "/api/products"
+                    },
+                    data: products
+                }
+                res.json(respuesta);
+
+            })
+
+            .catch(errors => {
+                console.log(errors);
+                res.send('Error!!!');
+            })
+               
 
     },
     detail: (req, res) => {
@@ -38,8 +56,8 @@ let apiProductsController = {
             ]
         })
         .then(productDetail => {
-            if(productDetail) {
-                productDetail.setDataValue('endpoint', '/api/products/' + productDetail.id)
+            if (productDetail) {
+                productDetail.setDataValue('endpoint', '/api/products/' + productDetail.id);
 
                 let respuesta = {
                     meta: {
@@ -49,36 +67,52 @@ let apiProductsController = {
                     data: productDetail
                 }
 
-                res.json(respuesta)
+                res.json(respuesta);
             } else {
                 res.json('no-encontrado');
             }
         })
         .catch(errors => {
-            console.log(errors)
-            res.send('Error!!!')
+            console.log(errors);
+            res.send('Error!!!');
         })
 
     },
     categories: (req, res) => {
-        db.Category.findAll()
+    let categoryArray = [];
+        db.Category.findAll({
+            include: [
+                {association: 'products'},
+            ]
+        })
         .then(categories => {
+            // categories.forEach(category => {
+            //     product.setDataValue('endpoint', '/api/products/categories' + product.id)
+            // });
+        
+            categories.forEach(category => {
+                categoryArray.push({
+                    name: category.name,
+                    products_in_category: category.products.length            
+                })
+            })
+           
             let respuesta = {
                 meta: {
                     status: 200,
                     total: categories.length,
                     url: "/api/products/categories"
                 },
-                data: categories
+                data: categoryArray
             }
-
-            res.json(respuesta)
+            
+            res.json(respuesta);
         })
         .catch(errors => {
-            console.log(errors)
-            res.send('Error!!!')
+            console.log(errors);
+            res.send('Error!!!');
         })
     }
 }
 
-module.exports = apiProductsController
+module.exports = apiProductsController;

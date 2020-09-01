@@ -13,7 +13,7 @@ let product = {
 
 window.onload = () => {
 
-    function test(){
+    function test() {
         let vari
         if (err.length>0) {
             vari = true;
@@ -72,12 +72,12 @@ window.onload = () => {
     
     form.submit.addEventListener('click', function (e) {
         let flag = false
-        for(let v in product){
-            if(product[v]==true){
+        for(let v in product) {
+            if (product[v]==true) {
                 flag = true
             }
         }
-        if(flag){
+        if (flag) {
             e.preventDefault();
         }
     })
@@ -98,8 +98,8 @@ window.onload = () => {
             flag2=false
     }
    
-        btn.addEventListener('click', ()=>{
-        if (!flag2){
+        btn.addEventListener('click', () => {
+        if (!flag2) {
         animation.classList.add('playing')
         animation.style.height = "177px"
         animation.style.width = "150px"
@@ -113,9 +113,9 @@ window.onload = () => {
         })
    
 
-        for (let i=0; i<=body.length;i++){
-        body[i].addEventListener('mouseover', ()=>{
-            if(flag2){
+        for (let i=0; i<=body.length;i++) {
+        body[i].addEventListener('mouseover', () => {
+            if (flag2) {
               close() 
             }
         })

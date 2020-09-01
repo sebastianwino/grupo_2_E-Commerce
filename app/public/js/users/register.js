@@ -92,49 +92,49 @@ window.onload = () => {
     }
 
     form.name.addEventListener('blur', function (e) {
-        if(!firstTime.name){
+        if (!firstTime.name) {
         switcheando('name', e.target);
         }
     
     })
     form.name.addEventListener('keyup', function (e) {
-        if(firstTime.name){
+        if (firstTime.name) {
         switcheando('name', e.target);
         }
     })
 
     form.lastname.addEventListener('blur', function (e) {
-        if(!firstTime.lastName){
+        if (!firstTime.lastName) {
         switcheando('lastname', e.target);
         }
     })
     form.lastname.addEventListener('keyup', function (e) {
-        if(firstTime.lastName){
+        if (firstTime.lastName) {
         switcheando('lastname', e.target);
         }
     })
 
 
     form.email.addEventListener('blur', function (e) {
-        if(!firstTime.email){
+        if (!firstTime.email) {
         switcheando('email', e.target);
         }
     })
     form.email.addEventListener('keyup', function (e) {
-        if(firstTime.email){
+        if (firstTime.email) {
         switcheando('email', e.target);
         }
     })
 
     form.password.addEventListener('blur', function (e) {
-        if(!firstTime.pass){
+        if (!firstTime.pass) {
         switcheando('password', e.target);
         if (rePass) {
         switcheando('passwordConfirmation', rePass)
         }}
     })
     form.password.addEventListener('keyup', function (e) {
-        if(firstTime.pass){
+        if (firstTime.pass) {
         switcheando('password', e.target);
         if (rePass) {
             switcheando('passwordConfirmation', rePass)
@@ -142,23 +142,23 @@ window.onload = () => {
     })
 
     form.passwordConfirmation.addEventListener('blur', function (e) {
-        if(!firstTime.rePass){
+        if (!firstTime.rePass) {
         switcheando('passwordConfirmation', e.target);
         }
     })
     form.passwordConfirmation.addEventListener('keyup', function (e) {
-        if(firstTime.rePass){
+        if (firstTime.rePass) {
         switcheando('passwordConfirmation', e.target);
         }
     })
 
     form.cell_phone.addEventListener('blur', function (e) {
-        if(!firstTime.cell){
+        if (!firstTime.cell) {
         switcheando('cell_phone', e.target);
         }
     })
     form.cell_phone.addEventListener('keyup', function (e) {
-        if(firstTime.cell){
+        if (firstTime.cell) {
         switcheando('cell_phone', e.target);
         }
     })

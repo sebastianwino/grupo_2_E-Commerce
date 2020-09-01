@@ -15,7 +15,7 @@
                        <a class="h nav-link" href="/">Inicio <i class="h fas fa-stroopwafel"></i></i><span class="h sr-only">(current)</span></a>
                    </li>
                    <li class="h nav-item izq">
-                    <%if (admin != undefined){%>
+                    <%if (admin != undefined) {%>
                         <a class="h nav-link" href="/admin/productos">Productos <i class="h fas fa-cheese"></i></a>
                      <%} else {%>
                          <a class="h nav-link" href="/productos">Productos <i class="h fas fa-cheese"></i></a>
@@ -60,7 +60,7 @@
                             <form action="/usuarios/perfil" method="GET">
                                 <button class="btn btn-success btnD btnProfile">Ir a Perfil</button>
                             </form>
-                            <%if (admin==1){%>
+                            <%if (admin==1) {%>
                                 <form action="/admin/productos/crear" method="GET">
                                     <button class="btn btn-success btnD btnLogOut admin">Crar producto</button>
                                 </form>    
@@ -121,7 +121,7 @@
                            <a class="h nav-link" href="/">Inicio <i class="h fas fa-stroopwafel"></i></i><span class="h sr-only">(current)</span></a>
                        </li>
                        <li class="h nav-item izq">
-                        <%if (admin != undefined){%>
+                        <%if (admin != undefined) {%>
                            <a class="h nav-link" href="/admin/productos">Productos <i class="h fas fa-cheese"></i></a>
                         <%} else {%>
                             <a class="h nav-link" href="/productos">Productos <i class="h fas fa-cheese"></i></a>

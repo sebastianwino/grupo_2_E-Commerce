@@ -8,6 +8,9 @@ module.exports = function (sequelize, dataTypes) {
             autoIncrement: true,
             allownull: false
         },
+        user_id: {
+            type: dataTypes.BIGINT(19).UNSIGNED,
+        },
         street: {
             type: dataTypes.STRING(45),
             allownull: false
@@ -59,11 +62,10 @@ module.exports = function (sequelize, dataTypes) {
             as: "user",
             foreignKey: "user_id"
         })
-        Address.belongsTo(models.Sale, {
+        Address.hasMany(models.Sale, {
             as: "sale",
             foreignKey: "address_id"
-        })
+        }) 
     }
-
     return Address
 }

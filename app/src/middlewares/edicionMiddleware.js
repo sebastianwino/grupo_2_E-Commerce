@@ -1,4 +1,4 @@
-async function edicionMiddleware (req, res, next){
+async function edicionMiddleware (req, res, next) {
     
  
     if ((req.session.user) && (req.session.email)) {  
@@ -7,7 +7,7 @@ async function edicionMiddleware (req, res, next){
                 email: req.session.email
             }
         })
-        if(user.admin){
+        if (user.admin) {
             let productsAll = await db.Product.findAll({include:['category']})
             let product = await db.Product.findByPk(req.params.productId,{
                 include: ['category']

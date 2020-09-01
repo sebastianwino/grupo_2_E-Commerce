@@ -9,13 +9,13 @@ let productsAdminMiddleware = (req, res, next) => {
         }
     })
         .then(users => {
-            if(users.length == 0){
+            if (users.length == 0) {
                 next();
             } else {
                 res.redirect('/admin/productos');
             }
         })
-        .catch(err =>{
+        .catch(err => {
             console.log(err)
             res.redirect('/error')
         })

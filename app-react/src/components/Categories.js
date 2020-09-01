@@ -2,14 +2,14 @@ import React, {Component} from 'react'
 import Category from './Category'
 
 class Categories extends Component{
-    constructor(props){
+    constructor(props) {
 		super(props);
 		this.state = {
 			categories: []
 		}
 	}
 
-    apiCall(url, consecuencia){
+    apiCall(url, consecuencia) {
 		fetch(url)
 		.then(response => response.json())
 		.then( data => consecuencia(data))
@@ -22,13 +22,13 @@ class Categories extends Component{
 		})
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.apiCall("http://localhost:3000/api/products/categories", this.changeState)
     };
 
-    render(){
+    render() {
         let cant;
-        if (this.state.categories === []){
+        if (this.state.categories === []) {
             cant = 0;
         } else {
             cant = this.state.categories

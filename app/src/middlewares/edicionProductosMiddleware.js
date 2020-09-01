@@ -9,7 +9,7 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 let categories = ["facturas", "tortas", "salado", "especialidades", "galletitas"]
 
 
-function  edicionProductosMiddleware (req, res, next){
+function  edicionProductosMiddleware (req, res, next) {
     let filter = req.query.filter;
         let pruebaProductos = [];
         let priceMin = req.query.filterPriceMin;
@@ -32,7 +32,7 @@ function  edicionProductosMiddleware (req, res, next){
     if ((req.session.user) && (req.session.email)) {        
         users.forEach(user => {
             if (user.email == req.session.email) { 
-                if(user.privilege == 'admin'){
+                if (user.privilege == 'admin') {
                     res.render('products/createProducts', {
                         title: 'Productos',
                         products: pruebaProductos,

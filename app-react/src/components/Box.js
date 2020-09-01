@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Box(props){ 
+function Box(props) { 
 
     return(
         

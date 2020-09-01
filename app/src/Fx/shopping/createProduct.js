@@ -1,4 +1,4 @@
-function productObject(req,res){
+function productObject(req,res) {
     let product = {}
     let sum = 0    
     let price = parseFloat(req.body.price);

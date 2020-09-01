@@ -1,4 +1,4 @@
-window.onload = ()=> {
+window.onload = () => {
 const image = document.querySelector('.image');
 
 image.addEventListener('mousemove', function (e) {
@@ -19,7 +19,7 @@ image.addEventListener('mouseleave', function () {
 
 
 }
-// window.onload = ()=> {
+// window.onload = () => {
 // let image = document.querySelector('img.image-prince')
 
 // image.addEventListener('click', () => {
