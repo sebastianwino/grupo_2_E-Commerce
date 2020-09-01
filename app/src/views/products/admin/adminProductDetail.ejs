@@ -7,23 +7,27 @@
 
 <body>
     <!-- Header -->
-    <%- include('../../partials/header.ejs', {user:user, admin:admin}) %>
+    <%- include('../../partials/header.ejs', {user: user, admin: admin}) %>
     <!-- /Header -->
 
     <!-- Main -->
     <main>
         <div class="h container general my-4 reset-link">
             <div class="row">
-                
-                <%- include('../productsPartials/card.ejs') %>
 
+                <!-- Producto -->
+                <%- include('../productsPartials/card.ejs', {toProduct: "/admin/productos"}) %>
+                <!-- /Producto -->
+
+                <!-- Editar producto -->
                 <div class="edit-delete d-flex justify-content-end align-items-end col-12 my-2">
                     <a href="/admin/productos/<%= product.id %>/editar"><button type="submit" class="btn btn-info mt-4">Editar producto</button></a>
                 </div>
+                <!-- /Editar producto -->
                 
-                <!-- Productos seleccionados -->
-
+                <!-- Productos recomendados -->
                 <%- include('../productsPartials/related.ejs') %>
+                <!-- /Productos recomendados -->
 
             </div>
         </div>
@@ -37,7 +41,9 @@
     <%- include('../../partials/footer.ejs') %>
     <!-- /footer -->
 
+    <!-- Scripts -->
     <%- include('../productsPartials/imagesScripts.ejs') %>
+    <!-- /Scripts -->
     
 </body>
 

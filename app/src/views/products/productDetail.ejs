@@ -7,7 +7,7 @@
 
 <body>
     <!-- Header -->
-    <%- include('../partials/header.ejs', {user:user, admin:admin}) %>
+    <%- include('../partials/header.ejs', {user: user, admin: admin}) %>
     <!-- /Header -->
 
     <!-- Main -->
@@ -15,11 +15,13 @@
         <div class="h container general my-4 reset-link">
             <div class="row">
 
-                <%- include('./productsPartials/card.ejs') %>
+                <!-- Producto -->
+                <%- include('./productsPartials/card.ejs', {toProduct: "/productos"})%>
+                <!-- /Producto -->
 
-                <!-- Productos seleccionados -->
-
+                <!-- Productos recomendados -->
                 <%- include('./productsPartials/related.ejs') %>
+                <!-- /Productos recomendados -->
 
             </div>
         </div>
@@ -31,8 +33,9 @@
     <%- include('../partials/footer.ejs') %>
     <!-- /footer -->
 
+    <!-- Scripts -->
     <%- include('./productsPartials/imagesScripts.ejs') %>
-
+    <!-- /Scripts -->
 
 </body>
 
