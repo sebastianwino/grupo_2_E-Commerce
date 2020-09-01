@@ -49,7 +49,8 @@ class Product extends Component {
 		let contenido;
         let titulo;
 		let imagen;
-		let hola;
+        let hola;
+        
         if (this.state.totalPages === 0) {
 			hola = 0;
         } else {
@@ -60,7 +61,8 @@ class Product extends Component {
 			contenido = <p>Cargando...</p>;
         } else {
             contenido = <p>{this.state.description}</p>
-		}
+        }
+        
 		if (this.state.name === "") {
 			titulo = <p>Cargando...</p>;
         } else {
@@ -75,7 +77,7 @@ class Product extends Component {
 		}
         
         return (
-            <div className="col-lg-6 mb-4">
+            <div className="col-lg-6 mb-4" id="last-product">
                 <div className="card shadow mb-4">
                     <div className="card-header py-3">
                         <h6 className="m-0 font-weight-bold text-primary">Last product in Data Dase</h6>

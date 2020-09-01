@@ -3,6 +3,7 @@ import React from 'react'
 function GrillFila(props) {
     return(
         <tr>
+        <td>{props.data.id}</td>
         <td>{props.data.name}</td>
         <td>{props.data.description}</td>
         <td>${props.data.price}</td>

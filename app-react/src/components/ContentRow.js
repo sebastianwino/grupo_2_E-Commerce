@@ -54,7 +54,7 @@ class ContentRow extends Component {
         }
         
         return(
-            <div className="row">
+            <div className="row" id="content-row">
                 {cajas.map((valor, i) =>
                     <Box boxes={valor} key={i}/>
                 )}

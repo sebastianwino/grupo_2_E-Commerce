@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
+import Categories from './Categories';
 
 // let fondo = 'info';
 class Category extends Component {
 
-    constructor() {
-		super();
+    constructor(props) {
+		super(props);
 		this.state = {
-			fondo: 'info'
+            fondo: 'info',
+            category: props.data
 		}
 	}
 
@@ -25,15 +27,13 @@ class Category extends Component {
     render() {
 
         return(        
-            this.props.cant.map((category, i) =>
-            <div className="col-lg-6 mb-2" key={category.id}>
+            <div className="col-lg-6 mb-2" key={this.state.category.id}>
                 <div onClick={()=>this.cambiarFondo()} className={`card bg-${this.state.fondo} text-white shadow h-75`}>
                     <div className="card-body">
-                        <p>{category.name}: <small>{category.products_in_category} products</small></p>
+                        <p>{this.state.category.name}: <small>{this.state.category.products_in_category} products</small></p>
                     </div>
                 </div>
             </div>
-            )
         )
     }
 }

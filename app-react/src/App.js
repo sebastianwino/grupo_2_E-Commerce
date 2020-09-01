@@ -12,24 +12,26 @@ import Grill from './components/Grill';
 function App() {
   return (
     <div className="App">
-      <div id="wrapper">
-        <Sidebar/>
-        <div id="content-wrapper" className="d-flex flex-column">
-          <div id="content">
-            <Topbar/>
-              <div className="container-fluid">
-                <PageHeading/>
-                <ContentRow/>
-                <div className="row">
-                  <Product/>
-                  <Categories/>
+        <div id="wrapper" className="row">
+            <div className="col-2">
+                <div className="position-fixed"><Sidebar/></div>
+            </div>
+            <div id="content-wrapper" className="d-flex flex-column col-10">
+                <div id="content">
+                        <Topbar/>
+                    <div className="container-fluid">
+                        <PageHeading/>
+                        <ContentRow/>
+                        <div className="row">
+                            <Product/>
+                            <Categories/>
+                        </div>
+                        <Grill/>
+                    </div>
                 </div>
-               <Grill/>
-              </div>
-          </div>
-            <Footer/>
-          </div>
-      </div>
+                <Footer/>
+            </div>
+        </div>
     </div>
   );
 }

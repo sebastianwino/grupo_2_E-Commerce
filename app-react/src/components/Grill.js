@@ -54,7 +54,7 @@ class Grill extends Component {
         
 
         return(
-            <div>
+            <div id="table">
             <h1 className="h3 mb-2 text-gray-800">All the products in the Database</h1>
             
             <div className="card shadow mb-4">
@@ -63,6 +63,7 @@ class Grill extends Component {
                         <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                             <thead>
                                 <tr>
+                                    <th>Id</th>
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>Price</th>
@@ -79,10 +80,10 @@ class Grill extends Component {
                         </table>
                         <div className="d-flex justify-content-between">
                             {0 == this.state.page ? <p> </p> :
-                            <button type="button" class="btn btn-info mt-3" onClick={this.prevPage}>Previus page</button>
+                            <button type="button" className="btn btn-info mt-3" onClick={this.prevPage}>Previus page</button>
                             }
                             {this.state.pagination.total_pages == this.state.page ? '' :
-                            <button type="button" class="btn btn-info mt-3" onClick={this.nextPage}>Next page</button>
+                            <button type="button" className="btn btn-info mt-3" onClick={this.nextPage}>Next page</button>
                             }
                         </div>
                     </div>
