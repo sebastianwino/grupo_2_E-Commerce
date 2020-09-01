@@ -1,4 +1,3 @@
-// let users = require('../data-json/usersDB.json');
 let db = require('../db/models')
 
 let loginRegisterMiddleware = (req, res, next) => {

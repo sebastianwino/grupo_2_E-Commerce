@@ -6,7 +6,6 @@ function cookieMiddleware (req, res, next) {
         if ((req.cookies.admin)&&(req.session.admin == undefined))
         req.session.admin = req.cookies.admin;
     }
-
     
     next();
 }

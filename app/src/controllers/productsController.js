@@ -1,12 +1,5 @@
 const db = require('../db/models');
-const sequelize = require ('sequelize');
 const search = require('../Fx/search')
-
-// const productsFilePath = path.join(__dirname, '../data-json/productsDB.json');
-// const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
-//let categories = ["facturas", "tortas", "salado", "especialidades", "galletitas"]
-
 
 let productsControllers = {
     // Root - Show all products
@@ -68,7 +61,7 @@ let productsControllers = {
                 };
             });
             return res.render('products/productDetail', {
-                title: product.title,
+                title: product.name,
                 product: product,
                 productsRelated: productsRelated,
                 user: req.session.user,
