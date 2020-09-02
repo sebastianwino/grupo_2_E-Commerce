@@ -7,8 +7,8 @@ class Product extends Component {
 		this.state = {
 			totalPages: 0,
 			description: "",
-            titulo: "",
-            imagen: ""
+            title: "",
+            image: ""
 		}
     }
     
@@ -23,8 +23,8 @@ class Product extends Component {
 		let last = data.data.length-1
         this.setState({
 			description: data.data[last].description,
-            titulo: data.data[last].name,
-            imagen: data.data[last].imageURL
+            title: data.data[last].name,
+            image: data.data[last].imageURL
 			
         })
 	}
@@ -38,28 +38,14 @@ class Product extends Component {
     }
 
     render() {
-		let contenido;
-        let titulo;
-		let imagen;
-
-        if (this.state.description === "") {
-			contenido = <p>Cargando descripcion... </p>;
-        } else {
-            contenido = <p>{this.state.description}</p>
-        }
+		let description;
+        let title;
+        let image;
         
-        if (this.state.titulo === "") {
-            titulo = <p>Cargando nombre...</p>;
-        } else {
-            titulo = <h4>{this.state.titulo}</h4>
-        }
+        this.state.description === "" ? description = <p>Cargando descripcion... </p> : description = <p>{this.state.description}</p>
+        this.state.title === "" ? title = <p>Cargando nombre... </p> : title = <h4>{this.state.title}</h4>
+        this.state.image === "" ? image = <p>Cargando image... </p> : image = <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: "25rem"}} alt="productImg" src={`http://localhost:3000${this.state.image}`} />
 
-        if (this.state.imagen === "") {
-			imagen = <p>Cargando Imagen...</p>;
-        } else {
-            imagen = <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: "25rem"}} src={`http://localhost:3000${this.state.imagen}`} alt="imagen"/>
-		}
-        
         return (
             <div className="col-lg-6 mb-4" id="last-product">
                 <div className="card shadow mb-4">
@@ -68,11 +54,10 @@ class Product extends Component {
                     </div>
                     <div className="card-body">
                         <div className="text-center">
-                         {imagen}
+                         {image}
                         </div>
-                        {titulo}
-                        {contenido}
-                        <a target="_blank" rel="nofollow" href="/">View product detail</a>
+                        {title}
+                        {description}
                     </div>
                 </div>
             </div>
