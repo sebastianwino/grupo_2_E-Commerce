@@ -3,7 +3,7 @@ const { validationResult } = require('express-validator');
 const sequelize = require('sequelize')
 let db = require('../db/models')
 
-let usersControllers = {
+let usersController = {
     register: (req, res) => {
         
         res.render('users/register', {
@@ -58,4 +58,4 @@ let usersControllers = {
     }
 }
 
-module.exports = usersControllers;
+module.exports = usersController;

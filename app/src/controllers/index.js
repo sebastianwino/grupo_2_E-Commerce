@@ -3,7 +3,7 @@ let controllers = {
     user: require('./usersController'),
     userAuth: require('./usersAuthController'),
     products: require('./productsController'),
-    shoppingCart: require('./shoppingCartController'),
+    cart: require('./cartController'),
     admin: require('./adminControllers')
 }
 

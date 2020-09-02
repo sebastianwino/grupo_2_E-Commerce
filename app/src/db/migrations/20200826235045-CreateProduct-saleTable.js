@@ -2,7 +2,7 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('product_sale', {
+        return queryInterface.createTable('cart_product', {
             id: {
                 type: Sequelize.BIGINT(19).UNSIGNED,
                 primaryKey: true,
@@ -19,27 +19,31 @@ module.exports = {
                 },
                 allowNull: false
             },
-            qty: {
-                type: Sequelize.DECIMAL(10, 2).UNSIGNED,
-                allowNull: false
-            },
-            sub_total: {
-                type: Sequelize.INTEGER.UNSIGNED,
-                allowNull: false
-            },
-            sale_id: {
+            carts_id: {
                 type: Sequelize.BIGINT(19).UNSIGNED,
                 references: {
                     model: {
-                        tableName: 'sales',
+                        tableName: 'carts',
                         key: 'id'
                     }
                 },
                 allowNull: false
             },
+            unit_price: {
+                type: Sequelize.INTEGER.UNSIGNED,
+                allowNull: false
+            },
+            qty: {
+                type: Sequelize.DECIMAL(10, 2).UNSIGNED,
+                allowNull: false
+            },
+            sub_total_price: {
+                type: Sequelize.INTEGER.UNSIGNED,
+                allowNull: false
+            },
             created_at: {
                 type: Sequelize.DATE,
-                allowNull: true
+                allowNull: false
             },
             updated_at: {
                 type: Sequelize.DATE,
@@ -54,6 +58,6 @@ module.exports = {
     },
 
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('product_sale');
+        return queryInterface.dropTable('cart_product');
     }
 };

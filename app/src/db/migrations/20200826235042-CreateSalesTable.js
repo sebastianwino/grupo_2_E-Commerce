@@ -2,7 +2,7 @@
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('sales', {
+        return queryInterface.createTable('carts', {
             id: {
                 type: Sequelize.BIGINT(19).UNSIGNED,
                 primaryKey: true,
@@ -17,7 +17,7 @@ module.exports = {
                         key: 'id'
                     }
                 },
-                allowNull: false
+                allowNull: true
             },
             address_id: {
                 type: Sequelize.BIGINT(19).UNSIGNED,
@@ -29,17 +29,21 @@ module.exports = {
                 },
                 allowNull: false
             },
-            total: {
+            total_price: {
                 type: Sequelize.DECIMAL(10, 0),
                 allowNull: false
             },
-            description: {
+            products_total: {
+                type: Sequelize.DECIMAL(10, 0),
+                allowNull: false
+            },
+            general_comments: {
                 type: Sequelize.STRING(600),
                 allowNull: true
             },
             created_at: {
                 type: Sequelize.DATE,
-                allowNull: true
+                allowNull: false
             },
             updated_at: {
                 type: Sequelize.DATE,
@@ -53,7 +57,7 @@ module.exports = {
     },
 
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('sales');
+        return queryInterface.dropTable('carts');
     }
     
 };

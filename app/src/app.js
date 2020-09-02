@@ -7,7 +7,8 @@ var methodOverride = require('method-override')
 const session = require('express-session')
 const cookieMiddleware = require('./middlewares/cookieMiddleware')
 const authAdminMiddleware = require ('./middlewares/adminMiddlewares/authAdminMiddleware');
-var cors = require('cors')
+const cartmiddleware = require('./middlewares/cartMiddleware')
+var cors = require('cors');
 
 
 //REQUERIMIENTO DE RUTAS
@@ -15,9 +16,9 @@ var mainRouter = require('./routes/mainRoutes');
 var usersRouter = require('./routes/usersRoutes');
 var adminRouter = require('./routes/admin/adminRoutes');
 var productsRouter = require('./routes/productsRoutes');
-var shoppingCartRouter = require('./routes/shoppingCartRoutes');
-var apiProductsRoutes = require('./routes/apiRoutes/apiProductsRoutes')
-var apiUsersRoutes = require('./routes/apiRoutes/apiUsersRoutes')
+var cartRouter = require('./routes/cartRoutes');
+var apiProductsRoutes = require('./routes/apiRoutes/apiProductsRoutes');
+var apiUsersRoutes = require('./routes/apiRoutes/apiUsersRoutes');
 
 var app = express();
 app.use(cors())
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cookieMiddleware);
+app.use(cartmiddleware);
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride('_method'));
 
@@ -42,7 +44,7 @@ app.use('/', mainRouter);
 app.use('/usuarios', usersRouter);
 app.use('/admin', authAdminMiddleware ,adminRouter);
 app.use('/productos', productsRouter);
-app.use('/carrito', shoppingCartRouter);
+app.use('/carrito', cartRouter);
 app.use('/api/products', apiProductsRoutes);
 app.use('/api/users', apiUsersRoutes);
 

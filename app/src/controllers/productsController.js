@@ -14,7 +14,7 @@ function paginate(req, result, productsLimit, url) {
     }
 }
 
-let productsControllers = {
+let productsController = {
     // Root - Show all products
     root: async function (req, res) {
         let productsAll = await db.Product.findAndCountAll({
@@ -102,4 +102,4 @@ let productsControllers = {
     }
 }
 
-module.exports = productsControllers;
+module.exports = productsController;

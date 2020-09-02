@@ -1,11 +1,12 @@
-
 const db = require('../db/models');
 const { unlink } = require('fs-extra');
 
-let indexControllers = {
+let indexController = {
     root: (req, res) => {
         db.Product.findAll()
         .then(productsDB => {
+
+            // REVISAR DÓNDE VA ESTO
             let imagenActual = productsDB[(productsDB.length) - 1].image_1;
             imagenActual = imagenActual.substring(1)
             
@@ -40,4 +41,4 @@ let indexControllers = {
 
 }
 
-module.exports = indexControllers;
+module.exports = indexController;
