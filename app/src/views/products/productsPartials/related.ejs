@@ -6,7 +6,7 @@
         <div class="row">
             <% productsRelated.forEach(productRelated => { %>
                 
-                <a class="link-product-related" href="/admin/productos/<%= productRelated.id %>">
+                <a class="link-product-related" href="<%= userType %>/productos/<%= productRelated.id %>">
                     <div class="col-12 col-sm-6 col-lg-4">
                         <div class="card tarjetas-productos product-card-inProductDetail">
                             <div class="imagen-producto-productos">

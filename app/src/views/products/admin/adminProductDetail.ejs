@@ -16,7 +16,7 @@
             <div class="row">
 
                 <!-- Producto -->
-                <%- include('../productsPartials/card.ejs', {toProduct: "/admin/productos"}) %>
+                <%- include('../productsPartials/card.ejs', {userType: "/admin"}) %>
                 <!-- /Producto -->
 
                 <!-- Editar producto -->
@@ -26,7 +26,7 @@
                 <!-- /Editar producto -->
                 
                 <!-- Productos recomendados -->
-                <%- include('../productsPartials/related.ejs') %>
+                <%- include('../productsPartials/related.ejs', {userType: "/admin"}) %>
                 <!-- /Productos recomendados -->
 
             </div>

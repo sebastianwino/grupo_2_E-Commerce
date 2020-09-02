@@ -1178,6 +1178,13 @@ li.lista-filtro-productos {
     transform: scale(1.1);
 }
 
+.pagination-menu {
+    border: none;
+}
+
+.pagination-menu:hover {
+    color: darkred;
+}
 
 
 @media (min-width: 768px) {}

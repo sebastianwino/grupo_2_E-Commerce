@@ -16,11 +16,11 @@
             <div class="row">
 
                 <!-- Producto -->
-                <%- include('./productsPartials/card.ejs', {toProduct: "/productos"})%>
+                <%- include('./productsPartials/card.ejs', {userType: ""})%>
                 <!-- /Producto -->
 
                 <!-- Productos recomendados -->
-                <%- include('./productsPartials/related.ejs') %>
+                <%- include('./productsPartials/related.ejs', {userType: ""}) %>
                 <!-- /Productos recomendados -->
 
             </div>
@@ -37,6 +37,7 @@
     <%- include('./productsPartials/imagesScripts.ejs') %>
     <!-- /Scripts -->
 
+    
 </body>
 
 </html>

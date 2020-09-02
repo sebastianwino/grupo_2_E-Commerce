@@ -4,51 +4,58 @@ const {
 } = require('fs-extra');
 const db = require('../../db/models');
 const search = require('../../Fx/search')
-const sequelize = require('sequelize')
 const { validationResult } = require('express-validator');
 const path = require('path')
+
+function paginate(req, result, productsLimit, url) {
+    let baseURL = url
+    let limit = productsLimit
+
+    return {
+        firstPage: baseURL,
+        nextPage: baseURL + (req.query.page ? Number(req.query.page)+1 : 1),
+        prevPage: baseURL + (req.query.page > 0 ? Number(req.query.page)-1 : 0),
+        lastPage: baseURL + (parseInt(result.count / limit)-1)
+    }
+}
 
 let productsControllers = {
     // Root - Show all products
     root: async function (req, res) {
-        let productsAll = await db.Product.findAll({
-            include: ['category']
+        let productsAll = await db.Product.findAndCountAll({
+            offset: Number(req.query.page)*18 || 0,
+            limit: 12,
+            include: ['category'],
         })
+        let products = productsAll.rows
         let categoriesAll = await db.Category.findAll()
 
-
-
         let filter = req.query.filter;
-
-
-        let pruebaProductos = [];
         let priceMin = req.query.filterPriceMin;
         let priceMax = req.query.filterPriceMax;
 
-        pruebaProductos = productsAll.filter(product => {
-            return product.id <= 30
-        })
-
         if (filter != undefined) {
-            pruebaProductos = productsAll.filter(product => {
+            products = products.filter(product => {
                 return product.category.name == filter;
             })
         }
         if ((priceMin != undefined) && (priceMax != undefined)) {
-            pruebaProductos = productsAll.filter(product => {
+            products = products.filter(product => {
                 return (product.price >= priceMin) && (product.price <= priceMax);
             })
         }
-        // tambien se podria filtrar por where dentro de findAll
-        res.render('products/admin/adminProducts', { 
+        //  tambien se podria filtrar por where dentro de findAll
+
+        res.render('products/admin/adminProducts', {
             title: 'Productos',
-            products: pruebaProductos,
+            products: products,
             categories: categoriesAll,
             filter: filter,
             filterPriceMin: priceMin,
             filterPriceMax: priceMax,
             user: req.session.user,
-            admin: req.session.admin
+            admin: req.session.admin,
+            pagination: paginate(req, productsAll, 6, `/admin/productos?page=`)
         });
     },
 
@@ -63,13 +70,13 @@ let productsControllers = {
 
         if (product) {
             let productsRelated = productsAll.filter(productRelated => {
-                if (productRelated.category.name == product.category.name && productRelated.price <= (product.price * 1.3) &&
+                if (productRelated.category.name == product.category.name && productRelated.price <= (product.price * 1.5) &&
                     productRelated.price >= (product.price * 0.7) && productRelated != product) {
                     return productRelated;
                 };
             });
             return res.render('products/admin/adminProductDetail', {
-                title: product.title,
+                title: product.name,
                 product: product,
                 productsRelated: productsRelated,
                 user: req.session.user,
@@ -78,7 +85,6 @@ let productsControllers = {
         }
         res.redirect('/no-encontrado');
     },
-
     // Create - Form to create
     create: (req, res) => {
         db.Category.findAll()
