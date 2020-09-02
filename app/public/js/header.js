@@ -3,9 +3,26 @@ window.onload = () => {
     let btn = document.getElementById('userBtn')
     let animation = document.getElementById('userBtnClick')
     let body = document.querySelectorAll('.h')
+    let detras = document.getElementById('detras')
+    let delante = document.getElementById('delante')
     let flag = false;
     let flag2 = false;
-    console.log('llega')
+    
+
+    document.addEventListener('scroll', ()=> {
+        const scrolled = window.scrollY
+        console.log(scrolled)
+        if (scrolled<215){
+            detras.classList.add('d-none')
+            delante.classList.remove('d-none')
+        } else {
+            detras.classList.remove('d-none')
+            delante.classList.add('d-none')
+            
+
+        }
+    })
+    
 
     function close () {
             animation.classList.add('hiddenAnimation')

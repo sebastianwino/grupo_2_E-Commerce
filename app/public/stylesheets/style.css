@@ -704,6 +704,9 @@
     color: white;
 }
 
+.index-14{
+    z-index: 14;
+}
 /*(Smartphones)*/
 @media (max-width: 600px) {
     .carousel-caption {
@@ -1270,7 +1273,9 @@ li.lista-filtro-productos {
     transform: scale(1.1);
 }
 
-
+.select-hover{
+    border: 1px solid red
+}
 
 .productos-recomendados .card {
     border: none;
