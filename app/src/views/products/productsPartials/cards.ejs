@@ -2,7 +2,7 @@
     <h1><a href="/">Home</a>/<a href="/productos">Productos</a></h1>
 </div>
 
-<div>
+<div class="search-result">
     <%if (typeof cant != 'undefined') {%>
         <% if (cant == 1) { %>
             <div>
@@ -14,11 +14,10 @@
             </div>
         <%}%>
     <%}%>
-    
-    
-        <%if (products.length == 0) {%>
+    <%if (products.length == 0) {%>
         <div class="w-100">
-            <h4 class="text-danger" style="line-height: 100px; text-align: center;"><b>No se han encontrado productos</b>
+            <h4 class="text-danger" style="line-height: 100px; text-align: center;">
+                <b>No se han encontrado productos</b>
             </h4>
         </div>
     <%}%>
@@ -28,23 +27,26 @@
 
     <% products.forEach(product => { %>
     <a href="<%= toDetail %>/<%= product.id %>">
-        <div class="col-12 col-sm-6 col-lg-4">
-            <div class="card tarjetas-productos product-card-inProducts my-5">
+        <div class="col-12 col-sm-6 col-lg-4 mb-2">
+            <div class="card tarjetas-productos product-card-inProducts d-flex">
                 <div class="imagen-producto-productos">
                     <img class="card-img-top imagen-producto-producto" src="/images/upload/<%=product.image_1%>"
                         alt="imagen de <%= product.name %>">
                 </div>
-                <div class="card-body position-relative">
+                <div class="card-body body-card">
                     <div class="d-flex justify-content-between">
                         <div class="titulo-precio">
                             <p class="titulo-producto"><%= product.name %></p>
-                            <p class="precio-producto">$<%= product.price %></p>
                         </div>
 
                         <div class="add-to-cart-products">
                             <a href="#"><i class="fas fa-shopping-cart fa-2x"></i></a>
                         </div>
+                       
                     </div>
+                </div>
+                <div class="titulo-precio">
+                    <p class="precio-producto">$<%= product.price %></p>
                 </div>
             </div>
         </div>

@@ -1102,7 +1102,7 @@
 
 .tarjetas-productos {
     border: none;
-    margin-bottom: 30px;
+    
 }
 
 .reset-link a {
@@ -1130,7 +1130,7 @@ li.lista-filtro-productos {
 
 .cartel-aviso-productos {
     color: darkred;
-    border: 0.7px solid darkred;
+    
 }
 
 .titulo-productos a:hover {
@@ -1138,17 +1138,22 @@ li.lista-filtro-productos {
     color: #79685C;
 }
 
-.tarjetas-productos {
-    height: 330px;
+.body-card {
+    padding: .7rem;
 }
 
 .titulo-precio {
     margin-right: 5px;
 }
 
+.titulo-producto {
+    margin-bottom: 0px;
+}
+
 .precio-producto {
     color: darkred;
     font-weight: 600;
+    padding-left: .7rem;
 }
 
 .add-to-cart-products a {
@@ -1230,6 +1235,10 @@ li.lista-filtro-productos {
 
 .image-quarter {
     width: 22%;
+}
+
+.product-information {
+    margin-top: 10px;
 }
 
 .logo-redes-twitter:hover {
@@ -1356,8 +1365,6 @@ li.lista-filtro-productos {
     border-color: darkred;
 }
 
-<<<<<<< HEAD
-=======
 .addressAdd{
   background-color: cadetblue;
   border-color: cadetblue;
@@ -1370,7 +1377,6 @@ li.lista-filtro-productos {
 }
 
 
->>>>>>> b1ea2faae8d74d8a6bc8bcf2f1696934d8353249
 @media (max-width: 754px) {
     .formulario-login {
         padding: 30px;
