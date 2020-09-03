@@ -14,51 +14,102 @@
     <!-- Main -->
 
     <div class="h container-fluid fondo-registro general">
-        <div class="row formulario-registro">
-            <div class="col-2">
-                <li>
-                    <ul><a href="">Datos</a></ul>
-                    <ul><a href="">Direcciones</a></ul>
-                    <ul><a href="">Pedidos</a></ul>
-                    <ul><a href="">Editar perfil</a></ul>
-                </li>
+        <div class="row profile-container">
+            <div class="col-2 profile-menu">
+                <ul>
+                    <li class="mb-4 profile-list reset-link first-menu selected-menu"><button type="submit" class="btn btn-info w-75">Datos</button></li>
+                    <li class="mb-4 profile-list reset-link second-menu"><button type="submit" class="btn btn-info w-75">Direcciones</button></li>
+                    <li class="mb-4 profile-list reset-link third-menu"><button type="submit" class="btn btn-info w-75">Pedidos</button></li>
+                    <li class="mb-4 profile-list reset-link fourth-menu"><button type="submit" class="btn btn-info w-75">Editar perfil</button></li>
+                    <li class="mt-4 profile-list reset-link fourth-menu">
+                        <form action="/usuarios/logout" method="GET">
+                            <button type="submit" class="btn btn-danger w-75">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
             </div>
     
             <div class="col-1"></div>
-    
-            <div class="col-9 datos">
-                <h1 class="font-weight-bold">Datos de la cuenta</h1>
-                <div class="form-row">
-                    <div class="form-group col-12 col-md-6">
-                        <p class="tittle font-weight-bold"> Nombre:</p>
-                        <p class="userInfo"> <%=  userLoggedIn.name %></p>
-    
+            <div class="col-9 main-panel">
+
+                <div class="col-9 profile-panel datos first-panel">
+                    <h1 class="font-weight-bold">Datos de la cuenta</h1>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <p class="tittle font-weight-bold"> Nombre:</p>
+                            <p class="userInfo"> <%=  userLoggedIn.name %></p>
+        
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <p class="tittle font-weight-bold"> Apellido:</p>
+                            <p class="userInfo"> <%=  userLoggedIn.last_name %></p>
+                        </div>
                     </div>
-                    <div class="form-group col-12 col-md-6">
-                        <p class="tittle font-weight-bold"> Apellido:</p>
-                        <p class="userInfo"> <%=  userLoggedIn.last_name %></p>
+                    <div class="form-group">
+                        <p class="tittle font-weight-bold"> Email:</p>
+                        <p class="userInfo"> <%=  userLoggedIn.email %></p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <p class="tittle font-weight-bold"> Email:</p>
-                    <p class="userInfo"> <%=  userLoggedIn.email %></p>
+
+                <div class="col-9 profile-panel addresses d-none second-panel">
+                    <h1 class="font-weight-bold">Tus direcciones</h1>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <p class="tittle font-weight-bold"> Alias:</p>
+                            <p class="userInfo"> <%= address.alias %></p>
+        
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <p class="tittle font-weight-bold"> Calle:</p>
+                            <p class="userInfo"> <%= address.street  %></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p class="tittle font-weight-bold"> Altura:</p>
+                        <p class="userInfo"> <%= address.number  %></p>
+                    </div>
                 </div>
+
+                <div class="col-9 profile-panel orders d-none third-panel">
+                    <h1 class="font-weight-bold">Tus pedidos</h1>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <p class="tittle font-weight-bold"> Data:</p>
+                            <p class="userInfo"> ......</p>
+        
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <p class="tittle font-weight-bold"> Data:</p>
+                            <p class="userInfo"> ......</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p class="tittle font-weight-bold"> Email:</p>
+                        <p class="userInfo"> ......</p>
+                    </div>
+                </div>
+                
+                <div class="col-9 profile-panel edit d-none fourth-panel">
+                    <h1 class="font-weight-bold">Editar tus datos</h1>
+                    <%- include('./usersPartials/editUser.ejs') %> 
+                </div>
+            
             </div>
+
         </div>
     </div>
 
-    <div class="form-group col-12 col-md-6">
-        <form action="/usuarios/logout" method="GET">
-            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
-        </form>
-    </div>
-    </div>
-    <!-- Ma
 
-    <!-- footer -->
+    </div>
+    <!-- /Main -->
+
+    <!-- /footer -->
     <%- include('../partials/footer.ejs') %>
     <!-- /footer -->
 
+    <script src="/js/users/profile.js"></script>
 </body>
 
 </html>
+
+
