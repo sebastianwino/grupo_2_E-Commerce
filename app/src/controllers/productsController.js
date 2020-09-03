@@ -17,28 +17,56 @@ function paginate(req, result, productsLimit, url) {
 let productsController = {
     // Root - Show all products
     root: async function (req, res) {
-        let productsAll = await db.Product.findAndCountAll({
-            offset: Number(req.query.page) * 18 || 0,
-            limit: 12,
-            include: ['category'],
-        })
-        let products = productsAll.rows
-        let categoriesAll = await db.Category.findAll()
+        
+
+        // let productsAllForFilter = await db.Product.findAll({
+        //     include: ['category']
+        // })
+        // let products = productsAll.rows
+        // let categoriesAll = await db.Category.findAll()
 
         let filter = req.query.filter;
         let priceMin = req.query.filterPriceMin;
         let priceMax = req.query.filterPriceMax;
+        let filterBool = false
+        let filterPriceBool = false
+        let products
+        let categoriesAll 
+        let productsAll
+        let categoryFilter
 
         if (filter != undefined) {
-            products = products.filter(product => {
-                return product.category.name == filter;
+            productsAll = await db.Product.findAll({
+                include: ['category'],
+                where: {
+                        category_id:filter
+                  }                    
             })
-        }
-        if ((priceMin != undefined) && (priceMax != undefined)) {
-            products = products.filter(product => {
-                return (product.price >= priceMin) && (product.price <= priceMax);
+           products = productsAll
+           categoriesAll = await db.Category.findAll()
+           categoryFilter = await db.Category.findByPk(filter)
+           categoryFilter = categoryFilter.name 
+        } else {
+            productsAll = await db.Product.findAndCountAll({
+                offset: Number(req.query.page) * 18 || 0,
+                limit: 12,
+                include: ['category'],
             })
+            products = productsAll.rows
+            categoriesAll = await db.Category.findAll()
         }
+        // if (filter != undefined) {
+        //     productsAllForFilter = productsAllForFilter.filter(product => {
+        //         return product.category.name == filter;
+        //     })
+        //     filterBool = true
+        // }
+        // if ((priceMin != undefined) && (priceMax != undefined)) {
+        //     productsAllForFilter = productsAllForFilter.filter(product => {
+        //         return (product.price >= priceMin) && (product.price <= priceMax);
+        //     })
+        //     filterPriceBool = true
+        // }
 
         //  tambien se podria filtrar por where dentro de findAll
 
@@ -50,6 +78,10 @@ let productsController = {
             filterPriceMin: priceMin,
             filterPriceMax: priceMax,
             user: req.session.user,
+            categoryFilter:categoryFilter,
+            // productsAllForFilter:productsAllForFilter,
+            filterBool: filterBool,
+            filterPriceBool:filterPriceBool,
             admin: req.session.admin,
             pagination: paginate(req, productsAll, 6, `/productos?page=`)
         });

@@ -13,7 +13,7 @@
                     <input type="hidden" name="filterPriceMax" value="<%=filterPriceMax%>">
                     <%}%>
                     <li class="lista-filtro-productos my-1">
-                        <button class="transparentButtom" name="filter" value="<%= category.name %>"><%= category.name %>
+                        <button class="transparentButtom" name="filter" value="<%= category.id %>"><%= category.name%>
                         </button>
                     </li>
                 </form>
@@ -34,9 +34,9 @@
         <%if (typeof filter != 'undefined') {%>
             <div class="alert alert-dark general my-3 d-block bottomFilter" role="alert">
                 <%if (typeof filterPriceMin != 'undefined') {%>		
-                    <p><%=filter%> <a class="text-danger" href="/productos?filterPriceMin=<%=filterPriceMin%>&filterPriceMax=<%=filterPriceMax%>">x</a></p>
+                    <p><%=categoryFilter%> <a class="text-danger" href="/productos?filterPriceMin=<%=filterPriceMin%>&filterPriceMax=<%=filterPriceMax%>">x</a></p>
                 <%} else {%>
-                    <p><%=filter%> <a class="text-danger" href="/productos">x</a></p>	
+                    <p><%=categoryFilter%> <a class="text-danger" href="/productos">x</a></p>	
                 <%}%>	
             </div>
         <%}%>
