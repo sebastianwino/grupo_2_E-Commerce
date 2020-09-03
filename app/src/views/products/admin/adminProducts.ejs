@@ -36,12 +36,9 @@
 				</div>
 
 				<!-- Productos -->
-				<%if ((typeof cant != 'undefined')&&(typeof word != 'undefined')) {%>
-					<%- include('../productsPartials/cards.ejs', {userType: '/admin', cant:cant, products:products,categories:categories, word:word}) %>
-				<%} else {%>
-					<%- include('../productsPartials/cards.ejs', {userType: '/admin',products:products,categories:categories}) %>
-
-				<%}%>
+				
+					<%- include('../productsPartials/cards.ejs', {userType: '/admin'}) %>
+				
 				<!-- /Productos -->
 				
 									
