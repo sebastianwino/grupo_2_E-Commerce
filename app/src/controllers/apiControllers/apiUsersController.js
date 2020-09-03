@@ -43,8 +43,7 @@ let apiUsersController = {
         db.User.findOne({
             include: ['address'],
             where: {id: req.params.id}
-        }
-        )
+        })
         .then(userDetail => {
             if (userDetail) {
                 userDetail.setDataValue('endpoint', '/api/users/' + userDetail.id);

@@ -87,15 +87,15 @@ let usersControllers = {
 
     profile: (req, res) => {
 
-        db.User.findAll({
-            where: {
-                email: req.session.email
-            }
-        }).then(userComplete => {
+        db.User.findOne({
+            include: ['address', 'phone'],
+            where: {email: req.session.email}
+        }).then(userLoggedIn => {
+            let userName = userLoggedIn.name
             res.render('users/profile', {
                 title: 'Perfil',
-                user: req.session.user,
-                userComplete: userComplete[0],
+                user: userName,
+                userLoggedIn: userLoggedIn,
                 admin: req.session.admin
             })
         })

@@ -52,7 +52,10 @@
                         <a href="https://www.instagram.com/romaconfiteria/" class="h logo-redes-instagram"><i class="h fab fa-instagram fa-1x"></i></a>
                     </div>
                     <div>
+
+                        <!-- Boton de usuario -->
                         <a href="/carrito" class="h logo-carrito"><i class="h fas fa-shopping-cart fa-1x"></i></a>
+                        <!-- si es usuario entonces -->
                         <% if (user != undefined) { %>
                          <a  id="userBtn" href="#" class=" logo-users-success"><i  class=" fas fa-user fa-1x"></i></a>
                          <div id="userBtnClick" class=" animacion">
@@ -60,11 +63,14 @@
                             <form action="/usuarios/perfil" method="GET">
                                 <button class="btn btnD btnProfile">Ir a Perfil</button>
                             </form>
+                        <!-- si ese usuario es admin entonces -->
                             <%if (admin==1) {%>
                                 <form action="/admin/productos/crear" method="GET">
                                     <button class="btn btnD btnLogOut admin">Crar producto</button>
                                 </form>    
+                        <!-- si ese usuario no es admin entonces -->
                             <%} else {%>
+                                
                                 <form action="/carrito" method="GET">
                                     <button class="btn btnD btnLogOut admin">Ultmimas compras</button>
                                 </form>
