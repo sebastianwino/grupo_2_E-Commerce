@@ -34,7 +34,23 @@
         <h2 class="precio-producto text-size-23">$<%= product.price %></h2>
         <p><%= product.description %></p>
         <div class="cantidad-producto mb-4">
-            <%- include('../../partials/inputSpinner.ejs', {product:product}) %>
+
+            <form action="/carrito" method="POST">
+                <div class="buy-form col-12 d-flex justify-content-between">
+                    <div class="increment-number">
+                        <input type="number" name="cant" min="1" max="100" value="1" />
+                       
+                        <%- include('./inputSpinner.ejs') %>
+
+                        <%- include('./inputs.ejs', {product:product})%>
+                    </div>
+        
+                    <div class="buy-button-div">
+                        <button class="buy-button" type="submit"><b>Comprar</b></button>
+                    </div>
+                </div>
+            </form>
+            
         </div>
         <p><%= product.info %></p>
         <p><b>Categoría: </b><%= product.category.name %></p>

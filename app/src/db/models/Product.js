@@ -72,11 +72,11 @@ module.exports = function (sequelize, dataTypes) {
             foreignKey: "category_id"
         })
 
-        Product.belongsToMany(models.Sale, {
-            as: 'p-sales',
-            through: "product_sale",
+        Product.belongsToMany(models.Cart, {
+            as: 'p-carts',
+            through: "cart_product",
             foreignKey: "product_id",
-            otherKey: "sale_id",
+            otherKey: "cart_id",
             timestamps: false
         })
     }

@@ -7,7 +7,7 @@ var methodOverride = require('method-override')
 const session = require('express-session')
 const cookieMiddleware = require('./middlewares/cookieMiddleware')
 const authAdminMiddleware = require ('./middlewares/adminMiddlewares/authAdminMiddleware');
-const cartmiddleware = require('./middlewares/cartMiddleware')
+const cartMiddleware = require('./middlewares/cartMiddleware')
 var cors = require('cors');
 
 
@@ -34,7 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cookieMiddleware);
-app.use(cartmiddleware);
+app.use(cartMiddleware);
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride('_method'));
 

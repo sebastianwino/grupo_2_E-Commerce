@@ -15,7 +15,7 @@ let cartController = {
             });
     },
     store: (req,res) => {
-        db.Cart.findByPk()
+        db.Cart.findByPk(req.session.cart)
         .then(cart => {
             db.Product.findByPK(req.body.product_id)
             .then(product => {

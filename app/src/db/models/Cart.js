@@ -1,5 +1,5 @@
 module.exports = function (sequelize, dataTypes) {
-    let alias = 'Sale'
+    let alias = 'Cart'
 
     let cols = {
         id: {
@@ -8,18 +8,22 @@ module.exports = function (sequelize, dataTypes) {
             autoIncrement: true,
             allownull: false
         },
-        total: {
-            type: dataTypes.DECIMAL(10, 2),
-            allownull: false
+        total_price: {
+            type: dataTypes.DECIMAL(10, 0),
+            allowNull: false
         },
-        description: {
+        products_total: {
+            type: dataTypes.DECIMAL(10, 0),
+            allowNull: false
+        },
+        general_comments: {
             type: dataTypes.STRING(600),
-            allownull: false
-        }
+            allowNull: true
+        },
     }
 
     let config = {
-        tableName: 'sales',
+        tableName: 'carts',
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
@@ -28,28 +32,28 @@ module.exports = function (sequelize, dataTypes) {
         paranoid: true
     }
 
-    let Sale = sequelize.define(alias, cols, config);
+    let Cart = sequelize.define(alias, cols, config);
 
-    Sale.associate = function (models) {
-        Sale.belongsTo(models.User, {
+    Cart.associate = function (models) {
+        Cart.belongsTo(models.User, {
             as: "user",
             foreignKey: "user_id"
         })
 
-        Sale.belongsTo(models.Address, {
+        Cart.belongsTo(models.Address, {
             as: "address",
             foreignKey: "address_id"
         })
 
-        Sale.belongsToMany(models.Product, {
-            as: 's-products',
-            through: "product_sale",
-            foreignKey: "sale_id",
+        Cart.belongsToMany(models.Product, {
+            as: 'c-products',
+            through: "cart_sale",
+            foreignKey: "cart_id",
             otherKey: "product_id",
             timestamps: false
         })
     }
 
 
-    return Sale
+    return Cart
 }
