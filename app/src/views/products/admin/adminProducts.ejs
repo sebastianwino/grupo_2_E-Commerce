@@ -35,9 +35,15 @@
 					<a href="/admin/productos/crear"><button type="submit" class="btn btn-danger">Crear produto</button></a>
 				</div>
 
-                <!-- Productos -->
-                <%- include('../productsPartials/cards.ejs', {userType: '/admin'}) %>
-                <!-- /Productos -->
+				<!-- Productos -->
+				<%if ((typeof cant != 'undefined')&&(typeof word != 'undefined')) {%>
+					<%- include('../productsPartials/cards.ejs', {userType: '/admin', cant:cant, products:products,categories:categories, word:word}) %>
+				<%} else {%>
+					<%- include('../productsPartials/cards.ejs', {userType: '/admin',products:products,categories:categories}) %>
+
+				<%}%>
+				<!-- /Productos -->
+				
 									
 				</div>
 			</div>

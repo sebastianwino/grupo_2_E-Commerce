@@ -53,5 +53,6 @@
     </a>
     <% }) %>
 </div>
-
+<%if (typeof word == 'undefined') {%>
 <%- include('./pagination-nav.ejs') %>
+<%}%>

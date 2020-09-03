@@ -11,11 +11,11 @@ module.exports = {
             }, {
                 name: 'Tortas'
             }, {
-                name: 'Facturas'
+                name: 'Meriendas'
             }, {
                 name: 'Desayunos'
             }, {
-                name: 'Masas Secas'
+                name: 'Brunch'
             }
         ]
 

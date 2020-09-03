@@ -131,7 +131,7 @@
     }
 
     100% {
-        height: 140px;
+        height: 177px;
         width: 150px;
     }
 }
@@ -142,7 +142,7 @@
 
 @keyframes dropup {
     0% {
-        height: 140px;
+        height: 177px;
         width: 150px;
     }
 
