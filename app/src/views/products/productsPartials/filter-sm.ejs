@@ -1,16 +1,16 @@
 <div class="filtro-sm d-lg-none w-100">
     <div class="col-12 d-flex justify-content-center">
-        <form action="">
+        <form action="/productos" method="GET">
             <div class="col-12">
-                <select name="filter" id="">
-                    <%if (typeof filter != 'undefined') {%>
-                        <option class="tituloFiltrar" selected disabled><%=filter%></option>
+                <select name="filter">
+                    <%if (typeof categoryFilter != 'undefined') {%>
+                        <option class="tituloFiltrar" selected disabled><%=categoryFilter%></option>
                     <%} else {%>
                         <option class="tituloFiltrar" selected disabled>Tipo de producto</option>
                     <%}%>
                     <%categories.forEach(category => {%>
                         
-                    <option value="<%=category.name%>" id=""><%=category.name%></option>
+                    <option value="<%=category.id%>" id=""><%=category.name%></option>
                     
                 <%})%>
                 </select>
