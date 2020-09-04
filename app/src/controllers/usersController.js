@@ -32,8 +32,9 @@ let usersController = {
                 admin: false,
                 phone: {
                     cell_phone: req.body.cell_phone,
-                    phone: null,
-                    cell_phone_2: null
+                    cell_phone_2: null,
+                    phone: null
+                    
                 }
             }, {
                 include: ['phone']
@@ -53,6 +54,52 @@ let usersController = {
                 errors: errors.errors,
                 data: req.body
             });
+        }
+    },
+    update: (req, res) => {
+
+        let errors = validationResult(req)
+
+        if (errors.isEmpty()) {
+
+            db.User.update({
+                name: req.body.name,
+                last_name: req.body.lastname,
+                phone: {
+                    cell_phone: req.body.cell_phone,
+                    cell_phone_2: req.body.phone,
+                    phone: req.body.cell_phone_2,
+                }
+            },
+            {
+                where:{
+                    id: req.session.userId
+                }
+            },
+            {
+                include: ['phone']
+            })
+
+            res.redirect(`/usuarios/perfil`)
+            
+        } else {
+
+            db.User.findOne({
+                include: ['address', 'phone'],
+                where: {email: req.session.email}
+            })
+            .then(userLoggedIn => {
+                let userName = userLoggedIn.name
+                res.render('users/profile', {
+                    title: 'Perfil',
+                    user: userName,
+                    userLoggedIn: userLoggedIn,
+                    address: userLoggedIn.address,
+                    phone: userLoggedIn.phone,
+                    error: errors.errors,
+                    admin: req.session.admin
+                })
+            })
         }
     }
 }

@@ -31,27 +31,6 @@
     background-color: #D9C3A9;
 }
 
-/* Fonts */
-
-
-
-/* Variables */
-
-
-
-/* Basics */
-
-
-
-/* profile */
-.tittle {
-    font-size: 1.5em;
-}
-
-.userInfo {
-    font-size: 1.3em;
-}
-
 
 /* Main Header */
 .fondo-header {
@@ -1506,6 +1485,27 @@ li.lista-filtro-productos {
     }
 }
 
+
+
+/* PERFIL */
+
+.profile-container {
+    padding: 70px;
+    background-color: rgba(191, 172, 149, 0.8);
+    
+}
+
+.profile-list {
+    list-style-type: none;
+}
+
+.tittle {
+    font-size: 1.5em;
+}
+
+.userInfo {
+    font-size: 1.3em;
+}
 
 
 /* ERROR */

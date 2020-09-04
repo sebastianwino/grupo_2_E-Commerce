@@ -62,8 +62,9 @@ let usersControllers = {
                     });
 
                 })
-                .catch(er => {
-                    res.send('error')
+                .catch(err => {
+                    console.log(err)
+                    res.send('Error!!!')
                 })
 
         } else {
@@ -93,14 +94,21 @@ let usersControllers = {
         db.User.findOne({
             include: ['address', 'phone'],
             where: {email: req.session.email}
-        }).then(userLoggedIn => {
+        })
+        .then(userLoggedIn => {
             let userName = userLoggedIn.name
             res.render('users/profile', {
                 title: 'Perfil',
                 user: userName,
                 userLoggedIn: userLoggedIn,
+                address: userLoggedIn.address[0],
+                phone: userLoggedIn.phone.dataValues,
                 admin: req.session.admin
             })
+        })
+        .catch(err => {
+            console.log(err)
+            res.send('Error!!!')
         })
 
     }

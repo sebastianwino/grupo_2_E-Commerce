@@ -41,7 +41,7 @@ let apiUsersController = {
     },
     detail: (req, res) => {
         db.User.findOne({
-            include: ['address'],
+            include: ['phone', 'address'],
             where: {id: req.params.id}
         })
         .then(userDetail => {
@@ -66,7 +66,26 @@ let apiUsersController = {
             res.send('Error!!!');
         })
 
-    }
+    }/* ,
+    update: (req, res) => {
+        db.User.update({
+            name: req.body.name,
+            last_name: req.body.lastname,
+            phone: {
+                cell_phone: req.body.cell_phone,
+                cell_phone_2: req.body.phone,
+                phone: req.body.cell_phone_2,
+            }
+        },
+        {
+            where:{
+                id: req.params.id
+            }
+        },
+        {
+            include: ['phone']
+        })
+    } */
 }
 
 module.exports = apiUsersController;
