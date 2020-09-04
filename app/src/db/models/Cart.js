@@ -10,16 +10,20 @@ module.exports = function (sequelize, dataTypes) {
         },
         total_price: {
             type: dataTypes.DECIMAL(10, 0),
-            allowNull: false
+            allownull: false
         },
         products_total: {
             type: dataTypes.DECIMAL(10, 0),
-            allowNull: false
+            allownull: false
         },
         general_comments: {
             type: dataTypes.STRING(600),
-            allowNull: true
+            allownull: true
         },
+        sold: {
+            type: dataTypes.BOOLEAN,
+            allownull: false
+        }
     }
 
     let config = {

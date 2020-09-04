@@ -2,6 +2,7 @@ function cookieMiddleware (req, res, next) {
     if ((req.cookies.recordame)&&(req.cookies.usuario)&&(req.session.user == undefined)&&(req.session.email == undefined)) {
         req.session.user = req.cookies.usuario;
         req.session.email = req.cookies.recordame;
+        req.session.userId = req.cookies.userId;
         if ((req.cookies.admin)&&(req.session.admin == undefined))
         req.session.admin = req.cookies.admin;
     }

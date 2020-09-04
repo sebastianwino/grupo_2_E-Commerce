@@ -37,6 +37,9 @@ let usersControllers = {
                             res.cookie('usuario', user[0].name, {
                                 maxAge: 60000000
                             })
+                            res.cookie('userId', user[0].id, {
+                                maxAge: 60000000
+                            })
                             if (user[0].admin == true) {
                             res.cookie('admin', user[0].admin, {
                                 maxAge: 60000000

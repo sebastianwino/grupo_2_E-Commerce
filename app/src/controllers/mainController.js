@@ -7,25 +7,25 @@ let indexController = {
         .then(productsDB => {
 
             // REVISAR DÓNDE VA ESTO
-            let imagenActual = productsDB[(productsDB.length) - 1].image_1;
-            imagenActual = imagenActual.substring(1)
+            // let imagenActual = productsDB[(productsDB.length) - 1].image_1;
+            // imagenActual = imagenActual.substring(1)
             
-            unlink('./public/images/upload/' + imagenActual, function (err) {
-                if (err) {
-                    console.error(err);
-                }
-                console.log('archivo borrado');
-            });
+            // unlink('./public/images/upload/' + imagenActual, function (err) {
+            //     if (err) {
+            //         console.error(err);
+            //     }
+            //     console.log('archivo borrado');
+            // });
     
-            let imagenActualB = productsDB[(productsDB.length)-1].image;
-            imagenActualB = imagenActual.substring(1)
+            // let imagenActualB = productsDB[(productsDB.length)-1].image;
+            // imagenActualB = imagenActual.substring(1)
     
-            unlink('./public/images/upload/' + imagenActualB, function (err) {
-                if (err) {
-                    console.error(err);
-                }
-                console.log('archivo borrado');
-            });
+            // unlink('./public/images/upload/' + imagenActualB, function (err) {
+            //     if (err) {
+            //         console.error(err);
+            //     }
+            //     console.log('archivo borrado');
+            // });
     
             res.render('home/home', {
                 title: 'Home',

@@ -3,16 +3,21 @@ const { cart } = require('.');
 
 let cartController = {
     // Root - Show all Shopping Cart
-	root: (req, res) => {
+	root: function (req, res) {
         
-        // traer carrito y sus productos
-    
-            res.render('shoppingCart', {
-                title: 'Carrito',
-                shopping:shopping,
-                admin: req.session.admin,
+        
+            res.send(req.session.cartId)    
+            console.log(req.session.cartId)
+        // })
 
-            });
+
+        // res.json()
+        //     res.render('shoppingCart', {
+        //         title: 'Carrito',
+        //         shopping:shopping,
+        //         admin: req.session.admin,
+
+        //     });
     },
     store: (req,res) => {
         db.Cart.findByPk(req.session.cart)

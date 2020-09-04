@@ -4,15 +4,15 @@ module.exports = function (sequelize, dataTypes) {
     let cols = {
         unit_price: {
             type: dataTypes.INTEGER.UNSIGNED,
-            allowNull: false
+            allownull: false
         },
         qty: {
             type: dataTypes.DECIMAL(10, 2).UNSIGNED,
-            allowNull: false
+            allownull: false
         },
         sub_total_price: {
             type: dataTypes.INTEGER.UNSIGNED,
-            allowNull: false
+            allownull: false
         },
     }
 
