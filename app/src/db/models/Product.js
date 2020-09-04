@@ -9,7 +9,7 @@ module.exports = function (sequelize, dataTypes) {
             allownull: false
         },
         name: {
-            type: dataTypes.STRING(45),
+            type: dataTypes.STRING(50),
             allownull: false
         },
         description: {
@@ -21,7 +21,7 @@ module.exports = function (sequelize, dataTypes) {
             allownull: false
         },
         discount: {
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER(10).UNSIGNED,
             allownull: false
         },
         price: {
@@ -29,11 +29,11 @@ module.exports = function (sequelize, dataTypes) {
             allownull: false
         },
         stock: {
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER(10).UNSIGNED,
             allownull: false
         },
         slices: {
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER(10).UNSIGNED,
             allownull: true
         },
         image_1: {
@@ -73,10 +73,10 @@ module.exports = function (sequelize, dataTypes) {
         })
 
         Product.belongsToMany(models.Cart, {
-            as: 'p-carts',
+            as: 'pCarts',
             through: "cart_product",
             foreignKey: "product_id",
-            otherKey: "cart_id",
+            otherKey: "carts_id",
             timestamps: false
         })
     }

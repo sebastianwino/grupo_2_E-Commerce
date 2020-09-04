@@ -3,7 +3,7 @@ module.exports = function (sequelize, dataTypes) {
 
     let cols = {
         unit_price: {
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER(10).UNSIGNED,
             allownull: false
         },
         qty: {
@@ -11,9 +11,9 @@ module.exports = function (sequelize, dataTypes) {
             allownull: false
         },
         sub_total_price: {
-            type: dataTypes.INTEGER.UNSIGNED,
+            type: dataTypes.INTEGER(10).UNSIGNED,
             allownull: false
-        },
+        }
     }
 
     let config = {

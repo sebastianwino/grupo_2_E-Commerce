@@ -1,51 +1,82 @@
 const db = require('../db/models/');
-const { cart } = require('.');
 
 let cartController = {
     // Root - Show all Shopping Cart
-	root: function (req, res) {
-        
-        
-            res.send(req.session.cartId)    
-            console.log(req.session.cartId)
+    root: async function (req, res) {
+
+
+        let cart = await db.Cart.findByPk(req.session.cartId)
+        res.json(cart)
+        // let product = await db.Product.findOne({
+        //     where: 
+        //     {cart.id:}
         // })
 
+        // let asociation = await cart.getProduct(product.id, {
+        //                                                 through: {
+        //                                                     price: product.price,
+        //                                                     total_price: product.price * req.body.qty
+        //                                                 }
+        //                                             })
 
-        // res.json()
+
+
+        //  res.json(asociation)
         //     res.render('shoppingCart', {
         //         title: 'Carrito',
-        //         shopping:shopping,
         //         admin: req.session.admin,
-
+        //         cart: cart3
         //     });
     },
-    store: (req,res) => {
-        db.Cart.findByPk(req.session.cart)
-        .then(cart => {
-            db.Product.findByPK(req.body.product_id)
-            .then(product => {
-                cart.addProduct(product, {through: {
-                    price: product.price,
-                    total_price: product.price * req.body.qty
+    store: async function (req, res) {
+              
+        let cart = await db.Cart.findByPk(req.session.cartId)
+        let product = await db.Product.findByPk(req.body.id)
+
+        cart.addProduct(product.id, {through: {
+                    unit_price: product.price,
+                    qty: req.body.qty,
+                    sub_total_price: product.price * req.body.qty
                 }})
-            })
+        
+        res.send('Comprado')
+
+        /* let cart = await db.Cart.findByPk(req.session.cartId)
+        let product = await db.Product.findOne({
+            where: {
+                id: req.body.id
+            }
         })
-    },    
-    update: (req, res) => {
-        db.Cart.findByPk()
-        .then(cart => {
-            db.Product.findByPK(req.body.product_id)
-            .then(product => {
-                cart.setProduct(product, {through: { //puede ser set o add
-                    price: product.price,
-                    total_price: product.price * req.body.qty
-                }})
-            })
-        })
+
+        cart.addProduct(product.id) , {
+            through: {
+                unit_price: product.price,
+                qty: req.body.qty,
+                sub_total_price: product.price * req.body.qty
+            }
+        } 
+
+        res.send('Comprado') */
+
     },
-    destroy: (req,res) => {
-      db.Cart.findByPk().then(cart =>{
-          cart.removeProduct()
+    update: (req, res) => {
+        req.session.cartFull = true
+        db.Cart.findByPk(req.session.cart)
+            .then(cart => {
+                db.Product.findByPK(req.body.product_id)
+                    .then(product => {
+                        cart.setProduct(product, {
+                            through: { //puede ser set o add
+                                price: product.price,
+                                total_price: product.price * req.body.qty
+                            }
+                        })
+                    })
+            })
+    },
+    destroy: (req, res) => {
+        db.Cart.findByPk().then(cart => {
+            cart.removeProduct()
         })
     }
 }

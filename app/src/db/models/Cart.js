@@ -9,7 +9,7 @@ module.exports = function (sequelize, dataTypes) {
             allownull: false
         },
         total_price: {
-            type: dataTypes.DECIMAL(10, 0),
+            type: dataTypes.DECIMAL(10, 2),
             allownull: false
         },
         products_total: {
@@ -50,9 +50,9 @@ module.exports = function (sequelize, dataTypes) {
         })
 
         Cart.belongsToMany(models.Product, {
-            as: 'c-products',
-            through: "cart_sale",
-            foreignKey: "cart_id",
+            as: 'cProducts',
+            through: "cart_product",
+            foreignKey: "carts_id",
             otherKey: "product_id",
             timestamps: false
         })

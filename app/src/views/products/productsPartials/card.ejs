@@ -38,7 +38,7 @@
             <form action="/carrito" method="POST">
                 <div class="buy-form col-12 d-flex justify-content-between">
                     <div class="increment-number">
-                        <input type="number" name="cant" min="1" max="100" value="1" />
+                        <input type="number" name="qty" min="1" max="100" value="1" />
                        
                         <%- include('./inputSpinner.ejs') %>
 
@@ -55,6 +55,8 @@
         <p><%= product.info %></p>
         <p><b>Categoría: </b><%= product.category.name %></p>
         <p><b>Nombre: </b><%= product.name %></p>
+        
+        <!-- logos -->
         <p class="share-logos"><b>Compartir: </b>
             <a href="#"><i class="logo-redes-facebook fab fa-facebook-f"></i></a>
             <a href="#"><i class="logo-redes-instagram fab fa-instagram"></i></a>
@@ -63,5 +65,7 @@
             <a href="#"><i class="logo-redes-email far fa-envelope"></i></a>
             <a href="#"><i class="logo-redes-whatsapp fab fa-whatsapp"></i></a>
         </p>
+        <!-- /logos -->
+
     </div>
 </div>

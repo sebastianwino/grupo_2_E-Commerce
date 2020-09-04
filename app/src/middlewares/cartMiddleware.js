@@ -1,47 +1,35 @@
 const db = require('../db/models')
 
- function cartMiddleware(req, res, next) {
-
+async function cartMiddleware(req, res, next) {
     if (req.session.cartBool != true && req.session.user == undefined) {
 
-        let cartI
-    
-        let probando;
-        db.Cart.create({
-                user_id: null,
-                address_id: null,
-                total_price: 0,
-                products_total: 0,
-                general_comments: '0',
+        req.session.cartBool = true
+
+        let cart = await db.Cart.create({
+            user_id: null,
+            address_id: null,
+            total_price: 0,
+            products_total: 0,
+            general_comments: '0',
+            sold: false
+        })
+        req.session.cartId = cart.dataValues.id
+
+
+    } else if (req.session.user != undefined && req.session.cartFull != true) {
+
+        let cart2 = await db.Cart.findAll({
+            where: {
+                user_id: req.session.userId,
                 sold: false
-            })
-            .then(cart => {
-                probando = cart.dataValues.id
-            })
-            .then(() => {
-                req.session.cartId = probando
-                req.session.cartBool = true
+            }
+        })
 
-            })
-            .then(()=>{
-                next()
-            })
-        }
- 
-    // } else if (req.session.user != undefined && req.session.cartFull != true) {
+        req.session.cartId = cart2[carts.length - 1].id
 
-    //     db.Cart.findAll({
-    //             where: {
-    //                 user_id: req.session.userId,
-    //                 sold: false
-    //             }
-    //         })
-    //         .then(carts => {
-    //             req.session.cartId = carts[carts.length - 1].id
-    //         })
-    // }
+    }
 
-    // next();
+
 
     // si tiene carrito
     // next
