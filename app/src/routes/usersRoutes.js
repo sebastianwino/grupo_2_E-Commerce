@@ -23,7 +23,8 @@ router.get('/registro', loginRegisterMiddleware, controllers.user.register);
 router.post('/registro', registerValidations, controllers.user.store);
 
 /* EDIT */
-router.put('/perfil', editProfileValidations, controllers.user.update);
+/* router.get('/perfil/editar', controllers.user.edit); */
+router.put('/perfil/editar', editProfileValidations, controllers.user.update);
 
 
 module.exports = router;

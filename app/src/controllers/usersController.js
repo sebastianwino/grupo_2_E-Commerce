@@ -56,6 +56,17 @@ let usersController = {
             });
         }
     },
+    /* edit: (req, res) => {
+        res.render('users/editUser', {
+            title: 'Editar perfil',
+            user: req.session.user,
+            data: {
+                name: null,
+                lastname: null,
+
+            }
+        });
+    }, */
     update: (req, res) => {
 
         let errors = validationResult(req)
@@ -94,11 +105,15 @@ let usersController = {
                     title: 'Perfil',
                     user: userName,
                     userLoggedIn: userLoggedIn,
-                    address: userLoggedIn.address,
-                    phone: userLoggedIn.phone,
-                    error: errors.errors,
-                    admin: req.session.admin
+                    address: userLoggedIn.address[0],
+                    phone: userLoggedIn.phone.dataValues,
+                    admin: req.session.admin,
+                    errors: errors.errors
                 })
+            })
+            .catch(err => {
+                console.log(err)
+                res.send('Error!!!')
             })
         }
     }
