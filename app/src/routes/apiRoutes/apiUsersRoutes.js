@@ -7,7 +7,7 @@ router.get('/', apiControllers.users.list);
 
 router.get('/:id', apiControllers.users.detail);
 
-/* router.put('/:id', apiControllers.users.update); */
+router.put('/:id', apiControllers.users.update);
 
 
 module.exports = router
