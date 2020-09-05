@@ -25,7 +25,7 @@ async function cartMiddleware(req, res, next) {
             }
         })
 
-        req.session.cartId = cart2[carts.length - 1].id
+        /* req.session.cartId = cart2[cart.length - 1].id */
 
     }
 

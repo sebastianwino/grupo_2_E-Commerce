@@ -3,183 +3,164 @@ const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 let path = require('path');
 const search = require('../Fx/search');
+const { NUMBER } = require('sequelize');
 
 function paginate(req, result, productsLimit, url) {
+    let queryPage = Number(req.query.page)
     let baseURL = url
     let limit = productsLimit
-
+    let totalPages = parseInt(Number(result.count) / limit) - 1
+    let main
+    if (!queryPage) {
+        main = true
+    } else {
+        main = false
+    }
     return {
         firstPage: baseURL,
-        nextPage: baseURL + (req.query.page ? Number(req.query.page) + 1 : 1),
-        prevPage: baseURL + (req.query.page > 0 ? Number(req.query.page) - 1 : 0),
-        lastPage: baseURL + (parseInt(result.count / limit) - 1)
+        nextPage: baseURL + (queryPage ? queryPage + 1 : 1),
+        prevPage: baseURL + (queryPage > 0 ? queryPage - 1 : 0),
+        lastPage: baseURL + totalPages,
+        totalPages: totalPages,
+        currentPage: queryPage,
+        main: main
     }
+
+
 }
 
 let productsController = {
     // Root - Show all products
     root: async function (req, res) {
-        
 
-  
         let filter = req.query.filter;
         let priceMin = req.query.filterPriceMin;
         let priceMax = req.query.filterPriceMax;
         let filterBool = false
         let filterPriceBool = false
         let products
-        let categoriesAll 
+        let categoriesAll
         let productsAll
         let categoryFilter
         let flag = false
         let respuesta
-        
 
-
-
-        if ((filter != undefined)&&(priceMin != undefined)&&(priceMax != undefined)&&(flag==false)) {
+        if ((filter != undefined) && (priceMin != undefined) && (priceMax != undefined) && (flag == false)) {
             productsAll = await db.Product.findAll({
                 include: ['category'],
                 where: {
-                        category_id:filter,
-                        price: {
-                            [Op.between]: [priceMin, priceMax]
-                        }
-                  }                    
+                    category_id: filter,
+                    price: {
+                        [Op.between]: [priceMin, priceMax]
+                    }
+                }
             })
             products = productsAll
             categoriesAll = await db.Category.findAll()
             categoryFilter = await db.Category.findByPk(filter)
-            
-            flag=true;
+
+            flag = true;
             respuesta = 'filtro, precio maximo y precio minimo'
-        }  
+        }
 
-
-
-
-
-        if ((filter != undefined)&&(priceMin != undefined)&&(flag==false)) {
+        if ((filter != undefined) && (priceMin != undefined) && (flag == false)) {
             productsAll = await db.Product.findAll({
                 include: ['category'],
                 where: {
-                        category_id:filter,
-                        price: {
-                            [Op.gte]: priceMin,
-                        }
-                  }                    
+                    category_id: filter,
+                    price: {
+                        [Op.gte]: priceMin,
+                    }
+                }
             })
             products = productsAll
             categoriesAll = await db.Category.findAll()
             categoryFilter = await db.Category.findByPk(filter)
-            
-            flag=true;
+
+            flag = true;
             respuesta = 'filtro y precio minimo'
         }
 
-
-
-
-
-
-
-        if ((filter != undefined)&&(priceMax != undefined)&&(flag==false)) {
+        if ((filter != undefined) && (priceMax != undefined) && (flag == false)) {
             productsAll = await db.Product.findAll({
                 include: ['category'],
                 where: {
-                        category_id:filter,
-                        price: {
-                            [Op.lte]: priceMax,
-                        }
-                  }                    
+                    category_id: filter,
+                    price: {
+                        [Op.lte]: priceMax,
+                    }
+                }
             })
             products = productsAll
             categoriesAll = await db.Category.findAll()
             categoryFilter = await db.Category.findByPk(filter)
-            
-            flag=true;
+
+            flag = true;
             respuesta = 'filtro y precio maximo'
         }
-        
 
-
-
-
-        
-        if ((priceMin != undefined)&&(priceMax != undefined)&&(flag==false)) {
+        if ((priceMin != undefined) && (priceMax != undefined) && (flag == false)) {
             productsAll = await db.Product.findAll({
                 include: ['category'],
                 where: {
-                        price: {
-                            [Op.between]: [priceMin, priceMax]
-                        }
-                  }                    
+                    price: {
+                        [Op.between]: [priceMin, priceMax]
+                    }
+                }
             })
             products = productsAll
             categoriesAll = await db.Category.findAll()
-            flag=true;
+            flag = true;
             respuesta = 'precio maximo y precio minimo'
-           
-        }  
 
+        }
 
-
-
-
-        if ((priceMin != undefined)&&(flag==false)) {
+        if ((priceMin != undefined) && (flag == false)) {
             productsAll = await db.Product.findAll({
                 include: ['category'],
                 where: {
-                        price: {
-                            [Op.gte]: priceMin,
-                        }
-                  }                    
+                    price: {
+                        [Op.gte]: priceMin,
+                    }
+                }
             })
-           products = productsAll
+            products = productsAll
             categoriesAll = await db.Category.findAll()
-            flag=true;
+            flag = true;
             respuesta = 'precio minimo'
         }
 
-
-
-
-
-
-
-        if ((priceMax != undefined)&&(flag==false)) {
+        if ((priceMax != undefined) && (flag == false)) {
             productsAll = await db.Product.findAll({
                 include: ['category'],
                 where: {
-                        price: {
-                            [Op.lte]: priceMax,
-                        }
-                  }                    
+                    price: {
+                        [Op.lte]: priceMax,
+                    }
+                }
             })
-             products = productsAll
+            products = productsAll
             categoriesAll = await db.Category.findAll()
-            flag=true;
+            flag = true;
             respuesta = 'precio maximo'
         }
-        
 
-
-        if ((filter != undefined)&&(flag==false)) {
+        if ((filter != undefined) && (flag == false)) {
             productsAll = await db.Product.findAll({
                 include: ['category'],
                 where: {
-                        category_id:filter
-                  }                    
+                    category_id: filter
+                }
             })
             products = productsAll
             categoriesAll = await db.Category.findAll()
             categoryFilter = await db.Category.findByPk(filter)
-            
-            flag=true;
+
+            flag = true;
             respuesta = 'filtro'
-        } 
-        
-          if ((filter == undefined)&&(flag==false))  {
+        }
+
+        if ((filter == undefined) && (flag == false)) {
             productsAll = await db.Product.findAndCountAll({
                 offset: Number(req.query.page) * 18 || 0,
                 limit: 12,
@@ -200,12 +181,12 @@ let productsController = {
             filterPriceMin: priceMin,
             filterPriceMax: priceMax,
             user: req.session.user,
-            categoryFilter:categoryFilter,
+            categoryFilter: categoryFilter,
             // productsAllForFilter:productsAllForFilter,
             filterBool: filterBool,
-            filterPriceBool:filterPriceBool,
+            filterPriceBool: filterPriceBool,
             admin: req.session.admin,
-            pagination: paginate(req, productsAll, 6, `/productos?page=`)
+            pagination: paginate(req, productsAll, 12, `/productos?page=`)
         });
     },
     detail: async function (req, res) {
