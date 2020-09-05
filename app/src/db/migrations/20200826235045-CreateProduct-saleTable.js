@@ -30,15 +30,15 @@ module.exports = {
                 allowNull: false
             },
             unit_price: {
-                type: Sequelize.INTEGER.UNSIGNED,
-                allowNull: false
-            },
-            qty: {
                 type: Sequelize.DECIMAL(10, 2).UNSIGNED,
                 allowNull: false
             },
-            sub_total_price: {
+            qty: {
                 type: Sequelize.INTEGER.UNSIGNED,
+                allowNull: false
+            },
+            sub_total_price: {
+                type: Sequelize.DECIMAL(10, 2).UNSIGNED,
                 allowNull: false
             },
             created_at: {

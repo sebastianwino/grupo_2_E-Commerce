@@ -4,23 +4,19 @@ let cartController = {
     // Root - Show all Shopping Cart
     root: async function (req, res) {
 
+        let cart = await db.Cart.findByPk(req.session.cartId, {
+            include: ['product']
+        })
 
-        let cart = await db.Cart.findByPk(req.session.cartId)
-        res.json(cart)
-        // let product = await db.Product.findOne({
-        //     where: 
-        //     {cart.id:}
-        // })
+        let products = cart.product
 
-        // let asociation = await cart.getProduct(product.id, {
-        //                                                 through: {
-        //                                                     price: product.price,
-        //                                                     total_price: product.price * req.body.qty
-        //                                                 }
-        //                                             })
-
-
-
+        res.render('shoppingCart', {
+            title: 'Carrito',
+            admin: req.session.admin,
+            cart: cart,
+            products: products,
+            user: req.session.user
+        })
         //  res.json(asociation)
         //     res.render('shoppingCart', {
         //         title: 'Carrito',
@@ -29,34 +25,46 @@ let cartController = {
         //     });
     },
     store: async function (req, res) {
-              
-        let cart = await db.Cart.findByPk(req.session.cartId)
+
+        let cart = await db.Cart.findByPk(req.session.cartId, {
+            include: ['product']
+        })
         let product = await db.Product.findByPk(req.body.id)
-
-        cart.addProduct(product.id, {through: {
-                    unit_price: product.price,
-                    qty: req.body.qty,
-                    sub_total_price: product.price * req.body.qty
-                }})
+  
+        let flag = false;
         
-        res.send('Comprado')
+        if(req.session.prId != undefined){
+        req.session.prId.forEach(element => {
+            if(element != product.id){
+                flag = true;
+            }
+        });
+    }
+        if (!flag){
+        req.session.prId = []
+        }
+        if(flag){
+        req.session.prId.push(product.id);
+        }
 
-        /* let cart = await db.Cart.findByPk(req.session.cartId)
-        let product = await db.Product.findOne({
-            where: {
-                id: req.body.id
+
+        console.log(Number(req.body.qty))
+        console.log(Number(req.session.qty))
+
+        cart.addProduct(product.id, {
+            through: {
+                unit_price: Number(product.price),
+                qty: Number(req.body.qty) + Number(req.session.qty),
+                sub_total_price: Number(product.price) * (Number(req.body.qty) + Number(req.session.qty))
             }
         })
 
-        cart.addProduct(product.id) , {
-            through: {
-                unit_price: product.price,
-                qty: req.body.qty,
-                sub_total_price: product.price * req.body.qty
-            }
-        } 
+       // req.session.qty = 0;
+        req.session.prPrice = 0;
 
-        res.send('Comprado') */
+        res.json(cart)
+
+        res.send('Comprado')
 
     },
     update: (req, res) => {
@@ -75,7 +83,7 @@ let cartController = {
             })
     },
     destroy: (req, res) => {
-        db.Cart.findByPk().then(cart => {
+        db.Cart.findByPk(req.body.id).then(cart => {
             cart.removeProduct()
         })
     }

@@ -7,8 +7,9 @@ var methodOverride = require('method-override')
 const session = require('express-session')
 const cookieMiddleware = require('./middlewares/cookieMiddleware')
 const authAdminMiddleware = require ('./middlewares/adminMiddlewares/authAdminMiddleware');
-const cartMiddleware = require('./middlewares/cartMiddleware')
+const createCartMiddleware = require('./middlewares/cartsMiddlewares/createCartMiddleware')
 var cors = require('cors');
+
 
 
 //REQUERIMIENTO DE RUTAS
@@ -34,7 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cookieMiddleware);
-app.use(cartMiddleware);
+app.use(createCartMiddleware);
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride('_method'));
 

@@ -1,4 +1,4 @@
-const db = require('../db/models')
+const db = require('../../db/models')
 
 async function cartMiddleware(req, res, next) {
     if (req.session.cartBool != true && req.session.user == undefined) {
