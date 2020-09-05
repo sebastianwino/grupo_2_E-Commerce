@@ -31,20 +31,33 @@ let cartController = {
         })
         let product = await db.Product.findByPk(req.body.id)
   
-        let flag = false;
+        // let flag = false;
         
-        if(req.session.prId != undefined){
-        req.session.prId.forEach(element => {
-            if(element != product.id){
-                flag = true;
+            //     if(req.session.prId != undefined){
+            //     req.session.prId.forEach(element => {
+            //         if(element != product.id){
+            //             flag = true;
+            //         }
+            //     });
+            // }
+
+        // if (!flag){
+        // req.session.prId = []
+        // }
+        // if(flag){
+        // req.session.prId.push(product.id);
+        // }
+
+        let flag = true;
+        
+        req.session.productsId.forEach(productId => {
+            if (productId == req.body.id) {
+                flag = false;
             }
-        });
-    }
-        if (!flag){
-        req.session.prId = []
-        }
-        if(flag){
-        req.session.prId.push(product.id);
+        })
+ 
+        if(flag) {
+            req.session.productsId.push(req.body.id)
         }
 
 
@@ -60,7 +73,7 @@ let cartController = {
         })
 
        // req.session.qty = 0;
-        req.session.prPrice = 0;
+        //req.session.prPrice = 0;
 
         res.json(cart)
 

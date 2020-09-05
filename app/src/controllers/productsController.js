@@ -3,7 +3,6 @@ const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 let path = require('path');
 const search = require('../Fx/search');
-const { NUMBER } = require('sequelize');
 
 function paginate(req, result, productsLimit, url) {
     let queryPage = Number(req.query.page)

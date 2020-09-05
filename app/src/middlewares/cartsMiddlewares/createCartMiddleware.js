@@ -4,6 +4,7 @@ async function cartMiddleware(req, res, next) {
     if (req.session.cartBool != true && req.session.user == undefined) {
 
         req.session.cartBool = true
+        req.session.productsId = []
 
         let cart = await db.Cart.create({
             user_id: null,
@@ -14,6 +15,8 @@ async function cartMiddleware(req, res, next) {
             sold: false
         })
         req.session.cartId = cart.dataValues.id
+
+        // req.session.productsId.length == 0 ? console.log('Si') : console.log('No')
 
 
     } else if (req.session.user != undefined && req.session.cartFull != true) {
