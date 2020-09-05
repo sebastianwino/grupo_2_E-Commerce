@@ -622,7 +622,7 @@
 /* Footer */
 
 .fondo-footer {
-    background-image: url('/images/Logos/fondo-footer.png');
+    background-image: url('/images/logos/fondo-footer.png');
     background-color: rgba(191, 172, 149, 0.4);
     background-size: 31%;
 }
@@ -1089,7 +1089,7 @@
     
 }
 
-.reset-link a {
+.reset-link a, a.reset-link {
     color: black;
     text-decoration: none;
 
@@ -1615,17 +1615,44 @@ li.lista-filtro-productos {
 
 }
 
-
-.main {
-
-    min-height: 600px;
-    margin: 0px auto;
-    width: auto;
-    max-width: 460px;
+.main-error {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 70px 20px
 }
+
+.error-page-title {
+    font-size: 20px;
+}
+
+.return-home:hover {
+    color: rgba(191, 172, 149, 0.8);
+}
+
+.error-svg {
+    width: 250px;
+}
+
+@media (min-width: 577px) {
+    .error-svg {
+        width: 400px;
+    }
+    .error-page-title {
+        font-size: 30px;
+    }
+    .return-home {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 769px) {
+    .error-svg {
+        width: 470px;
+    }
+}
+
+
 
 .path {
     stroke-dasharray: 300;
