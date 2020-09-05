@@ -10,9 +10,6 @@ async function updateCartMiddleware(req, res, next) {
     let flag = false;
     let prodQty
     let prodPrice
-    
-  
-
 
     if(req.session.productsId.length > 0){
         req.session.productsId.forEach(element => {
@@ -30,25 +27,9 @@ async function updateCartMiddleware(req, res, next) {
             }
         })
 
-
-        console.log(prodPrice)
-        console.log(prodQty)
-        console.log(prodQty)
-        console.log(prodQty)
-        console.log(prodQty)
-        console.log(prodQty)
-        console.log(prodQty)
-
-
-        req.session.prPrice = Number(prodPrice);
+        //req.session.prPrice = Number(prodPrice);
         req.session.qty = Number(prodQty);
- 
-        //req.session.cartId = Number(req.session.cartId) + 1
-         console.log('console log del middleware'+ (prodQty))
-         console.log('console log del middleware'+ (prodQty))
-         console.log('console log del middleware'+ (prodQty))
-         console.log('console log del middleware'+ (prodQty))
-         console.log('console log del middleware'+ (prodQty))
+
         cart.removeProduct(Number(req.body.id))
 
     } else {

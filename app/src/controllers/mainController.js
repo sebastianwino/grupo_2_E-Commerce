@@ -2,9 +2,12 @@ const db = require('../db/models');
 const { unlink } = require('fs-extra');
 
 let indexController = {
-    root: (req, res) => {
-        db.Product.findAll()
-        .then(productsDB => {
+    root: async function (req, res) {
+            let AllCategories = await db.Category.findAll();
+            
+
+
+
 
             // REVISAR DÓNDE VA ESTO
             // let imagenActual = productsDB[(productsDB.length) - 1].image_1;
@@ -32,11 +35,6 @@ let indexController = {
                 user: req.session.user,
                 admin: req.session.admin
             })
-        })
-        .catch(errors => {
-            console.log(errors);
-            res.send('Error!!!');
-        })
     }
 
 }

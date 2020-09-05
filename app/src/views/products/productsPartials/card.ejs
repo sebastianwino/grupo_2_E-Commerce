@@ -37,15 +37,15 @@
 
             <form action="/carrito" method="POST">
                 <div class="buy-form col-12 d-flex justify-content-between">
-                    <div class="increment-number">
+                    <div class="increment-number mr-2">
                         <input type="number" name="qty" min="1" max="100" value="1" />
                        
                         <%- include('./inputSpinner.ejs') %>
 
-                        <%- include('./inputs.ejs', {product:product})%>
+                        <%- include('./cardInputs.ejs', {product:product})%>
                     </div>
         
-                    <div class="buy-button-div">
+                    <div class="buy-button-div ml-2">
                         <button class="buy-button" type="submit"><b>Comprar</b></button>
                     </div>
                 </div>

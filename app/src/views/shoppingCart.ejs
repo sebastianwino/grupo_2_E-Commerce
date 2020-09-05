@@ -12,15 +12,15 @@
     <!-- /Header -->
 
     <!-- Main -->
-    <div class="h container-fluid conteiner-carrito ">
+    <div class="h container-fluid container-carrito ">
         <img src="/images/carrito/techo.png" class="fondo-carrito" alt="techo carrito">
     </div>
-    <div class="container general">
+    <div class="container general main-carrito">
         <div class="row my-5">
             <div class="col-12 col-md-8">
                 <div class="row border-bottom my-3">
                     <div class="col-4">
-                        <h3>Imagen</h3>
+                        <h3></h3>
                     </div>
                     <div class="col-2">
                         <h3>Producto</h3>
@@ -32,7 +32,7 @@
                         <h3>Cantidad</h3>
                     </div>
                     <div class="col-2">
-                        <h3>Precio total</h3>
+                        <h3>Subtotal</h3>
                     </div>
                 </div>
 
@@ -50,43 +50,47 @@
                         <h3>$<%= product.price %></h3>
                     </div>
                     <div class="col-2 my-auto">
-                        <form action="/carrito/?_method=PUT" method="POST">
-                            <input type="number" name="cant" value="<%= product.cant %>" class="w-50" min="1" max="10">
-                            <%- include('products/productsPartials/inputs.ejs', {product: product}) %>
-                            <button style="border:none;"><i class="fas fa-sync text-success"></i></button>
+                        <form action="/carrito?_method=PUT" method="POST" class="d-flex">
+                            
+                            <input type="number" name="qty" value="<%= product.cart_product.qty %>" class="w-50" min="1" max="10">
+                            
+                            <%- include('partials/cartInputs.ejs', {product: product}) %>
+                            <button class="btn"><i class="fas fa-sync text-success"></i></button>
                         </form>
                     </div>
                     <div class="col-1 my-auto color-darkred">
-                        <h3>$<%= product.total %></h3>
+                        <h3>$<%= product.cart_product.sub_total_price %></h3>
                     </div>
                     <div class="col-1 my-auto">
-                        <form action="/carrito" method="POST">
+                        <form action="/carrito?_method=DELETE" method="POST">
                             <input type="hidden" name="id" value="<%= product.id %>">
-                            <button class="btn btn-danger btn-sm mx-3">
-                                <h3>X</h3>
+                            <button class="btn btn-sm mx-3" type="submit">
+                                <i class="fas fa-trash-alt"></i>
                             </button>
                         </form>
                     </div>
                 </div>
                 <% }) %>
-                <!--LLENAR CON PRODUCTOS AQUI-->
-                <!--
-          <div class="row border-bottom my-3">
-            <div class="col-4"><h3>IMAGEN DEL PRODUCTO</h3></div>
-            <div class="col-2"><h3>NOMBRE</h3></div>
-            <div class="col-2"><h3>PRECIO UNITARIO</h3></div>
-            <div class="col-2"><h3>CANTIDAD DEL PRODUCTO</h3></div>
-            <div class="col-2"><h3>PRECIO TOTAL DE ESA CATEGORIA</h3></div>
-          </div>-->
+                
             </div>
             <div class="col-12 col-md-4">
-                <div class="card">
+                <div class="card cart-totals">
                     <div class="card-body">
-                        <h6 class="card-title tam-text">Prodcutos en el carrito</h6>
-                        <p class="card-text color-darkred"><b>$<%=cart.products_total %></b></p>
-                        <h5 class="card-title tam-text">Total de la compra</h5>
-                        <p class="card-text color-darkred"><b>$<%=cart.total_price %></b></p>
-                        <a href="#" class="btn btn-info my-2">Finalizar compra</a>
+                        <div class="cart-total-products mb-3">
+                            <h6 class="card-title tam-text">Productos en el carrito</h6>
+                            <p class="card-text color-darkred"><b><%= cart.products_total %></b></p>
+                        </div>
+                        <div class="cart-total-price mb-3">
+                            <h5 class="card-title tam-text">Total de la compra</h5>
+                            <p class="card-text color-darkred"><b>$<%= cart.total_price %></b></p>
+                        </div>
+                            <div>
+                            <button class="buy-cart-button my-2"><a href="#" class="reset-link"><b class="c-white">Finalizar compra</b></a></button>
+                        </div>
+                        <div class="mt-4">
+                            <a class="reset-link more-options-cart" href="/productos"><p><i class="fas fa-angle-left"></i><b> Seguir comprando</b></p></a>
+                            <a class="reset-link more-options-cart" href="/carrito"><p><i class="fas fa-sync"></i> <b>Actualizar</b></p></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,7 +105,12 @@
     <!-- /footer -->
 
 
-    </script>
+    <!-- <script>
+        window.upload(() => {
+            location.reload();
+        })
+        
+    </script> -->
 </body>
 
 </html>

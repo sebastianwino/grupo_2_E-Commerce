@@ -15,9 +15,9 @@
     font-family: 'Kalam', cursive;
 }
 
-.index-15 {
+.index-20 {
     position: relative;
-    z-index: 15;
+    z-index: 20;
 }
 
 
@@ -990,7 +990,6 @@
     color: darkred;
 }
 
-
 .card-text {
     font-size: 22px;
 }
@@ -1043,34 +1042,40 @@
 
 }
 
-
 .row.border-bottom.my-3.i {
     color: darkred;
 }
 
+.cart-totals {
+    border: none;
+    border-left: 1px solid rgba(0,0,0,.125);
+}
 
+.buy-cart-button {
+    color: white;
+    background-color: darkred;
+    border: none;
+    padding: 4px 15px;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
 
+.c-white {
+    color: white;
+}
 
+.fa-trash-alt {
+    color: darkred;
+}
 
+.more-options-cart {
+    font-size: 15px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.main-carrito {
+    margin-top: 50px;
+    margin-bottom: 200px;
+}
 
 /* PRODUCTOS */
 .bottomFilter {
@@ -1260,8 +1265,6 @@ li.lista-filtro-productos {
     border: none;
 
 }
-
-
 
 .productos-recomendados a:hover {
     text-decoration: none;

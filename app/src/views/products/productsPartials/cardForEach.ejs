@@ -12,9 +12,12 @@
                             <p class="titulo-producto"><%=product.name%></p>
                         </div>
 
-                        <div class="add-to-cart-products">
-                            <a href="#"><i class="fas fa-shopping-cart fa-2x"></i></a>
-                        </div>
+                        <form action="/carrito" method="POST">
+                            <%- include('./cardsInputs.ejs', {product: product})%>
+                            <div class="add-to-cart-products">
+                                <button type="submit" class="btn"><a href="#"><i class="fas fa-shopping-cart fa-2x"></i></a></button>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
