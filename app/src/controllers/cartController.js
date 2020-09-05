@@ -111,7 +111,7 @@ let cartController = {
         productsInCart.forEach(function (productInCart) {
             if (productInCart.cart_product.product_id == req.body.id) {
 
-                if(req.body.qty < productInCart.cart_product.qty){
+                if(req.body.qty <= productInCart.cart_product.qty){
                     newQty = Number(req.body.qty) - Number(productInCart.cart_product.qty)
                     unitPrice =Number(productInCart.cart_product.unit_price)
                     cartTotalPrice = Number(cartFull.total_price) + (unitPrice*newQty)                    

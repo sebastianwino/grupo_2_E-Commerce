@@ -24,8 +24,6 @@ function paginate(req, result, productsLimit, url) {
         currentPage: queryPage,
         main: main
     }
-
-
 }
 
 let productsController = {

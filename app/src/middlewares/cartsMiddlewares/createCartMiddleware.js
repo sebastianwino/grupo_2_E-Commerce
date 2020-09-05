@@ -16,8 +16,6 @@ async function cartMiddleware(req, res, next) {
         })
         req.session.cartId = cart.dataValues.id
 
-        // req.session.productsId.length == 0 ? console.log('Si') : console.log('No')
-
 
     } else if (req.session.user != undefined && req.session.cartFull == true && req.session.cartBool2!=true) {
       
@@ -63,7 +61,7 @@ async function cartMiddleware(req, res, next) {
 
 
 
-        res.json(cart3)
+      
     }
 
 
