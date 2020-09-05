@@ -122,8 +122,8 @@ body[i].addEventListener('mouseover', () => {
 // image.addEventListener('click', () => {
 //     let index = document.querySelectorAll('.in')
 
-//     index[0].classList.toggle('index-15')
-//     index[1].classList.toggle('index-15')
+//     index[0].classList.toggle('index-20')
+//     index[1].classList.toggle('index-20')
     // mediumZoom('.image-prince', {
     //     margin: 0,
     //     background: '#000',

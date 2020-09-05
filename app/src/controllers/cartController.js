@@ -16,12 +16,7 @@ let cartController = {
             products: cart.product,
             user: req.session.user
         })
-        //  res.json(asociation)
-        //     res.render('shoppingCart', {
-        //         title: 'Carrito',
-        //         admin: req.session.admin,
-        //         cart: cart3
-        //     });
+
     },
     store: async function (req, res) {
 
@@ -44,10 +39,6 @@ let cartController = {
             req.session.productsId.push(req.body.id)
         }
 
-
-        // console.log(Number(req.body.qty))
-        // console.log(Number(req.session.qty))
-
         await cart.addProduct(product.id, {
             through: {
                 unit_price: Number(product.price),
@@ -67,18 +58,6 @@ let cartController = {
             cartTotalPrice += Number(productInCart.cart_product.sub_total_price)
             cartTotalQty += Number(productInCart.cart_product.qty)
         })
-
-
-        console.log('precio          ' + cartTotalPrice)
-        console.log('precio          ' + cartTotalPrice)
-        console.log('precio          ' + cartTotalPrice)
-        console.log('precio          ' + cartTotalPrice)
-        console.log(cartTotalQty)
-        console.log(cartTotalQty)
-        console.log(cartTotalQty)
-        console.log(cartTotalQty)
-
-
 
 
         let cart4 = await db.Cart.update({
@@ -101,40 +80,89 @@ let cartController = {
         res.redirect('/carrito')
 
     },
-    update: (req, res) => {
-        req.session.cartFull = true
-        db.Cart.findByPk(req.session.cart)
-            .then(cart => {
-                db.Product.findByPK(req.body.product_id)
-                    .then(product => {
-                        cart.setProduct(product, {
-                            through: { //puede ser set o add
-                                price: product.price,
-                                total_price: product.price * req.body.qty
-                            }
-                        })
-                    })
-            })
-    },
-    destroy: async function (req, res)  {
-        await db.Cart.findByPk(req.session.cartId).then(cart => {
-            cart.removeProduct(req.body.id)
+    update: async function (req, res) {
+
+        let cart = await db.Cart.findByPk(req.session.cartId)
+        let product = await db.Product.findOne({
+            where: {
+                id: req.body.id
+            }
         })
-        
+
+        cart.addProduct(product, {
+            through: {
+                unit_price: product.price,
+                qty: req.body.qty,
+                sub_total_price: product.price * req.body.qty
+            }
+        })
+
         let cartFull = await db.Cart.findByPk(req.session.cartId, {
             include: ['product']
         })
         let productsInCart = cartFull.product
-        let cartTotalPrice = 0
-        let cartTotalQty = 0
- 
+        
+        
+        let cartTotalPrice
+        let cartTotalQty
+        let newQty
+        let unitPrice
+
         productsInCart.forEach(function (productInCart) {
-            cartTotalPrice += Number(productInCart.cart_product.sub_total_price)
-            cartTotalQty += Number(productInCart.cart_product.qty)
+            if (productInCart.cart_product.product_id == req.body.id) {
+
+                if(req.body.qty < productInCart.cart_product.qty){
+                    newQty = Number(req.body.qty) - Number(productInCart.cart_product.qty)
+                    unitPrice =Number(productInCart.cart_product.unit_price)
+                    cartTotalPrice = Number(cartFull.total_price) + (unitPrice*newQty)                    
+                    cartTotalQty = Number(cartFull.products_total)
+                }
+                 else if (req.body.qty > productInCart.cart_product.qty) {
+                    newQty = Number(req.body.qty) - Number(productInCart.cart_product.qty)
+                    cartTotalPrice = Number(cartFull.total_price)
+                    unitPrice =Number(productInCart.cart_product.unit_price)
+                    cartTotalQty = Number(cartFull.products_total)
+                    cartTotalPrice += (unitPrice*newQty)
+                }
+            }
+            }
+        )
+
+        await db.Cart.update({
+            user_id: req.session.userId,
+            address_id: null,
+            total_price: cartTotalPrice,
+            products_total: cartTotalQty + newQty,
+            general_comments: '',
+            sold: false
+        }, {
+            where: {
+                id: req.session.cartId
+            }
+        })
+        res.redirect('/carrito')
+    },
+    destroy: async function (req, res) {
+
+        let cartFull = await db.Cart.findByPk(req.session.cartId, {
+            include: ['product']
+        })
+        let productsInCart = cartFull.product
+        let cartTotalPrice = cartFull.total_price
+        let cartTotalQty = cartFull.products_total
+
+        productsInCart.forEach(function (productInCart) {
+            if (productInCart.cart_product.product_id == req.body.id) {
+                cartTotalPrice -= Number(productInCart.cart_product.sub_total_price)
+                cartTotalQty -= Number(productInCart.cart_product.qty)
+            }
         })
 
-      
-        let hola = await db.Cart.update({
+        req.session.productsId = req.session.productsId.filter((productId => {
+            return productId != req.body.id
+        }))
+
+        await db.Cart.update({
             user_id: req.session.userId,
             address_id: null,
             total_price: cartTotalPrice,
@@ -147,7 +175,11 @@ let cartController = {
             }
         })
 
-      
+        await db.Cart.findByPk(req.session.cartId).then(cart => {
+            cart.removeProduct(req.body.id)
+        })
+
+
         res.redirect('/carrito')
     }
 }

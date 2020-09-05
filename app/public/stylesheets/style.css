@@ -1046,9 +1046,13 @@
     color: darkred;
 }
 
+.cart-main-card {
+    border-right: 1px solid rgba(0,0,0,.125);
+
+}
+
 .cart-totals {
     border: none;
-    border-left: 1px solid rgba(0,0,0,.125);
 }
 
 .buy-cart-button {
