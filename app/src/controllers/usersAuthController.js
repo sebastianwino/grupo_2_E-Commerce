@@ -47,7 +47,7 @@ let usersControllers = {
                             }
                         }
                         req.session.email = user[0].email
-                        req.session.user = user[0].name
+                        req.session.user = user[0].name 
                         req.session.userId = user[0].id
                         if (user[0].admin == true) {
                         req.session.admin = user[0].admin
@@ -58,7 +58,7 @@ let usersControllers = {
                     res.render('users/login', {
                         title: 'Login',
                         logueo: false,
-                        data: req.body
+                        data: req.body  
                     });
 
                 })
@@ -83,8 +83,11 @@ let usersControllers = {
         res.clearCookie("recordame");
         res.clearCookie("usuario");
         res.clearCookie("admin");
-        
+        res.clearCookie("userId");
 
+        
+        
+        
         res.redirect('/usuarios/login')
 
     },
@@ -101,7 +104,7 @@ let usersControllers = {
                 title: 'Perfil',
                 user: userName,
                 userLoggedIn: userLoggedIn,
-                address: userLoggedIn.address[0],
+                addresses: userLoggedIn.address,
                 phone: userLoggedIn.phone.dataValues,
                 admin: req.session.admin
             })

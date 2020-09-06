@@ -3,14 +3,12 @@ let err = [];
 let dato = {
     name: false,
     lastName: false,
-    email: false,
     cell: false
 }
 
 let firstTime = {
     name: false,
     lastName: false,
-    email: false,
     cell: false
 }
 
@@ -112,11 +110,7 @@ window.onload = () => {
                 dato.lastName = test()
                 firstTime.lastName = true
                 break;
-            case 'email':
-                showError(e, validator.isEmail(e.value));
-                dato.email = test()
-                firstTime.email = true
-                break;
+
             case 'cell_phone':
                 showError(e, validator.isNumeric(e.value));
                 dato.cell = test()
@@ -163,16 +157,7 @@ window.onload = () => {
             switch2('lastname', e.target);
         }
     })
-    form.email.addEventListener('blur', function (e) {
-        if (!firstTime.email) {
-            switch2('email', e.target);
-        }
-    })
-    form.email.addEventListener('keyup', function (e) {
-        if (firstTime.email) {
-            switch2('email', e.target);
-        }
-    })
+ 
     form.cell_phone.addEventListener('blur', function (e) {
         if (!firstTime.cell) {
             switch2('cell_phone', e.target);
@@ -187,7 +172,6 @@ window.onload = () => {
     form.submit.addEventListener('click', function (e) {
         switch2('name', form.name);
         switch2('lastname', form.lastname)
-        switch2('email', form.email)
         switch2('cell_phone', form.cell_phone);
 
         for (let v in dato) {

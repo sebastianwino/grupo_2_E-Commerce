@@ -3,10 +3,12 @@ let db = require('../../../db/models')
 
 
 
+
+
 let registerValidations = [
     
-    check('name').isLength({min: 1}).withMessage('Debés escribir tu nombre'),
-    check('lastname').isLength({min: 1}).withMessage('Debés escribir tu apellido'),
+    check('name').isLength({min: 2}).withMessage('Debés escribir tu nombre'),
+    check('lastname').isLength({min: 2}).withMessage('Debés escribir tu apellido'),
     check('email').isEmail().withMessage('Debe usar un email válido'),
 
     body('email').custom(value => {

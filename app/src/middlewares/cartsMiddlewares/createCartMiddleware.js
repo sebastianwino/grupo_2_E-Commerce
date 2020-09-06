@@ -2,6 +2,7 @@ const db = require('../../db/models')
 
 async function cartMiddleware(req, res, next) {
     if (req.session.cartBool != true && req.session.user == undefined) {
+       
         req.session.cartFull = false
         req.session.cartBool = true
         req.session.productsId = []
@@ -16,9 +17,9 @@ async function cartMiddleware(req, res, next) {
         })
         req.session.cartId = cart.dataValues.id
 
-
+       
     } else if (req.session.user != undefined && req.session.cartFull == true && req.session.cartBool2!=true) {
-      
+        
       
         req.session.cartBool2=true
 
@@ -33,12 +34,14 @@ async function cartMiddleware(req, res, next) {
             {
             where:{
                 id: req.session.cartId
-            }
-        })
+            } 
+        }) 
 
       
 
+ 
     } else if (req.session.user != undefined && req.session.cartFull == false && req.session.cartBool3!=true) {//levanta el carrito del user guardado  y no vendido
+           
         
         req.session.cartBool3 = true
 
@@ -49,7 +52,9 @@ async function cartMiddleware(req, res, next) {
             } 
         })  
 
+        if(cart2.length>0){
         req.session.cartId = cart2[cart2.length-1].id
+        
 
         let cart3 = await db.Cart.findAll({
             where: {
@@ -59,11 +64,11 @@ async function cartMiddleware(req, res, next) {
             } 
         })  
 
+    }
 
 
       
     }
-
 
 
     // si tiene carrito
