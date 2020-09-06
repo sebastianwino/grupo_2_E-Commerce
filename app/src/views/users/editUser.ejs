@@ -3,10 +3,10 @@
     <div class="edit-profile-card">
         <div class="show-errors">
             <% if (typeof errors != 'undefined') { %>
-            <p style="color: darkred">ERROR</p>
+            <p class="darkred">ERROR</p>
             <ul>
                 <% errors.forEach(error => { %>
-                <li>
+                <li class="darkred">
                     <%= error.msg %>
                 </li>
                 <% }) %>
@@ -31,18 +31,18 @@
 
         <div class="form-row">
             <div class="form-group col-12 col-md-4">
-                <label for="inputPhone1">Telefono celular 1</label>
+                <label for="inputPhone1">Teléfono celular principal</label>
                 <input type="text" class="form-control" id="inputPhone1" aria-describedby="emailHelp"
                     name="cell_phone" value="<%=phone.cell_phone%>">
                 <span class="d-none invalid-feedback">En este campo no puede haber letras</span>
             </div>
             <div class="form-group col-12 col-md-4">
-                <label for="inputPhone2">Telefono celular 2</label>
+                <label for="inputPhone2">Teléfono celular alternativo</label>
                 <input type="text" class="form-control" id="inputPhone2" aria-describedby="emailHelp" name="cell_phone_2" value="<%=phone.cell_phone_2%>">
                 <span class="d-none invalid-feedback">En este campo no puede haber letras</span>
             </div>
             <div class="form-group col-12 col-md-4">
-                <label for="phone">Telefono celular 2</label>
+                <label for="phone">Teléfono celular alternativo</label>
                 <input type="text" class="form-control" id="phone" aria-describedby="emailHelp" name="phone" value="<%=phone.phone%>">
                 <span class="d-none invalid-feedback">En este campo no puede haber letras</span>
             </div>

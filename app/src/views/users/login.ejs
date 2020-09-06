@@ -14,17 +14,25 @@
     <div class="h container-fluid fondo-login general">
         <div class="container formulario-login">
 
-            <!-- Revisar -->
             <% if (logueo == false) {%>
-            <h3 class="text-center text-danger">No hay coincidencia de usuario y contraseña.</h3>
+                <div class="col-12 col-lg-6">
+                    <h4 class="text-center text-danger"><b>No hay coincidencia de usuario y contraseña</b></h4>
+                </div>
+            <% } %>
+
+            <% if (register == true) {%>
+                <div class="col-12">
+                    <h4 class="text-center text-danger"><b>Te has registrado con éxito</b></h4>
+                    <h4 class="text-center text-danger"><b>Logueate para comprar con tu cuenta</b></h4>
+                </div>
             <% } %>
 
             <div class="show-errors">
                 <% if (typeof errors != 'undefined') { %>
-                <p style="color: darkred">ERROR</p>
+                <p class="darkred">ERROR</p>
                 <ul>
                     <% errors.forEach(error => { %>
-                    <li>
+                    <li class="darkred">
                         <%= error.msg %>
                     </li>
                     <% }) %>

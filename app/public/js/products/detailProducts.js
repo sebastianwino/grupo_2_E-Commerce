@@ -16,7 +16,7 @@ window.onload = () => {
         document.addEventListener('scroll', () => {
             const scrolled = scrollY
             console.log(scrolled)
-            console.log(EventoMediaQueryList.matches)
+            console.log(EventoMediaQueryList.matches)   
             if (EventoMediaQueryList.matches) {
                 if (scrolled < 215) {
                     detras.classList.add('d-none')
@@ -74,6 +74,9 @@ image.addEventListener('mousemove', function (e) {
 image.addEventListener('mouseleave', function () {
  image.style.backgroundPosition = "center";
 });
+
+
+// animacion boton usuario
 
 
 function close () {

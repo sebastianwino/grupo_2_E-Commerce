@@ -19,10 +19,10 @@
                 <div class="login-register-card">
                     <div class="show-errors">
                         <% if (typeof errors != 'undefined') { %>
-                        <p style="color: darkred">ERROR</p>
+                        <p class="darkred">ERROR</p>
                         <ul>
                             <% errors.forEach(error => { %>
-                            <li>
+                            <li class="darkred">
                                 <%= error.msg %>
                             </li>
                             <% }) %>

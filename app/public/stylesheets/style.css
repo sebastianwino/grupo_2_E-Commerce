@@ -78,14 +78,16 @@
 
 .btnProfile {
     background-color: white;
-    border: 1px solid burlywood;
+    border-bottom: 1px solid burlywood;
+    border-top: 1px solid burlywood;
     color: black;
 }
 
 
 .btnProfile:hover {
     background-color: burlywood;
-    border: 1px solid burlywood;
+    border-bottom: 1px solid burlywood;
+    border-top: 1px solid burlywood;
     color: black;
 }
 
@@ -204,7 +206,10 @@
 
 }
 
-
+.darkred {
+    color: darkred;
+    list-style-position: inside
+}
 
 .logo-header {
     width: 300px;

@@ -10,6 +10,7 @@ let usersControllers = {
             title: 'Login',
             user: req.session.user,
             logueo: true,
+            register: false,
             data: {
                 email: null
             }
@@ -58,6 +59,7 @@ let usersControllers = {
                     res.render('users/login', {
                         title: 'Login',
                         logueo: false,
+                        register: false,
                         data: req.body  
                     });
 
@@ -70,7 +72,8 @@ let usersControllers = {
         } else {
             res.render('users/login', {
                 title: 'Login',
-                logueo: true,
+                logueo: false,
+                register: false,
                 errors: errors.errors,
                 data: req.body
             });

@@ -20,10 +20,10 @@
 
                 <div class="show-errors">
                     <% if (typeof errors != 'undefined') { %>
-                    <p style="color: darkred">ERROR</p>
+                    <p class="darkred">ERROR</p>
                     <ul>
                         <% errors.forEach(error => { %>
-                        <li>
+                        <li class="darkred">
                             <%= error.msg %>
                         </li>
                         <% }) %>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group col-12 col-md-4">
                         <label for="inputPrice">Precio</label>
-                        <input type="number" placeholder="Ej: 300 (solo números)" step="0.01" class="form-control" id="inputPrice" aria-describedby="" name="price" value="<%=data.price%>">
+                        <input type="text" placeholder="Ej: 300 (solo números)" step="0.01" class="form-control" id="inputPrice" aria-describedby="" name="price" value="<%=data.price%>">
                         <span class="d-none invalid-feedback">El precio del producto no puede estar vacio y deben ser solo números</span>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-group col-3 col-md-3">
                         <label for="inputSlices">Porciones</label>
-                        <input type="number" placeholder="Ej: 10" step="1" min="0" class="form-control" id="inputSlices" aria-describedby=""
+                        <input type="text" placeholder="Ej: 10" step="1" min="0" class="form-control" id="inputSlices" aria-describedby=""
                             name="slices" value="<%=data.slices%>">
                         <span class="d-none invalid-feedback">Debe usar un número entre 1 y 20 para indicar las porciones del prodcuto</span>
 
@@ -71,7 +71,7 @@
 
                     <div class="form-group col-12 col-md-4">
                         <label for="inputStock">Stock</label>
-                        <input type="number" placeholder="Ej: 50" step="1" class="form-control" id="inputStock" aria-describedby="" name="stock" value="<%=data.stock%>">
+                        <input type="text" placeholder="Ej: 50" step="1" class="form-control" id="inputStock" aria-describedby="" name="stock" value="<%=data.stock%>">
                         <span class="d-none invalid-feedback">Debe usar un número entre 1 y 500 para indicar el stock del prodcuto</span>
                     </div>
                 </div>

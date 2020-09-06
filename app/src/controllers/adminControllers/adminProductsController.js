@@ -174,7 +174,7 @@ let productsControllers = {
         }
 
 
-        res.render('products/products', {
+        res.render('products/admin/adminProducts', {
             title: 'Productos',
             products: products,
             categories: categoriesAll,
@@ -187,7 +187,7 @@ let productsControllers = {
             filterBool: filterBool,
             filterPriceBool: filterPriceBool,
             admin: req.session.admin,
-            pagination: paginate(req, productsAll, 12, `/productos?page=`)
+            pagination: paginate(req, productsAll, 12, `/admin/productos?page=`)
         });
     },
 

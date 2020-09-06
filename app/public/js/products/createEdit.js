@@ -2,7 +2,7 @@ let data = {};
 let pass;
 let rePass;
 let err = [];
-let product = {
+let dato = {
     name: false,
     price: false,
     description: false,
@@ -11,19 +11,71 @@ let product = {
     stock: false
 }
 
+let firstTime = {
+    name: false,
+    price: false,
+    description: false,
+    slices: false,
+    stock: false
+}
+
 window.onload = () => {
 
     function test() {
-        let vari
-        if (err.length>0) {
-            vari = true;
+        if (err.length > 0) {
             err = [];
-            return vari
+            return true
         } else {
-            vari = false;
-            return vari
+            return false
         }
     }
+
+    function switcheando(expression, e) {
+        switch (expression) {
+            case 'name':
+                showError(e, validator.isLength(e.value, {
+                    min: 2
+                }));
+                dato.name = test()
+                firstTime.name = true
+                break;
+            case 'price':
+                showError(e, validator.isNumeric(e.value, {
+                    min: 1
+                }));
+                dato.price = test()
+                firstTime.price = true
+                break;
+            case 'description':
+                showError(e, validator.isLength(e.value, {
+                    min: 20
+                }));
+                dato.description = test()
+                firstTime.description = true
+                break;
+            case 'category':
+                showError(e, !validator.isEmpty(e.value))
+                dato.category = test()
+                firstTime.category = true
+                break;
+            case 'slices':
+                showError(e, (validator.isNumeric(e.value)&&(validator.isLength(e.value, {min: 0, max: 2}))))
+                dato.slices = test()
+                firstTime.slices = true
+                break;
+            case 'stock':
+                showError(e, (validator.isNumeric(e.value)&&(validator.isLength(e.value, {min: 0, max: 6}))));
+                dato.stock = test()
+                firstTime.stock = true
+                break;
+            default:
+
+        }
+    }
+
+
+
+
 
     let form = document.getElementById('form');
 
@@ -41,84 +93,128 @@ window.onload = () => {
     }
 
     form.name.addEventListener('blur', function (e) {
-        showError(e.target, validator.isLength(e.target.value, {min: 2}));
-        product.name = test()
+        if (!firstTime.name) {
+            switcheando('name', e.target);
+        }
+    })
+
+    form.name.addEventListener('keyup', function (e) {
+        if (firstTime.name) {
+            switcheando('name', e.target);
+        }
     })
 
     form.price.addEventListener('blur', function (e) {
-        showError(e.target, validator.isNumeric(e.target.value, {min: 0, max: 9999}));
-        product.price = test()
+        if (!firstTime.price) {
+            switcheando('price', e.target);
+        }
+    })
+
+    form.price.addEventListener('keyup', function (e) {
+        if (firstTime.price) {
+            switcheando('price', e.target);
+        }
     })
 
     form.description.addEventListener('blur', function (e) {
-        showError(e.target, validator.isLength(e.target.value, {min: 20}));
-        product.description = test()
+        if (!firstTime.description) {
+            switcheando('description', e.target);
+        }
+    })
+
+    form.description.addEventListener('keyup', function (e) {
+        if (firstTime.description) {
+            switcheando('description', e.target);
+        }
     })
 
     form.category.addEventListener('change', function (e) {
-        showError(e.target, !validator.isEmpty(e.target.value))
-        product.category = test()
+            switcheando('category', e.target);
     })
 
     form.slices.addEventListener('blur', function (e) {
-        showError(e.target, validator.isNumeric(e.target.value, {min: 0, max: 9999}));
-        product.slices = test()
-    })
-  
-    form.stock.addEventListener('blur', function (e) {
-        showError(e.target, validator.isNumeric(e.target.value, {min: 0, max: 9999}));
-        product.stock = test()
+        if (!firstTime.slices) {
+            switcheando('slices', e.target);
+        }
     })
     
+    form.slices.addEventListener('keyup', function (e) {
+        if (firstTime.slices) {
+            switcheando('slices', e.target);
+        }
+    })
+
+    form.stock.addEventListener('blur', function (e) {
+        if (!firstTime.stock) {
+            switcheando('stock', e.target);
+        }
+    })
+
+    form.stock.addEventListener('keyup', function (e) {
+        if (firstTime.stock) {
+            switcheando('stock', e.target);
+        }
+    })
+
     form.submit.addEventListener('click', function (e) {
+        switcheando('name', form.name);
+        switcheando('price', form.price)
+        switcheando('description', form.description)
+        switcheando('category', form.category)
+        switcheando('slices', form.slices)
+        switcheando('stock', form.stock);
+
         let flag = false
-        for(let v in product) {
-            if (product[v]==true) {
+        for (let v in dato) {
+            if (dato[v] == true) {
                 flag = true
             }
         }
-        if (flag) {
+        if (true) {
             e.preventDefault();
+
         }
     })
+
+
+    /* ------- OCTA --------- */
 
     let btn = document.getElementById('userBtn')
     let animation = document.getElementById('userBtnClick')
     let body = document.querySelectorAll('.h')
     let flag = false;
     let flag2 = false;
-    console.log('llega')
 
-    function close () {
-            animation.classList.add('hiddenAnimation')
-            animation.classList.remove('playing')
-            flag = true;
-            animation.style.height = "0"
-            animation.style.width = "0"
-            flag2=false
+    function close() {
+        animation.classList.add('hiddenAnimation')
+        animation.classList.remove('playing')
+        flag = true;
+        animation.style.height = "0"
+        animation.style.width = "0"
+        flag2 = false
     }
-   
-        btn.addEventListener('click', () => {
+
+    btn.addEventListener('click', () => {
         if (!flag2) {
-        animation.classList.add('playing')
-        animation.style.height = "177px"
-        animation.style.width = "150px"
+            animation.classList.add('playing')
+            animation.style.height = "177px"
+            animation.style.width = "150px"
             if (flag) {
                 animation.classList.remove('hiddenAnimation')
             }
-           flag2=true
+            flag2 = true
         } else {
-            close ()
-        } 
-        })
-   
+            close()
+        }
+    })
 
-        for (let i=0; i<=body.length;i++) {
+
+    for (let i = 0; i <= body.length; i++) {
         body[i].addEventListener('mouseover', () => {
             if (flag2) {
-              close() 
+                close()
             }
         })
     }
-    
+
 }

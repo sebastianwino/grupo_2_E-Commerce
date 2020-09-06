@@ -23,10 +23,10 @@
                 <div class="login-register-card">
                     <div class="show-errors">
                         <% if (typeof errors != 'undefined') { %>
-                        <p style="color: darkred">ERROR</p>
+                        <p class="darkred">ERROR</p>
                         <ul>
                             <% errors.forEach(error => { %>
-                            <li>
+                            <li class="darkred">
                                 <%= error.msg %>
                             </li>
                             <% }) %>
@@ -34,6 +34,7 @@
                         <% } %>
                     </div>
                      <div class="form-row">
+                        <input type="hidden" name="address_id" value="<%=address.id%>">
                         <div class="form-group col-12 col-md-6">
                             <label for="street">Calle</label>
                             <input type="text" class="form-control" id="street" aria-describedby="emailHelp"
@@ -86,7 +87,10 @@
                     </div>
                     
                     <div class="">
-                        <button type="submit" name="submit" class="btn btn-success mx-1">Agregar dirección</button>
+                        <button type="submit" name="submit" class="btn btn-success mx-1">Editar dirección</button>
+                    </div>
+                    <div class="edit-buttons">
+                            <button type="reset" class="btn btn-warning mt-4">Resetear cambios</button>
                     </div>
                 </div>  
             </div>

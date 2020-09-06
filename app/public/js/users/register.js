@@ -8,7 +8,9 @@ let dato = {
     email: false,
     pass: false,
     rePass: false,
-    cell: false
+    cell_phone: false,
+    cell_phone_2: false,
+    phone: false
 }
 
 let firstTime = {
@@ -17,7 +19,9 @@ let firstTime = {
     email: false,
     pass: false,
     rePass: false,
-    cell: false
+    cell_phone: false,
+    cell_phone_2: false,
+    phone: false
 }
 
 
@@ -66,9 +70,19 @@ window.onload = () => {
                 firstTime.rePass = true
                 break;
             case 'cell_phone':
-                showError(e, validator.isNumeric(e.value));
-                dato.cell = test()
-                firstTime.cell = true
+                showError(e, (validator.isNumeric(e.value)&&(validator.isLength(e.value, {min: 8, max: 15}))));
+                dato.cell_phone = test()
+                firstTime.cell_phone = true
+                break;
+            case 'cell_phone_2':
+                showError(e, (e.value.length == 0 || (validator.isNumeric(e.value)&&(validator.isLength(e.value, {min: 8, max: 15}) ))));
+                dato.cell_phone_2 = test()
+                firstTime.cell_phone_2 = true
+                break;
+            case 'phone':
+                showError(e, (e.value.length == 0 || (validator.isNumeric(e.value)&&(validator.isLength(e.value, {min: 8, max: 15}) ))));
+                dato.phone = test()
+                firstTime.phone = true
                 break;
             default:
 
@@ -97,6 +111,7 @@ window.onload = () => {
         }
     
     })
+    
     form.name.addEventListener('keyup', function (e) {
         if (firstTime.name) {
         switcheando('name', e.target);
@@ -108,6 +123,7 @@ window.onload = () => {
         switcheando('lastname', e.target);
         }
     })
+    
     form.lastname.addEventListener('keyup', function (e) {
         if (firstTime.lastName) {
         switcheando('lastname', e.target);
@@ -120,6 +136,7 @@ window.onload = () => {
         switcheando('email', e.target);
         }
     })
+    
     form.email.addEventListener('keyup', function (e) {
         if (firstTime.email) {
         switcheando('email', e.target);
@@ -133,6 +150,7 @@ window.onload = () => {
         switcheando('passwordConfirmation', rePass)
         }}
     })
+    
     form.password.addEventListener('keyup', function (e) {
         if (firstTime.pass) {
         switcheando('password', e.target);
@@ -146,6 +164,7 @@ window.onload = () => {
         switcheando('passwordConfirmation', e.target);
         }
     })
+    
     form.passwordConfirmation.addEventListener('keyup', function (e) {
         if (firstTime.rePass) {
         switcheando('passwordConfirmation', e.target);
@@ -153,13 +172,38 @@ window.onload = () => {
     })
 
     form.cell_phone.addEventListener('blur', function (e) {
-        if (!firstTime.cell) {
+        if (!firstTime.cell_phone) {
         switcheando('cell_phone', e.target);
         }
     })
+    
     form.cell_phone.addEventListener('keyup', function (e) {
-        if (firstTime.cell) {
+        if (firstTime.cell_phone) {
         switcheando('cell_phone', e.target);
+        }
+    })
+    
+    form.cell_phone_2.addEventListener('blur', function (e) {
+        if (!firstTime.cell_phone_2) {
+        switcheando('cell_phone_2', e.target);
+        }
+    })
+    
+    form.cell_phone_2.addEventListener('keyup', function (e) {
+        if (firstTime.cell_phone_2) {
+        switcheando('cell_phone_2', e.target);
+        }
+    })
+    
+    form.phone.addEventListener('blur', function (e) {
+        if (!firstTime.phone) {
+        switcheando('phone', e.target);
+        }
+    })
+    
+    form.phone.addEventListener('keyup', function (e) {
+        if (firstTime.phone) {
+        switcheando('phone', e.target);
         }
     })
 
@@ -170,9 +214,9 @@ window.onload = () => {
         switcheando('password', form.password)
         switcheando('password', form.passwordConfirmation)
         switcheando('cell_phone', form.cell_phone);
+        switcheando('cell_phone_2', form.cell_phone_2);
+        switcheando('phone', form.phone);
         firstTime.rePass = true
-
-
 
         let flag = false
         for (let v in dato) {

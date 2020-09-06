@@ -20,11 +20,11 @@
             <% if (typeof errors != 'undefined') { %>
             <div class="col-4"></div>
             <div class="col-8">
-                <p style="color: darkred">ERROR AL EDITAR EL PERFIL, REVISE LOS SIGUIENTES ERRORES<br>EN LA SECCIÓN DE
+                <p class="darkred">ERROR AL EDITAR EL PERFIL, REVISE LOS SIGUIENTES ERRORES<br>EN LA SECCIÓN DE
                     "EDITAR PERFIL"</p>
                 <ul>
                     <% errors.forEach(error => { %>
-                    <li>
+                    <li class="darkred">
                         <%= error.msg %>
                     </li>
                     <% }) %>
@@ -83,13 +83,13 @@
                     <div class="form-row">
                         <% if (phone.cell_phone_2) { %>
                         <div class="form-group">
-                            <p class="tittle font-weight-bold"> Teléfono principal:</p>
+                            <p class="tittle font-weight-bold"> Teléfono celular alternativo:</p>
                             <p class="userInfo"> <%=  phone.cell_phone_2 %></p>
                         </div>
                         <% } %>
                         <% if (phone.phone) { %>
                         <div class="form-group">
-                            <p class="tittle font-weight-bold"> Teléfono principal:</p>
+                            <p class="tittle font-weight-bold"> Teléfono :</p>
                             <p class="userInfo"> <%=  phone.phone %></p>
                         </div>
                         <% } %>
@@ -100,6 +100,8 @@
                 <div class="col-9 profile-panel addresses d-none second-panel login-register-card">
             <% if (addresses) { %>
                 <%addresses.forEach(address=>{%>
+                   <form action="/usuarios/perfil/direcciones/edicion" method="POST"> 
+                    <input type="hidden" name="address_id" value="<%=address.id%>">
                     <h1 class="font-weight-bold">Tus direcciones</h1>
                     <div class="form-row">
                         <div class="form-group col-12">
@@ -135,6 +137,16 @@
                         <p class="tittle font-weight-bold"> Provincia:</p>
                         <p class="userInfo"> <%= address.prov%></p>
                     </div>
+                   
+                    <div class="d-lg-flex justify-content-lg-between ">
+                        <!-- <div class="edit-buttons">
+                            <button type="reset" class="btn btn-warning mt-4">Borrar cambios</button>
+                        </div> -->
+                        <div class="edit-buttons">
+                            <button type="submit" name="submit"class="btn btn-success mt-4">Editar dirección</button>
+                        </div>
+                    </div>
+                </form> 
                     <%})%>
                     <% } %>
                     <div class="form-group">
@@ -189,20 +201,20 @@
 
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-4">
-                                    <label for="inputPhone1">Telefono celular 1</label>
+                                    <label for="inputPhone1">Teléfono celular principal</label>
                                     <input type="text" class="form-control" id="inputPhone1"
                                         aria-describedby="emailHelp" name="cell_phone" value="<%=phone.cell_phone%>">
                                     <span class="d-none invalid-feedback">En este campo no puede haber letras</span>
                                 </div>
                                 <div class="form-group col-12 col-md-4">
-                                    <label for="inputPhone2">Telefono celular 2</label>
+                                    <label for="inputPhone2">Teléfono celular alternativo</label>
                                     <input type="text" class="form-control" id="inputPhone2"
                                         aria-describedby="emailHelp" name="cell_phone_2"
                                         value="<%=phone.cell_phone_2%>">
                                     <span class="d-none invalid-feedback">En este campo no puede haber letras</span>
                                 </div>
                                 <div class="form-group col-12 col-md-4">
-                                    <label for="phone">Telefono celular 2</label>
+                                    <label for="phone">Teléfono celular alternativo</label>
                                     <input type="text" class="form-control" id="phone" aria-describedby="emailHelp"
                                         name="phone" value="<%=phone.phone%>">
                                     <span class="d-none invalid-feedback">En este campo no puede haber letras</span>

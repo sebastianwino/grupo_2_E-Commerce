@@ -26,7 +26,9 @@ router.post('/registro', registerValidations, controllers.user.store);
 /* ADDRESSES */
 router.get('/perfil/direcciones', profileMiddleware, controllers.user.addAddress);
 router.post('/perfil/direcciones', addressValidations, controllers.user.storeAddress);
-// router.put('/perfil/direcciones',profileMiddleware, controllers.user.editAddress);
+//router.get('/perfil/direcciones/edicion', profileMiddleware, controllers.user.addAddress);
+router.post('/perfil/direcciones/edicion', controllers.user.editAddress);
+router.put('/perfil/direcciones/edicion',addressValidations, controllers.user.updateAddress);
 // router.delete('/perfil/direcciones', controllers.user.deleteAddress);
 
 /* EDIT */
