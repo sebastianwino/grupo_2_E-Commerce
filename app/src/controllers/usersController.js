@@ -69,11 +69,8 @@ let usersController = {
 
         if (errors.isEmpty()) {
 
-        req.body.cell_phone_2 == 0 ? req.body.cell_phone_2 = null : req.body.cell_phone_2
-        req.body.phone == 0 ? req.body.phone = null : req.body.phone
-
-
-
+            req.body.cell_phone_2 == 0 ? req.body.cell_phone_2 = null : req.body.cell_phone_2
+            req.body.phone == 0 ? req.body.phone = null : req.body.phone
 
             await db.Phone.update({
                 cell_phone: req.body.cell_phone,
@@ -123,10 +120,11 @@ let usersController = {
                 })
         }
     },
-    addAddress: (req,res) => {
+    addAddress: (req, res) => {
         res.render('users/addAddressForm', {
             title: 'Agregue un direccion',
             user: req.session.user,
+            admin: req.session.admin,
             data: {
                 alias: null,
                 city: null,
@@ -136,12 +134,10 @@ let usersController = {
                 floor: null,
                 departament: null,
                 zip_code: null,
-                admin: req.session.admin,
-            }
+            },
         });
     },
-    storeAddress: async function(req, res) {
-
+    storeAddress: async function (req, res) {
 
         let errors = validationResult(req)
 
@@ -158,41 +154,25 @@ let usersController = {
                 user_id: req.session.userId
             })
 
-        
-
+            res.redirect('/usuarios/perfil')
         } else {
             res.render('users/addAddressForm', {
                 title: 'Agregue un direccion',
                 user: req.session.user,
-                data: {
-                    alias: null,
-                    city: null,
-                    prov: null,
-                    street: null,
-                    number: null,
-                    floor: null,
-                    departament: null,
-                    zip_code: null,
-                    errors: errors.errors,
-                    admin: req.session.admin,
-                }
+                admin: req.session.admin,
+                data: req.body,
+                errors: errors.errors,
             });
         }
-        
-        
-        
     },
     editAddress: async (req, res) => {
-    let address = await db.Address.findByPk(req.body.address_id)
+        let address = await db.Address.findByPk(req.body.address_id)
 
-
-    res.render('users/editAddressForm', {
-        title: 'Edite su dirección',
-        user: req.session.user,
-        address: address
-    });
-
-
+        res.render('users/editAddressForm', {
+            title: 'Edite su dirección',
+            user: req.session.user,
+            address: address
+        });
     },
     updateAddress: async (req, res) => {
         let errors = validationResult(req)
@@ -208,38 +188,31 @@ let usersController = {
                 departament: req.body.departament,
                 zip_code: req.body.zip_code,
                 user_id: req.session.userId
-            },{
+            }, {
                 where: {
-                    id:req.body.address_id
+                    id: req.body.address_id
                 }
-            }
-            
-            )
-
-        
-
+            })
+                res.redirect('/usuarios/perfil')
         } else {
             res.render('users/addAddressForm', {
                 title: 'Agregue un direccion',
                 user: req.session.user,
-                data: {
-                    alias: null,
-                    city: null,
-                    prov: null,
-                    street: null,
-                    number: null,
-                    floor: null,
-                    departament: null,
-                    zip_code: null,
-                    errors: errors.errors,
-                    admin: req.session.admin,
-                }
+                errors: errors.errors
             });
         }
+
+    },
+    deleteAddress: async (req, res) =>{
         
-        
-        
-}
+         await db.Address.destroy({
+             where: {
+                 id: req.body.address_id
+             }
+         })
+   
+    res.redirect('/usuarios/perfil')
+    }
 }
 
 module.exports = usersController;

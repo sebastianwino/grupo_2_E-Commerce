@@ -1,8 +1,8 @@
 <div class="filtro-sm d-lg-none w-100">
     <div class="col-12 d-flex justify-content-center">
         <form action="/productos" method="GET">
-            <div class="col-12">
-                <select name="filter">
+            <div class="col-12  mb-2">
+                <select name="filter" class="custom-select filter-sm-select">
                     <%if (typeof categoryFilter != 'undefined') {%>
                         <option class="tituloFiltrar" selected disabled><%=categoryFilter%></option>
                     <%} else {%>
@@ -15,8 +15,8 @@
                 <%})%>
                 </select>
             </div>
-            <div class="col-12">
-                <select name="filterPriceMin" id="">
+            <div class="col-12 mb-2">
+                <select name="filterPriceMin" id="" class="custom-select filter-sm-select">
                     <% if (typeof filterPriceMin != 'undefined') {%>
                     <option value="" selected disabled>$<%=filterPriceMin%></option>
                     <%} else {%>
@@ -27,8 +27,8 @@
                     <option value="1000" id="">desde $1000</option>
                 </select>
             </div>
-            <div class="col-12">
-                <select name="filterPriceMax" id="">
+            <div class="col-12 mb-2">
+                <select name="filterPriceMax" id="" class="custom-select filter-sm-select">
                     <% if (typeof filterPriceMax != 'undefined') {%>
                         <option value="" selected disabled>$<%=filterPriceMax%></option>
                         <%} else {%>
@@ -41,7 +41,7 @@
                 </select>
             </div>
             <div class="filtrar-producto-sm col-12">
-                <button type="submit">Filtrar</button>
+                <button type="button" class="btn btn-light col-12">Filtrar</button>
             </div>
         </form>
     </div>

@@ -194,12 +194,12 @@ let productsControllers = {
     detail: async function (req, res) {
 
         let productsAll = await db.Product.findAll({
-            include: ['category']
+            include: ['category'] 
         })
         let product = await db.Product.findByPk(req.params.productId, {
             include: ['category']
         })
-
+ 
         if (product) {
             let productsRelated = productsAll.filter(productRelated => {
                 if (productRelated.category.name == product.category.name && productRelated.price <= (product.price * 1.5) &&

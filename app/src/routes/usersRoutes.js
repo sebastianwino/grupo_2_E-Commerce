@@ -23,17 +23,19 @@ router.get('/logout', controllers.userAuth.logout);
 router.get('/registro', loginRegisterMiddleware, controllers.user.register);
 router.post('/registro', registerValidations, controllers.user.store);
 
+/* EDIT */
+/* router.get('/perfil/editar', controllers.user.edit); */
+router.put('/perfil/editar', editProfileValidations, controllers.user.update);
+
 /* ADDRESSES */
 router.get('/perfil/direcciones', profileMiddleware, controllers.user.addAddress);
 router.post('/perfil/direcciones', addressValidations, controllers.user.storeAddress);
 //router.get('/perfil/direcciones/edicion', profileMiddleware, controllers.user.addAddress);
 router.post('/perfil/direcciones/edicion', controllers.user.editAddress);
-router.put('/perfil/direcciones/edicion',addressValidations, controllers.user.updateAddress);
-// router.delete('/perfil/direcciones', controllers.user.deleteAddress);
+router.put('/perfil/direcciones',addressValidations, controllers.user.updateAddress);
+router.delete('/perfil/direcciones', controllers.user.deleteAddress);
 
-/* EDIT */
-/* router.get('/perfil/editar', controllers.user.edit); */
-router.put('/perfil/editar', editProfileValidations, controllers.user.update);
+
 
 
 module.exports = router;

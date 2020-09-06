@@ -147,13 +147,18 @@
                         </div>
                     </div>
                 </form> 
-                    <%})%>
-                    <% } %>
+                    
                     <div class="form-group">
                        <form action="/usuarios/perfil/direcciones" method="GET">
-                            <button class="btn btn-info">Registrar una dirección</button>
+                            <button class="btn btn-info">Agregar una direccion</button>
+                        </form>
+                        <form action="/usuarios/perfil/direcciones?_method=DELETE" method="POST">
+                            <input type="hidden" name="address_id" value="<%=address.id%>"> 
+                            <button class="btn btn-info">Eliminar esta dirección</button>
                         </form>
                     </div>
+                    <%})%>
+                    <% } %>
 
                 </div>
 

@@ -7,6 +7,13 @@ function cookieMiddleware (req, res, next) {
         req.session.admin = req.cookies.admin;
     }
     
+
+    // req.session.email = user[0].email
+    // req.session.user = user[0].name 
+    // req.session.userId = user[0].id
+    // if (user[0].admin == true) {
+    // req.session.admin = user[0].admin
+    // }
     next();
 }
 

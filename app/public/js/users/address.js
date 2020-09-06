@@ -80,13 +80,12 @@ window.onload = () => {
                 break;
             case 'departament':
                 showError(e, validator.isLength(e.value, {
-                    min: 2
+                    min: 0
                 }));
                 dato.departament = test()
                 firstTime.departament = true
                 break;
             case 'zip_code':
-                
                 showError(e, validator.isNumeric(e.value, {
                     min: 999
                 }));

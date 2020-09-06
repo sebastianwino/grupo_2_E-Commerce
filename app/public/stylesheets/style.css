@@ -6,6 +6,62 @@
 
 
 
+.animacion {
+    display: block;
+    position: absolute;
+    z-index: 15;
+    margin-left: 50px;
+    background-color: white;
+    width: 0;
+    color: black;
+    overflow: hidden;
+    border-radius: 4%;
+    height: 0;
+}
+
+.playing {
+    animation: dropdown 300ms ease;
+}
+
+
+
+.btnD {
+    width: 100%;
+    border-radius: 0%;
+    border: none;
+}
+
+.btnProfile {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.profile-border-top {
+    border-top: 1px solid burlywood;
+}
+
+.btnProfile:hover {
+    background-color: burlywood;
+    border-bottom: 1px solid burlywood;
+    border-top: 1px solid burlywood;
+    color: black;
+}
+
+
+.btnLogOut {
+    border: none;
+    color: black;
+}
+
+.btnLogOut:hover {
+    background-color: burlywood;
+    border: 1px solid burlywood;
+    color: black;
+}
+
+
+
 /* .on-click-in-body{
   opacity: .1;
   background-color: rgba(0, 0, 0, 0.9)
@@ -51,58 +107,6 @@
     display: none;
 }
 
-
-.animacion {
-    display: block;
-    position: absolute;
-    z-index: 15;
-    margin-left: 50px;
-    background-color: white;
-    width: 0;
-    color: black;
-    overflow: hidden;
-    border-radius: 4%;
-    height: 0;
-}
-
-.playing {
-    animation: dropdown 300ms ease;
-}
-
-
-
-.btnD {
-    width: 100%;
-    border-radius: 0%
-}
-
-.btnProfile {
-    background-color: white;
-    border-bottom: 1px solid burlywood;
-    border-top: 1px solid burlywood;
-    color: black;
-}
-
-
-.btnProfile:hover {
-    background-color: burlywood;
-    border-bottom: 1px solid burlywood;
-    border-top: 1px solid burlywood;
-    color: black;
-}
-
-
-.btnLogOut {
-    background-color: white;
-    border: 1px solid white;
-    color: black;
-}
-
-.btnLogOut:hover {
-    background-color: burlywood;
-    border: 1px solid burlywood;
-    color: black;
-}
 
 @keyframes dropdown {
     0% {
@@ -1086,6 +1090,7 @@
     margin-bottom: 200px;
 }
 
+
 /* PRODUCTOS */
 .bottomFilter {
     width: 50%;
@@ -1107,6 +1112,18 @@
     color: black;
     text-decoration: none;
 
+}
+
+.filter-sm-select:hover {
+    border-color: rgba(191, 172, 149, 0.8);
+    outline: 0;
+    box-shadow: 0 0 0 0.05rem rgba(191, 172, 149, 0.8);
+}
+
+.filter-sm-select:focus {
+    border-color: rgba(191, 172, 149, 0.8);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(191, 172, 149, 0.8);
 }
 
 .filtro-lg {

@@ -58,24 +58,24 @@
                         <!-- si es usuario entonces -->
                         <% if (user != undefined) { %>
                          <a  id="userBtn" href="#" class=" logo-users-success"><i  class=" fas fa-user fa-1x"></i></a>
-                         <div id="userBtnClick" class=" animacion">
-                            <p class="  m-1 btnClass p-3">Hola <%=user%></p> 
-                            <form action="/usuarios/perfil" method="GET">
+                         <div id="userBtnClick" class="animacion">
+                            <p class=" m-1 btnClass p-3">Hola <%=user%></p> 
+                            <form action="/usuarios/perfil" method="GET" class="profile-border-top">
                                 <button class="btn btnD btnProfile">Ir a Perfil</button>
                             </form>
                         <!-- si ese usuario es admin entonces -->
                             <%if (admin==1) {%>
-                                <form action="/admin/productos/crear" method="GET">
+                                <form action="/admin/productos/crear" method="GET" class="profile-border-top">
                                     <button class="btn btnD btnLogOut admin">Crar producto</button>
                                 </form>    
                         <!-- si ese usuario no es admin entonces -->
                             <%} else {%>
                                 
-                                <form action="/carrito" method="GET">
+                                <form action="/carrito" method="GET" class="profile-border-top">
                                     <button class="btn btnD btnLogOut admin">Últimas compras</button>
                                 </form>
                             <%} %>
-                            <form action="/usuarios/logout" method="GET">
+                            <form action="/usuarios/logout" method="GET" class="profile-border-top">
                                 <button class="btn btnD btnProfile">Cerrar Sesion</button>
                             </form>
                         
@@ -150,7 +150,7 @@
     </div>
 
     <script src="/js/header.js"></script>
-    <script src="/js/products/detailProducts.js"></script>
+    
     
     
 </header>

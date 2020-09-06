@@ -8,17 +8,26 @@ let cartController = {
             include: ['product']
         })
 
+        let addresses = await db.Address.findAll({
+            where: {
+                user_id: req.session.userId
+            }
+        })
+
+
 
         res.render('shoppingCart', {
             title: 'Carrito',
             admin: req.session.admin,
             cart: cart,
+            addresses: addresses,
             products: cart.product,
             user: req.session.user
         })
 
     },
     store: async function (req, res) {
+
 
         let cart = await db.Cart.findByPk(req.session.cartId, {
             include: ['product']
@@ -101,8 +110,8 @@ let cartController = {
             include: ['product']
         })
         let productsInCart = cartFull.product
-        
-        
+
+
         let cartTotalPrice
         let cartTotalQty
         let newQty
@@ -111,22 +120,20 @@ let cartController = {
         productsInCart.forEach(function (productInCart) {
             if (productInCart.cart_product.product_id == req.body.id) {
 
-                if(req.body.qty <= productInCart.cart_product.qty){
+                if (req.body.qty <= productInCart.cart_product.qty) {
                     newQty = Number(req.body.qty) - Number(productInCart.cart_product.qty)
-                    unitPrice =Number(productInCart.cart_product.unit_price)
-                    cartTotalPrice = Number(cartFull.total_price) + (unitPrice*newQty)                    
+                    unitPrice = Number(productInCart.cart_product.unit_price)
+                    cartTotalPrice = Number(cartFull.total_price) + (unitPrice * newQty)
                     cartTotalQty = Number(cartFull.products_total)
-                }
-                 else if (req.body.qty > productInCart.cart_product.qty) {
+                } else if (req.body.qty > productInCart.cart_product.qty) {
                     newQty = Number(req.body.qty) - Number(productInCart.cart_product.qty)
                     cartTotalPrice = Number(cartFull.total_price)
-                    unitPrice =Number(productInCart.cart_product.unit_price)
+                    unitPrice = Number(productInCart.cart_product.unit_price)
                     cartTotalQty = Number(cartFull.products_total)
-                    cartTotalPrice += (unitPrice*newQty)
+                    cartTotalPrice += (unitPrice * newQty)
                 }
             }
-            }
-        )
+        })
 
         await db.Cart.update({
             user_id: req.session.userId,
@@ -181,6 +188,15 @@ let cartController = {
 
 
         res.redirect('/carrito')
+    },
+    buyCart: async function (req, res) {
+        let cart = db.Cart.update({
+            user_id: req.session.userId,
+            address_id: req.body.address_id,
+            sold: true
+        })
+
+        
     }
 }
 

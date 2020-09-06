@@ -1,7 +1,7 @@
 const db = require('../../db/models')
 
 async function updateCartMiddleware(req, res, next) {
-
+    // res.json(req.session.cartId)
     let cart = await db.Cart.findByPk(req.session.cartId, {
         include: ['product']
     })

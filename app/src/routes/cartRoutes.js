@@ -12,5 +12,9 @@ router.put('/', controllers.cart.update);
 
 router.delete('/', controllers.cart.destroy);
 
+router.post('/comprar', controllers.cart.buyCart);
+
+
+
 
 module.exports = router;
