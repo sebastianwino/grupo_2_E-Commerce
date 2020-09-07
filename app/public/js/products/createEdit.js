@@ -73,10 +73,6 @@ window.onload = () => {
         }
     }
 
-
-
-
-
     let form = document.getElementById('form');
 
     let showError = (el, bool = false) => {
@@ -129,7 +125,7 @@ window.onload = () => {
     })
 
     form.category.addEventListener('change', function (e) {
-            switcheando('category', e.target);
+        switcheando('category', e.target);
     })
 
     form.slices.addEventListener('blur', function (e) {
@@ -170,7 +166,7 @@ window.onload = () => {
                 flag = true
             }
         }
-        if (true) {
+        if (flag) {
             e.preventDefault();
 
         }

@@ -87,9 +87,6 @@ let usersControllers = {
         res.clearCookie("usuario");
         res.clearCookie("admin");
         res.clearCookie("userId");
-
-        
-        
         
         res.redirect('/usuarios/login')
 
@@ -98,18 +95,23 @@ let usersControllers = {
     profile: (req, res) => {
 
         db.User.findOne({
-            include: ['address', 'phone'],
+            include: ['address', 'phone', 'cart'],
             where: {email: req.session.email}
         })
         .then(userLoggedIn => {
             let userName = userLoggedIn.name
+            let cartsSold = userLoggedIn.cart.filter(oneCart => {
+                return oneCart.sold == true
+            })
             res.render('users/profile', {
                 title: 'Perfil',
                 user: userName,
                 userLoggedIn: userLoggedIn,
                 addresses: userLoggedIn.address,
                 phone: userLoggedIn.phone.dataValues,
-                admin: req.session.admin
+                carts: cartsSold,
+                admin: req.session.admin,
+                cartSold: false
             })
         })
         .catch(err => {

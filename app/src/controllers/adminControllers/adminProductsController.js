@@ -4,7 +4,9 @@ const {
 } = require('fs-extra');
 const db = require('../../db/models');
 const search = require('../../Fx/search')
-const { validationResult } = require('express-validator');
+const {
+    validationResult
+} = require('express-validator');
 const path = require('path')
 
 function paginate(req, result, productsLimit, url) {
@@ -194,12 +196,12 @@ let productsControllers = {
     detail: async function (req, res) {
 
         let productsAll = await db.Product.findAll({
-            include: ['category'] 
+            include: ['category']
         })
         let product = await db.Product.findByPk(req.params.productId, {
             include: ['category']
         })
- 
+
         if (product) {
             let productsRelated = productsAll.filter(productRelated => {
                 if (productRelated.category.name == product.category.name && productRelated.price <= (product.price * 1.5) &&
@@ -240,7 +242,7 @@ let productsControllers = {
                 console.log(err)
                 res.send('Error!!!')
             })
-        
+
     },
 
     // Create -  Method to store
@@ -261,6 +263,18 @@ let productsControllers = {
                 .resize(1920, 1080)
                 .toFile(modificadoB)
 
+            let rutaC = path.join('.', 'public', 'images', 'upload', req.files[2].filename)
+            let modificadoC = path.join('.', 'public', 'images', 'upload', 'm' + req.files[2].filename)
+            sharp(rutaC)
+                .resize(1920, 1080)
+                .toFile(modificadoC)
+
+            let rutaD = path.join('.', 'public', 'images', 'upload', req.files[3].filename)
+            let modificadoD = path.join('.', 'public', 'images', 'upload', 'm' + req.files[3].filename)
+            sharp(rutaD)
+                .resize(1920, 1080)
+                .toFile(modificadoD)
+
             db.Product.create({
                 name: req.body.name,
                 description: req.body.description,
@@ -269,28 +283,30 @@ let productsControllers = {
                 price: req.body.price,
                 stock: req.body.stock,
                 image_1: 'm' + req.files[0].filename,
-                image_2: 'm' + req.files[1].filename
+                image_2: 'm' + req.files[1].filename,
+                image_3: 'm' + req.files[2].filename,
+                image_4: 'm' + req.files[3].filename
             })
 
             res.redirect(`/admin/productos`)
 
         } else {
             db.Category.findAll()
-            .then(categories => {
-                res.render('products/admin/createProduct', {
-                    title: 'Crear Producto',
-                    categories: categories,
-                    user: req.session.user,
-                    user: req.session.user,
-                    admin: req.session.admin,
-                    errors: errors.errors,
-                    data: req.body
-                });
-            })
-            .catch(err => {
-                console.log(err)
-                res.send('Error!!!')
-            })
+                .then(categories => {
+                    res.render('products/admin/createProduct', {
+                        title: 'Crear Producto',
+                        categories: categories,
+                        user: req.session.user,
+                        user: req.session.user,
+                        admin: req.session.admin,
+                        errors: errors.errors,
+                        data: req.body
+                    });
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.send('Error!!!')
+                })
         }
     },
 
@@ -337,19 +353,19 @@ let productsControllers = {
                 price: req.body.price,
                 stock: req.body.stock
             }, {
-                where:{
-                    id:req.params.productId
+                where: {
+                    id: req.params.productId
                 }
             })
 
-            res.redirect(`/admin/productos`)
-            
+            res.redirect(`/admin/productos/${req.params.productId}`)
+
         } else {
             let productEdit = db.Product.findByPk(req.params.productId, {
                 include: ['category']
             })
             let categoriesEdit = db.Category.findAll()
-    
+
             Promise.all([productEdit, categoriesEdit])
                 .then(([product, categories]) => {
                     if (product) {
@@ -378,63 +394,63 @@ let productsControllers = {
 
 
         let product = await db.Product.findByPk(req.params.productId)
-            
-                unlink('./public/images/upload/' + product.image_1, function (err) {
-                    if (err) {
-                        console.error(err);
-                    }
-                    console.log('archivo borrado');
-                });
+
+        unlink('./public/images/upload/' + product.image_1, function (err) {
+            if (err) {
+                console.error(err);
+            }
+            console.log('archivo borrado');
+        });
 
 
-                unlink('./public/images/upload/' + product.image, function (err) {
-                    if (err) {
-                        console.error(err);
-                    }
-                    console.log('archivo borrado');
-                });
-           
-           
-                db.Product.destroy({
-                    where: {
-                        id: req.params.productId
-                    }
-                })
-            
-            res.redirect('/admin/productos')
+        unlink('./public/images/upload/' + product.image, function (err) {
+            if (err) {
+                console.error(err);
+            }
+            console.log('archivo borrado');
+        });
+
+
+        db.Product.destroy({
+            where: {
+                id: req.params.productId
+            }
+        })
+
+        res.redirect('/admin/productos')
     },
 
     search: async function (req, res) {
         let admin = 'admin'
         search(req, res, admin);
 
-        
-    //     let cant = 0;
-    //     let productsFound = [];
-    //     let word = req.query.search;
-    //     word = word.toLocaleLowerCase();
-    //     products.forEach(product => {
-    //         let title = product.title.toLocaleLowerCase();
-    //         let category = product.category.toLocaleLowerCase();
-    //         if ((title.indexOf(word) != -1) || (category.indexOf(word) != -1)) {
-    //             productsFound.push(product);
-    //             cant++;
-    //         }
-    //     });
+
+        //     let cant = 0;
+        //     let productsFound = [];
+        //     let word = req.query.search;
+        //     word = word.toLocaleLowerCase();
+        //     products.forEach(product => {
+        //         let title = product.title.toLocaleLowerCase();
+        //         let category = product.category.toLocaleLowerCase();
+        //         if ((title.indexOf(word) != -1) || (category.indexOf(word) != -1)) {
+        //             productsFound.push(product);
+        //             cant++;
+        //         }
+        //     });
 
 
 
 
-    //     res.render('products/products', {
-    //         products: productsFound,
-    //         title: 'Productos',
-    //         categories: categories,
-    //         word: word,
-    //         cant: cant,
-    //         user: req.session.user,
-    //         admin: req.session.admin
-    //     })
-    // }
+        //     res.render('products/products', {
+        //         products: productsFound,
+        //         title: 'Productos',
+        //         categories: categories,
+        //         word: word,
+        //         cant: cant,
+        //         user: req.session.user,
+        //         admin: req.session.admin
+        //     })
+        // }
     }
 }
 

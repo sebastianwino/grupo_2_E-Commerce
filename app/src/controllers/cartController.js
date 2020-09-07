@@ -8,12 +8,15 @@ let cartController = {
             include: ['product']
         })
 
-        let addresses = await db.Address.findAll({
+        let addresses
+
+        if(req.session.userId != undefined){
+        addresses = await db.Address.findAll({
             where: {
                 user_id: req.session.userId
             }
         })
-
+    }else{addresses = null}
 
 
         res.render('shoppingCart', {
@@ -190,13 +193,53 @@ let cartController = {
         res.redirect('/carrito')
     },
     buyCart: async function (req, res) {
-        let cart = db.Cart.update({
+
+        req.body.general_comments == '' ? req.body.general_comments = null : req.body.general_comments
+  
+       await db.Cart.update({
             user_id: req.session.userId,
             address_id: req.body.address_id,
+            general_comments: req.body.general_comments,
             sold: true
+        },{
+            where: {
+                id:req.session.cartId
+            }
         })
 
-        
+        req.session.productsId = []; 
+        req.session.cartFull = false
+        req.session.cartBool = true
+       
+        let cart = await db.Cart.create({
+            user_id: req.session.userId,
+            address_id: null,
+            total_price: 0,
+            products_total: 0,
+            general_comments: req.body.general_comments,
+            sold: false
+        })
+        req.session.cartId = cart.dataValues.id
+
+       let userLoggedIn = await db.User.findOne({
+            include: ['address', 'phone', 'cart'],
+            where: {email: req.session.email}
+        })
+
+        let cartsSold = userLoggedIn.cart.filter(oneCart => {
+            return oneCart.sold == true
+        })
+
+        res.render('users/profile', {
+            title: 'Perfil',
+            user: userLoggedIn.name,
+            userLoggedIn: userLoggedIn,
+            addresses: userLoggedIn.address,
+            phone: userLoggedIn.phone.dataValues,
+            admin: req.session.admin,
+            carts: cartsSold,
+            cartSold: true
+        })
     }
 }
 

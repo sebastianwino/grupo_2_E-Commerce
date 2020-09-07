@@ -89,12 +89,12 @@
                         </div>
 
                         <% if (cart.products_total > 0) { %>
-                            <form action="">
+                            <form action="/carrito/comprar" method="POST" id="cart-form">
                                 
-                                <select name="address_id" class="custom-select filter-sm-select mb-2">
+                                <select name="address_id" class="custom-select filter-sm-select mb-2" required>
                                     <option value="" selected disabled>Seleccioná la dirección de envío</option>
                                     <option value="1">Retiro por el local</option>
-                                    <% if (addresses.length > 0) { %>
+                                    <% if (addresses != undefined) { %>
                                         <% addresses.forEach(address => { %>
                                             <option value="<%=address.id%>"><%= address.alias %> (<%= address.street%> <%=address.number %>)</option>
                                         <% }) %> 
@@ -103,6 +103,10 @@
                                 </select>
 
                                 <small><a class="reset-link" href="/usuarios/perfil/direcciones">Agregar una nueva dirección</a></small>
+
+                                <div class="form-group">
+                                    <textarea type="text"  class="form-control" id="general_comments" aria-describedby="" name="general_comments" placeholder="¿Alguna aclaración sobre el envío?"></textarea>
+                                </div>
 
                                 <div>
                                     <button class="buy-cart-button my-2"><a href="#" class="reset-link"><b class="c-white">Finalizar compra</b></a></button>
@@ -132,13 +136,6 @@
     <%- include('partials/footer.ejs') %>
     <!-- /footer -->
 
-
-    <!-- <script>
-        window.upload(() => {
-            location.reload();
-        })
-        
-    </script> -->
 </body>
 
 </html>

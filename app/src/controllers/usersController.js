@@ -97,21 +97,27 @@ let usersController = {
         } else {
 
             db.User.findOne({
-                    include: ['address', 'phone'],
+                    include: ['address', 'phone', 'cart'],
                     where: {
                         email: req.session.email
                     }
                 })
                 .then(userLoggedIn => {
-                    let userName = userLoggedIn.name
+                    
+                    let cartsSold = userLoggedIn.cart.filter(oneCart => {
+                        return oneCart.sold == true
+                      })
+
                     res.render('users/profile', {
                         title: 'Perfil',
-                        user: userName,
+                        user: userLoggedIn.name,
                         userLoggedIn: userLoggedIn,
                         address: userLoggedIn.address[0],
                         phone: userLoggedIn.phone.dataValues,
                         admin: req.session.admin,
-                        errors: errors.errors
+                        errors: errors.errors,
+                        cartSold: false,
+                        carts: cartsSold
                     })
                 })
                 .catch(err => {
