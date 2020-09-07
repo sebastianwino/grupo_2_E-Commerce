@@ -10,13 +10,15 @@ let cartController = {
 
         let addresses
 
-        if(req.session.userId != undefined){
-        addresses = await db.Address.findAll({
-            where: {
-                user_id: req.session.userId
-            }
-        })
-    }else{addresses = null}
+        if (req.session.userId != undefined) {
+            addresses = await db.Address.findAll({
+                where: {
+                    user_id: req.session.userId
+                }
+            })
+        } else {
+            addresses = null
+        }
 
 
         res.render('shoppingCart', {
@@ -30,27 +32,25 @@ let cartController = {
 
     },
     store: async function (req, res) {
-
-
+        //BUSCA EN LA BASE DE DATOS EL CARRITO EN SESSION Y EL PRODUCTO QUE LLEGA POR EL BODY
         let cart = await db.Cart.findByPk(req.session.cartId, {
             include: ['product']
         })
         let product = await db.Product.findByPk(req.body.id)
 
 
-
+        //BUSCA EN EL ARRAY DE PRODUCTOS AGREGADOS AL CARRITO SI ESTA EL PRODUCTO QUE LLEGA POR BODY, SI NO ESTA LO AGREGA
         let flag = true;
-
         req.session.productsId.forEach(productId => {
             if (productId == req.body.id) {
                 flag = false;
             }
         })
-
         if (flag) {
             req.session.productsId.push(req.body.id)
         }
 
+        //AGREGA EL PRODUCTO A LA TABLA PIVOT CON LOS DATOS CON LA CANTIDAD QUE TENIA (LLEGA DEL MIDDLEWARE) Y DEL BODY
         await cart.addProduct(product.id, {
             through: {
                 unit_price: Number(product.price),
@@ -59,19 +59,22 @@ let cartController = {
             }
         })
 
+        //BUSCA DE NUEVO EL CARRITO PERO YA CON EL PRODUCTO AGREGADO
         let cartFull = await db.Cart.findByPk(req.session.cartId, {
             include: ['product']
         })
+        
         let productsInCart = cartFull.product
         let cartTotalPrice = 0
         let cartTotalQty = 0
 
+        //RECORRE EL ARRAY DE PRODUCTOS ASOCIADO A LA TABLA DE CARRITO Y ACUMULA LAS CANTIDADES Y TOTALES
         productsInCart.forEach(function (productInCart) {
             cartTotalPrice += Number(productInCart.cart_product.sub_total_price)
             cartTotalQty += Number(productInCart.cart_product.qty)
         })
 
-
+        //ACTUALIZA EL CARRITO CON LOS TOTALES Y CANTIDADES DE LA TABLA PIVOT
         let cart4 = await db.Cart.update({
             user_id: req.session.userId,
             address_id: null,
@@ -86,21 +89,21 @@ let cartController = {
         })
 
 
-
+        //SETEA BOOLEANO QUE DICE QUE EL CARRITO TIENE COSAS EN TRUE
         req.session.cartFull = true
 
         res.redirect('/carrito')
 
     },
     update: async function (req, res) {
-
+        //LEVANTA EL CARRITO QUE ESTA EN SESSION Y EL PRODUCTO QUE LLEGA POR BODY
         let cart = await db.Cart.findByPk(req.session.cartId)
         let product = await db.Product.findOne({
             where: {
                 id: req.body.id
             }
         })
-
+        //AGREGA EL PRODUCTO QUE LLEGA POR BODY
         cart.addProduct(product, {
             through: {
                 unit_price: product.price,
@@ -109,6 +112,7 @@ let cartController = {
             }
         })
 
+        //LEVANTA EL CARRITO YA CON EL PRODUCTO AGREGADO
         let cartFull = await db.Cart.findByPk(req.session.cartId, {
             include: ['product']
         })
@@ -120,6 +124,8 @@ let cartController = {
         let newQty
         let unitPrice
 
+        //RECORRE LOS PRODUCTOS ASOCIADOS A ESE CARRITO, Y SUMA O RESTA LOS LAS CANTIDADES Y PRECIO DEPENDIENDO DE SI EL NUMERO QUE
+        //LLEGA POR BODY ES MAYOR O MENOR DEL QUE HABIA EN EL CARRITO
         productsInCart.forEach(function (productInCart) {
             if (productInCart.cart_product.product_id == req.body.id) {
 
@@ -138,6 +144,7 @@ let cartController = {
             }
         })
 
+        //ACTUALIZA EL CARRITO CON LOS DATOS ACUMULADOS Y ACTUALIZADOS QUE ME DIO ARRIBA
         await db.Cart.update({
             user_id: req.session.userId,
             address_id: null,
@@ -153,7 +160,7 @@ let cartController = {
         res.redirect('/carrito')
     },
     destroy: async function (req, res) {
-
+        //LEVANTA EL CARRITO QUE ESTA EN SESSION
         let cartFull = await db.Cart.findByPk(req.session.cartId, {
             include: ['product']
         })
@@ -161,6 +168,8 @@ let cartController = {
         let cartTotalPrice = cartFull.total_price
         let cartTotalQty = cartFull.products_total
 
+        //RECORRE EL ARRAY DE PRODUCTOS ASOCIADOS A LA TABLA CARRITO Y SI EL ID ES EL MISMO QUE EL PRODUCTO QUE LLEGA POR BODY
+        //RESTA EL TOTAL Y LA CANTIDAD
         productsInCart.forEach(function (productInCart) {
             if (productInCart.cart_product.product_id == req.body.id) {
                 cartTotalPrice -= Number(productInCart.cart_product.sub_total_price)
@@ -168,10 +177,12 @@ let cartController = {
             }
         })
 
+        //FULTRA EL ARRAY DE PRODUCTSID DE SESSION SACANDOLE EL PRODUCTO ELIMINADO
         req.session.productsId = req.session.productsId.filter((productId => {
             return productId != req.body.id
         }))
 
+        //ACTUALIZA EL CARRITO CON LAS CANTIDADES ACUMULADAS ARRIBA
         await db.Cart.update({
             user_id: req.session.userId,
             address_id: null,
@@ -185,6 +196,7 @@ let cartController = {
             }
         })
 
+        //ELIMINA EL PRODUCTO DE LA TABLA PIVOT
         await db.Cart.findByPk(req.session.cartId).then(cart => {
             cart.removeProduct(req.body.id)
         })
@@ -194,23 +206,25 @@ let cartController = {
     },
     buyCart: async function (req, res) {
 
+        //SI LOS COMENTARIOS ESTAN VACIOS LOS SETEA EN NULL PARA NO ROMPER LA BASE DE DATOS
         req.body.general_comments == '' ? req.body.general_comments = null : req.body.general_comments
-  
-       await db.Cart.update({
+        //GUARDA LOS DATOS FINALES DE LA COMPRA
+        await db.Cart.update({
             user_id: req.session.userId,
             address_id: req.body.address_id,
             general_comments: req.body.general_comments,
             sold: true
-        },{
+        }, {
             where: {
-                id:req.session.cartId
+                id: req.session.cartId
             }
         })
 
-        req.session.productsId = []; 
+        //CREA UN NUEVO CARRITO E INIZIALIZA EN CERO TODAS LAS VARIABLES
+        req.session.productsId = [];
         req.session.cartFull = false
         req.session.cartBool = true
-       
+
         let cart = await db.Cart.create({
             user_id: req.session.userId,
             address_id: null,
@@ -221,9 +235,11 @@ let cartController = {
         })
         req.session.cartId = cart.dataValues.id
 
-       let userLoggedIn = await db.User.findOne({
+        let userLoggedIn = await db.User.findOne({
             include: ['address', 'phone', 'cart'],
-            where: {email: req.session.email}
+            where: {
+                email: req.session.email
+            }
         })
 
         let cartsSold = userLoggedIn.cart.filter(oneCart => {

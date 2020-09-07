@@ -1,16 +1,19 @@
 const db = require('../../db/models')
 
 async function updateCartMiddleware(req, res, next) {
-    // res.json(req.session.cartId)
+    //Se fija si el propducto que llega por body ya esta en el carrito, si esta guarda acummula los datos de los elementos en el carrito
+    //sino setea los datos en session de los acumuladores en 0
+
+    //LEVANTA EL CARRITO QUE ESTA EN SESSION Y EL PRODUCTO QUE LLEGA POR BODY
     let cart = await db.Cart.findByPk(req.session.cartId, {
         include: ['product']
     })
-    //let product = await db.Product.findByPk(req.body.id)
+
 
     let flag = false;
     let prodQty
     let prodPrice
-
+    //RECORRE EL ARRAY DE PRODUCTID EN SESSION Y SI ESTA RECORRE EL ARRAY DE PRODUCTOS EN CARRITO Y ACUMULA EL PRECIO Y LA CANTIDAD EN SESSION
     if(req.session.productsId.length > 0){
         req.session.productsId.forEach(element => {
             if (element == req.body.id) {
@@ -18,7 +21,6 @@ async function updateCartMiddleware(req, res, next) {
             }
         })
     } 
-
     if (flag) {
         cart.product.forEach(prod => {
             if (prod.id == req.body.id) {
@@ -27,7 +29,7 @@ async function updateCartMiddleware(req, res, next) {
             }
         })
 
-        //req.session.prPrice = Number(prodPrice);
+
         req.session.qty = Number(prodQty);
 
         cart.removeProduct(Number(req.body.id))
