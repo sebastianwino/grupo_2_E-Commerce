@@ -2,6 +2,8 @@ const sharp = require('sharp');
 const {
     unlink
 } = require('fs-extra');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 const db = require('../../db/models');
 const search = require('../../Fx/search')
 const {

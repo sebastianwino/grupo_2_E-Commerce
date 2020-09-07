@@ -24,7 +24,7 @@ let productCreateValidation = [
 
     check('slices').isNumeric({min: 0, max: 20}).withMessage('Las porciones deben ser un número entre 0 a 20'),
 
-    check('stock').isNumeric({min: 0, max : 9999}).withMessage('Debe ingresar un número de stock'),
+    check('stock').isNumeric({min: 0, max : 9999}).withMessage('Debe ingresar un número de stock')
 
 ]
 

@@ -9,11 +9,10 @@
 <div class="product-detail-card row mb-5">
     <div class="porduct-images mb-3 col-12 col-lg-8 image-wrap">
         <div class="first-product-image mb-3 image" style="background-image: url('/images/upload/<%= product.image_1%>');"></div>
-        <%if ((product.image_2==null)||(product.image_3==null)||(product.image_4!=null)){%>
-            <div class="more-product-images d-flex justify-content-between"> 
-        <%} else {%>
-        
+        <%if (((product.image_2==null)&&(product.image_3==null)&&(product.image_4==null))||((product.image_2!=null)&&(product.image_3!=null)&&(product.image_4==null))||((product.image_2!=null)&&(product.image_3==null)&&(product.image_4==null))){%>
             <div class="more-product-images mr-2"> 
+        <%} else {%> 
+           <div class="more-product-images d-flex justify-content-between">   
         <%}%>
             <div class="other-product-image firstImg d-cots">
                 <img src="/images/upload/<%= product.image_1%>" class="image-first selectImg" alt="<%= product.name %>">

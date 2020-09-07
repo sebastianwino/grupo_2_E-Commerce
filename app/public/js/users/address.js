@@ -77,7 +77,7 @@ window.onload = () => {
                 firstTime.floor = true
                 break;
             case 'departament':
-                showError(e, (e.value.length == 0 || (validator.isLength(e.value, {min: 1, max: 6}) )));
+                showError(e, (true));
                 dato.departament = test()
                 firstTime.departament = true
                 break;

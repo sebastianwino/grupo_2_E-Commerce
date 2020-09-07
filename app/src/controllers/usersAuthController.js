@@ -53,7 +53,9 @@ let usersControllers = {
                         if (user[0].admin == true) {
                         req.session.admin = user[0].admin
                         }
-                        res.redirect('/')
+                        let admin
+                        user[0].admin == true ? admin = '/admin' : admin = ''
+                        res.redirect(`${admin}/productos`)
 
                     }
                     res.render('users/login', {
