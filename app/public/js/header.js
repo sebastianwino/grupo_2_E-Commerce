@@ -13,18 +13,6 @@ window.onload = () => {
 // lo de zoom
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // la animacion de nav
 
     mediaqueryList.addListener(function (EventoMediaQueryList) {
