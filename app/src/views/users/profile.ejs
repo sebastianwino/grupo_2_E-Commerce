@@ -109,7 +109,7 @@
                     <% if (addresses.length > 0) { %>
                     <%addresses.forEach(address=>{%>
 
-                    <div class="card col-12 col-md-5 p-0 mb-4">
+                    <div class="card col-12cd mb-4">
                         <div class="card-header w-100">
                             <%= address.alias %>
                         </div>
@@ -136,14 +136,19 @@
 
 
                             <li class="list-group-item d-flex justify-content-around">
-                                <form action="/usuarios/perfil/direcciones/edicion" method="POST">
-                                    <input type="hidden" name="address_id" value="<%=address.id%>">
-                                    <button type="submit" class="btn"><i class="fas fa-edit"></i></button>
-                                </form>
-                                <form action="/usuarios/perfil/direcciones?_method=DELETE" method="POST">
-                                    <input type="hidden" name="address_id" value="<%=address.id%>">
-                                    <button class="btn"><i class="fas fa-trash-alt"></i></button>
-                                </form>
+                                <div>
+                                    <form action="/usuarios/perfil/direcciones/edicion" method="POST" class="">
+                                        <input type="hidden" name="address_id" value="<%=address.id%>">
+                                        <button type="submit" class="btn"><i class="fas fa-edit"><p id="edit-address-p">EDITAR</p></i></button>
+                                    </form>
+                                    
+                                </div>
+                                <div>
+                                    <form action="/usuarios/perfil/direcciones?_method=DELETE" method="POST" id="delete-address-btn">
+                                        <input type="hidden" name="address_id" value="<%=address.id%>">
+                                        <button class="btn"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                </div>
 
                             </li>
                         </ul>
@@ -262,7 +267,7 @@
     <!-- /footer -->
     <%- include('../partials/footer.ejs') %>
     <!-- /footer -->
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.1/validator.js"
         integrity="sha512-UpL7Xolu0DUOeG5Zmm7zn/4ZK4wCR7xYEp/fAO0bySJFqoeJG0r4kKPk+YVpuf+2UiEJNAiqSIU35gajAE0mgg=="
         crossorigin="anonymous"></script>
