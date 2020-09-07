@@ -63,15 +63,16 @@
         <% if (typeof categoryFilter != 'undefined') { %>	
             
             <% if ((typeof filterPriceMin != 'undefined')&&(typeof filterPriceMax != 'undefined')) { %>
-            <p class="alert alert-dark general my-3 d-block bottomFilter"><%=categoryFilter.name%> <a class="text-danger" href="/productos?filterPriceMin=<%=filterPriceMax%>&filterPriceMax=<%=filterPriceMax%>">x</a></p>        
-            
+            <p class="alert alert-dark general my-3 d-block bottomFilter"><%=categoryFilter.name%> <a class="text-danger" href="/productos?filterPriceMin=<%=filterPriceMin%>&filterPriceMax=<%=filterPriceMax%>">x</a></p>        
+<!--             
+            cuando borro si tenia algo en el precio minimo lo dejo
             <%} else if (typeof filterPriceMin != 'undefined') { %>	
             <p class="alert alert-dark general my-3 d-block bottomFilter"><%=categoryFilter.name%> <a class="text-danger" href="/productos?filterPriceMin=<%=filterPriceMin%>">x</a></p>
             
-            <!-- cuando borro si tenia algo en el precio maximo lo dejo -->
+            cuando borro si tenia algo en el precio maximo lo dejo
             <% } else if (typeof filterPriceMax != 'undefined') { %>    
             <p class="alert alert-dark general my-3 d-block bottomFilter"><%=categoryFilter.name%> <a class="text-danger" href="/productos?filterPriceMax=<%=filterPriceMax%>">x</a></p>        
-            
+             -->
             <!-- cuando borro si tenia algo en el precio minimo y maximo lo dejo -->
             <%} else if ((typeof filterPriceMin == 'undefined')&&(typeof filterPriceMax == 'undefined')) { %>	
             <p class="alert alert-dark general my-3 d-block bottomFilter"><%=categoryFilter.name%> <a class="text-danger" href="/productos">x</a></p>

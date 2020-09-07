@@ -4,7 +4,7 @@
             <div class="col-12  mb-2">
                 <select name="filter" class="custom-select filter-sm-select">
                     <%if (typeof categoryFilter != 'undefined') {%>
-                        <option class="tituloFiltrar" selected disabled><%=categoryFilter%></option>
+                        <option class="tituloFiltrar" selected disabled><%=categoryFilter.name%></option>
                     <%} else {%>
                         <option class="tituloFiltrar" selected disabled>Tipo de producto</option>
                     <%}%>
@@ -41,7 +41,7 @@
                 </select>
             </div>
             <div class="filtrar-producto-sm col-12">
-                <button type="button" class="btn btn-light col-12">Filtrar</button>
+                <button type="submit" class="btn btn-light col-12">Filtrar</button>
             </div>
         </form>
     </div>
