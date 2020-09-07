@@ -249,32 +249,97 @@ let productsControllers = {
     store: (req, res, next) => {
 
         let errors = validationResult(req)
+        let flag1=1
+        let flag2=2
+        let flag3=3
+
+
 
         if (errors.isEmpty()) {
+
             let ruta = path.join('.', 'public', 'images', 'upload', req.files[0].filename)
             let modificado = path.join('.', 'public', 'images', 'upload', 'm' + req.files[0].filename)
             sharp(ruta)
                 .resize(1920, 1080)
                 .toFile(modificado)
 
-            let rutaB = path.join('.', 'public', 'images', 'upload', req.files[1].filename)
-            let modificadoB = path.join('.', 'public', 'images', 'upload', 'm' + req.files[1].filename)
-            sharp(rutaB)
-                .resize(1920, 1080)
-                .toFile(modificadoB)
 
-            let rutaC = path.join('.', 'public', 'images', 'upload', req.files[2].filename)
-            let modificadoC = path.join('.', 'public', 'images', 'upload', 'm' + req.files[2].filename)
-            sharp(rutaC)
-                .resize(1920, 1080)
-                .toFile(modificadoC)
+            
+            if(req.files.length>1&&req.files[1].fieldname=='image_2'){
+                let rutaB = path.join('.', 'public', 'images', 'upload', req.files[1].filename)
+                let modificadoB = path.join('.', 'public', 'images', 'upload', 'm' + req.files[1].filename)
+                sharp(rutaB)
+                    .resize(1920, 1080)
+                    .toFile(modificadoB)
+                    
+                flag=1
+            
+            } else {
+                flag1=0          
+            }
 
-            let rutaD = path.join('.', 'public', 'images', 'upload', req.files[3].filename)
-            let modificadoD = path.join('.', 'public', 'images', 'upload', 'm' + req.files[3].filename)
-            sharp(rutaD)
-                .resize(1920, 1080)
-                .toFile(modificadoD)
+            if((req.files.length>1&&req.files[1].fieldname=='image_3')||(req.files.length>2&&req.files[2].fieldname=='image_3')){
+            
+                if (req.files.length>1&&req.files[1].fieldname=='image_3'){
+                    let rutaC = path.join('.', 'public', 'images', 'upload', req.files[1].filename)
+                    let modificadoC = path.join('.', 'public', 'images', 'upload', 'm' + req.files[1].filename)
+                    sharp(rutaC)
+                        .resize(1920, 1080)
+                        .toFile(modificadoC)  
 
+                    flag2=1
+                    
+                } else {
+                    let rutaC = path.join('.', 'public', 'images', 'upload', req.files[2].filename)
+                    let modificadoC = path.join('.', 'public', 'images', 'upload', 'm' + req.files[2].filename)
+                    sharp(rutaC)
+                        .resize(1920, 1080)
+                        .toFile(modificadoC)  
+
+                }
+
+
+            } else {
+                flag2=0
+            }
+
+            if((req.files.length>1&&req.files[1].fieldname=='image_4')||(req.files.length>2&&req.files[2].fieldname=='image_4')||(req.files.length>3&&req.files[3].fieldname=='image_4')){
+                
+
+                if(req.files.length>1&&req.files[1].fieldname=='image_4'){
+                    let rutaD = path.join('.', 'public', 'images', 'upload', req.files[1].filename)
+                        let modificadoD = path.join('.', 'public', 'images', 'upload', 'm' + req.files[1].filename)
+                        sharp(rutaD)
+                    .resize(1920, 1080)
+                    .toFile(modificadoD)
+
+                    flag3=1
+                } else if (req.files.length>2&&req.files[2].fieldname=='image_4'){
+                    let rutaD = path.join('.', 'public', 'images', 'upload', req.files[2].filename)
+                        let modificadoD = path.join('.', 'public', 'images', 'upload', 'm' + req.files[2].filename)
+                        sharp(rutaD)
+                    .resize(1920, 1080)
+                    .toFile(modificadoD)
+
+                    flag3=2
+                } else {
+
+                    let rutaD = path.join('.', 'public', 'images', 'upload', req.files[3].filename)
+                        let modificadoD = path.join('.', 'public', 'images', 'upload', 'm' + req.files[3].filename)
+                         sharp(rutaD)
+                    .resize(1920, 1080)
+                    .toFile(modificadoD)
+                    flag3=3
+                }
+
+
+            } else {
+            flag3=0
+            }
+
+
+
+        if(flag1==1&&flag2==2&&flag3==3){
             db.Product.create({
                 name: req.body.name,
                 description: req.body.description,
@@ -287,6 +352,60 @@ let productsControllers = {
                 image_3: 'm' + req.files[2].filename,
                 image_4: 'm' + req.files[3].filename
             })
+        } else if ((flag1==0&&flag2==1&&flag3==2)||(flag1==1&&flag2==0&&flag3==2)||(flag1==1&&flag2==2&&flag3==0)){
+            db.Product.create({
+                name: req.body.name,
+                description: req.body.description,
+                slices: req.body.slices,
+                category_id: req.body.category,
+                price: req.body.price,
+                stock: req.body.stock,
+                image_1: 'm' + req.files[0].filename,
+                image_2: 'm' + req.files[1].filename,
+                image_3: 'm' + req.files[2].filename,
+                image_4: null
+            })
+
+        } else if ((flag1==1&&flag2==0&&flag3==0)||(flag1==0&&flag2==1&&flag3==0)||(flag1==0&&flag2==0&&flag3==1)) {
+            db.Product.create({
+                name: req.body.name,
+                description: req.body.description,
+                slices: req.body.slices,
+                category_id: req.body.category,
+                price: req.body.price,
+                stock: req.body.stock,
+                image_1: 'm' + req.files[0].filename,
+                image_2: 'm' + req.files[1].filename,
+                image_3: null,
+                image_4: null
+            })
+        } else if (flag1==0&&flag2==0&&flag3==0) {
+            db.Product.create({
+                name: req.body.name,
+                description: req.body.description,
+                slices: req.body.slices,
+                category_id: req.body.category,
+                price: req.body.price,
+                stock: req.body.stock,
+                image_1: 'm' + req.files[0].filename,
+                image_2: null,
+                image_3: null,
+                image_4: null
+            })
+        } 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             res.redirect(`/admin/productos`)
 
@@ -296,7 +415,6 @@ let productsControllers = {
                     res.render('products/admin/createProduct', {
                         title: 'Crear Producto',
                         categories: categories,
-                        user: req.session.user,
                         user: req.session.user,
                         admin: req.session.admin,
                         errors: errors.errors,

@@ -64,7 +64,7 @@
                                 <button class="btn btnD btnProfile">Ir a Perfil</button>
                             </form>
                         <!-- si ese usuario es admin entonces -->
-                            <%if (admin==1) {%>
+                            <%if (admin==1||user=='Admin') {%>
                                 <form action="/admin/productos/crear" method="GET" class="profile-border-top">
                                     <button class="btn btnD btnLogOut admin">Crear producto</button>
                                 </form>    
