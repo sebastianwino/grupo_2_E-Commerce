@@ -69,9 +69,6 @@ let usersController = {
 
         if (errors.isEmpty()) {
 
-            req.body.cell_phone_2 == 0 ? req.body.cell_phone_2 = null : req.body.cell_phone_2
-            req.body.phone == 0 ? req.body.phone = null : req.body.phone
-
             await db.Phone.update({
                 cell_phone: req.body.cell_phone,
                 cell_phone_2: req.body.cell_phone_2,

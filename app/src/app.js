@@ -64,7 +64,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('errors', {title: 'Error', user: req.sessionuser, admin: req.session.admin});
+  res.render('error', {title: 'Error', user: req.sessionuser, admin: req.session.admin});
 });
 
 module.exports = app;
