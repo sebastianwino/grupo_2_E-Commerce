@@ -72,23 +72,17 @@ window.onload = () => {
                 firstTime.number = true
                 break;
             case 'floor':
-                showError(e, validator.isNumeric(e.value, {
-                    min: 2
-                }));
+                showError(e, (e.value.length == 0 || (validator.isNumeric(e.value)&&(validator.isLength(e.value, {min: 1, max: 6}) ))));
                 dato.floor = test()
                 firstTime.floor = true
                 break;
             case 'departament':
-                showError(e, validator.isLength(e.value, {
-                    min: 0
-                }));
+                showError(e, (e.value.length == 0 || (validator.isLength(e.value, {min: 1, max: 6}) )));
                 dato.departament = test()
                 firstTime.departament = true
                 break;
             case 'zip_code':
-                showError(e, validator.isNumeric(e.value, {
-                    min: 999
-                }));
+                showError(e, (validator.isLength(e.value, {min: 4, max: 12})));
                 dato.zip_code = test()
                 firstTime.zip_code = true
                 break;

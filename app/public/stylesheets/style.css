@@ -1564,6 +1564,46 @@ li.lista-filtro-productos {
     background-color: darkred;
 }
 
+.fa-edit {
+    color: green;
+}
+
+.profile-address-card {
+    width: 100%;
+    
+}
+
+.panel-btns {
+    width: 50%;
+}
+
+@media (min-width: 767px) {
+    .panel-btns {
+        width: 100%;
+    }
+
+    .addresses-panel {
+        overflow: hidden;
+    }
+    
+    .profile-address-card {
+        width: 45%;
+        float: left;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+.address-forms {
+    padding-bottom: 100px;
+    padding-top: 40px;
+}
+
+/* .li-profile {
+    width: ;
+}
+ */
+
 /* ERROR */
 
 .fundo {
