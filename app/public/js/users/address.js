@@ -223,4 +223,7 @@ window.onload = () => {
     form.btnAddAddresses.addEventListener('click', function (e) {
         e.preventDefault()
     })
+
+
+
 }
