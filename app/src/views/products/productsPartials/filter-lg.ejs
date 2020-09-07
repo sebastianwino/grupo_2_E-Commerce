@@ -45,7 +45,7 @@
             <button id="interv_price" class="btn btn-dark d-none">agregar intervalo</button>
             
             <!-- input de intervalo de precios -->
-            <form action="/productos" method="GET" class="my-2 interv">
+            <form id="formFilter" action="/productos" method="GET" class="my-2 interv">
                 <% if (typeof filter != 'undefined') { %>
                 <input type="hidden" name="filter" value="<%=filter%>">
                 <% }%>
@@ -54,7 +54,8 @@
                         <input type="number" name="filterPriceMin" class="price-filter_value mb-2" value="" placeholder="Min" min="0" max="10000" required>
                         <input type="number" name="filterPriceMax" class="price-filter_value" value="" placeholder="Max" min="0" max="10000" required>
                     </div>
-                    <button type="submit" class="transparentButtom"><i class="fas fa-arrow-circle-right"></i></button>
+                    <span class="d-none invalid-feedback">El valor minimo no puede ser igual o mas alto que el valor maximo.</span>
+                    <button id="buttomFilter" type="submit" name="submit" class="transparentButtom"><i class="fas fa-arrow-circle-right"></i></button>
                 </div>
             </form>						
         </div>

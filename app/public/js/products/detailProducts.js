@@ -1,3 +1,4 @@
+
 window.onload = () => {
     let btn = document.getElementById('userBtn')
     let animation = document.getElementById('userBtnClick')
@@ -7,8 +8,6 @@ window.onload = () => {
     var mediaqueryList = window.matchMedia("(max-width: 992px)");
     let flag = false;
     let flag2 = false;
-
-
 
 
     mediaqueryList.addListener(function (EventoMediaQueryList) {

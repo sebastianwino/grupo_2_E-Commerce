@@ -177,6 +177,7 @@ let usersController = {
         res.render('users/editAddressForm', {
             title: 'Edite su dirección',
             user: req.session.user,
+            admin: req.session.admin,
             address: address
         });
     },
@@ -203,6 +204,7 @@ let usersController = {
         } else {
             res.render('users/addAddressForm', {
                 title: 'Agregue un direccion',
+                admin: req.session.admin,
                 user: req.session.user,
                 errors: errors.errors
             });
