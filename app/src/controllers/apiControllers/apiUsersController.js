@@ -4,17 +4,15 @@ let apiUsersController = {
 
     list: (req, res) => {
 
-        let allUsers = db.User.findAll();
-
-        let users = db.User.findAll({
+        db.User.findAndCountAll({
             offset: Number(req.query.page) * 10 || 0,
             limit: 10
         })
 
-        Promise.all([allUsers, users])
-            .then(([allUsers, users]) => {
+        
+            .then((users) => {
 
-                users.forEach(user => {
+                users.rows.forEach(user => {
                     user.setDataValue('endpoint', '/api/users/' + user.id);
                 });
 
@@ -24,10 +22,10 @@ let apiUsersController = {
                         url: "/api/users",
                         page: req.query.page,
                         users_per_page: 10,
-                        total_users: allUsers.length,
-                        total_pages: Math.ceil(allUsers.length / 10)
+                        total_users: users.count,
+                        total_pages: Math.ceil(users.count / 10)
                     },
-                    data: users
+                    data: users.rows
                 }
 
                 res.json(respuesta);

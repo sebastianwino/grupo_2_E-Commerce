@@ -5,38 +5,39 @@ let apiProductsController = {
     list: (req, res) => {
 
         let totalPrices = 0;
-        let allProducts = db.Product.findAll();
-        let products = db.Product.findAll({
+        
+        db.Product.findAndCountAll({
             include: [
                 {association: 'category'},
             ],
             offset: Number(req.query.page) * 10 || 0,
             limit: 10,
         })
+            .then((products) => {
 
-        Promise.all([allProducts, products])
-            .then(([allProducts, products]) => {
-
-                products.forEach(product => {
+                products.rows.forEach(product => {
+                    totalPrices += Number(product.price) // pensar como sumar los totales de todas las páginas trayendo paginados y con findAndCountAll
                     product.setDataValue('endpoint', '/api/products/' + product.id);
                     product.setDataValue('imageURL', '/productos/' + product.id + '/imagen');
                 });
 
-                allProducts.forEach(product => {
+                /* Esto era cuando traiamos a products con findAll */
+                /* allProducts.forEach(product => {
                     totalPrices += Number(product.price)
-                });
+                }); */ 
+                
 
                 let respuesta = {
                     meta: {
                         status: 200,
                         page: req.query.page,
                         products_per_page: 10,
-                        total_products: allProducts.length,
+                        total_products: products.count,
                         total_price: totalPrices.toFixed(2),
-                        total_pages: Math.ceil(allProducts.length / 10),
+                        total_pages: Math.ceil(products.count / 10),
                         url: "/api/products"
                     },
-                    data: products
+                    data: products.rows
                 }
                 res.json(respuesta);
 

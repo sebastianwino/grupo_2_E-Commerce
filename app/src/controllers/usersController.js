@@ -16,8 +16,8 @@ let usersController = {
                 lastname: null,
                 email: null,
                 cell_phone: null,
-                cell_phone_2: '',
-                phone: ''
+                cell_phone_2: null,
+                phone: null
             },
             admin: req.session.admin
         });
