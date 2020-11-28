@@ -1747,3 +1747,41 @@ li.lista-filtro-productos {
 
     ;
 }
+
+#whatsapp_chat {
+    background: #fff;
+    border-radius: 50%;
+    bottom: 18pt;
+    display: inline;
+    height: 45pt;
+    padding: 0px;
+    position: fixed;
+    right: 30pt;
+    top: auto;
+    width: 45pt;
+    z-index: 2147483646;
+    -webkit-box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.1), 0 0px 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.1), 0 0px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+#whatsapp_chat_a {
+    text-align: center;
+}
+
+.fa-whatsapp {
+    color: #fff;
+    font-size: 37px;
+    background: #25d366;
+    border-radius: 50%;
+    height: 54px;
+    width: 54px;
+    line-height: 54px;
+    top: 20px;
+    margin-top: 3px;
+    margin-left: 3px;  
+}
+
+#whatsapp_chat_i {
+    width: 54px;
+    padding: 0px 10px;
+}
