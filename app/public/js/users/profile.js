@@ -107,7 +107,9 @@ window.onload = () => {
             return false;
         }
     }
-
+    /* 
+ se compara cual campo se valida y cual es la condicion de validacion, cambia por referencia err, 
+ y coloca la bandera firstTime en true */
     function switch2(expression, e) {
         switch (expression) {
             case 'name':
@@ -136,6 +138,8 @@ window.onload = () => {
 
     let form = document.getElementById('edit-profile-form');
 
+
+    //funcion que valida en si el campo y el booleano.
     let showError = (el, bool = false) => {
         if (bool) {
             el.classList.remove('is-invalid');
@@ -150,12 +154,14 @@ window.onload = () => {
     }
 
     form.name.addEventListener('blur', function (e) {
+        //si es la primera vez que se hace la validacion
         if (!firstTime.name) {
             switch2('name', e.target);
         }
 
     })
     form.name.addEventListener('keyup', function (e) {
+        //Ya se activo la validacion anterior y firstTime es true (mensaje confuso)
         if (firstTime.name) {
             switch2('name', e.target);
         }
@@ -183,11 +189,15 @@ window.onload = () => {
         }
     })
 
+
+   
     form.submit.addEventListener('click', function (e) {
+        //ejecuta las validaciones de cada campo nuevamente 
         switch2('name', form.name);
         switch2('lastname', form.lastname)
         switch2('cell_phone', form.cell_phone);
 
+     // si el objeto dato tiene errores, cambia bandera y corta el envio
         for (let v in dato) {
             if (dato[v] == true) {
                 flag2 = true

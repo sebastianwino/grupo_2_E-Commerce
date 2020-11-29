@@ -4,7 +4,7 @@
             <i class="fab fa-whatsapp fa-w-14 fa-5x" id="whatsapp_chat_i"></i>
         </a>
     </div>
-    <div id="detras" class="h container-fluid detras general in index-11">
+    <div id="detras" class="h container-fluid detras d-none general in index-11">
         <nav class="h navbar navbar-expand-lg navbar-light">
             <a class="h navbar-brand" href="#"></a>
             <button class="h navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -60,7 +60,7 @@
                         <a href="/carrito" class="h logo-carrito"><i class="h fas fa-shopping-cart fa-1x"></i></a>
                         <!-- si es usuario entonces -->
                         <% if (user != undefined) { %>
-                         <a  id="userBtn" href="#" class=" logo-users-success"><i  class=" fas fa-user fa-1x"></i></a>
+                         <a id="userBtn" href="#" class=" logo-users-success"><i  class=" fas fa-user fa-1x"></i></a>
                          <div id="userBtnClick" class="animacion">
                             <p class=" m-1 btnClass p-3">Hola <%=user%></p> 
                             <form action="/usuarios/perfil" method="GET" class="profile-border-top">
@@ -151,7 +151,7 @@
             <!-- /Large -->
         </div>
     </div>
-    <script src="/js/products/detailProducts.js"></script>
+    <!-- <script src="/js/products/detailProducts.js"></script> -->
     <script src="/js/header.js"></script>
     
     
