@@ -14,6 +14,7 @@ let firstTime = {
 
 window.onload = () => {
 
+//Asigna clases del ejs. a las distintas variables creadas    
     let firstMenu = document.querySelector('.first-menu');
     let secondMenu = document.querySelector('.second-menu');
     let thirdMenu = document.querySelector('.third-menu');
@@ -26,6 +27,9 @@ window.onload = () => {
     let fourthPanel = document.querySelector('.fourth-panel');
     let flag1 = 0;
 
+
+    
+// Funcion para ocultar menu y panel no seleccionado
     function switch1(flag1) {
         switch (flag1) {
             case 1:
@@ -50,12 +54,17 @@ window.onload = () => {
         }
     }
 
+
+
+// Funcion para mostrar menu y panel no seleccionado    
     function forEvent(menuClass, panelClass, num) {
         document.querySelector(menuClass).classList.add('selectedMenu');
         document.querySelector(panelClass).classList.remove('d-none');
         flag1 = num;
     }
 
+
+//Ejecuta las funciones anteriores y aparte cambia la bandera    
     if (flag1 != 1) {
         firstMenu.addEventListener('click', (e) => {
             switch1(flag1);
@@ -84,6 +93,11 @@ window.onload = () => {
         })
     }
 
+
+
+
+
+    
     /* Validación de formulario de edición de usuario */
     function test() {
         if (err.length > 0) {
