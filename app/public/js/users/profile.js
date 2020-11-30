@@ -1,3 +1,5 @@
+import { botonMovil } from '../fx/btnUser.js'
+
 let data = {};
 let err = [];
 let dato = {
@@ -26,6 +28,11 @@ window.onload = () => {
     let thirdPanel = document.querySelector('.third-panel');
     let fourthPanel = document.querySelector('.fourth-panel');
     let flag1 = 0;
+
+    
+
+
+    botonMovil()
 
 
     
