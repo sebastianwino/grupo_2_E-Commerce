@@ -1,7 +1,9 @@
 import { botonMovil } from './fx/btnUser.js'
+import { menuAnimation } from './fx/menuAnimation.js'
 
 window.onload = () => {
-  botonMovil();
+      menuAnimation();
+      botonMovil();
 }
 
 
