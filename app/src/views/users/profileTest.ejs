@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <!-- Header -->
+    <%- include('../partials/header.ejs', {user: user, admin: admin}) %>
+    <!-- /Header -->
+
+    <!-- title: 'Perfil'(string),
+    user: userName(string),
+    userLoggedIn: userLoggedIn (objeto:informacion usuario),
+    addresses: userLoggedIn.address (Array de objetos),
+    phone: userLoggedIn.phone.dataValues(objeto telefonos),
+    carts: cartsSold(bool),
+    admin: req.session.admin(bool),
+    cartSold: false(bool) -->
+
+    <!-- Main -->
+
+    <div class="container-fluid paperBackground general">
+        
+            <div class="UserNameProfile"><h2><b><%=user%></b></h2></div>
+        
+      
+        <div class="row ">
+            <div class="col-3 col-md-1">&nbsp;</div>
+            <div class="col-3 col-md-1">
+                <h5 class="profileMenu ACT">Direcciones</h5><h5 class="profileMenu">Direcciones</h5><h5 class="profileMenu">Direcciones</h5>
+                <h5 class="profileMenu">Direcciones</h5><h5 class="profileMenu">Direcciones</h5>
+            </div>
+            <div class="col-3 col-md-1">&nbsp;</div>
+            <div class="d-none d-md-block col-md-1"><img src="/images/profile/lapiz-roma.png"></div>
+            <div class="col-3 col-md-9"></div>
+        </div>
+    </div>
+
+
+    <!-- /Main -->
+
+    <!-- /footer -->
+    <%- include('../partials/footer.ejs') %>
+    <!-- /footer -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.1/validator.js"
+        integrity="sha512-UpL7Xolu0DUOeG5Zmm7zn/4ZK4wCR7xYEp/fAO0bySJFqoeJG0r4kKPk+YVpuf+2UiEJNAiqSIU35gajAE0mgg=="
+        crossorigin="anonymous">
+    </script>
+    <script type="module" src="/js/users/profile.js"></script>
+</body>
+
+</html>

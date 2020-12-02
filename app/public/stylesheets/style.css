@@ -1785,3 +1785,24 @@ li.lista-filtro-productos {
     width: 54px;
     padding: 0px 10px;
 }
+
+
+
+/* profileTest */
+
+.paperBackground {
+    background:url('../images/profile/cuaderno-recetas.jpg') ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.UserNameProfile{
+    text-decoration: underline;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.profileMenu {
+    padding: 30px
+}
+ 

@@ -16,6 +16,7 @@ const addressValidations = require('../middlewares/validations/users/addressVali
 /* AUTH */
 router.get('/login', loginRegisterMiddleware, controllers.userAuth.loginForm);
 router.get('/perfil', profileMiddleware, controllers.userAuth.profile);
+router.get('/profile', profileMiddleware, controllers.userAuth.profileTest)
 router.post('/login', loginValidations, controllers.userAuth.login);
 router.get('/logout', controllers.userAuth.logout);
 

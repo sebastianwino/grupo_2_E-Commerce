@@ -1,9 +1,13 @@
 import { botonMovil } from './fx/btnUser.js'
 import { menuAnimation } from './fx/menuAnimation.js'
+import { photoDetailAnimation } from "./fx/photoDetailAnimation.js"
 
 window.onload = () => {
-      menuAnimation();
       botonMovil();
+      photoDetailAnimation();
+      menuAnimation();
+      
+      
 }
 
 

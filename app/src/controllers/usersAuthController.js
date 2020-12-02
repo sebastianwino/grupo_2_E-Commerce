@@ -121,6 +121,34 @@ let usersControllers = {
             res.send('Error!!!')
         })
 
+    },
+    profileTest: (req, res) => {
+
+        db.User.findOne({
+            include: ['address', 'phone', 'cart'],
+            where: {email: req.session.email}
+        })
+        .then(userLoggedIn => {
+            let userName = userLoggedIn.name
+            let cartsSold = userLoggedIn.cart.filter(oneCart => {
+                return oneCart.sold == true
+            })
+            res.render('users/profileTest', {
+                title: 'Perfil',
+                user: userName,
+                userLoggedIn: userLoggedIn,
+                addresses: userLoggedIn.address,
+                phone: userLoggedIn.phone.dataValues,
+                carts: cartsSold,
+                admin: req.session.admin,
+                cartSold: false
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            res.send('Error!!!')
+        })
+
     }
 }
 
