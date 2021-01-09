@@ -1,14 +1,41 @@
-import { botonMovil } from './fx/btnUser.js'
-import { menuAnimation } from './fx/menuAnimation.js'
-import { photoDetailAnimation } from "./fx/photoDetailAnimation.js"
+import { botonMovil } from './btnUser.js'
+import { menuAnimation } from './menuAnimation.js'
+import { photoDetailAnimation } from "./photoDetailAnimation.js"
 
 window.onload = () => {
-      botonMovil();
       photoDetailAnimation();
       menuAnimation();
-      
-      
+      botonMovil();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

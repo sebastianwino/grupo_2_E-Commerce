@@ -31,6 +31,11 @@
     border: none;
 }
 
+
+.btnProfile:focus {
+    box-shadow: none;
+}
+
 .btnProfile {
     background-color: white;
     border: none;
@@ -48,6 +53,9 @@
     color: black;
 }
 
+.btnProfile:focus{
+    outline:none important!;
+} 
 
 .btnLogOut {
     border: none;
@@ -58,6 +66,10 @@
     background-color: burlywood;
     border: 1px solid burlywood;
     color: black;
+}
+
+.btnLogOut:focus {
+    box-shadow: none;
 }
 
 
@@ -1531,28 +1543,38 @@ li.lista-filtro-productos {
     background-color: rgb(180, 147, 107);
     border: none;
     border-radius: .15rem;
+    outline:none;
 }
 
 .btn-menu:hover {
     background-color: rgb(138, 115, 87);
+    outline:none;
 }
+
+button:focus {
+    outline: none;
+    border: none important!;
+    }
 
 .selectedMenu {
     background-color: rgb(138, 115, 87);
     border-color: rgb(138, 115, 87);
     box-shadow: 0 0 0 0.2rem rgb(109, 89, 65);
+    outline:none;
 }
 
 .btn-menu:focus {
     background-color: rgb(138, 115, 87);
     border-color: rgb(138, 115, 87);
     box-shadow: 0 0 0 0.2rem rgb(109, 89, 65);
+    outline:none;
 }
 
 .btn-info:not(:disabled):not(.disabled):active {
     background-color: rgb(109, 89, 65);
     border-color: rgb(109, 89, 65);
-}
+    outline:none;
+} 
 
 .btn-logout {
     background-color: #BE4B4B;

@@ -7,6 +7,22 @@ export function botonMovil () {
     let flag = false;
     let flag2 = false;
 
+
+        //function 
+function close() {
+    animation.classList.add('hiddenAnimation')
+    animation.classList.remove('playing')
+    flag = true;
+    animation.style.height = "0"
+    animation.style.width = "0"
+    flag2 = false
+
+}
+
+    
+//animation btn user
+
+if(btn != null){
     btn.addEventListener('click', () => {
         if (!flag2) {
             animation.classList.add('playing')
@@ -21,18 +37,10 @@ export function botonMovil () {
         }
     })
 
+
+
+
     
-
-
-    function close() {
-        animation.classList.add('hiddenAnimation')
-        animation.classList.remove('playing')
-        flag = true;
-        animation.style.height = "0"
-        animation.style.width = "0"
-        flag2 = false
-
-    }
 
 
     for (let i = 0; i < body.length; i++) {
@@ -43,4 +51,11 @@ export function botonMovil () {
             }
         })
     }
+ }
 }
+
+
+
+
+
+

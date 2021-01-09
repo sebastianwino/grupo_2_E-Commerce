@@ -1,6 +1,7 @@
 export function photoDetailAnimation() {
     const image = document.querySelector('.image');
-
+      
+    if(image != null){
     image.addEventListener('mousemove', function (e) {
         let width = image.offsetWidth;
         let height = image.offsetHeight;
@@ -16,4 +17,5 @@ export function photoDetailAnimation() {
     image.addEventListener('mouseleave', function () {
         image.style.backgroundPosition = "center";
     });
+}
 }
