@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 const sequelize = require('sequelize')
 let db = require('../db/models')
+const fecha = require('../Fx/date');
 
 let usersControllers = {
     loginForm: (req, res) => {
@@ -123,33 +124,50 @@ let usersControllers = {
 
     },
     profileTest: (req, res) => {
-
-        db.User.findOne({
-            include: ['address', 'phone', 'cart'],
-            where: {email: req.session.email}
-        })
-        .then(userLoggedIn => {
-            let userName = userLoggedIn.name
-            let cartsSold = userLoggedIn.cart.filter(oneCart => {
-                return oneCart.sold == true
-            })
-            res.render('users/profileTest', {
-                title: 'Perfil',
-                user: userName,
-                userLoggedIn: userLoggedIn,
-                addresses: userLoggedIn.address,
-                phone: userLoggedIn.phone.dataValues,
-                carts: cartsSold,
-                admin: req.session.admin,
-                cartSold: false
-            })
-        })
-        .catch(err => {
-            console.log(err)
-            res.send('Error!!!')
-        })
-
-    }
+        let userLoggedIn = db.User.findOne({
+           include: ['address', 'phone', 'cart'],
+           where: {
+               email: req.session.email
+            }
+       })
+    
+       let cart = db.Cart.findAll({
+           include: ['product'],
+           where: {
+               user_id:req.session.userId,
+               sold: true
+           }
+       })
+       Promise.all([userLoggedIn,cart])
+           .then(([userLoggedIn,cart]) => {
+               let userName = userLoggedIn.name
+               let cartsSold = userLoggedIn.cart.filter(oneCart => {
+                   return oneCart.sold == true
+               })
+                   //se creo una funcion externa que configura la fecha y la hora
+                   let carritoNuevo = fecha(cartsSold); 
+                   res.json(cart) 
+               res.render('users/profileTest', {
+                   title: 'Perfil',
+                   user: userName,
+                   userLoggedIn: userLoggedIn,
+                   addresses: userLoggedIn.address,
+                   phone: userLoggedIn.phone.dataValues,
+                   carts: carritoNuevo,
+                   cartDetail: cart,
+                   admin: req.session.admin,
+                   cartSold: false
+               })
+           })
+           .catch(err => {
+               console.log(err)
+               res.send('Error!!!')
+           })
+    
+       }
+   
 }
 
 module.exports = usersControllers;
+
+
