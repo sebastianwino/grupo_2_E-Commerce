@@ -6,7 +6,7 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 const session = require('express-session');
 var cors = require('cors');
-var favicon = require('serve-favicon')
+// var favicon = require('serve-favicon')
 const cookieMiddleware = require('./middlewares/cookieMiddleware')
 const authAdminMiddleware = require ('./middlewares/adminMiddlewares/authAdminMiddleware');
 const createCartMiddleware = require('./middlewares/cartsMiddlewares/createCartMiddleware');
@@ -23,7 +23,7 @@ var apiUsersRoutes = require('./routes/apiRoutes/apiUsersRoutes');
 
 var app = express();
 app.use(cors());
-app.use(favicon(path.join('public', 'images' , 'logos', 'favicon.ico')))
+// app.use(favicon(path.join('public', 'images' , 'logos', 'favicon.ico')))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
